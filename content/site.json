@@ -1,0 +1,348 @@
+{
+  "_help": "All site text lives here; layout lives in index.html, projects/*/index.html and assets/. Convention: null = pending owner input (shown as a visible placeholder and counted in the draft banner); false = intentionally omitted (nothing shown). Every personal field is in the 'owner' block. Inline text supports `code` and **bold** only. See README.md.",
+  "owner": {
+    "_help": "Personal details are intentionally omitted in this release. Only add approved facts.",
+    "name": false,
+    "githubUsername": "h-yang-26",
+    "intro": false,
+    "bio": false,
+    "skills": false,
+    "email": false,
+    "resume": false,
+    "otherLinks": false,
+    "_formats": "intro: one short paragraph (string). bio: list of paragraphs. skills: list of strings. resume: {\"label\": \"Resume (PDF)\", \"url\": \"assets/resume.pdf\"}. otherLinks: list of {\"label\": \"LinkedIn\", \"url\": \"https://...\"}. professionalContext: list of paragraphs, exact owner-approved wording only.",
+    "projectStatements": {
+      "synthetic-data-quality-pipeline": {
+        "ownerVerification": false,
+        "contribution": false,
+        "learned": false,
+        "professionalContext": false
+      },
+      "inventory-shipping-optimization-lab": {
+        "ownerVerification": false,
+        "contribution": false,
+        "learned": false,
+        "professionalContext": false
+      },
+      "product-usage-analytics-demo": {
+        "ownerVerification": false,
+        "contribution": false,
+        "learned": false,
+        "professionalContext": false
+      },
+      "b2b-sales-systems-case-study": {
+        "ownerVerification": false,
+        "contribution": false,
+        "learned": false,
+        "professionalContext": false
+      }
+    }
+  },
+  "site": {
+    "summary": "Four small, independent demonstrations in data quality, optimization, product analytics and B2B systems design. Each uses fictional data, reproducible checks and documented limitations.",
+    "projectsIntro": "Three runnable Python projects and one hypothetical design exercise. The Python projects run locally from their repositories; this static site shows their recorded results and does not run them.",
+    "runNote": "The Python projects run locally from their repositories. This static site shows their recorded results; it does not run them.",
+    "footer": "Every project on this site is an independent demonstration built with fictional data and general technical methods. Counts, costs and charts are synthetic results, not production, employer or business outcomes.",
+    "privacy": "This site sets no cookies and loads no analytics, tracking scripts or third-party content."
+  },
+  "projects": [
+    {
+      "slug": "synthetic-data-quality-pipeline",
+      "repoUrl": "https://github.com/h-yang-26/synthetic-data-quality-pipeline",
+      "title": "Synthetic Data Quality Pipeline",
+      "label": "Independent / Synthetic Demonstration",
+      "type": "Independent demonstration using fictional data",
+      "focus": [
+        "Python",
+        "CSV ETL",
+        "Deterministic reference mapping",
+        "pytest"
+      ],
+      "card": {
+        "problem": "Inventory records mix missing identifiers, ambiguous categories and quantities that look alike but mean different things.",
+        "method": "A seeded command-line pipeline normalizes and validates fictional records, maps categories by exact alias, and routes ambiguous or invalid rows to a traceable exceptions file instead of guessing.",
+        "evidence": "60 input rows = 37 accepted + 23 rejected; 21 tests passed (agent-run)."
+      },
+      "problem": [
+        "Inconsistent inventory records can contain missing identifiers, ambiguous categories and quantities that look similar but mean different things. This fictional equipment-inventory demonstration separates safe formatting changes from decisions that require human review, while retaining a trace from each result to its source row."
+      ],
+      "built": [
+        "A command-line pipeline generates a seeded fictional sample, normalizes and validates its records, and writes three outputs: `cleaned_records.csv`, `exceptions.csv` and `summary.json`. Each data row receives one disposition. Multiple issues on one rejected row remain separate from the rejected-row count."
+      ],
+      "approach": [
+        "Source-row numbers identify records independently of business IDs. IDs are trimmed and case-sensitive; every occurrence of a duplicated normalized ID is rejected. Explicit quantity zero is valid, while a blank quantity is missing. Dates must be real calendar dates in ASCII `YYYY-MM-DD` form.",
+        "Category aliases use exact normalized matches. An unknown alias is rejected; an alias such as the fictional `pressure unit`, which maps to both `PUMP` and `SENSOR`, is sent to review rather than guessed. Exceptions retain raw values and error codes. Duplicate input-column names are fatal configuration errors because silently selecting one could change business meaning."
+      ],
+      "validation": {
+        "intro": "The results below, including later corrections, are agent-run, on Windows 11 with Python 3.13.15 and pytest 9.1.1. All counts are synthetic scenario results.",
+        "rows": [
+          {
+            "claim": "The synthetic sample reconciles",
+            "evidence": "`python -m dq_pipeline demo`, run twice: **60 input = 37 accepted + 23 rejected**, with 23 issues",
+            "status": "VERIFIED (agent-run)"
+          },
+          {
+            "claim": "Validation regressions pass, including duplicate headers",
+            "evidence": "`python -m pytest -q`: **21 passed**",
+            "status": "VERIFIED (agent-run)"
+          },
+          {
+            "claim": "Reruns replace outputs reproducibly",
+            "evidence": "Two `demo` runs produced byte-identical generated files",
+            "status": "VERIFIED (agent-run)"
+          },
+          {
+            "claim": "Row counts remain distinct from issue counts",
+            "evidence": "A separate hand-derived fixture gives **7 input = 1 accepted + 6 rejected**, with **8 issues**",
+            "status": "VERIFIED (agent-run)"
+          },
+          {
+            "claim": "Other operating systems and Python versions, performance",
+            "evidence": "Not tested",
+            "status": "NOT VERIFIED"
+          }
+        ]
+      },
+      "limitations": [
+        "This is an in-memory, single-file toy example with invented policies and 60 sample rows. It provides no fuzzy matching, database, UI or review workflow. Completely empty input lines are skipped. Input and configuration validation happen before any output is written, but an output I/O failure can leave partial files; the outputs have no transactional multi-file guarantee. Generator stability across untested Python versions is not verified."
+      ],
+      "reproduce": {
+        "summary": "The README documents environment setup and the `python -m dq_pipeline demo` entry point.",
+        "shell": "Windows PowerShell, from the repository root:",
+        "commands": [
+          "py -m venv .venv",
+          ".venv\\Scripts\\python -m pip install -r requirements.txt",
+          ".venv\\Scripts\\python -m dq_pipeline demo",
+          ".venv\\Scripts\\python -m pytest"
+        ],
+        "tested": "Windows 11, Python 3.13.15 (agent-run)."
+      },
+      "independence": "This is an independently developed demonstration using fictional data and general technical methods. Its counts are synthetic results, not evidence about an employer system or real operational performance."
+    },
+    {
+      "slug": "inventory-shipping-optimization-lab",
+      "repoUrl": "https://github.com/h-yang-26/inventory-shipping-optimization-lab",
+      "title": "Inventory and Shipping Optimization Lab",
+      "label": "Independent / Synthetic Demonstration",
+      "type": "Independent mathematical demonstration using fictional inputs",
+      "focus": [
+        "Python",
+        "PuLP/CBC",
+        "Integer optimization",
+        "Independent feasibility checks"
+      ],
+      "card": {
+        "problem": "Shipping every requested unit is not always worthwhile when opening a container incurs a fixed charge.",
+        "method": "An integer program solved with PuLP and CBC allocates fictional stock under demand, mass and volume limits, trading shortage penalties against container charges. A separate checker revalidates every plan.",
+        "evidence": "Five scenarios reproduce byte-identical results; 130 tests passed (agent-run)."
+      },
+      "problem": [
+        "Shipping every requested unit may not be worthwhile when opening a container incurs a fixed charge. This fictional laboratory models that tradeoff explicitly: allocate available stock under demand, mass and volume constraints while balancing shortage penalties against container charges."
+      ],
+      "built": [
+        "A Python command-line model reads fictional scenarios, solves integer allocation decisions with PuLP and CBC, and reports shipments, shortages, container use, utilization, solver status and objective cost. Text and JSON exports replace their designated files on rerun. Five bundled scenarios illustrate normal capacity, tighter capacity, higher penalties, low penalties and no inventory."
+      ],
+      "approach": [
+        "Allocations and shortages are nonnegative integers; container-use decisions are binary. Shipments cannot exceed stock, and shipped units plus shortage must equal demand. Each used container must satisfy both its mass and approximate-volume limit.",
+        "The objective minimizes shortage penalties plus fixed charges, entirely in fictional `toy_cost_units`. A separate checker revalidates decisions and recomputes their cost before a plan is interpreted. `OPTIMAL` requires supporting solver status; a valid incumbent without an optimality proof is reported as `FEASIBLE`.",
+        "The README's hand-checkable example has demand for five units, each weighing 10 kg and occupying 1 m³. A 25 kg / 3 m³ container permits two units. With penalty 10 and fixed charge 12, shipping two costs `3 × 10 + 12 = 42`, compared with 50 for shipping nothing."
+      ],
+      "validation": {
+        "intro": "The results below, including later corrections, are agent-run, on Windows 11 with Python 3.13.15, PuLP 3.3.2, CBC 2.10.3 and pytest 9.1.1. All costs are fictional.",
+        "rows": [
+          {
+            "claim": "Model and checker regressions pass",
+            "evidence": "`python -m pytest -q`: **130 passed** (500 dependency deprecation warnings)",
+            "status": "VERIFIED (agent-run)"
+          },
+          {
+            "claim": "Scenario results are reproducible",
+            "evidence": "`python -m shiplab --json results/example_results.json --text results/example_output.txt`, then a repeat: byte-identical files; objectives **1300 / 2976 / 8660 / 288.5 / 4305** in the scenario order above",
+            "status": "VERIFIED (agent-run; synthetic costs)"
+          },
+          {
+            "claim": "Capacity and objective arithmetic match a hand-derived check",
+            "evidence": "The tests include the README's mass-bound optimum, **42**",
+            "status": "VERIFIED (agent-run)"
+          },
+          {
+            "claim": "A real early-stop solution is distinguished from an optimum",
+            "evidence": "CBC runs with limits of 0.02 / 0.05 / 0.1 seconds returned `FEASIBLE` plans; constraints and cost were independently rechecked, and the CLI exited 0",
+            "status": "VERIFIED (agent-run)"
+          },
+          {
+            "claim": "Other environments and network-disabled execution",
+            "evidence": "Not tested",
+            "status": "NOT VERIFIED"
+          }
+        ]
+      },
+      "limitations": [
+        "Aggregate mass and volume feasibility is **not a validated 3D packing, stacking or load-restraint plan**. Holding costs, forecasting and multi-period planning are excluded. Low penalties can make shipping nothing optimal; zero stock produces shortages rather than infeasibility. Utilization uses used-container capacity and reports `N/A` for a zero denominator.",
+        "The solver runs in CBC's native serial mode (`threads=0`), which resolved a reproduced hang on the tested binary. A universal wall-clock runtime bound is not verified; solver limits are not operating-system deadlines. PuLP is pinned and emits deprecation warnings. All costs and baseline differences are fictional, not real savings."
+      ],
+      "reproduce": {
+        "summary": "The README documents dependency setup and the `python -m shiplab` entry point.",
+        "shell": "Windows PowerShell, from the repository root:",
+        "commands": [
+          "py -3.11 -m venv .venv",
+          ".\\.venv\\Scripts\\python -m pip install -r requirements-dev.txt",
+          ".\\.venv\\Scripts\\python -m shiplab",
+          ".\\.venv\\Scripts\\python -m pytest"
+        ],
+        "tested": "Windows 11, Python 3.13.15, PuLP 3.3.2, CBC 2.10.3 (bundled with PuLP), pytest 9.1.1 (agent-run)."
+      },
+      "independence": "This is a fictional independent optimization demonstration. Its outputs illustrate the implemented model and do not establish production performance, freight economics or employer outcomes."
+    },
+    {
+      "slug": "product-usage-analytics-demo",
+      "repoUrl": "https://github.com/h-yang-26/product-usage-analytics-demo",
+      "title": "Product Usage Analytics Demo",
+      "label": "Independent / Synthetic Demonstration",
+      "type": "Independent synthetic demonstration; not actual company analytics",
+      "focus": [
+        "Python/pandas",
+        "Streamlit",
+        "Altair",
+        "Ordered session funnels"
+      ],
+      "card": {
+        "problem": "Event volume, distinct users and progression through a workflow answer different product questions.",
+        "method": "A seeded event generator feeds separate validation and metric modules and a local Streamlit dashboard with explicit filters, denominators and an ordered session funnel.",
+        "evidence": "5766 raw events reconcile to 5735 valid; 44 tests passed (agent-run)."
+      },
+      "problem": [
+        "Event volume, distinct users and progression through a workflow answer different product questions. This fictional dashboard demonstrates how event validation, filter scope and explicit denominators affect those answers, without using real telemetry or drawing conclusions about a real company's adoption."
+      ],
+      "built": [
+        "A seeded generator creates fictional timestamped events. Separate validation and metric modules feed a Streamlit dashboard with UTC date and module filters, daily active users, event volume, module event counts and an ordered session funnel. File-wide validation diagnostics remain separate from filtered usage totals."
+      ],
+      "approach": [
+        "Valid events use an ASCII UTC timestamp format. Identical payloads sharing an event ID collapse to one event; conflicting payloads quarantine every row for that ID. Missing required fields are rejected. Excluded-event diagnostics preserve original text and logical source-record numbers rather than claiming physical CSV line numbers.",
+        "Usage filters apply before aggregation. Date selection includes the start at midnight UTC and excludes midnight after the end date; filtering can cut a session. Daily active users are distinct users, not a sum of per-module user counts. A session is a `(user_id, session_id)` pair.",
+        "The funnel counts a session once per stage only when `page_view`, `search` and `detail_view` occur in strictly increasing time order. Repeated actions do not multiply sessions; tied timestamps alone do not establish order. Conversion uses first-step eligible sessions as its denominator and displays `N/A` when that population is empty."
+      ],
+      "validation": {
+        "intro": "The results below, including later corrections, are agent-run, on Windows 11 with Python 3.13.15, pandas 3.1.0, Streamlit 1.66.1, Altair 6.3.0 and pytest 9.1.1. All data and counts are synthetic.",
+        "rows": [
+          {
+            "claim": "Generation is deterministic and validation counts reconcile",
+            "evidence": "`python generate_sample_data.py`, then a repeat: **5766 raw = 5735 valid + 10 collapsed + 8 quarantined + 13 rejected**; byte-identical CSV",
+            "status": "VERIFIED (agent-run; synthetic data)"
+          },
+          {
+            "claim": "Metric, validation and dashboard regressions pass",
+            "evidence": "`python -m pytest -q`: **44 passed**",
+            "status": "VERIFIED (agent-run)"
+          },
+          {
+            "claim": "Funnel semantics match hand-checkable fixtures",
+            "evidence": "The `test_funnel_full_range` fixture produces **7 / 3 / 2** sessions; tests cover ties, repeats, session identity, filters and empty denominators",
+            "status": "VERIFIED (agent-run)"
+          },
+          {
+            "claim": "Dashboard totals and empty selections render",
+            "evidence": "In a browser, `streamlit run app.py` shows **5735 events / 175 invented users / 1520 sessions / 1357 funnel entries**; clearing all modules gives zero usage while diagnostics stay file-wide, with no browser errors",
+            "status": "VERIFIED (agent-run)"
+          },
+          {
+            "claim": "Other platforms and dependency versions; accessibility audit",
+            "evidence": "Not performed",
+            "status": "NOT VERIFIED"
+          }
+        ]
+      },
+      "limitations": [
+        "The small dataset spans 28 days and reflects invented generation assumptions. It supports no causal inference, forecasting, statistical-significance or production-readiness claim. Sessions are supplied identifiers rather than inactivity-based sessionization, and funnel steps are fixed in code. There is no live collection, authentication or production scheduling. A defensive guard handles an empty date selection; a failing case was not reproduced in the browser."
+      ],
+      "reproduce": {
+        "summary": "No public dashboard URL exists, and no deployment is implied. The README documents environment setup, `python generate_sample_data.py` and `.venv\\Scripts\\python -m streamlit run app.py`.",
+        "shell": "Windows PowerShell or cmd, from the repository root:",
+        "commands": [
+          "python -m venv .venv",
+          ".venv\\Scripts\\python -m pip install -r requirements.txt",
+          ".venv\\Scripts\\python generate_sample_data.py",
+          ".venv\\Scripts\\python -m pytest -q",
+          ".venv\\Scripts\\python -m streamlit run app.py"
+        ],
+        "tested": "Windows 11, Python 3.13.15, pandas 3.1.0, Streamlit 1.66.1, Altair 6.3.0, pytest 9.1.1 (agent-run)."
+      },
+      "independence": "This is an independent demonstration using invented users, sessions and events. Its charts and counts are synthetic illustrations, not real platform-usage or employer results."
+    },
+    {
+      "slug": "b2b-sales-systems-case-study",
+      "repoUrl": "https://github.com/h-yang-26/b2b-sales-systems-case-study",
+      "title": "B2B Sales Systems Case Study",
+      "label": "Hypothetical Systems-Design Exercise",
+      "type": "Independent, hypothetical systems-design exercise",
+      "focus": [
+        "Domain modeling",
+        "Mermaid",
+        "Architecture decision records",
+        "Python standard-library checks"
+      ],
+      "card": {
+        "problem": "A quotation, an accepted order, reserved stock and a shipment are different business facts; adding them together double counts demand.",
+        "method": "A documented sales lifecycle, entity glossary, Mermaid diagrams, three architecture decision records and five metric definitions, checked by a small standard-library calculator. The architecture is a proposed design, not an implemented system.",
+        "evidence": "Consistency checks PASS; 30 unittest tests passed (agent-run)."
+      },
+      "problem": [
+        "A quotation, an accepted order, reserved stock and a physical shipment describe different business facts. This fictional distributor scenario illustrates why combining those quantities can double count demand, and how clear definitions and logical ownership keep the narrative and metrics consistent."
+      ],
+      "built": [
+        "The documentation covers a sales lifecycle, an entity glossary, a Mermaid business-process diagram, a conceptual module diagram, three architecture decision records and five metric definitions. A shared fictional JSON example supports a small arithmetic and consistency calculator and standard-library tests.",
+        "The modules and ownership boundaries are a **proposed design**, not an implemented or deployed CRM/ERP. The executable work consists of the checking scripts; it does not implement the depicted business application."
+      ],
+      "approach": [
+        "The shared snapshot is quote **4**, order **2**, ship **1**, remaining **1**. The other two quoted units are unconverted offers, not additional committed demand. A stock reservation is an allocation of on-hand units, not another sale or shipment. Estimated dates, observed facts and missing values remain distinct.",
+        "With cancellations and returns excluded, remaining quantity is `ordered_quantity - shipped_quantity`. In the later fictional walkthrough, the second unit ships: shipped becomes two and remaining becomes zero, while committed demand remains two. The conceptual architecture assigns logical owners for these facts without requiring separate services or databases.",
+        "Metrics use distinct populations. The win-rate calculator counts distinct opportunities, excludes and reports missing or out-of-period close dates, and rejects conflicting opportunity facts. Two quote rows for one opportunity therefore do not create two wins."
+      ],
+      "validation": {
+        "intro": "The results below, including later corrections, are agent-run, on Windows 11 with Python 3.13.15; the scripts use only the standard library. All numbers are invented examples.",
+        "rows": [
+          {
+            "claim": "Calculator and error-case regressions pass",
+            "evidence": "`python -m unittest discover -s tests -v`: **30 passed**",
+            "status": "VERIFIED (agent-run)"
+          },
+          {
+            "claim": "Scenario and metric arithmetic reconcile",
+            "evidence": "`python scripts/scenario_calc.py`: consistency PASS; scenario conversion **2/4**, fill **1/2**, backlog **1 unit / USD 1850**, turnaround **30 h**. Cohort: conversion **5/18**, fill **4/5**, backlog **1**, median turnaround **27 h**, win rate **2/4**",
+            "status": "VERIFIED (agent-run; invented examples)"
+          },
+          {
+            "claim": "JSON and document references are consistent",
+            "evidence": "`python -m json.tool examples/fictional-order-scenario.json` parses; `python scripts/check_docs.py` passes for links, identifiers, Mermaid structure and required statements (it does not prove every prose statement)",
+            "status": "VERIFIED (agent-run)"
+          },
+          {
+            "claim": "Mermaid diagrams render",
+            "evidence": "Both blocks rendered locally with Mermaid 10.9.1 in a Chromium-based browser, with node and edge counts checked",
+            "status": "VERIFIED (local rendering only)"
+          },
+          {
+            "claim": "GitHub rendering, other Mermaid versions, human readability",
+            "evidence": "Not tested",
+            "status": "NOT VERIFIED"
+          }
+        ]
+      },
+      "limitations": [
+        "The scenario has one SKU, warehouse, currency and price, with five invented cohort rows. Cancellations, returns, tax, discounts and allocation among competing orders are excluded. Numbers illustrate arithmetic and denominators, not measured business performance.",
+        "The optional calculator assumes preselected cohort rows for the other metrics. It does not enforce every documented issue-date, acceptance-date or missing-lineage exclusion rule, so it is not presented as a full reporting system. The document checker covers structure, identifiers and selected statements; it cannot establish complete semantic correctness or readability. Other operating systems and Python versions are not tested."
+      ],
+      "reproduce": {
+        "summary": "The README lists the calculator, document-checker and unittest commands. Requires Python 3.11 or newer; there are no third-party dependencies to install.",
+        "shell": "Any shell, from the repository root:",
+        "commands": [
+          "python scripts/scenario_calc.py",
+          "python scripts/check_docs.py",
+          "python -m unittest discover -s tests -v"
+        ],
+        "tested": "Windows 11, Python 3.13.15, standard library only (agent-run)."
+      },
+      "independence": "This is a fictional design exercise using general technical concepts. The proposed architecture does not describe an employer implementation, and the example metrics are not production-performance claims."
+    }
+  ]
+}
