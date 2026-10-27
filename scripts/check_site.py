@@ -126,6 +126,23 @@ def main():
         elif not (ROOT / url.lstrip("/")).exists():
             problems.append(f"{path}: local file '{url}' does not exist")
 
+
+    # Content-managed images are injected at runtime, so the shell parser cannot see them.
+    for project in content["projects"]:
+        for field in ("thumbnail",):
+            ref = project.get(field)
+            if ref and not (ROOT / ref).is_file():
+                problems.append(f"{project['slug']}: missing {field} image {ref}")
+        visuals = project.get("visuals", [])
+        if len(visuals) != 2:
+            problems.append(f"{project['slug']}: expected exactly two visual entries")
+        for visual in visuals:
+            ref = visual.get("src", "")
+            if not ref.startswith("assets/visuals/") or not (ROOT / ref).is_file():
+                problems.append(f"{project['slug']}: missing or invalid visual {ref!r}")
+            if not visual.get("alt") or not visual.get("caption"):
+                problems.append(f"{project['slug']}: image is missing alt text or caption")
+
     pending = pending_items(content)
     links = [p for p in pending if p.endswith(".repoUrl")]
     print(f"Pages checked: {len(pages)}; projects: {len(slugs)}")

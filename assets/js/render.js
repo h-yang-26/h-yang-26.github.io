@@ -205,10 +205,24 @@
 
   /* ---------- home page ---------- */
 
+
+  function renderVisuals(project) {
+    if (!Array.isArray(project.visuals) || !project.visuals.length) return "";
+    return `<div class="visual-gallery">${project.visuals.map((visual) => {
+      const src = url(home + visual.src);
+      if (!src) return "";
+      return `<figure class="technical-figure">
+        <img src="${esc(src)}" alt="${esc(visual.alt)}" width="1000" height="${visual.kind === "result" && project.slug === "inventory-shipping-optimization-lab" ? "552" : "475"}" loading="lazy" decoding="async">
+        <figcaption><span class="figure-label">${visual.kind === "diagram" ? "SYSTEM / MODEL" : "SYNTHETIC RESULT"}</span> ${inline(visual.caption)}</figcaption>
+      </figure>`;
+    }).join("")}</div>`;
+  }
+
   function renderCard(project) {
     const c = project.card;
     return `<li>
       <article class="card" aria-labelledby="card-${esc(project.slug)}">
+        <div class="card__visual"><img src="${home}${esc(project.thumbnail)}" alt="" width="1000" height="475" loading="lazy" decoding="async"></div>
         <p class="chip">${esc(project.label)}</p>
         <h3 id="card-${esc(project.slug)}">${esc(project.title)}</h3>
         <p class="card__connection"><strong>Related professional work:</strong> ${esc(project.professionalArea)}</p>
@@ -412,6 +426,7 @@
     const sections = [
       ["professional", "Professional work and public-demo boundary", bridge],
       ["problem", "The problem", paras(p.problem)],
+      ["visuals", "System diagrams and synthetic results", renderVisuals(p)],
       ["built", "What the demonstration contains", paras(p.built)],
       ["approach", "Technical approach", paras(p.approach)],
       ["validation", "Validation and results", renderValidation(content, p, s)],

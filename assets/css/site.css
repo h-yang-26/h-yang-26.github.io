@@ -721,3 +721,14 @@ h1 .ph { font-size: 0.5em; vertical-align: middle; }
 .professional-bridge h3 { font-family: var(--sans); font-size: 0.84rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
 .professional-bridge p:last-child { margin-bottom: 0; }
 @media (max-width: 43rem) { .experience-grid, .professional-bridge { grid-template-columns: 1fr; } }
+
+
+/* Self-contained technical SVG illustrations; deliberately separate from employer imagery. */
+.card__visual { margin: -1.4rem -1.4rem 1.2rem; overflow: hidden; border-radius: var(--radius) var(--radius) 0 0; border-bottom: 1px solid var(--border); background: #f5f8fb; }
+.card__visual img { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 475; object-fit: cover; }
+.visual-gallery { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.2rem; margin-block: 1.2rem 1.5rem; }
+.technical-figure { margin: 0; min-width: 0; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.technical-figure img { display: block; width: 100%; height: auto; background: #f5f8fb; }
+.technical-figure figcaption { margin: 0; padding: 0.9rem 1.05rem 1.05rem; border-top: 1px solid var(--border); color: var(--muted); line-height: 1.52; font-size: 0.93rem; }
+.figure-label { display: inline-block; margin-right: 0.45rem; font-size: 0.72rem; font-weight: 800; color: var(--accent); letter-spacing: 0.07em; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .technical-figure img { transition: none; } }
