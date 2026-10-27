@@ -13,27 +13,51 @@
     "_formats": "intro: one short paragraph (string). bio: list of paragraphs. skills: list of strings. resume: {\"label\": \"Resume (PDF)\", \"url\": \"assets/resume.pdf\"}. otherLinks: list of {\"label\": \"LinkedIn\", \"url\": \"https://...\"}. professionalContext: list of paragraphs, exact owner-approved wording only.",
     "projectStatements": {
       "synthetic-data-quality-pipeline": {
-        "ownerVerification": false,
-        "contribution": false,
-        "learned": false,
+        "ownerVerification": "During the first review round, I also ran the documented commands myself in PowerShell, and the outputs matched the agents' reports.",
+        "contribution": [
+          "I co-developed the original agent prompt kit for this project with AI assistance, and I provided the business context, project purpose and initial architecture outline. I set requirements, evaluation criteria, edge-case priorities and approval decisions.",
+          "I used a planner-and-builder AI workflow to produce the implementation and supporting documentation. AI tools performed the implementation work, while I remained responsible for the project's direction and final approvals.",
+          "During the first review round, I personally followed the project's run-and-check instructions in PowerShell and confirmed that the outputs matched the agents' reports. Later corrections and their regression results were verified by agents."
+        ],
+        "learned": [
+          "I learned to distinguish missing information from an explicit zero and to preserve that distinction throughout validation. I also became more deliberate about using deterministic transformations only when the available facts support a clear decision. Ambiguous mappings belong in a traceable review process rather than being resolved through an undocumented guess."
+        ],
         "professionalContext": false
       },
       "inventory-shipping-optimization-lab": {
-        "ownerVerification": false,
-        "contribution": false,
-        "learned": false,
+        "ownerVerification": "During the first review round, I also ran the documented commands myself in PowerShell, and the outputs matched the agents' reports.",
+        "contribution": [
+          "I co-developed the original agent prompt kit for this project with AI assistance, and I provided the business context, project purpose and initial architecture outline. I set requirements, evaluation criteria, edge-case priorities and approval decisions.",
+          "I used a planner-and-builder AI workflow to produce the implementation and supporting documentation. AI tools performed the implementation work, while I remained responsible for the project's direction and final approvals.",
+          "During the first review round, I personally followed the project's run-and-check instructions in PowerShell and confirmed that the outputs matched the agents' reports. Later corrections and their regression results were verified by agents."
+        ],
+        "learned": [
+          "I learned how product dimensions and container capacities change which allocations are feasible, and how shortage penalties influence whether opening another container is worthwhile. The exercise helped me distinguish a shipment-allocation decision from longer-term inventory strategy. Broader forecasting, inventory-policy and convex/nonconvex model-selection questions remain areas for further study."
+        ],
         "professionalContext": false
       },
       "product-usage-analytics-demo": {
-        "ownerVerification": false,
-        "contribution": false,
-        "learned": false,
+        "ownerVerification": "During the first review round, I also ran the documented commands myself in PowerShell, and the outputs matched the agents' reports.",
+        "contribution": [
+          "I co-developed the original agent prompt kit for this project with AI assistance, and I provided the business context, project purpose and initial architecture outline. I set requirements, evaluation criteria, edge-case priorities and approval decisions.",
+          "I used a planner-and-builder AI workflow to produce the implementation and supporting documentation. AI tools performed the implementation work, while I remained responsible for the project's direction and final approvals.",
+          "During the first review round, I personally followed the project's run-and-check instructions in PowerShell and confirmed that the outputs matched the agents' reports. Later corrections and their regression results were verified by agents."
+        ],
+        "learned": [
+          "I learned to connect a metric to the administrator's question before choosing a chart. Distinct users, event volume and funnel progression describe different aspects of activity. Clear populations, time windows, denominators and data-quality diagnostics help administrators interpret those numbers and decide what to investigate next."
+        ],
         "professionalContext": false
       },
       "b2b-sales-systems-case-study": {
-        "ownerVerification": false,
-        "contribution": false,
-        "learned": false,
+        "ownerVerification": "During the first review round, I also ran the documented commands myself in PowerShell, and the outputs matched the agents' reports.",
+        "contribution": [
+          "I co-developed the original agent prompt kit for this project with AI assistance, and I provided the business context, project purpose and initial architecture outline. I set requirements, evaluation criteria, edge-case priorities and approval decisions.",
+          "I used a planner-and-builder AI workflow to produce the written artifacts, fictional scenario and checking scripts. AI tools produced those materials, while I remained responsible for the project's direction and final approvals. This contribution concerns the hypothetical case study, not an implementation of its proposed business platform.",
+          "During the first review round, I personally followed the project's run-and-check instructions in PowerShell and confirmed that the outputs matched the agents' reports. Later corrections and their regression results were verified by agents."
+        ],
+        "learned": [
+          "I learned to separate quotations, commercial commitments, stock reservations and physical shipments, and to identify which responsibility owns each fact. The scenario also prompted questions about keeping reservation updates consistent when operations happen concurrently. Transactions and concurrency control are relevant implementation topics for a future prototype; this case study remains a conceptual design."
+        ],
         "professionalContext": false
       }
     }
