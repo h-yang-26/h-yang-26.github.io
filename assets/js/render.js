@@ -160,6 +160,7 @@
       <a class="brand" href="${home}">${brand}</a>
       <nav aria-label="Primary">
         <ul class="nav">
+          <li><a href="${home}#experience">Experience</a></li>
           <li><a href="${home}#projects">Projects</a></li>
           <li><a href="${home}#about">About</a></li>
           <li><a href="${home}#contact">Contact</a></li>
@@ -210,6 +211,7 @@
       <article class="card" aria-labelledby="card-${esc(project.slug)}">
         <p class="chip">${esc(project.label)}</p>
         <h3 id="card-${esc(project.slug)}">${esc(project.title)}</h3>
+        <p class="card__connection"><strong>Related professional work:</strong> ${esc(project.professionalArea)}</p>
         <dl class="facts">
           <dt>Problem</dt><dd>${inline(c.problem)}</dd>
           <dt>Method</dt><dd>${inline(c.method)}</dd>
@@ -252,9 +254,30 @@
     return `<dl class="contact">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
   }
 
+  function renderExperience(content) {
+    const ex = content.owner.professionalExperience;
+    if (!ex || ex === false) return "";
+    return `<section class="section section--experience" id="experience" aria-labelledby="experience-title">
+      <div class="wrap">
+        <p class="eyebrow">Where the public demos come from</p>
+        <h2 id="experience-title">Professional experience behind the demonstrations</h2>
+        <div class="experience-grid">
+          <div>
+            <p class="experience-role"><strong>${esc(ex.role)}</strong> · ${esc(ex.organization)} · ${esc(ex.period)}</p>
+            <p class="section__lede">${inline(ex.summary)}</p>
+            <ul class="experience-list">${ex.workstreams.map(w => `<li><strong>${esc(w.title)}</strong><span>${inline(w.detail)}</span></li>`).join("")}</ul>
+          </div>
+          <aside class="scope-note" aria-label="Boundary between professional experience and public demonstrations">
+            <h3>Real work. Independent public models.</h3>
+            <p>${inline(content.site.professionalDisclosure)}</p>
+          </aside>
+        </div>
+      </div>
+    </section>`;
+  }
   function renderHome(content) {
     const o = content.owner;
-    const name = o.name === null ? ph(content, "owner.name") : esc(o.name || "Portfolio");
+    const name = o.name === null ? ph(content, "owner.name") : esc(o.name || content.site.headline || "Portfolio");
     const intro = ownerText(content, o.intro, "owner.intro");
     const bio = ownerText(content, o.bio, "owner.bio");
     const skills = o.skills === false ? null
@@ -265,11 +288,13 @@
 
     return `
     <section class="hero wrap" aria-labelledby="intro-title">
-      <p class="eyebrow">Portfolio</p>
+      <p class="eyebrow">Independent portfolio · Enterprise-informed public examples</p>
       <h1 id="intro-title">${name}</h1>
       ${intro ? `<div class="hero__intro">${intro}</div>` : ""}
       <p class="hero__summary">${inline(content.site.summary)}</p>
     </section>
+
+    ${renderExperience(content)}
 
     <section class="section" id="projects" aria-labelledby="projects-title">
       <div class="wrap">
@@ -296,7 +321,7 @@
 
     <section class="section" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
-        <h2 id="contact-title">Contact and resume</h2>
+        <h2 id="contact-title">Public links</h2>
         ${renderContact(content)}
       </div>
     </section>`;
@@ -379,16 +404,21 @@
     const base = `owner.projectStatements.${p.slug}`;
     document.title = pageTitle(content, p.title);
 
+    const professional = ownerText(content, s.professionalContext, `${base}.professionalContext`);
+    const bridge = professional ? `<div class="professional-bridge">
+      <div><h3>Relevant professional responsibility</h3>${professional}</div>
+      <div><h3>Scope of this public demonstration</h3>${paras(p.demoScope)}</div>
+      </div>` : null;
     const sections = [
+      ["professional", "Professional work and public-demo boundary", bridge],
       ["problem", "The problem", paras(p.problem)],
-      ["built", "What I built", paras(p.built)],
+      ["built", "What the demonstration contains", paras(p.built)],
       ["approach", "Technical approach", paras(p.approach)],
       ["validation", "Validation and results", renderValidation(content, p, s)],
       ["limitations", "Tradeoffs and limitations", paras(p.limitations)],
       ["contribution", "My contribution", ownerText(content, s.contribution, `${base}.contribution`)],
       ["learned", "What I learned", ownerText(content, s.learned, `${base}.learned`)],
-      ["reproduce", "Source and reproducibility", renderReproduce(content, p)],
-      ["professional", "Related professional experience", ownerText(content, s.professionalContext, `${base}.professionalContext`)]
+      ["reproduce", "Source and reproducibility", renderReproduce(content, p)]
     ].filter(([, , html]) => html);
 
     return `
@@ -404,6 +434,7 @@
         <p class="chip">${esc(p.label)}</p>
         <h1>${esc(p.title)}</h1>
         <p class="cs-type"><strong>Type:</strong> ${inline(p.type)}</p>
+        <p class="cs-context"><strong>Related professional work:</strong> ${esc(p.professionalArea)}. <strong>Public artifact:</strong> independent fictional demonstration.</p>
         ${tags(p.focus)}
         <div class="actions">${repoLinks(p, true)}</div>
       </header>

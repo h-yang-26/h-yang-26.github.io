@@ -2,7 +2,7 @@
 
 Static GitHub Pages site showing four independently constructed fictional demonstrations: data-quality ETL, shipping allocation optimization, product analytics, and conceptual B2B sales systems design.
 
-No personal biography, personal contact address, resume link, or owner-specific first-person statement is published in this release. The associated source repositories are linked from the case studies. All example numbers are synthetic and must not be read as employer outcomes.
+No personal biography, personal contact address, or resume link is published in this release. Approved first-person contribution and professional-experience statements appear in the case studies, distinguishing workplace responsibilities from fictional, independent artifacts. The associated source repositories are linked from the case studies. All example numbers are synthetic and must not be read as employer outcomes.
 
 ## Site files
 

@@ -701,3 +701,23 @@ h1 .ph { font-size: 0.5em; vertical-align: middle; }
 }
 
 .notice--error h1 { font-size: 1.6rem; }
+
+/* Professional context is visually distinct from the fictional public implementations. */
+.section--experience { background: var(--surface-sunk); }
+.experience-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(15rem, 1fr); gap: 1.25rem 2rem; margin-top: 1.5rem; align-items: start; }
+.experience-role { margin-bottom: 0.8rem; font-size: 1rem; }
+.experience-list { display: grid; gap: 0.85rem; padding: 0; margin: 1.25rem 0 0; list-style: none; }
+.experience-list li { padding-left: 0.9rem; border-left: 3px solid var(--border-strong); }
+.experience-list strong { display: block; font-size: 0.96rem; }
+.experience-list span { display: block; color: var(--muted); font-size: 0.92rem; }
+.scope-note { padding: 1.25rem; border: 1px solid var(--border-strong); border-radius: var(--radius); background: var(--surface); }
+.scope-note h3 { font-size: 1.2rem; }
+.scope-note p { margin: 0; font-size: 0.94rem; }
+.card__connection { color: var(--muted); font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.95rem; }
+.card__connection strong { color: var(--text); }
+.cs-context { max-width: 50rem; color: var(--muted); font-size: 0.98rem; }
+.professional-bridge { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.professional-bridge > div { border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.2rem; background: var(--surface); }
+.professional-bridge h3 { font-family: var(--sans); font-size: 0.84rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+.professional-bridge p:last-child { margin-bottom: 0; }
+@media (max-width: 43rem) { .experience-grid, .professional-bridge { grid-template-columns: 1fr; } }
