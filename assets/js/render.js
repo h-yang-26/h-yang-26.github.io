@@ -209,10 +209,10 @@
   function renderVisuals(project) {
     if (!Array.isArray(project.visuals) || !project.visuals.length) return "";
     return `<div class="visual-gallery">${project.visuals.map((visual) => {
-      const src = url(home + visual.src);
+      const src = url(visual.src);
       if (!src) return "";
       return `<figure class="technical-figure">
-        <img src="${esc(src)}" alt="${esc(visual.alt)}" width="1000" height="${visual.kind === "result" && project.slug === "inventory-shipping-optimization-lab" ? "552" : "475"}" loading="lazy" decoding="async">
+        <img src="${src}" alt="${esc(visual.alt)}" width="1000" height="${visual.kind === "result" && project.slug === "inventory-shipping-optimization-lab" ? "552" : "475"}" loading="lazy" decoding="async">
         <figcaption><span class="figure-label">${visual.kind === "diagram" ? "SYSTEM / MODEL" : "SYNTHETIC RESULT"}</span> ${inline(visual.caption)}</figcaption>
       </figure>`;
     }).join("")}</div>`;

@@ -24,3 +24,10 @@ The three Python demos execute locally from their respective repositories; the w
 ## License
 
 No license is currently granted for original material in this repository; a license can be chosen later.
+
+## Technical diagrams and synthetic result images
+
+The homepage and each case study now use original static SVG diagrams and numerical
+visualizations from `assets/visuals/`. Their citations, fictional data boundaries,
+and computation definitions are documented in [`assets/visuals/README.md`](assets/visuals/README.md).
+The figures are static; interactive calculators are not part of this release.
