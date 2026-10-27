@@ -199,7 +199,7 @@
 
   function pageTitle(content, prefix) {
     const name = content.owner.name;
-    const suffix = name ? `${name} · Portfolio` : "Portfolio (draft)";
+    const suffix = name ? `${name} · Portfolio` : "Independent Technical Portfolio";
     return prefix ? `${prefix} · ${suffix}` : suffix;
   }
 
