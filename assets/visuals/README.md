@@ -19,3 +19,8 @@ would require a separately verified implementation.
 To update quantitative figures, rerun the reference projects, review the
 resulting synthetic artifacts and update the SVG source accordingly. Never
 copy employer datasets or system diagrams into this directory.
+
+# Applied Thinking diagrams
+
+`thinking-foundations.svg` and `thinking-cycle.svg` are original explanatory diagrams created for the static Applied Thinking module. They contain no measured data, employer architecture or numerical results. The cycle illustrates reusable operations and revision, not a convergence guarantee. Alt text and adjacent explanations are maintained in `content/site.json`.
+

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Synthetic Data Quality Pipeline · Independent Technical Portfolio</title>
   <meta name="description" content="Fictional data-quality pipeline representing lessons from professional inventory-data migration; independent code, synthetic data and verified checks.">
@@ -11,12 +12,119 @@
 </head>
 <body data-page="project" data-project="synthetic-data-quality-pipeline" data-root="../..">
   <a class="skip-link" href="#main">Skip to main content</a>
-  <header class="site-header" id="site-header"></header>
-  <div class="draft-banner" id="draft-banner" role="region" aria-label="Draft status" hidden></div>
-  <main id="main" tabindex="-1">
-    <p class="wrap loading">Loading…</p>
-    <noscript><p class="wrap">This page builds its content from <code>content/site.json</code> with JavaScript. Please enable JavaScript to view it.</p></noscript>
-  </main>
-  <footer class="site-footer" id="site-footer"></footer>
+  <header class="site-header" id="site-header"><div class="wrap header__inner">
+      <a class="brand" href="../../">Portfolio</a>
+      <nav aria-label="Primary">
+        <ul class="nav">
+          <li><a href="../../#experience">Experience</a></li>
+          <li><a href="../../#projects">Projects</a></li>
+          <li><a href="../../applied-thinking/">Applied Thinking</a></li>
+          <li><a href="../../#about">About</a></li>
+          <li><a href="../../#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+<!-- /site-header --></header>
+  <div class="draft-banner" id="draft-banner" role="region" aria-label="Draft status"><div class="wrap"><p><strong>Applied Thinking · Draft for owner review.</strong> First-person methodology, academic titles and professional boundaries require owner review before publication.</p></div>
+<!-- /draft-banner --></div>
+  <main id="main" tabindex="-1" data-prerendered="true">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../../#projects">Projects</a></li>
+          <li><span aria-current="page">Synthetic Data Quality Pipeline</span></li>
+        </ol>
+      </nav>
+      <header class="cs-head">
+        <p class="chip">Independent / Synthetic Demonstration</p>
+        <h1>Synthetic Data Quality Pipeline</h1>
+        <p class="cs-type"><strong>Type:</strong> Independent demonstration using fictional data</p>
+        <p class="cs-context"><strong>Related professional work:</strong> Inventory data migration and exception review. <strong>Public artifact:</strong> independent fictional demonstration.</p>
+        <ul class="tags"><li>Python</li><li>CSV ETL</li><li>Deterministic reference mapping</li><li>pytest</li></ul>
+        <div class="actions"><a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline">Source on GitHub<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a><a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline#readme">README and run instructions</a></div>
+      </header>
+      <div class="cs-layout">
+        <nav class="toc" aria-label="On this page">
+          <p class="toc__title">On this page</p>
+          <ol><li><a href="#professional">Professional work and public-demo boundary</a></li><li><a href="#problem">The problem</a></li><li><a href="#visuals">System diagrams and synthetic results</a></li><li><a href="#built">What the demonstration contains</a></li><li><a href="#approach">Technical approach</a></li><li><a href="#validation">Validation and results</a></li><li><a href="#limitations">Tradeoffs and limitations</a></li><li><a href="#contribution">My contribution</a></li><li><a href="#learned">What I learned</a></li><li><a href="#academic-connections">Academic connections</a></li><li><a href="#reproduce">Source and reproducibility</a></li></ol>
+        </nav>
+        <article class="prose">
+          <section id="professional" aria-labelledby="professional-title">
+            <h2 id="professional-title">Professional work and public-demo boundary</h2><div class="professional-bridge">
+      <div><h3>Relevant professional responsibility</h3><p>In my professional role, I led an accuracy-first migration of approximately 2,500 inventory records into an in-house quoting module. I coordinated five review rounds with sales and product teams to resolve ambiguous equipment rules and legacy free-text entries before launch.</p></div>
+      <div><h3>Scope of this public demonstration</h3><p>This public Python pipeline reconstructs selected validation and exception-handling principles using fictional records, invented mapping rules and independently reproducible checks. It is not the employer&#39;s migration implementation or its data.</p></div>
+      </div></section><section id="problem" aria-labelledby="problem-title">
+            <h2 id="problem-title">The problem</h2><p>Inconsistent inventory records can contain missing identifiers, ambiguous categories and quantities that look similar but mean different things. This fictional equipment-inventory demonstration separates safe formatting changes from decisions that require human review, while retaining a trace from each result to its source row.</p></section><section id="visuals" aria-labelledby="visuals-title">
+            <h2 id="visuals-title">System diagrams and synthetic results</h2><div class="visual-gallery"><figure class="technical-figure">
+        <img src="../../assets/visuals/data-quality-flow.svg" alt="Fictional validation diagram: raw CSV is normalized and validated; canonical accepted records and review exceptions are separate outputs." width="1000" height="475" loading="lazy" decoding="async">
+        <figcaption><span class="figure-label">SYSTEM / MODEL</span> A record&#39;s path depends on deterministic checks. Ambiguous categories and invalid fields are retained for review, not silently repaired.</figcaption>
+      </figure><figure class="technical-figure">
+        <img src="../../assets/visuals/data-quality-results.svg" alt="Synthetic sample chart: 60 input records, 37 accepted and 23 rejected; accepted categories filter 7, motor 9, pump 9, sensor 5, valve 7." width="1000" height="475" loading="lazy" decoding="async">
+        <figcaption><span class="figure-label">SYNTHETIC RESULT</span> The 60-row generated sample reconciles completely. Counts come from the committed <code>outputs/summary.json</code>, not employer data.</figcaption>
+      </figure></div></section><section id="built" aria-labelledby="built-title">
+            <h2 id="built-title">What the demonstration contains</h2><p>A command-line pipeline generates a seeded fictional sample, normalizes and validates its records, and writes three outputs: <code>cleaned_records.csv</code>, <code>exceptions.csv</code> and <code>summary.json</code>. Each data row receives one disposition. Multiple issues on one rejected row remain separate from the rejected-row count.</p></section><section id="approach" aria-labelledby="approach-title">
+            <h2 id="approach-title">Technical approach</h2><p>Source-row numbers identify records independently of business IDs. IDs are trimmed and case-sensitive; every occurrence of a duplicated normalized ID is rejected. Explicit quantity zero is valid, while a blank quantity is missing. Dates must be real calendar dates in ASCII <code>YYYY-MM-DD</code> form.</p><p>Category aliases use exact normalized matches. An unknown alias is rejected; an alias such as the fictional <code>pressure unit</code>, which maps to both <code>PUMP</code> and <code>SENSOR</code>, is sent to review rather than guessed. Exceptions retain raw values and error codes. Duplicate input-column names are fatal configuration errors because silently selecting one could change business meaning.</p></section><section id="validation" aria-labelledby="validation-title">
+            <h2 id="validation-title">Validation and results</h2><p>During the first review round, I also ran the documented commands myself in PowerShell, and the outputs matched the agents&#39; reports. The results below, including later corrections, are agent-run, on Windows 11 with Python 3.13.15 and pytest 9.1.1. All counts are synthetic scenario results.</p>
+      <table class="evidence" role="table">
+        <caption class="visually-hidden">Claims, evidence and verification status: Synthetic Data Quality Pipeline</caption>
+        <thead role="rowgroup"><tr role="row">
+          <th scope="col" role="columnheader">Public-demo claim</th>
+          <th scope="col" role="columnheader">Command and result</th>
+          <th scope="col" role="columnheader">Status</th>
+        </tr></thead>
+        <tbody role="rowgroup"><tr role="row">
+        <th scope="row" role="rowheader">The synthetic sample reconciles</th>
+        <td role="cell" data-label="Command and result"><code>python -m dq_pipeline demo</code>, run twice: <strong>60 input = 37 accepted + 23 rejected</strong>, with 23 issues</td>
+        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
+      </tr><tr role="row">
+        <th scope="row" role="rowheader">Validation regressions pass, including duplicate headers</th>
+        <td role="cell" data-label="Command and result"><code>python -m pytest -q</code>: <strong>21 passed</strong></td>
+        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
+      </tr><tr role="row">
+        <th scope="row" role="rowheader">Reruns replace outputs reproducibly</th>
+        <td role="cell" data-label="Command and result">Two <code>demo</code> runs produced byte-identical generated files</td>
+        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
+      </tr><tr role="row">
+        <th scope="row" role="rowheader">Row counts remain distinct from issue counts</th>
+        <td role="cell" data-label="Command and result">A separate hand-derived fixture gives <strong>7 input = 1 accepted + 6 rejected</strong>, with <strong>8 issues</strong></td>
+        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
+      </tr><tr role="row">
+        <th scope="row" role="rowheader">Other operating systems and Python versions, performance</th>
+        <td role="cell" data-label="Command and result">Not tested</td>
+        <td role="cell" data-label="Status"><span class="status status--open">NOT VERIFIED</span></td>
+      </tr></tbody>
+      </table></section><section id="limitations" aria-labelledby="limitations-title">
+            <h2 id="limitations-title">Tradeoffs and limitations</h2><p>This is an in-memory, single-file reduced-scope demonstration with invented policies and 60 sample rows. It provides no fuzzy matching, database, UI or review workflow. Completely empty input lines are skipped. Input and configuration validation happen before any output is written, but an output I/O failure can leave partial files; the outputs have no transactional multi-file guarantee. Generator stability across untested Python versions is not verified.</p></section><section id="contribution" aria-labelledby="contribution-title">
+            <h2 id="contribution-title">My contribution</h2><p>I co-developed the original agent prompt kit for this project with AI assistance, and I provided the business context, project purpose and initial architecture outline. I set requirements, evaluation criteria, edge-case priorities and approval decisions.</p><p>I used a planner-and-builder AI workflow to produce the implementation and supporting documentation. AI tools performed the implementation work, while I remained responsible for the project&#39;s direction and final approvals.</p><p>During the first review round, I personally followed the project&#39;s run-and-check instructions in PowerShell and confirmed that the outputs matched the agents&#39; reports. Later corrections and their regression results were verified by agents.</p></section><section id="learned" aria-labelledby="learned-title">
+            <h2 id="learned-title">What I learned</h2><p>I learned to distinguish missing information from an explicit zero and to preserve that distinction throughout validation. I also became more deliberate about using deterministic transformations only when the available facts support a clear decision. Ambiguous mappings belong in a traceable review process rather than being resolved through an undocumented guess.</p></section><section id="academic-connections" aria-labelledby="academic-connections-title">
+            <h2 id="academic-connections-title">Academic connections</h2><p>These are conceptual connections to the reasoning described in Applied Thinking. They do not claim formal implementation of every theory.</p><ul class="thinking-links"><li><a href="../../applied-thinking/#boundary-refinement">A2 · Narrowing Ambiguity</a></li><li><a href="../../applied-thinking/#inference-evidence">P1 · Examining the Reasoning Behind Evidence</a></li></ul></section><section id="reproduce" aria-labelledby="reproduce-title">
+            <h2 id="reproduce-title">Source and reproducibility</h2><div class="actions"><a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline">Source on GitHub<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a><a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline#readme">README and run instructions</a></div>
+      <p>The README documents environment setup and the <code>python -m dq_pipeline demo</code> entry point.</p>
+      <p class="code-label">Windows PowerShell, from the repository root:</p>
+      <div class="code" role="region" tabindex="0" aria-label="Setup and check commands">
+        <pre><code>py -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python -m dq_pipeline demo
+.venv\Scripts\python -m pytest</code></pre>
+      </div>
+      <p class="note"><strong>Tested environment:</strong> Windows 11, Python 3.13.15 (agent-run).</p>
+      <p class="note">The Python projects run locally from their repositories. This static site shows their recorded results; it does not run them.</p></section>
+          <p class="independence"><strong>Independence statement:</strong> This is an independently developed demonstration using fictional data and general technical methods. Its counts are synthetic results, not evidence about an employer system or real operational performance.</p>
+        </article>
+      </div>
+    </div>
+    <nav class="pager wrap" aria-label="Other projects">
+      <a class="prev" rel="prev" href="../../projects/b2b-sales-systems-case-study/">
+        <span class="pager__dir">Previous project</span><span class="pager__title">B2B Sales Systems Case Study</span></a><a class="next" rel="next" href="../../projects/inventory-shipping-optimization-lab/">
+        <span class="pager__dir">Next project</span><span class="pager__title">Inventory and Shipping Optimization Lab</span></a>
+    </nav>
+<!-- /main --></main>
+  <footer class="site-footer" id="site-footer"><div class="wrap footer__inner">
+      <p>Professional experience and public demonstrations are distinct: real workplace responsibilities are described at a high level, while the linked examples use fictional data and independent reduced-scope implementations. Synthetic outputs do not measure employer or production performance.</p>
+      <p>This site sets no cookies and loads no analytics, tracking scripts or third-party content.</p>
+    </div>
+<!-- /site-footer --></footer>
 </body>
 </html>
+

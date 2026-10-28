@@ -470,5 +470,474 @@
       ],
       "thumbnail": "assets/visuals/b2b-lifecycle.svg"
     }
-  ]
+  ],
+  "appliedThinking": {
+    "_help": "DRAFT for content/site.json top-level property appliedThinking. Owner approval required before publication. All project slugs are existing published site identifiers.",
+    "moduleId": "applied-thinking",
+    "draftStatus": "owner-review-required",
+    "route": "applied-thinking/",
+    "navLabel": "Applied Thinking",
+    "homePreview": {
+      "eyebrow": "Academic foundations · Applied mathematics and philosophy",
+      "title": "Applied Thinking: The reasoning behind the work",
+      "description": "My background in applied mathematics and philosophy informs how I approach unfamiliar problems: recognizing useful structures, separating what can be established from what remains uncertain, tracing dependencies, and testing assumptions before trusting conclusions.",
+      "supportingText": "Mathematics offers methods for representing and analyzing a problem; philosophy offers complementary ways to examine the assumptions, evidence and interpretations behind those methods. The value is in combining both with domain knowledge and practical validation.",
+      "ctaLabel": "Explore Applied Thinking",
+      "ctaPath": "applied-thinking/"
+    },
+    "hero": {
+      "eyebrow": "Academic foundations · Practical reasoning",
+      "title": "Applied Thinking: Mathematics, Philosophy & Practical Problem-Solving",
+      "tagline": "Understanding what can be modeled, what can be inferred, and what remains uncertain.",
+      "paragraphs": [
+        "A mathematical method can be correct for the problem it was given while the problem itself is poorly specified. A plausible explanation can fit the observed evidence without being established fact. And a simplified model can be useful while still concealing an important dependency.",
+        "My academic background gives me complementary tools for these situations: applied mathematics for identifying structure and constructing models, and philosophy for examining assumptions, justification, uncertainty and the limits of those models."
+      ]
+    },
+    "capabilities": [
+      {
+        "id": "recognize",
+        "title": "Recognize structure",
+        "description": "Find established methods that may apply to unfamiliar problems."
+      },
+      {
+        "id": "narrow",
+        "title": "Narrow uncertainty",
+        "description": "Solve well-specified cases and isolate questions that need evidence or judgment."
+      },
+      {
+        "id": "connect",
+        "title": "Preserve relationships",
+        "description": "Break complexity into parts without ignoring critical dependencies."
+      },
+      {
+        "id": "test",
+        "title": "Test conclusions",
+        "description": "Change assumptions and examine whether the result still holds."
+      }
+    ],
+    "foundations": [
+      {
+        "id": "structural",
+        "title": "Structural reasoning",
+        "discipline": "Applied mathematics",
+        "body": "Applied mathematics trains the habit of representing a problem through variables, relationships, constraints and conditions. A useful framework often begins with the recognition that a type of problem has already been studied—even when the specific theorem or method must be researched again. This invites the questions: What structure is present? What conditions must hold? What can be solved or bounded?"
+      },
+      {
+        "id": "epistemic",
+        "title": "Epistemic reasoning",
+        "discipline": "Philosophy",
+        "body": "Philosophy examines how concepts are defined, what counts as evidence, how inferences are justified, and what remains unclear. It asks whether an apparent solution actually answers the intended question and whether the assumptions behind the model are warranted. It also helps distinguish not knowing a system’s internals from having no evidence about its behavior."
+      }
+    ],
+    "sharedConcern": "Neither discipline eliminates the need for domain expertise. Together they support clearer problem formulation and more careful evaluation of what a model or explanation can actually establish.",
+    "principles": [
+      {
+        "id": "framework-recognition",
+        "code": "A1",
+        "title": "Recognizing Applicable Frameworks",
+        "discipline": "structural",
+        "question": "Does this unfamiliar problem belong to a class that already has useful methods?",
+        "explanation": "The starting point is not always remembering a formula. It may be recognizing that an assignment task resembles matching, that a shipping problem has an optimization structure, or that a workflow is a network of dependencies. That recognition makes it possible to research the appropriate tool instead of starting from nothing.",
+        "method": "Define the variables and objective, identify candidate methods, then verify their assumptions and limitations before using them.",
+        "academicConnections": "Operations Research, mathematical modeling, Real Analysis; theorems and their hypotheses.",
+        "limitation": "Recognizing a possible framework is not proof that the framework is applicable or that domain expertise can be skipped.",
+        "projectSlugs": [
+          "inventory-shipping-optimization-lab"
+        ],
+        "supportType": "illustrated-in-public-project",
+        "editorialStatus": "owner-review-required",
+        "supportCategories": [
+          "SITE_DEMO",
+          "RESUME_DRAFT",
+          "PERSONAL_METHOD_DRAFT"
+        ],
+        "evidenceStrength": "Medium"
+      },
+      {
+        "id": "boundary-refinement",
+        "code": "A2",
+        "title": "Narrowing Ambiguity",
+        "discipline": "structural",
+        "question": "What can be established now, and what needs additional evidence or human judgment?",
+        "explanation": "Complex projects contain both well-specified cases and ambiguous exceptions. I favor establishing boundaries and handling cases whose rules can be validated before spending effort on unresolved ones. The remainder becomes a focused list of questions rather than a mixture of guesses and apparently finished work.",
+        "method": "State assumptions, separate deterministic transformations from conditional inferences, preserve exceptions, and revise the boundary as new information arrives.",
+        "academicConnections": "Constraint reasoning, iterative numerical methods, optimization, logical distinctions.",
+        "limitation": "The process does not promise mathematical convergence or that every ambiguity can be removed.",
+        "projectSlugs": [
+          "synthetic-data-quality-pipeline"
+        ],
+        "supportType": "illustrated-in-public-project",
+        "editorialStatus": "owner-review-required",
+        "supportCategories": [
+          "SITE_DEMO",
+          "OWNER_EXPERIENCE",
+          "PERSONAL_METHOD_DRAFT"
+        ],
+        "evidenceStrength": "High"
+      },
+      {
+        "id": "graph-decomposition",
+        "code": "A3",
+        "title": "Decomposing and Reconnecting Systems",
+        "discipline": "structural",
+        "question": "Which subproblems can be handled separately, and which dependencies must remain visible?",
+        "explanation": "A complicated problem is often easier to work with as a set of smaller problems. But solving the parts independently can fail if the relationships between them are lost. A graph-like view helps track shared dependencies, interfaces, exceptions and how local decisions affect the system as a whole.",
+        "method": "Identify nodes and relationships, examine ownership and handoffs, solve tractable subproblems, then reconnect the results and check consistency.",
+        "academicConnections": "Network Models, graph theory, systems modeling, recursive decomposition.",
+        "limitation": "A hierarchy is not always a tree; real workflows may contain shared dependencies, feedback and cycles.",
+        "projectSlugs": [
+          "b2b-sales-systems-case-study"
+        ],
+        "supportType": "illustrated-in-public-project",
+        "editorialStatus": "owner-review-required",
+        "supportCategories": [
+          "SITE_DEMO",
+          "OWNER_EXPERIENCE",
+          "PERSONAL_METHOD_DRAFT"
+        ],
+        "evidenceStrength": "Medium-High"
+      },
+      {
+        "id": "invariance-perturbation",
+        "code": "A4",
+        "title": "Testing What Remains True",
+        "discipline": "structural",
+        "question": "Which features of a conclusion survive when the problem changes?",
+        "explanation": "Changing a constraint, representation or input can reveal whether a conclusion depends on essential structure or an accidental choice. Some mathematical properties are invariant under defined transformations; in applied work, sensitivity and robustness tests serve a related—but not identical—purpose.",
+        "method": "Vary one assumption at a time, look for thresholds and failure cases, and record when the original reasoning stops applying.",
+        "academicConnections": "Linear Algebra, Real Analysis, sensitivity analysis, topology as a conceptual connection.",
+        "limitation": "Passing a few scenarios is not a proof of invariance or universal robustness.",
+        "projectSlugs": [
+          "inventory-shipping-optimization-lab"
+        ],
+        "supportType": "illustrated-in-public-project",
+        "editorialStatus": "owner-review-required",
+        "supportCategories": [
+          "SITE_DEMO",
+          "CONCEPTUAL",
+          "RESUME_DRAFT"
+        ],
+        "evidenceStrength": "Medium"
+      },
+      {
+        "id": "inference-evidence",
+        "code": "P1",
+        "title": "Examining the Reasoning Behind Evidence",
+        "discipline": "epistemic",
+        "question": "Could a reasoning error affect not only a conclusion but also the way evidence is collected or interpreted?",
+        "explanation": "A logical mistake can occur before any calculation begins. If evidence is selected using an unjustified assumption, a sophisticated method may produce internally consistent results from a distorted picture of the world. The genetic fallacy illustrates the danger of treating the origin of a claim as decisive proof of its truth or falsity.",
+        "method": "Separate provenance from claim validity, inspect operational definitions, examine how data were selected, and distinguish observations from inferences.",
+        "academicConnections": "Symbolic Logic, Philosophy of Science, epistemology and philosophy of scientific method.",
+        "limitation": "Source reliability often matters; using provenance as evidence about reliability is not itself a fallacy.",
+        "projectSlugs": [
+          "product-usage-analytics-demo"
+        ],
+        "supportType": "illustrated-in-public-project",
+        "editorialStatus": "owner-review-required",
+        "supportCategories": [
+          "SITE_DEMO",
+          "CONCEPTUAL",
+          "PERSONAL_METHOD_DRAFT"
+        ],
+        "evidenceStrength": "Medium"
+      },
+      {
+        "id": "responsible-abstraction",
+        "code": "P2",
+        "title": "Simplifying Without Losing What Matters",
+        "discipline": "epistemic",
+        "question": "How much complexity can be removed before a representation becomes misleading?",
+        "explanation": "Reduction is unavoidable in practical modeling. A simplified inventory model may be enough to compare resource allocations while being insufficient to certify real packing or operational feasibility. A good abstraction is evaluated against the question it must answer, not by how little detail it contains.",
+        "method": "State the decision the model supports, identify omitted behavior, test whether key relationships survive, and make limitations visible.",
+        "academicConnections": "Philosophical reductionism, mathematical abstraction, dimensionality reduction, numerical linear algebra.",
+        "limitation": "Preserving one decision-relevant property does not mean all properties were preserved.",
+        "projectSlugs": [
+          "inventory-shipping-optimization-lab",
+          "b2b-sales-systems-case-study"
+        ],
+        "supportType": "illustrated-in-public-project",
+        "editorialStatus": "owner-review-required",
+        "supportCategories": [
+          "SITE_DEMO",
+          "CONCEPTUAL",
+          "RESUME_DRAFT"
+        ],
+        "evidenceStrength": "Medium-High"
+      },
+      {
+        "id": "abductive-reasoning",
+        "code": "P3",
+        "title": "Choosing Under Uncertainty",
+        "discipline": "epistemic",
+        "question": "Which explanation should guide action when the available evidence is incomplete?",
+        "explanation": "Abductive reasoning compares competing explanations and asks which best accounts for what is known. It is useful in troubleshooting and exploratory research, where a single observation may be consistent with several causes. A provisional explanation can guide the next test without becoming an established fact.",
+        "method": "Generate alternatives, ask what evidence would distinguish them, examine the costs of further investigation, and choose actions while communicating uncertainty.",
+        "academicConnections": "Abductive reasoning, Probability, Bayesian updating as a possible formal tool, decision theory.",
+        "limitation": "The most plausible explanation is not necessarily true; the best-supported explanation and the best action may differ.",
+        "projectSlugs": [],
+        "supportType": "conceptual-only",
+        "editorialStatus": "owner-review-required",
+        "supportCategories": [
+          "CONCEPTUAL",
+          "PERSONAL_METHOD_DRAFT"
+        ],
+        "evidenceStrength": "Low-Moderate"
+      },
+      {
+        "id": "opacity-management",
+        "code": "P4",
+        "title": "Managing What Cannot Be Fully Understood",
+        "discipline": "epistemic",
+        "question": "How can a complex system be evaluated when some internal details remain inaccessible or hard to interpret?",
+        "explanation": "Opacity has different causes: hidden information, complicated dependencies, computational limits, poorly documented interfaces, or difficult-to-interpret model internals. Those problems require different responses. Sometimes the appropriate goal is deeper explanation; sometimes it is bounded behavioral testing, observable interfaces, independent checks or explicit human review.",
+        "method": "Identify the type of opacity, clarify the required assurance, introduce tests and documentation, and avoid claiming understanding beyond the available evidence.",
+        "academicConnections": "Epistemology, philosophy of science, systems modeling, numerical verification.",
+        "limitation": "Validated behavior is not the same as mechanistic interpretability, and no limited test suite proves universal correctness.",
+        "projectSlugs": [
+          "b2b-sales-systems-case-study",
+          "product-usage-analytics-demo"
+        ],
+        "supportType": "illustrated-in-public-project",
+        "editorialStatus": "owner-review-required",
+        "supportCategories": [
+          "OWNER_EXPERIENCE",
+          "SITE_DEMO",
+          "CONCEPTUAL",
+          "PERSONAL_METHOD_DRAFT"
+        ],
+        "evidenceStrength": "Medium"
+      }
+    ],
+    "connections": [
+      {
+        "id": "framework-justification",
+        "title": "Frameworks and justification",
+        "principleIds": [
+          "framework-recognition",
+          "inference-evidence"
+        ],
+        "body": "The existence of an established method answers how one might solve the problem. It does not answer whether this problem satisfies the method’s conditions."
+      },
+      {
+        "id": "decomposition-reduction",
+        "title": "Decomposition and reductionism",
+        "principleIds": [
+          "graph-decomposition",
+          "responsible-abstraction"
+        ],
+        "body": "Breaking a system into parts helps make it tractable. Evaluating what the split excludes protects against a locally correct but globally misleading solution."
+      },
+      {
+        "id": "boundaries-inference",
+        "title": "Boundaries and uncertain inference",
+        "principleIds": [
+          "boundary-refinement",
+          "abductive-reasoning"
+        ],
+        "body": "Deterministic checks can narrow the unresolved space; abduction helps evaluate the explanations that remain when the evidence does not uniquely settle them."
+      },
+      {
+        "id": "robustness-opacity",
+        "title": "Perturbation and opacity",
+        "principleIds": [
+          "invariance-perturbation",
+          "opacity-management"
+        ],
+        "body": "Changing inputs or assumptions can test observable behavior without requiring full access to the internal mechanism. It does not eliminate all hidden failure modes."
+      },
+      {
+        "id": "models-decisions",
+        "title": "Models and decisions",
+        "principleIds": [
+          "framework-recognition",
+          "abductive-reasoning",
+          "responsible-abstraction"
+        ],
+        "body": "A mathematical model can rank feasible choices against its stated objective; philosophy and domain judgment are needed to examine whether the objective is appropriate in the first place."
+      }
+    ],
+    "workflow": {
+      "title": "Approaching an unfamiliar domain",
+      "intro": "There is no guaranteed sequence that solves every unfamiliar problem. The following operations are reusable and often iterative:",
+      "steps": [
+        {
+          "id": "clarify",
+          "title": "Clarify the decision",
+          "body": "Identify the stakeholder’s question, not just the available data or requested calculation."
+        },
+        {
+          "id": "locate",
+          "title": "Locate the structure",
+          "body": "Look for recognizable problem classes, variables, dependencies and constraints."
+        },
+        {
+          "id": "separate",
+          "title": "Separate the known from the unresolved",
+          "body": "Handle verifiable rules and isolate ambiguous cases without guessing."
+        },
+        {
+          "id": "investigate",
+          "title": "Model and investigate",
+          "body": "Select a method whose assumptions fit; seek domain expertise when needed."
+        },
+        {
+          "id": "validate",
+          "title": "Perturb and validate",
+          "body": "Change assumptions, compare alternatives, test edge cases and review omitted information."
+        },
+        {
+          "id": "explain",
+          "title": "Explain what follows",
+          "body": "Communicate the conclusion, evidence, uncertainty and next decision."
+        }
+      ],
+      "closing": "A later discovery may send the process back to an earlier step. Adaptability is not the absence of learning curves; it is having a structured way to find and navigate them."
+    },
+    "caseStudyBridges": [
+      {
+        "slug": "synthetic-data-quality-pipeline",
+        "label": "Data quality — Deciding what not to automate",
+        "body": "The Synthetic Data Quality Pipeline distinguishes valid zero values from missing data and routes ambiguous category mappings to exceptions. It illustrates how the boundary between deterministic transformation and unsupported inference can be made explicit. This synthetic Python project is separate from professional inventory migration work.",
+        "principleIds": [
+          "boundary-refinement",
+          "inference-evidence"
+        ]
+      },
+      {
+        "slug": "inventory-shipping-optimization-lab",
+        "label": "Shipping optimization — Explicit trade-offs and fragile assumptions",
+        "body": "The Inventory and Shipping Optimization Lab represents a narrow fictional allocation problem through constraints and an objective, then tests multiple scenarios and checks solver output independently. The model deliberately does not claim full container packing or production freight optimization.",
+        "principleIds": [
+          "framework-recognition",
+          "invariance-perturbation",
+          "responsible-abstraction"
+        ]
+      },
+      {
+        "slug": "product-usage-analytics-demo",
+        "label": "Product analytics — Definitions before dashboards",
+        "body": "The Product Usage Analytics Demo distinguishes event counts, distinct users and funnel progression while documenting filters, denominators and invalid records. It illustrates that measured quantities must be defined relative to the business question before a chart can be trusted.",
+        "principleIds": [
+          "inference-evidence",
+          "responsible-abstraction"
+        ]
+      },
+      {
+        "slug": "b2b-sales-systems-case-study",
+        "label": "B2B systems — Preserving business distinctions",
+        "body": "The B2B Sales Systems Case Study separates quotations, commitments, reservations and shipments in a hypothetical architecture. This makes responsibility and system boundaries clearer without pretending the fictional design is the employer’s deployed system.",
+        "principleIds": [
+          "graph-decomposition",
+          "responsible-abstraction",
+          "opacity-management"
+        ]
+      }
+    ],
+    "academicFoundations": {
+      "verificationStatus": "resume-draft-only; confirm exact course titles before publish",
+      "rows": [
+        {
+          "title": "Operations Research / Optimization",
+          "translation": "Choose among feasible alternatives subject to constraints."
+        },
+        {
+          "title": "Probability",
+          "translation": "Represent uncertainty and update expectations."
+        },
+        {
+          "title": "Mathematical Modeling / Network Models",
+          "translation": "Formalize interacting variables, relationships and dependencies."
+        },
+        {
+          "title": "Numerical Linear Algebra",
+          "translation": "Represent and transform structured data, including matrix computation."
+        },
+        {
+          "title": "Real Analysis",
+          "translation": "Examine the assumptions behind limits, continuity and convergence."
+        },
+        {
+          "title": "Symbolic Logic / Philosophy of Science",
+          "translation": "Evaluate arguments, evidence and methodological assumptions."
+        },
+        {
+          "title": "High-Performance Computing",
+          "translation": "Understand computational constraints on numerical approaches."
+        }
+      ],
+      "unpublishedAcademicProjects": [
+        "SVD-based MATLAB image compression and matrix computation",
+        "Textile supply-chain scheduling optimization",
+        "Agent-based behavioral dynamics simulation"
+      ]
+    },
+    "disclosure": "The professional responsibilities described elsewhere on this site concern real work. The linked demonstrations are separate public artifacts using fictional data and reduced scope. Their outputs and test results do not measure employer systems or business outcomes.",
+    "closing": "This page describes transferable reasoning foundations, not a guarantee that a particular method works in every domain. Professional decisions still depend on appropriate evidence, stakeholder priorities, technical implementation and domain knowledge. The case studies show selected applications or analogues with their assumptions and limitations made explicit.",
+    "projectsCtaLabel": "Explore the case studies",
+    "projectsCtaPath": "../#projects",
+    "proposedPageSections": [
+      "intro",
+      "capabilities",
+      "foundations",
+      "principles",
+      "connections",
+      "workflow",
+      "in-practice",
+      "academic",
+      "limitations"
+    ],
+    "labels": {
+      "home": "Home",
+      "onThisPage": "On this page",
+      "capabilities": "Four ways of approaching complexity",
+      "foundations": "Two complementary foundations",
+      "principles": "Eight reasoning principles",
+      "connections": "Where the disciplines intersect",
+      "workflow": "Approaching an unfamiliar domain",
+      "in-practice": "Connections to portfolio work",
+      "academic": "Academic foundations and further detail",
+      "limitations": "What this page claims",
+      "intro": "What academic training changes about a problem",
+      "approach": "Approach and academic connections",
+      "method": "How I approach it",
+      "concepts": "Related academic concepts — not verified course titles",
+      "caveat": "Keep in view",
+      "relatedProject": "Independent public demonstration",
+      "conceptual": "Conceptual connection; no published demonstration claimed.",
+      "backlinks": "Academic connections",
+      "backlinksIntro": "These are conceptual connections to the reasoning described in Applied Thinking. They do not claim formal implementation of every theory.",
+      "draftTitle": "Applied Thinking · Draft for owner review",
+      "draftBody": "First-person methodology, academic titles and professional boundaries require owner review before publication.",
+      "academicIntro": "The areas below connect academic topics to practical questions. They come from résumé drafts; exact course titles and completion have not been verified against a transcript. They are not a confirmed course list.",
+      "academicArea": "Academic area (unverified title)",
+      "academicUse": "Connection to practical reasoning",
+      "academicDeferred": "Detailed academic projects are deferred until reviewed artifacts are available.",
+      "evidenceBoundary": "Evidence boundary",
+      "connectionsIntro": "These pairings are conceptual interpretations. The same problem can require both kinds of reasoning.",
+      "reviewDetails": "Publication review items",
+      "workflowDiagramCaption": "The loop is illustrative: new evidence can return the process to any earlier operation. The six operations are described below.",
+      "foundationsDiagramCaption": "Structure and justification inform the same decision. Both depend on domain knowledge and evidence."
+    },
+    "review": {
+      "personalVoice": "pending",
+      "terminology": "pending",
+      "academicTitles": "pending",
+      "professionalBoundaries": "pending",
+      "publicProjectDistinction": "pending",
+      "authorship": "pending"
+    },
+    "diagrams": [
+      {
+        "src": "assets/visuals/thinking-foundations.svg",
+        "alt": "Applied mathematics asks about structure; philosophy asks about justification. Arrows connect both to a practical decision supported by domain knowledge and evidence.",
+        "caption": "Structure and justification inform the same decision. Both depend on domain knowledge and evidence."
+      },
+      {
+        "src": "assets/visuals/thinking-cycle.svg",
+        "alt": "Six reasoning operations form a cycle: clarify, locate, separate, investigate, validate and explain. A return path indicates that new evidence may reopen earlier questions.",
+        "caption": "The loop is illustrative: new evidence can return the process to any earlier operation. The six operations are described below."
+      }
+    ]
+  }
 }

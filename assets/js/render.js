@@ -162,6 +162,7 @@
         <ul class="nav">
           <li><a href="${home}#experience">Experience</a></li>
           <li><a href="${home}#projects">Projects</a></li>
+          ${content.appliedThinking ? `<li><a href="${url(content.appliedThinking.route)}"${body.dataset.page === "applied-thinking" ? ' aria-current="page"' : ""}>${esc(content.appliedThinking.navLabel)}</a></li>` : ""}
           <li><a href="${home}#about">About</a></li>
           <li><a href="${home}#contact">Contact</a></li>
         </ul>
@@ -171,11 +172,14 @@
 
   function renderBanner(content) {
     const items = pendingItems(content);
-    if (!items.length) return "";
+    const a = content.appliedThinking;
+    const review = a && (a.draftStatus !== "approved" || Object.values(a.review || {}).some(value => value !== "approved"));
+    const reviewHtml = review ? `<div class="wrap"><p><strong>${esc(a.labels.draftTitle)}.</strong> ${esc(a.labels.draftBody)}</p></div>` : "";
+    if (!items.length) return reviewHtml;
     const links = items.filter((i) => i.kind === "link").length;
     const fields = items.length - links;
     const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
-    return `<div class="wrap">
+    return `${reviewHtml}<div class="wrap">
       <p><strong>Draft preview.</strong> ${plural(fields, "placeholder")} and ${plural(links, "unpublished link")} still need owner input. Resolve or omit them before publishing.</p>
       <details>
         <summary>Show open items</summary>
@@ -310,6 +314,8 @@
 
     ${renderExperience(content)}
 
+    ${renderThinkingPreview(content)}
+
     <section class="section" id="projects" aria-labelledby="projects-title">
       <div class="wrap">
         <h2 id="projects-title">Featured projects</h2>
@@ -342,6 +348,66 @@
   }
 
   /* ---------- case study page ---------- */
+
+  function renderThinkingPreview(content) {
+    const a = content.appliedThinking;
+    if (!a) return "";
+    const p = a.homePreview;
+    return `<section class="section thinking-preview" id="applied-thinking" aria-labelledby="thinking-preview-title"><div class="wrap">
+      <p class="eyebrow">${esc(p.eyebrow)}</p>
+      <div class="thinking-preview__intro"><div><h2 id="thinking-preview-title">${esc(p.title)}</h2><p class="section__lede">${inline(p.description)}</p></div>
+      <a class="btn" href="${url(p.ctaPath)}">${esc(p.ctaLabel)} <span aria-hidden="true">↗</span></a></div>
+      <ul class="thinking-anchors">${a.capabilities.map((c, i) => `<li><a href="${url(a.route)}#${esc(a.principles[i].id)}"><span class="thinking-number" aria-hidden="true">0${i + 1}</span>${esc(c.title)}</a></li>`).join("")}</ul>
+    </div></section>`;
+  }
+
+  function principleLinks(a, ids, fromPage) {
+    return `<ul class="thinking-links">${ids.map(id => {
+      const p = a.principles.find(item => item.id === id);
+      return p ? `<li><a href="${fromPage ? url(a.route) : ""}#${esc(id)}">${esc(p.code)} · ${esc(p.title)}</a></li>` : "";
+    }).join("")}</ul>`;
+  }
+
+  function renderAcademicBacklinks(content, slug) {
+    const a = content.appliedThinking;
+    const bridge = a && a.caseStudyBridges.find(item => item.slug === slug);
+    if (!bridge) return "";
+    return `<p>${inline(a.labels.backlinksIntro)}</p>${principleLinks(a, bridge.principleIds, true)}`;
+  }
+
+  function renderThinkingFigure(a, index) {
+    const d = a.diagrams[index];
+    const src = url(d.src);
+    return src ? `<figure class="technical-figure thinking-figure"><img src="${src}" alt="${esc(d.alt)}" width="960" height="${index ? "440" : "320"}" loading="lazy" decoding="async"><figcaption>${inline(d.caption)}</figcaption></figure>` : "";
+  }
+
+  function renderAppliedThinking(content) {
+    const a = content.appliedThinking;
+    if (!a) throw new Error("Applied Thinking content is missing");
+    const l = a.labels;
+    const section = (id, html) => `<section id="${id}" aria-labelledby="${id}-title"><h2 id="${id}-title">${esc(l[id])}</h2>${html}</section>`;
+    const principle = p => `<article class="thinking-principle" id="${esc(p.id)}" aria-labelledby="${esc(p.id)}-title">
+      <span class="thinking-number">${esc(p.code)}</span><h4 id="${esc(p.id)}-title">${esc(p.title)}</h4>
+      <p class="thinking-question">${inline(p.question)}</p><p>${inline(p.explanation)}</p>
+      <p class="thinking-caveat"><strong>${esc(l.caveat)}:</strong> ${inline(p.limitation)}</p>
+      <details><summary>${esc(l.approach)}</summary><div class="thinking-detail"><p><strong>${esc(l.method)}:</strong> ${inline(p.method)}</p><p><strong>${esc(l.concepts)}:</strong> ${inline(p.academicConnections)}</p>${p.technicalNote ? paras(p.technicalNote) : ""}</div></details>
+      ${p.projectSlugs.length ? `<ul class="thinking-links">${p.projectSlugs.map(slug => { const project = content.projects.find(item => item.slug === slug); return project ? `<li><a href="${home}projects/${esc(slug)}/">${esc(l.relatedProject)}: ${esc(project.title)}</a></li>` : ""; }).join("")}</ul>` : `<p class="note">${esc(l.conceptual)}</p>`}
+    </article>`;
+    document.title = pageTitle(content, a.navLabel);
+    const sections = [
+      section("capabilities", `<ul class="thinking-capabilities">${a.capabilities.map(c => `<li><h3>${esc(c.title)}</h3><p>${inline(c.description)}</p></li>`).join("")}</ul>`),
+      section("foundations", `<div class="thinking-foundations">${a.foundations.map(f => `<div><p class="eyebrow">${esc(f.discipline)}</p><h3>${esc(f.title)}</h3>${paras(f.body)}</div>`).join("")}</div>${renderThinkingFigure(a, 0)}<p>${inline(a.sharedConcern)}</p>`),
+      section("principles", a.foundations.map(f => `<div class="thinking-group"><h3>${esc(f.discipline)} · ${esc(f.title)}</h3><div class="thinking-principles">${a.principles.filter(p => p.discipline === f.id).map(principle).join("")}</div></div>`).join("")),
+      section("connections", `<p>${inline(l.connectionsIntro)}</p><div class="thinking-connections">${a.connections.map(c => `<article id="${esc(c.id)}"><h3>${esc(c.title)}</h3><p>${inline(c.body)}</p>${principleLinks(a, c.principleIds, false)}</article>`).join("")}</div>`),
+      section("workflow", `<p>${inline(a.workflow.intro)}</p>${renderThinkingFigure(a, 1)}<ol class="thinking-workflow">${a.workflow.steps.map(s => `<li id="step-${esc(s.id)}"><h3>${esc(s.title)}</h3><p>${inline(s.body)}</p></li>`).join("")}</ol><p>${inline(a.workflow.closing)}</p>`),
+      section("in-practice", `<p class="thinking-boundary">${inline(a.disclosure)}</p><div class="thinking-bridges">${a.caseStudyBridges.map(b => `<article><p class="eyebrow">${esc(l.relatedProject)}</p><h3><a href="${home}projects/${esc(b.slug)}/">${esc(b.label)}</a></h3><p>${inline(b.body)}</p>${principleLinks(a, b.principleIds, false)}</article>`).join("")}</div>`),
+      section("academic", `<p>${inline(l.academicIntro)}</p><table class="thinking-table"><thead><tr><th scope="col">${esc(l.academicArea)}</th><th scope="col">${esc(l.academicUse)}</th></tr></thead><tbody>${a.academicFoundations.rows.map(r => `<tr><th scope="row">${esc(r.title)}</th><td>${inline(r.translation)}</td></tr>`).join("")}</tbody></table><p class="note">${inline(l.academicDeferred)}</p>`),
+      section("limitations", `${paras(a.closing)}<p class="thinking-boundary"><strong>${esc(l.evidenceBoundary)}:</strong> ${inline(a.disclosure)}</p><div class="actions"><a class="btn btn--primary" href="${home}#projects">${esc(a.projectsCtaLabel)}</a></div>`)
+    ];
+    return `<div class="wrap thinking-page"><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="${home}">${esc(l.home)}</a></li><li><span aria-current="page">${esc(a.navLabel)}</span></li></ol></nav>
+      <header class="cs-head thinking-hero" id="intro"><p class="eyebrow">${esc(a.hero.eyebrow)}</p><h1>${esc(a.hero.title)}</h1><p class="thinking-tagline">${inline(a.hero.tagline)}</p>${paras(a.hero.paragraphs)}</header>
+      <div class="cs-layout"><nav class="toc" aria-label="${esc(l.onThisPage)}"><p class="toc__title">${esc(l.onThisPage)}</p><ol>${a.proposedPageSections.map(id => `<li><a href="#${esc(id)}">${esc(l[id])}</a></li>`).join("")}</ol></nav><div class="prose thinking-content">${sections.join("")}</div></div></div>`;
+  }
 
   const STATUS = [
     [/^NOT VERIFIED/, "open"],
@@ -433,6 +499,7 @@
       ["limitations", "Tradeoffs and limitations", paras(p.limitations)],
       ["contribution", "My contribution", ownerText(content, s.contribution, `${base}.contribution`)],
       ["learned", "What I learned", ownerText(content, s.learned, `${base}.learned`)],
+      ["academic-connections", content.appliedThinking ? content.appliedThinking.labels.backlinks : "Academic connections", renderAcademicBacklinks(content, p.slug)],
       ["reproduce", "Source and reproducibility", renderReproduce(content, p)]
     ].filter(([, , html]) => html);
 
@@ -471,6 +538,8 @@
   /* ---------- boot ---------- */
 
   function renderError(error) {
+    // A generated snapshot remains readable offline or when enhancement fails.
+    if (document.getElementById("main").dataset.prerendered === "true") return;
     const fromDisk = location.protocol === "file:";
     document.getElementById("main").innerHTML = `<div class="wrap"><div class="notice notice--error" role="alert">
       <h1>Content could not be loaded</h1>
@@ -496,9 +565,10 @@
     const banner = document.getElementById("draft-banner");
     banner.innerHTML = renderBanner(content);
     banner.hidden = !banner.innerHTML;
-    document.getElementById("main").innerHTML = body.dataset.page === "project"
+    const page = body.dataset.page;
+    document.getElementById("main").innerHTML = page === "project"
       ? renderProject(content, body.dataset.project)
-      : renderHome(content);
+      : page === "applied-thinking" ? renderAppliedThinking(content) : renderHome(content);
     document.getElementById("site-footer").innerHTML = renderFooter(content);
 
     // Content arrives after load, so jump to a #fragment once it exists.
@@ -510,3 +580,4 @@
 
   boot();
 })();
+
