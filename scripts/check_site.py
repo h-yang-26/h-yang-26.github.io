@@ -219,6 +219,26 @@ def main():
             problems.append(f"{path}: local file '{url}' does not exist")
 
 
+    # Generated figures: every listed layout exists in both colour schemes, and
+    # the SVGs and their recorded sizes match scripts/build_visuals.py.
+    figures = [v for p in content["projects"] for v in p.get("visuals", [])] + a.get("diagrams", [])
+    for fig in figures:
+        src = fig.get("src", "")
+        if "wide" not in fig.get("sizes", {}):
+            problems.append(f"{src}: missing generated sizes (run python scripts/build_visuals.py)")
+        for layout in fig.get("sizes", {}):
+            for dark in ("", "-dark"):
+                name = src[:-4] + ("" if layout == "wide" else f"-{layout}") + dark + ".svg"
+                if not (ROOT / name).is_file():
+                    problems.append(f"missing figure variant {name}")
+    result = subprocess.run([sys.executable, str(ROOT / "scripts/build_visuals.py"), "--check"], capture_output=True, text=True)
+    if result.returncode:
+        problems.append("generated visuals are stale: " + (result.stderr or result.stdout).strip())
+    for project in content["projects"]:
+        thumb = next((v for v in project.get("visuals", []) if v.get("src") == project.get("thumbnail")), None)
+        if not thumb or "card" not in thumb.get("sizes", {}):
+            problems.append(f"{project['slug']}: thumbnail must be one of its visuals with a card layout")
+
     # Content-managed images are injected at runtime, so the shell parser cannot see them.
     for project in content["projects"]:
         for field in ("thumbnail",):

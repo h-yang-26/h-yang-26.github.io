@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 535" width="420" height="535" role="img" aria-labelledby="t">
+<title id="t">60 fictional rows: 37 accepted, 23 held for review, by reason</title>
+<defs>
+</defs>
+<rect width="420" height="535" fill="#191C1F"/>
+<g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<rect x="24" y="24" width="229.4" height="52" rx="3" fill="#6FCDC2"/>
+<rect x="253.4" y="24" width="142.6" height="52" rx="3" fill="#E6B15C"/>
+<text x="38" y="57" font-size="18" fill="#101418" font-weight="700">37 accepted</text>
+<text x="382" y="57" font-size="18" fill="#101418" font-weight="700" text-anchor="end">23 to review</text>
+<text x="24" y="104" font-size="16" fill="#A9AEB5">37 + 23 = 60: every input row is accounted for.</text>
+<text x="24" y="141" font-size="17" fill="#E9E7E2" font-weight="700">Why 23 rows went to review</text>
+<text x="192" y="177" font-size="16" fill="#E9E7E2" text-anchor="end">Duplicate ID</text>
+<rect x="204" y="163" width="148" height="20" rx="3" fill="#E6B15C"/>
+<text x="360" y="178" font-size="16" fill="#E9E7E2" font-weight="700">4</text>
+<text x="192" y="213" font-size="16" fill="#E9E7E2" text-anchor="end">Ambiguous category</text>
+<rect x="204" y="199" width="111" height="20" rx="3" fill="#E6B15C"/>
+<text x="323" y="214" font-size="16" fill="#E9E7E2" font-weight="700">3</text>
+<text x="192" y="249" font-size="16" fill="#E9E7E2" text-anchor="end">Invalid date</text>
+<rect x="204" y="235" width="111" height="20" rx="3" fill="#E6B15C"/>
+<text x="323" y="250" font-size="16" fill="#E9E7E2" font-weight="700">3</text>
+<text x="192" y="285" font-size="16" fill="#E9E7E2" text-anchor="end">Invalid quantity</text>
+<rect x="204" y="271" width="111" height="20" rx="3" fill="#E6B15C"/>
+<text x="323" y="286" font-size="16" fill="#E9E7E2" font-weight="700">3</text>
+<text x="192" y="321" font-size="16" fill="#E9E7E2" text-anchor="end">Unknown category</text>
+<rect x="204" y="307" width="111" height="20" rx="3" fill="#E6B15C"/>
+<text x="323" y="322" font-size="16" fill="#E9E7E2" font-weight="700">3</text>
+<text x="192" y="357" font-size="16" fill="#E9E7E2" text-anchor="end">Missing ID</text>
+<rect x="204" y="343" width="74" height="20" rx="3" fill="#E6B15C"/>
+<text x="286" y="358" font-size="16" fill="#E9E7E2" font-weight="700">2</text>
+<text x="192" y="393" font-size="16" fill="#E9E7E2" text-anchor="end">Missing quantity</text>
+<rect x="204" y="379" width="74" height="20" rx="3" fill="#E6B15C"/>
+<text x="286" y="394" font-size="16" fill="#E9E7E2" font-weight="700">2</text>
+<text x="192" y="429" font-size="16" fill="#E9E7E2" text-anchor="end">Missing category</text>
+<rect x="204" y="415" width="37" height="20" rx="3" fill="#E6B15C"/>
+<text x="249" y="430" font-size="16" fill="#E9E7E2" font-weight="700">1</text>
+<text x="192" y="465" font-size="16" fill="#E9E7E2" text-anchor="end">Missing date</text>
+<rect x="204" y="451" width="37" height="20" rx="3" fill="#E6B15C"/>
+<text x="249" y="466" font-size="16" fill="#E9E7E2" font-weight="700">1</text>
+<text x="192" y="501" font-size="16" fill="#E9E7E2" text-anchor="end">Missing item name</text>
+<rect x="204" y="487" width="37" height="20" rx="3" fill="#E6B15C"/>
+<text x="249" y="502" font-size="16" fill="#E9E7E2" font-weight="700">1</text>
+</g></svg>

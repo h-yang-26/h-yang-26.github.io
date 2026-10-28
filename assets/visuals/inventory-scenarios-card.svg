@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 260" width="440" height="260" role="img" aria-labelledby="t">
+<title id="t">Units shipped and short across five fictional scenarios</title>
+<defs>
+</defs>
+<rect width="440" height="260" fill="#FFFFFF"/>
+<g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<rect x="24" y="18" width="14" height="14" rx="3" fill="#146C67"/>
+<text x="44" y="30" font-size="17" fill="#4F5660">Shipped</text>
+<rect x="132.64" y="18" width="14" height="14" rx="3" fill="#8A5A0C"/>
+<text x="152.64" y="30" font-size="17" fill="#4F5660">Short</text>
+<text x="24" y="72" font-size="17" fill="#1A1D21">Normal</text>
+<rect x="168" y="56" width="248" height="24" rx="3" fill="#146C67"/>
+<text x="24" y="113" font-size="17" fill="#1A1D21">High penalty</text>
+<rect x="168" y="97" width="104.337" height="24" rx="3" fill="#146C67"/>
+<rect x="272.337" y="97" width="143.663" height="24" rx="3" fill="#8A5A0C"/>
+<text x="24" y="154" font-size="17" fill="#1A1D21">Tight capacity</text>
+<rect x="168" y="138" width="89.89" height="24" rx="3" fill="#146C67"/>
+<rect x="257.89" y="138" width="158.11" height="24" rx="3" fill="#8A5A0C"/>
+<text x="24" y="195" font-size="17" fill="#1A1D21">Low penalty</text>
+<rect x="168" y="179" width="248" height="24" rx="3" fill="#8A5A0C"/>
+<text x="24" y="236" font-size="17" fill="#1A1D21">No stock</text>
+<rect x="168" y="220" width="248" height="24" rx="3" fill="#8A5A0C"/>
+</g></svg>

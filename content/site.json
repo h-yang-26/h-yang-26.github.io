@@ -181,18 +181,44 @@
       "visuals": [
         {
           "kind": "diagram",
+          "title": "Traceable decisions, not guessed repairs",
           "src": "assets/visuals/data-quality-flow.svg",
-          "alt": "Fictional validation diagram: raw CSV is normalized and validated; canonical accepted records and review exceptions are separate outputs.",
-          "caption": "A record's path depends on deterministic checks. Ambiguous categories and invalid fields are retained for review, not silently repaired."
+          "alt": "Fictional validation diagram: 60 source rows go through row checks; the 37 that pass become accepted records and the 23 that fail any check go to an exceptions file for human review.",
+          "caption": "A record's path depends on deterministic checks. Ambiguous categories and invalid fields are retained for review, not silently repaired.",
+          "sizes": {
+            "wide": [
+              760,
+              300
+            ],
+            "narrow": [
+              420,
+              556
+            ]
+          }
         },
         {
           "kind": "result",
+          "title": "All 60 rows reconciled; duplicate IDs are the most common review reason",
           "src": "assets/visuals/data-quality-results.svg",
-          "alt": "Synthetic sample chart: 60 input records, 37 accepted and 23 rejected; accepted categories filter 7, motor 9, pump 9, sensor 5, valve 7.",
-          "caption": "The 60-row generated sample reconciles completely. Counts come from the committed `outputs/summary.json`, not employer data."
+          "alt": "Synthetic sample chart: 60 rows, 37 accepted and 23 held for review. Review reasons, one per row: duplicate ID 4; ambiguous category, invalid date, invalid quantity and unknown category 3 each; missing ID and missing quantity 2 each; missing category, missing date and missing item name 1 each.",
+          "caption": "The 60-row generated sample reconciles completely. Counts come from the committed `outputs/summary.json`, not employer data.",
+          "sizes": {
+            "wide": [
+              760,
+              514
+            ],
+            "narrow": [
+              420,
+              535
+            ],
+            "card": [
+              440,
+              260
+            ]
+          }
         }
       ],
-      "thumbnail": "assets/visuals/data-quality-flow.svg"
+      "thumbnail": "assets/visuals/data-quality-results.svg"
     },
     {
       "slug": "inventory-shipping-optimization-lab",
@@ -273,18 +299,44 @@
       "visuals": [
         {
           "kind": "diagram",
+          "title": "A constrained allocation decision, checked independently",
           "src": "assets/visuals/inventory-model.svg",
-          "alt": "Constrained integer program diagram linking stock, demand and container capacities to shipment and shortage decisions.",
-          "caption": "The model minimizes fictional shortage penalties and fixed container-opening costs subject to mass, volume and demand constraints. It is not a 3D packing plan."
+          "alt": "Diagram: product and container parameters feed an integer program that chooses units per container, shortages and opened containers; an independent checker re-verifies limits, integers and cost before a plan is labelled optimal.",
+          "caption": "The model minimizes fictional shortage penalties and fixed container-opening costs subject to mass, volume and demand constraints. It is not a 3D packing plan.",
+          "sizes": {
+            "wide": [
+              760,
+              330
+            ],
+            "narrow": [
+              420,
+              630
+            ]
+          }
         },
         {
           "kind": "result",
+          "title": "Only the normal scenario ships every requested unit",
           "src": "assets/visuals/inventory-scenarios.svg",
-          "alt": "Five horizontal stacked bars showing units shipped versus shortages for the normal, tight capacity, high penalty, low penalty and no inventory scenarios, with respective objective values.",
-          "caption": "Published solver outputs compare demand coverage across five synthetic scenarios. Their objective costs use scenario-specific fictional parameters, so they are not operational savings."
+          "alt": "Stacked bars of units shipped and short out of 309 requested: normal 309 shipped; high shortage penalty 130 shipped and 179 short; tight capacity 112 shipped and 197 short; low shortage penalty and no inventory 0 shipped and 309 short.",
+          "caption": "Published solver outputs for five synthetic scenarios, each requesting 309 units. Penalties and container charges are fictional, so the results are not operational savings.",
+          "sizes": {
+            "wide": [
+              760,
+              400
+            ],
+            "narrow": [
+              420,
+              461
+            ],
+            "card": [
+              440,
+              260
+            ]
+          }
         }
       ],
-      "thumbnail": "assets/visuals/inventory-model.svg"
+      "thumbnail": "assets/visuals/inventory-scenarios.svg"
     },
     {
       "slug": "product-usage-analytics-demo",
@@ -365,18 +417,44 @@
       "visuals": [
         {
           "kind": "diagram",
+          "title": "From raw events to defensible metrics",
           "src": "assets/visuals/analytics-pipeline.svg",
-          "alt": "Synthetic telemetry pipeline diagram: 5,766 raw records, 5,735 valid, 10 collapsed duplicates, 8 quarantined records and 13 rejected records.",
-          "caption": "File-wide validation precedes date and module filters; invalid or conflicting events do not enter the usage metrics."
+          "alt": "Synthetic telemetry pipeline diagram: 5,766 raw rows are validated file-wide; 5,735 valid events feed the usage metrics and 31 are excluded (10 identical copies collapsed, 8 conflicting, 13 invalid).",
+          "caption": "File-wide validation precedes date and module filters; invalid or conflicting events do not enter the usage metrics.",
+          "sizes": {
+            "wide": [
+              760,
+              330
+            ],
+            "narrow": [
+              420,
+              600
+            ]
+          }
         },
         {
           "kind": "result",
+          "title": "Fewer than half of page-opening sessions reach a detail view",
           "src": "assets/visuals/analytics-funnel.svg",
           "alt": "Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view.",
-          "caption": "The funnel uses distinct `(user_id, session_id)` pairs and strictly increasing event timestamps. It is not a user-conversion or employer adoption metric."
+          "caption": "The funnel uses distinct `(user_id, session_id)` pairs and strictly increasing event timestamps. It is not a user-conversion or employer adoption metric.",
+          "sizes": {
+            "wide": [
+              760,
+              266
+            ],
+            "narrow": [
+              420,
+              324
+            ],
+            "card": [
+              440,
+              260
+            ]
+          }
         }
       ],
-      "thumbnail": "assets/visuals/analytics-pipeline.svg"
+      "thumbnail": "assets/visuals/analytics-funnel.svg"
     },
     {
       "slug": "b2b-sales-systems-case-study",
@@ -457,18 +535,44 @@
       "visuals": [
         {
           "kind": "diagram",
+          "title": "Each business fact has one owning module",
           "src": "assets/visuals/b2b-lifecycle.svg",
-          "alt": "Hypothetical B2B process diagram: lead, quote for four units, accepted order for two, fulfillment of one, and open order of one.",
-          "caption": "A quote is an offer, an order is a commitment, and a shipment is a physical event. The process is a fictional conceptual design, not the employer's architecture."
+          "alt": "Hypothetical B2B process diagram with owning modules: CRM opportunity, Quotation quote for four units, Orders sales order for two, Fulfillment shipment of one. Two quoted units are not converted and one ordered unit is still owed.",
+          "caption": "A quote is an offer, an order is a commitment, and a shipment is a physical event. The process is a fictional conceptual design, not the employer's architecture.",
+          "sizes": {
+            "wide": [
+              760,
+              330
+            ],
+            "narrow": [
+              420,
+              594
+            ]
+          }
         },
         {
           "kind": "result",
+          "title": "Of 4 quoted units, 2 became demand and 1 has shipped",
           "src": "assets/visuals/b2b-quantities.svg",
-          "alt": "Nested quantity diagram for fictional quotation of four units, two ordered, one shipped, one open and two unconverted quote units.",
-          "caption": "The unconverted quantity is not backlog: 4 quoted − 2 accepted = 2 unconverted; 2 ordered − 1 shipped = 1 remaining."
+          "alt": "Unit chart for one fictional order: 4 units quoted; 2 ordered and 2 not converted; 1 shipped and 1 still owed.",
+          "caption": "The unconverted quantity is not backlog: 4 quoted − 2 accepted = 2 unconverted; 2 ordered − 1 shipped = 1 remaining.",
+          "sizes": {
+            "wide": [
+              760,
+              312
+            ],
+            "narrow": [
+              420,
+              497
+            ],
+            "card": [
+              440,
+              260
+            ]
+          }
         }
       ],
-      "thumbnail": "assets/visuals/b2b-lifecycle.svg"
+      "thumbnail": "assets/visuals/b2b-quantities.svg"
     }
   ],
   "appliedThinking": {
@@ -930,13 +1034,33 @@
     "diagrams": [
       {
         "src": "assets/visuals/thinking-foundations.svg",
-        "alt": "Applied mathematics asks about structure; philosophy asks about justification. Arrows connect both to a practical decision supported by domain knowledge and evidence.",
-        "caption": "Structure and justification inform the same decision. Both depend on domain knowledge and evidence."
+        "alt": "Applied mathematics asks what structure is present; philosophy asks what justifies the conclusion. Both inform a practical decision supported by domain knowledge and appropriate evidence.",
+        "caption": "Structure and justification inform the same decision. Both depend on domain knowledge and evidence.",
+        "sizes": {
+          "wide": [
+            760,
+            330
+          ],
+          "narrow": [
+            420,
+            520
+          ]
+        }
       },
       {
         "src": "assets/visuals/thinking-cycle.svg",
         "alt": "Six reasoning operations form a cycle: clarify, locate, separate, investigate, validate and explain. A return path indicates that new evidence may reopen earlier questions.",
-        "caption": "The loop is illustrative: new evidence can return the process to any earlier operation. The six operations are described below."
+        "caption": "The loop is illustrative: new evidence can return the process to any earlier operation. The six operations are described below.",
+        "sizes": {
+          "wide": [
+            760,
+            320
+          ],
+          "narrow": [
+            420,
+            640
+          ]
+        }
       }
     ],
     "publicationApproval": {

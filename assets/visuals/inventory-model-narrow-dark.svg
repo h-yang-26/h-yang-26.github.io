@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 630" width="420" height="630" role="img" aria-labelledby="t">
+<title id="t">Integer program with an independent checker</title>
+<defs>
+<marker id="m-line" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker>
+</defs>
+<rect width="420" height="630" fill="#191C1F"/>
+<g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<rect x="24" y="20" width="178" height="128" rx="10" fill="#22272C" stroke="#848D98" stroke-width="1.5"/>
+<text x="38" y="49.2" font-size="19" fill="#E9E7E2" font-weight="700" data-box="24,20,178,128">Products</text>
+<text x="38" y="74.2" font-size="16" fill="#A9AEB5" data-box="24,20,178,128">stock, demand</text>
+<text x="38" y="95.2" font-size="16" fill="#A9AEB5" data-box="24,20,178,128">shortage penalty</text>
+<text x="38" y="116.2" font-size="16" fill="#A9AEB5" data-box="24,20,178,128">mass, volume</text>
+<rect x="218" y="20" width="178" height="128" rx="10" fill="#22272C" stroke="#848D98" stroke-width="1.5"/>
+<text x="232" y="49.2" font-size="19" fill="#E9E7E2" font-weight="700" data-box="218,20,178,128">Containers</text>
+<text x="232" y="74.2" font-size="16" fill="#A9AEB5" data-box="218,20,178,128">mass, volume</text>
+<text x="232" y="95.2" font-size="16" fill="#A9AEB5" data-box="218,20,178,128">limits; fixed</text>
+<text x="232" y="116.2" font-size="16" fill="#A9AEB5" data-box="218,20,178,128">opening charge</text>
+<path d="M113 148 L113 172 L190 172 L190 192" fill="none" stroke="#848D98" stroke-width="2" marker-end="url(#m-line)"/>
+<path d="M307 148 L307 172 L230 172 L230 192" fill="none" stroke="#848D98" stroke-width="2" marker-end="url(#m-line)"/>
+<rect x="24" y="196" width="372" height="168" rx="10" fill="#1D2A36" stroke="#8CC0EA" stroke-width="1.5"/>
+<text x="38" y="225.2" font-size="19" fill="#E9E7E2" font-weight="700" data-box="24,196,372,168">Integer program</text>
+<text x="38" y="250.2" font-size="16" fill="#A9AEB5" data-box="24,196,372,168">decides units per container, short</text>
+<text x="38" y="271.2" font-size="16" fill="#A9AEB5" data-box="24,196,372,168">units and which containers open</text>
+<text x="38" y="302.2" font-size="16" fill="#A9AEB5" data-box="24,196,372,168">minimizes shortage penalties</text>
+<text x="38" y="323.2" font-size="16" fill="#A9AEB5" data-box="24,196,372,168">+ opening charges</text>
+<path d="M210 364 L210 412" fill="none" stroke="#848D98" stroke-width="2" marker-end="url(#m-line)"/>
+<text x="222" y="394" font-size="16" fill="#A9AEB5" font-weight="700">plan</text>
+<rect x="24" y="416" width="372" height="112" rx="10" fill="#16302D" stroke="#6FCDC2" stroke-width="1.5"/>
+<text x="38" y="445.2" font-size="19" fill="#E9E7E2" font-weight="700" data-box="24,416,372,112">Checker</text>
+<text x="38" y="470.2" font-size="16" fill="#A9AEB5" data-box="24,416,372,112">re-verifies limits, integers and cost</text>
+<text x="38" y="501.2" font-size="16" fill="#A9AEB5" data-box="24,416,372,112">OPTIMAL only if both agree</text>
+<text x="24" y="566" font-size="16" fill="#A9AEB5">Mass and volume feasibility only: not</text>
+<text x="24" y="587" font-size="16" fill="#A9AEB5">a 3D packing or load-restraint plan.</text>
+</g></svg>

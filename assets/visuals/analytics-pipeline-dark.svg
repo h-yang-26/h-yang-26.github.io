@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" width="760" height="330" role="img" aria-labelledby="t">
+<title id="t">Raw events are validated file-wide before metrics</title>
+<defs>
+<marker id="m-line" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker>
+<marker id="m-ok" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6FCDC2"/></marker>
+<marker id="m-warn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker>
+</defs>
+<rect width="760" height="330" fill="#191C1F"/>
+<g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<rect x="24" y="40" width="150" height="112" rx="10" fill="#22272C" stroke="#848D98" stroke-width="1.5"/>
+<text x="38" y="71.6" font-size="22" fill="#E9E7E2" font-weight="700" data-box="24,40,150,112">5,766</text>
+<text x="38" y="100.6" font-size="15" fill="#A9AEB5" data-box="24,40,150,112">raw rows</text>
+<rect x="208" y="40" width="160" height="112" rx="10" fill="#1D2A36" stroke="#8CC0EA" stroke-width="1.5"/>
+<text x="222" y="68.4" font-size="18" fill="#E9E7E2" font-weight="700" data-box="208,40,160,112">Validate +</text>
+<text x="222" y="91.4" font-size="18" fill="#E9E7E2" font-weight="700" data-box="208,40,160,112">dedupe</text>
+<text x="222" y="114.4" font-size="15" fill="#A9AEB5" data-box="208,40,160,112">whole file</text>
+<rect x="402" y="40" width="150" height="112" rx="10" fill="#16302D" stroke="#6FCDC2" stroke-width="1.5"/>
+<text x="416" y="71.6" font-size="22" fill="#E9E7E2" font-weight="700" data-box="402,40,150,112">5,735</text>
+<text x="416" y="100.6" font-size="15" fill="#A9AEB5" data-box="402,40,150,112">valid events</text>
+<rect x="586" y="40" width="150" height="112" rx="10" fill="#22272C" stroke="#848D98" stroke-width="1.5"/>
+<text x="600" y="68.4" font-size="18" fill="#E9E7E2" font-weight="700" data-box="586,40,150,112">Metrics</text>
+<text x="600" y="91.4" font-size="15" fill="#A9AEB5" data-box="586,40,150,112">DAU, volume,</text>
+<text x="600" y="111.4" font-size="15" fill="#A9AEB5" data-box="586,40,150,112">module share,</text>
+<text x="600" y="131.4" font-size="15" fill="#A9AEB5" data-box="586,40,150,112">funnel</text>
+<path d="M174 96 L204 96" fill="none" stroke="#848D98" stroke-width="2" marker-end="url(#m-line)"/>
+<path d="M368 96 L398 96" fill="none" stroke="#6FCDC2" stroke-width="2" marker-end="url(#m-ok)"/>
+<path d="M552 96 L582 96" fill="none" stroke="#848D98" stroke-width="2" marker-end="url(#m-line)"/>
+<path d="M288 152 L288 196" fill="none" stroke="#E6B15C" stroke-width="2" marker-end="url(#m-warn)"/>
+<rect x="164" y="200" width="250" height="92" rx="10" fill="#33290F" stroke="#E6B15C" stroke-width="1.5"/>
+<text x="178" y="228.4" font-size="18" fill="#E9E7E2" font-weight="700" data-box="164,200,250,92">31 excluded</text>
+<text x="178" y="251.4" font-size="15" fill="#A9AEB5" data-box="164,200,250,92">10 identical copies collapsed</text>
+<text x="178" y="271.4" font-size="15" fill="#A9AEB5" data-box="164,200,250,92">8 conflicting, 13 invalid</text>
+<text x="432" y="230" font-size="15" fill="#A9AEB5">Date and module filters</text>
+<text x="432" y="250" font-size="15" fill="#A9AEB5">apply only after file-wide</text>
+<text x="432" y="270" font-size="15" fill="#A9AEB5">validation.</text>
+</g></svg>

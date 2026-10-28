@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 260" width="440" height="260" role="img" aria-labelledby="t">
+<title id="t">Quoted, ordered and shipped units for one fictional order</title>
+<defs>
+</defs>
+<rect width="440" height="260" fill="#191C1F"/>
+<g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<text x="24" y="56" font-size="18" fill="#E9E7E2" font-weight="700">Quoted</text>
+<rect x="130" y="26" width="62" height="46" rx="6" fill="#8CC0EA"/>
+<rect x="202" y="26" width="62" height="46" rx="6" fill="#8CC0EA"/>
+<rect x="274" y="26" width="62" height="46" rx="6" fill="#8CC0EA"/>
+<rect x="346" y="26" width="62" height="46" rx="6" fill="#8CC0EA"/>
+<text x="24" y="122" font-size="18" fill="#E9E7E2" font-weight="700">Ordered</text>
+<rect x="130" y="92" width="62" height="46" rx="6" fill="#8CC0EA"/>
+<rect x="202" y="92" width="62" height="46" rx="6" fill="#8CC0EA"/>
+<rect x="274" y="92" width="62" height="46" rx="6" fill="#191C1F" stroke="#848D98" stroke-width="2" stroke-dasharray="6 4"/>
+<rect x="346" y="92" width="62" height="46" rx="6" fill="#191C1F" stroke="#848D98" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="24" y="188" font-size="18" fill="#E9E7E2" font-weight="700">Shipped</text>
+<rect x="130" y="158" width="62" height="46" rx="6" fill="#6FCDC2"/>
+<rect x="202" y="158" width="62" height="46" rx="6" fill="#191C1F" stroke="#E6B15C" stroke-width="2" stroke-dasharray="6 4"/>
+<rect x="24" y="228" width="14" height="14" rx="3" fill="#6FCDC2"/>
+<text x="44" y="240" font-size="17" fill="#A9AEB5">Shipped</text>
+<rect x="132.64" y="228" width="14" height="14" rx="3" fill="#191C1F" stroke="#E6B15C" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="152.64" y="240" font-size="17" fill="#A9AEB5">Owed</text>
+</g></svg>
