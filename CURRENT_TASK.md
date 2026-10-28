@@ -30,10 +30,10 @@ Implemented against `main` commit `e718aa61d420eb36d3413761f7f3e2a40b6ea8cd` on 
 - Browser: desktop view; narrow iframe widths of 390 and 320 pixels (content widths 375 and 305 after scrollbars), no horizontal overflow; all eight principles present.
 - Keyboard: skip link focuses main; Enter toggles principle details; anchored navigation and case-study return link verified.
 - JavaScript-disabled sandbox: static page and native details work.
-- Publication gate: expected failure while editorial approvals and course verification remain pending; draft noindex tags remain.
+- Publication gate: passes after owner publication authorization on 2026-10-28. Generated draft banners and noindex tags are removed. Academic-topic verification caveats remain.
 
-## Open items
+## Publication authorization
 
-No personal-data placeholders were introduced. Publication review remains pending for first-person voice, terminology, exact academic titles, professional boundaries, public-project distinction and authorship. Record actual owner decisions in `appliedThinking.review` and update copy where needed before changing `draftStatus` to `approved`.
+The owner instructed “Merge and publish” on 2026-10-28. This authorizes release of the presented copy with its explicit academic-topic verification caveats; it does not constitute transcript evidence. The content approval record captures that scope.
 
-This build is for review. Nothing has been merged or deployed.
+No personal-data placeholders were introduced. Detailed unpublished academic projects remain deferred. The release update removes generated draft banners and noindex tags, and all release checks pass before merge.

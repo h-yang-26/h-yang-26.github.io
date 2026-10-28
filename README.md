@@ -19,7 +19,7 @@ Run `node scripts/render_static.mjs`, then `python -m http.server 8000` from thi
 
 Run `node scripts/check_renderer.mjs` and `python scripts/check_site.py` for draft validation. The checker also verifies that all generated snapshots are current.
 
-The Applied Thinking module is a reviewable draft. `--release` intentionally fails until the owner reviews the copy, terminology, academic titles, professional boundaries, public-project distinction and authorship. Review status lives in `appliedThinking.review`; do not mark it approved without the owner's actual review. Regenerate snapshots after updating review status. This build does not authorize publication.
+The owner authorized publication of Applied Thinking on 2026-10-28. Review status and the publication instruction are recorded in `appliedThinking.review` and `appliedThinking.publicationApproval`. This approves publication of the existing academic-topic caveats; transcript verification is not asserted. Regenerate snapshots after any content or status change.
 
 ## Deployment
 

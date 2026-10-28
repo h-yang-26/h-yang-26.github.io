@@ -472,9 +472,9 @@
     }
   ],
   "appliedThinking": {
-    "_help": "DRAFT for content/site.json top-level property appliedThinking. Owner approval required before publication. All project slugs are existing published site identifiers.",
+    "_help": "Applied Thinking content. Publication authorized by the owner on 2026-10-28. Academic topics retain their explicit verification limits.",
     "moduleId": "applied-thinking",
-    "draftStatus": "owner-review-required",
+    "draftStatus": "approved",
     "route": "applied-thinking/",
     "navLabel": "Applied Thinking",
     "homePreview": {
@@ -546,7 +546,7 @@
           "inventory-shipping-optimization-lab"
         ],
         "supportType": "illustrated-in-public-project",
-        "editorialStatus": "owner-review-required",
+        "editorialStatus": "approved",
         "supportCategories": [
           "SITE_DEMO",
           "RESUME_DRAFT",
@@ -568,7 +568,7 @@
           "synthetic-data-quality-pipeline"
         ],
         "supportType": "illustrated-in-public-project",
-        "editorialStatus": "owner-review-required",
+        "editorialStatus": "approved",
         "supportCategories": [
           "SITE_DEMO",
           "OWNER_EXPERIENCE",
@@ -590,7 +590,7 @@
           "b2b-sales-systems-case-study"
         ],
         "supportType": "illustrated-in-public-project",
-        "editorialStatus": "owner-review-required",
+        "editorialStatus": "approved",
         "supportCategories": [
           "SITE_DEMO",
           "OWNER_EXPERIENCE",
@@ -612,7 +612,7 @@
           "inventory-shipping-optimization-lab"
         ],
         "supportType": "illustrated-in-public-project",
-        "editorialStatus": "owner-review-required",
+        "editorialStatus": "approved",
         "supportCategories": [
           "SITE_DEMO",
           "CONCEPTUAL",
@@ -634,7 +634,7 @@
           "product-usage-analytics-demo"
         ],
         "supportType": "illustrated-in-public-project",
-        "editorialStatus": "owner-review-required",
+        "editorialStatus": "approved",
         "supportCategories": [
           "SITE_DEMO",
           "CONCEPTUAL",
@@ -657,7 +657,7 @@
           "b2b-sales-systems-case-study"
         ],
         "supportType": "illustrated-in-public-project",
-        "editorialStatus": "owner-review-required",
+        "editorialStatus": "approved",
         "supportCategories": [
           "SITE_DEMO",
           "CONCEPTUAL",
@@ -677,7 +677,7 @@
         "limitation": "The most plausible explanation is not necessarily true; the best-supported explanation and the best action may differ.",
         "projectSlugs": [],
         "supportType": "conceptual-only",
-        "editorialStatus": "owner-review-required",
+        "editorialStatus": "approved",
         "supportCategories": [
           "CONCEPTUAL",
           "PERSONAL_METHOD_DRAFT"
@@ -699,7 +699,7 @@
           "product-usage-analytics-demo"
         ],
         "supportType": "illustrated-in-public-project",
-        "editorialStatus": "owner-review-required",
+        "editorialStatus": "approved",
         "supportCategories": [
           "OWNER_EXPERIENCE",
           "SITE_DEMO",
@@ -920,12 +920,12 @@
       "foundationsDiagramCaption": "Structure and justification inform the same decision. Both depend on domain knowledge and evidence."
     },
     "review": {
-      "personalVoice": "pending",
-      "terminology": "pending",
-      "academicTitles": "pending",
-      "professionalBoundaries": "pending",
-      "publicProjectDistinction": "pending",
-      "authorship": "pending"
+      "personalVoice": "approved",
+      "terminology": "approved",
+      "academicTitles": "approved",
+      "professionalBoundaries": "approved",
+      "publicProjectDistinction": "approved",
+      "authorship": "approved"
     },
     "diagrams": [
       {
@@ -938,6 +938,11 @@
         "alt": "Six reasoning operations form a cycle: clarify, locate, separate, investigate, validate and explain. A return path indicates that new evidence may reopen earlier questions.",
         "caption": "The loop is illustrative: new evidence can return the process to any earlier operation. The six operations are described below."
       }
-    ]
+    ],
+    "publicationApproval": {
+      "date": "2026-10-28",
+      "instruction": "Merge and publish",
+      "scope": "Approval to publish the presented copy, including its explicit unverified academic-topic labels; this does not establish transcript verification."
+    }
   }
 }
