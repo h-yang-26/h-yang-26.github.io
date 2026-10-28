@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" role="img" aria-labelledby="title desc">
+<title id="title">Two complementary foundations</title><desc id="desc">Structural reasoning and epistemic reasoning both inform a practical decision grounded in domain knowledge and evidence.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#1c5785"/></marker></defs>
+<rect width="960" height="320" fill="#f8f7f3"/>
+<g fill="#fff" stroke="#b5ae9f" stroke-width="1.5"><rect x="35" y="30" width="410" height="115" rx="10"/><rect x="515" y="30" width="410" height="115" rx="10"/><rect x="270" y="208" width="420" height="78" rx="10"/></g>
+<g fill="#4f5660" font-family="system-ui, sans-serif" font-size="16"><text x="65" y="62">APPLIED MATHEMATICS</text><text x="545" y="62">PHILOSOPHY</text></g>
+<g fill="#1a1d21" font-family="Georgia, serif" font-size="27"><text x="65" y="98">What structure is present?</text><text x="545" y="98">What justifies the conclusion?</text><text x="480" y="241" text-anchor="middle">A practical decision</text></g>
+<g fill="#4f5660" font-family="system-ui, sans-serif" font-size="17"><text x="65" y="125">Variables · relationships · constraints</text><text x="545" y="125">Assumptions · evidence · uncertainty</text><text x="480" y="269" text-anchor="middle">Domain knowledge + appropriate evidence</text></g>
+<g fill="none" stroke="#1c5785" stroke-width="2" marker-end="url(#arrow)"><path d="M240 145V175H390V207"/><path d="M720 145V175H570V207"/><path d="M445 86H512"/></g>
+</svg>

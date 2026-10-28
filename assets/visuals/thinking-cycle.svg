@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" role="img" aria-labelledby="title desc">
+<title id="title">A reasoning cycle, open to revision</title><desc id="desc">Clarify the decision, locate the structure, separate known from unresolved, investigate, validate and explain. New evidence may send the process back to earlier questions.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8Z" fill="#1c5785"/></marker></defs>
+<rect width="960" height="440" fill="#f8f7f3"/>
+<g fill="#fff" stroke="#b5ae9f" stroke-width="1.5"><rect x="45" y="55" width="250" height="95" rx="10"/><rect x="355" y="55" width="250" height="95" rx="10"/><rect x="665" y="55" width="250" height="95" rx="10"/><rect x="665" y="265" width="250" height="95" rx="10"/><rect x="355" y="265" width="250" height="95" rx="10"/><rect x="45" y="265" width="250" height="95" rx="10"/></g>
+<g fill="#1c5785" font-family="system-ui, sans-serif" font-size="16" font-weight="600"><text x="70" y="85">01 / CLARIFY</text><text x="380" y="85">02 / LOCATE</text><text x="690" y="85">03 / SEPARATE</text><text x="690" y="295">04 / INVESTIGATE</text><text x="380" y="295">05 / VALIDATE</text><text x="70" y="295">06 / EXPLAIN</text></g>
+<g fill="#1a1d21" font-family="Georgia, serif" font-size="23"><text x="70" y="122">The decision</text><text x="380" y="122">The structure</text><text x="690" y="122">Known / unresolved</text><text x="690" y="332">Models and evidence</text><text x="380" y="332">Assumptions and limits</text><text x="70" y="332">What follows</text></g>
+<g fill="none" stroke="#1c5785" stroke-width="2" marker-end="url(#arrow)"><path d="M295 102H352"/><path d="M605 102H662"/><path d="M790 150V262"/><path d="M665 312H608"/><path d="M355 312H298"/><path d="M170 265V153"/></g>
+<g fill="#4f5660" font-family="system-ui, sans-serif" font-size="18" text-anchor="middle"><text x="480" y="203">New evidence can reopen earlier questions.</text><text x="480" y="405">Reusable operations, not a guaranteed algorithm</text></g>
+</svg>

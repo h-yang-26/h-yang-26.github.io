@@ -11,12 +11,157 @@
 </head>
 <body data-page="home" data-root=".">
   <a class="skip-link" href="#main">Skip to main content</a>
-  <header class="site-header" id="site-header"></header>
-  <div class="draft-banner" id="draft-banner" role="region" aria-label="Draft status" hidden></div>
-  <main id="main" tabindex="-1">
-    <p class="wrap loading">Loading…</p>
-    <noscript><p class="wrap">This page builds its content from <code>content/site.json</code> with JavaScript. Please enable JavaScript to view it.</p></noscript>
-  </main>
-  <footer class="site-footer" id="site-footer"></footer>
+  <header class="site-header" id="site-header"><div class="wrap header__inner">
+      <a class="brand" href="./">Portfolio</a>
+      <nav aria-label="Primary">
+        <ul class="nav">
+          <li><a href="./#experience">Experience</a></li>
+          <li><a href="./#projects">Projects</a></li>
+          <li><a href="./applied-thinking/">Applied Thinking</a></li>
+          <li><a href="./#about">About</a></li>
+          <li><a href="./#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+<!-- /site-header --></header>
+  <div class="draft-banner" id="draft-banner" role="region" aria-label="Draft status" hidden>
+<!-- /draft-banner --></div>
+  <main id="main" tabindex="-1" data-prerendered="true">
+    <section class="hero wrap" aria-labelledby="intro-title">
+      <p class="eyebrow">Independent portfolio · Enterprise-informed public examples</p>
+      <h1 id="intro-title">Enterprise-motivated technical demonstrations</h1>
+
+      <p class="hero__summary">Four independently developed, testable public demonstrations informed by professional work on industrial B2B systems. Each deliberately narrows a real-world problem into a fictional, reproducible example—not an export of employer code, data or architecture.</p>
+    </section>
+
+    <section class="section section--experience" id="experience" aria-labelledby="experience-title">
+      <div class="wrap">
+        <p class="eyebrow">Where the public demos come from</p>
+        <h2 id="experience-title">Professional experience behind the demonstrations</h2>
+        <div class="experience-grid">
+          <div>
+            <p class="experience-role"><strong>IT Business Analyst Intern</strong> · Heli America Inc. · August 2026–present</p>
+            <p class="section__lede">I work with a software lead on an industrial B2B business platform used by staff and dealers. My responsibilities include translating business processes into requirements, coordinating data-quality reviews, directing AI-assisted implementation work and checking results against operational needs.</p>
+            <ul class="experience-list"><li><strong>Inventory migration</strong><span>Led an accuracy-focused migration of approximately 2,500 inventory records into an in-house quoting module, including five stakeholder review rounds to resolve ambiguous legacy data.</span></li><li><strong>Inventory decision support</strong><span>Designed and directed AI-assisted development of a replenishment recommendation capability using demand forecasting, live demand and container utilization; integrated into the platform and still under development.</span></li><li><strong>Product analytics</strong><span>Expanded live administrator reporting for adoption, retention and storage trends.</span></li><li><strong>B2B platform development</strong><span>Collaborate with the software lead on requirements and review for deployed sales and operational workflows.</span></li></ul>
+          </div>
+          <aside class="scope-note" aria-label="Boundary between professional experience and public demonstrations">
+            <h3>Real work. Independent public models.</h3>
+            <p>The professional work described here includes live, integrated or deployed capabilities, with project-specific status indicated below. The linked GitHub repositories are independent representations built from fictional inputs and general methods; their test results and example metrics are not employer results.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section thinking-preview" id="applied-thinking" aria-labelledby="thinking-preview-title"><div class="wrap">
+      <p class="eyebrow">Academic foundations · Applied mathematics and philosophy</p>
+      <div class="thinking-preview__intro"><div><h2 id="thinking-preview-title">Applied Thinking: The reasoning behind the work</h2><p class="section__lede">My background in applied mathematics and philosophy informs how I approach unfamiliar problems: recognizing useful structures, separating what can be established from what remains uncertain, tracing dependencies, and testing assumptions before trusting conclusions.</p></div>
+      <a class="btn" href="./applied-thinking/">Explore Applied Thinking <span aria-hidden="true">↗</span></a></div>
+      <ul class="thinking-anchors"><li><a href="./applied-thinking/#framework-recognition"><span class="thinking-number" aria-hidden="true">01</span>Recognize structure</a></li><li><a href="./applied-thinking/#boundary-refinement"><span class="thinking-number" aria-hidden="true">02</span>Narrow uncertainty</a></li><li><a href="./applied-thinking/#graph-decomposition"><span class="thinking-number" aria-hidden="true">03</span>Preserve relationships</a></li><li><a href="./applied-thinking/#invariance-perturbation"><span class="thinking-number" aria-hidden="true">04</span>Test conclusions</a></li></ul>
+    </div></section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <h2 id="projects-title">Featured projects</h2>
+        <p class="section__lede">Each project pairs a documented professional workstream with a separate, simplified public implementation. The three Python demonstrations run locally; the B2B systems case study is a conceptual design with executable consistency checks. None of the public examples claims to be the deployed workplace system.</p>
+        <ul class="cards"><li>
+      <article class="card" aria-labelledby="card-synthetic-data-quality-pipeline">
+        <div class="card__visual"><img src="./assets/visuals/data-quality-flow.svg" alt="" width="1000" height="475" loading="lazy" decoding="async"></div>
+        <p class="chip">Independent / Synthetic Demonstration</p>
+        <h3 id="card-synthetic-data-quality-pipeline">Synthetic Data Quality Pipeline</h3>
+        <p class="card__connection"><strong>Related professional work:</strong> Inventory data migration and exception review</p>
+        <dl class="facts">
+          <dt>Problem</dt><dd>Inventory records mix missing identifiers, ambiguous categories and quantities that look alike but mean different things.</dd>
+          <dt>Method</dt><dd>A seeded command-line pipeline normalizes and validates fictional records, maps categories by exact alias, and routes ambiguous or invalid rows to a traceable exceptions file instead of guessing.</dd>
+          <dt>Recorded result</dt><dd>60 input rows = 37 accepted + 23 rejected; 21 tests passed (agent-run).</dd>
+        </dl>
+        <ul class="tags"><li>Python</li><li>CSV ETL</li><li>Deterministic reference mapping</li><li>pytest</li></ul>
+        <div class="actions">
+          <a class="btn btn--primary" href="./projects/synthetic-data-quality-pipeline/">Read case study<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
+          <a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline">Source on GitHub<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
+        </div>
+      </article>
+    </li><li>
+      <article class="card" aria-labelledby="card-inventory-shipping-optimization-lab">
+        <div class="card__visual"><img src="./assets/visuals/inventory-model.svg" alt="" width="1000" height="475" loading="lazy" decoding="async"></div>
+        <p class="chip">Independent / Synthetic Demonstration</p>
+        <h3 id="card-inventory-shipping-optimization-lab">Inventory and Shipping Optimization Lab</h3>
+        <p class="card__connection"><strong>Related professional work:</strong> Implemented inventory recommendation capability</p>
+        <dl class="facts">
+          <dt>Problem</dt><dd>Shipping every requested unit is not always worthwhile when opening a container incurs a fixed charge.</dd>
+          <dt>Method</dt><dd>An integer program solved with PuLP and CBC allocates fictional stock under demand, mass and volume limits, trading shortage penalties against container charges. A separate checker revalidates every plan.</dd>
+          <dt>Recorded result</dt><dd>Five scenarios reproduce byte-identical results; 130 tests passed (agent-run).</dd>
+        </dl>
+        <ul class="tags"><li>Python</li><li>PuLP/CBC</li><li>Integer optimization</li><li>Independent feasibility checks</li></ul>
+        <div class="actions">
+          <a class="btn btn--primary" href="./projects/inventory-shipping-optimization-lab/">Read case study<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
+          <a class="btn" href="https://github.com/h-yang-26/inventory-shipping-optimization-lab">Source on GitHub<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
+        </div>
+      </article>
+    </li><li>
+      <article class="card" aria-labelledby="card-product-usage-analytics-demo">
+        <div class="card__visual"><img src="./assets/visuals/analytics-pipeline.svg" alt="" width="1000" height="475" loading="lazy" decoding="async"></div>
+        <p class="chip">Independent / Synthetic Demonstration</p>
+        <h3 id="card-product-usage-analytics-demo">Product Usage Analytics Demo</h3>
+        <p class="card__connection"><strong>Related professional work:</strong> Live administrative usage and storage reporting</p>
+        <dl class="facts">
+          <dt>Problem</dt><dd>Event volume, distinct users and progression through a workflow answer different product questions.</dd>
+          <dt>Method</dt><dd>A seeded event generator feeds separate validation and metric modules and a local Streamlit dashboard with explicit filters, denominators and an ordered session funnel.</dd>
+          <dt>Recorded result</dt><dd>5766 raw events reconcile to 5735 valid; 44 tests passed (agent-run).</dd>
+        </dl>
+        <ul class="tags"><li>Python/pandas</li><li>Streamlit</li><li>Altair</li><li>Ordered session funnels</li></ul>
+        <div class="actions">
+          <a class="btn btn--primary" href="./projects/product-usage-analytics-demo/">Read case study<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
+          <a class="btn" href="https://github.com/h-yang-26/product-usage-analytics-demo">Source on GitHub<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
+        </div>
+      </article>
+    </li><li>
+      <article class="card" aria-labelledby="card-b2b-sales-systems-case-study">
+        <div class="card__visual"><img src="./assets/visuals/b2b-lifecycle.svg" alt="" width="1000" height="475" loading="lazy" decoding="async"></div>
+        <p class="chip">Hypothetical Systems-Design Exercise</p>
+        <h3 id="card-b2b-sales-systems-case-study">B2B Sales Systems Case Study</h3>
+        <p class="card__connection"><strong>Related professional work:</strong> Deployed industrial B2B platform development</p>
+        <dl class="facts">
+          <dt>Problem</dt><dd>A quotation, an accepted order, reserved stock and a shipment are different business facts; adding them together double counts demand.</dd>
+          <dt>Method</dt><dd>A documented sales lifecycle, entity glossary, Mermaid diagrams, three architecture decision records and five metric definitions, checked by a small standard-library calculator. The architecture is a proposed design, not an implemented system.</dd>
+          <dt>Recorded result</dt><dd>Consistency checks PASS; 30 unittest tests passed (agent-run).</dd>
+        </dl>
+        <ul class="tags"><li>Domain modeling</li><li>Mermaid</li><li>Architecture decision records</li><li>Python standard-library checks</li></ul>
+        <div class="actions">
+          <a class="btn btn--primary" href="./projects/b2b-sales-systems-case-study/">Read case study<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
+          <a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study">Source on GitHub<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
+        </div>
+      </article>
+    </li></ul>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <h2 id="about-title">About</h2>
+        <div class="about-grid">
+
+
+          <div>
+            <h3>Methods and tools in these projects</h3>
+            <ul class="tags"><li>Python</li><li>CSV ETL</li><li>Deterministic reference mapping</li><li>pytest</li><li>PuLP/CBC</li><li>Integer optimization</li><li>Independent feasibility checks</li><li>Python/pandas</li><li>Streamlit</li><li>Altair</li><li>Ordered session funnels</li><li>Domain modeling</li><li>Mermaid</li><li>Architecture decision records</li><li>Python standard-library checks</li></ul>
+            <p class="note">Collected from the project pages above.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 id="contact-title">Public links</h2>
+        <dl class="contact"><dt>GitHub</dt><dd><a href="https://github.com/h-yang-26">github.com/h-yang-26</a></dd></dl>
+      </div>
+    </section>
+<!-- /main --></main>
+  <footer class="site-footer" id="site-footer"><div class="wrap footer__inner">
+      <p>Professional experience and public demonstrations are distinct: real workplace responsibilities are described at a high level, while the linked examples use fictional data and independent reduced-scope implementations. Synthetic outputs do not measure employer or production performance.</p>
+      <p>This site sets no cookies and loads no analytics, tracking scripts or third-party content.</p>
+    </div>
+<!-- /site-footer --></footer>
 </body>
 </html>
+

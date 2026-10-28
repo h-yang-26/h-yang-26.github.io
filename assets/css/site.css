@@ -117,6 +117,8 @@ h1 { font-size: clamp(2.1rem, 1.6rem + 2.4vw, 3.25rem); }
 h2 { font-size: clamp(1.55rem, 1.35rem + 0.9vw, 2rem); }
 h3 { font-size: 1.25rem; }
 
+h4 { margin: 0 0 0.75rem; font: 600 1.3rem/1.3 var(--serif); text-wrap: balance; }
+
 p { margin: 0 0 1em; }
 
 code {
@@ -732,3 +734,57 @@ h1 .ph { font-size: 0.5em; vertical-align: middle; }
 .technical-figure figcaption { margin: 0; padding: 0.9rem 1.05rem 1.05rem; border-top: 1px solid var(--border); color: var(--muted); line-height: 1.52; font-size: 0.93rem; }
 .figure-label { display: inline-block; margin-right: 0.45rem; font-size: 0.72rem; font-weight: 800; color: var(--accent); letter-spacing: 0.07em; white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) { .technical-figure img { transition: none; } }
+
+
+/* ---------- Applied Thinking ---------- */
+.thinking-preview { border-block: 1px solid var(--border); }
+.thinking-preview__intro { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem; }
+.thinking-preview__intro > div { flex: 1 1 32rem; }
+.thinking-preview .section__lede { margin-bottom: 0; }
+.thinking-anchors { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+.thinking-anchors a { display: flex; align-items: baseline; gap: 0.65rem; font-size: 0.95rem; font-weight: 600; }
+.thinking-number { color: var(--accent); font: 600 0.85rem/1.4 var(--mono); letter-spacing: 0.04em; }
+.thinking-hero { max-width: 58rem; }
+.thinking-hero > p:not(.eyebrow) { max-width: 49rem; }
+.thinking-tagline { color: var(--accent); font: 500 clamp(1.3rem, 1.1rem + 0.6vw, 1.7rem)/1.4 var(--serif); }
+.thinking-page .cs-layout { align-items: start; }
+.thinking-content { min-width: 0; }
+.thinking-content section { scroll-margin-top: 1.5rem; }
+.thinking-capabilities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 2rem; padding: 0; list-style: none; }
+.thinking-capabilities li { padding-left: 1rem; border-left: 2px solid var(--accent); }
+.thinking-capabilities h3 { font-size: 1.1rem; }
+.thinking-capabilities p { margin-bottom: 0; font-size: 0.98rem; color: var(--muted); }
+.thinking-foundations { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem; }
+.thinking-foundations > div { padding-top: 1rem; border-top: 3px solid var(--accent); }
+.thinking-foundations > div + div { border-top-color: var(--border-strong); }
+.thinking-foundations p { font-size: 0.98rem; }
+.thinking-figure { margin-block: 1.5rem; }
+.thinking-group { margin-top: 2rem; }
+.thinking-group > h3 { padding-bottom: 1rem; border-bottom: 2px solid var(--border-strong); font-size: 1.05rem; font-family: var(--sans); }
+.thinking-principle { padding-block: 1.25rem; border-bottom: 1px solid var(--border); scroll-margin-top: 1.5rem; }
+.thinking-principle > .thinking-number { display: block; margin-bottom: 0.45rem; }
+.thinking-question { font-weight: 600; }
+.thinking-caveat { padding-left: 1rem; border-left: 2px solid var(--border-strong); font-size: 0.94rem; color: var(--muted); }
+.thinking-principle summary { width: fit-content; padding-block: 0.5rem; color: var(--accent); cursor: pointer; font-size: 0.94rem; font-weight: 600; }
+.thinking-detail { padding: 1rem 1rem 0.1rem; background: var(--surface-sunk); margin-top: 0.5rem; font-size: 0.95rem; }
+.thinking-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; padding: 0; list-style: none; margin: 1rem 0 0; font-size: 0.88rem; }
+.thinking-connections > article, .thinking-bridges > article { padding-block: 1.5rem; border-bottom: 1px solid var(--border); }
+.thinking-connections > article:first-child, .thinking-bridges > article:first-child { padding-top: 0.5rem; }
+.thinking-workflow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 2rem; padding-left: 1.6rem; }
+.thinking-workflow li { padding-left: 0.2rem; }
+.thinking-workflow li::marker { color: var(--accent); font-weight: 700; }
+.thinking-workflow h3 { font: 600 1rem/1.4 var(--sans); }
+.thinking-workflow p { font-size: 0.97rem; }
+.thinking-boundary { padding: 1.2rem; border: 1px solid var(--border-strong); background: var(--surface-sunk); font-size: 0.96rem; }
+.thinking-table { width: 100%; border-collapse: collapse; font-size: 0.94rem; margin: 1.5rem 0; table-layout: fixed; }
+.thinking-table th, .thinking-table td { padding: 0.8rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); overflow-wrap: anywhere; }
+.thinking-table thead { background: var(--surface-sunk); }
+.nav [aria-current="page"] { color: var(--accent); text-decoration: underline; text-decoration-thickness: 2px; }
+@media (max-width: 44rem) {
+  .thinking-anchors { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .thinking-foundations { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+}
+@media (max-width: 30rem) {
+  .thinking-capabilities, .thinking-workflow { grid-template-columns: minmax(0, 1fr); }
+  .thinking-table th, .thinking-table td { padding: 0.65rem 0.35rem; }
+}

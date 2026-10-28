@@ -8,12 +8,18 @@ No personal biography, personal contact address, or resume link is published in 
 
 - `content/site.json` contains text and project descriptions. Personal fields are explicitly omitted (`false`) and can be added later.
 - `assets/` contains plain CSS/JavaScript; no analytics or third-party scripts.
-- `projects/*/index.html` contains the four case-study shells.
+- `applied-thinking/index.html` explains eight reasoning principles, with static diagrams and case-study connections.
+- `index.html`, `applied-thinking/index.html` and `projects/*/index.html` include generated HTML for visitors without JavaScript.
+- `scripts/render_static.mjs` generates these snapshots with the shared renderer; run it after editing JSON or layout code (Node 18+).
 - `scripts/check_site.py --release` verifies the static structure and placeholder state.
 
 ## Local preview
 
-Run `python -m http.server 8000` from this directory, then open `http://localhost:8000/`. Opening the HTML directly via `file://` will not load the JSON content.
+Run `node scripts/render_static.mjs`, then `python -m http.server 8000` from this directory and open `http://localhost:8000/`. The generated HTML also remains readable when JavaScript or the JSON fetch is unavailable.
+
+Run `node scripts/check_renderer.mjs` and `python scripts/check_site.py` for draft validation. The checker also verifies that all generated snapshots are current.
+
+The owner authorized publication of Applied Thinking on 2026-10-28. Review status and the publication instruction are recorded in `appliedThinking.review` and `appliedThinking.publicationApproval`. This approves publication of the existing academic-topic caveats; transcript verification is not asserted. Regenerate snapshots after any content or status change.
 
 ## Deployment
 
@@ -31,3 +37,4 @@ The homepage and each case study now use original static SVG diagrams and numeri
 visualizations from `assets/visuals/`. Their citations, fictional data boundaries,
 and computation definitions are documented in [`assets/visuals/README.md`](assets/visuals/README.md).
 The figures are static; interactive calculators are not part of this release.
+

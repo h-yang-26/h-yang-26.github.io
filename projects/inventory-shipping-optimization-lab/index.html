@@ -11,12 +11,119 @@
 </head>
 <body data-page="project" data-project="inventory-shipping-optimization-lab" data-root="../..">
   <a class="skip-link" href="#main">Skip to main content</a>
-  <header class="site-header" id="site-header"></header>
-  <div class="draft-banner" id="draft-banner" role="region" aria-label="Draft status" hidden></div>
-  <main id="main" tabindex="-1">
-    <p class="wrap loading">Loading…</p>
-    <noscript><p class="wrap">This page builds its content from <code>content/site.json</code> with JavaScript. Please enable JavaScript to view it.</p></noscript>
-  </main>
-  <footer class="site-footer" id="site-footer"></footer>
+  <header class="site-header" id="site-header"><div class="wrap header__inner">
+      <a class="brand" href="../../">Portfolio</a>
+      <nav aria-label="Primary">
+        <ul class="nav">
+          <li><a href="../../#experience">Experience</a></li>
+          <li><a href="../../#projects">Projects</a></li>
+          <li><a href="../../applied-thinking/">Applied Thinking</a></li>
+          <li><a href="../../#about">About</a></li>
+          <li><a href="../../#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+<!-- /site-header --></header>
+  <div class="draft-banner" id="draft-banner" role="region" aria-label="Draft status" hidden>
+<!-- /draft-banner --></div>
+  <main id="main" tabindex="-1" data-prerendered="true">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../../#projects">Projects</a></li>
+          <li><span aria-current="page">Inventory and Shipping Optimization Lab</span></li>
+        </ol>
+      </nav>
+      <header class="cs-head">
+        <p class="chip">Independent / Synthetic Demonstration</p>
+        <h1>Inventory and Shipping Optimization Lab</h1>
+        <p class="cs-type"><strong>Type:</strong> Independent mathematical demonstration using fictional inputs</p>
+        <p class="cs-context"><strong>Related professional work:</strong> Implemented inventory recommendation capability. <strong>Public artifact:</strong> independent fictional demonstration.</p>
+        <ul class="tags"><li>Python</li><li>PuLP/CBC</li><li>Integer optimization</li><li>Independent feasibility checks</li></ul>
+        <div class="actions"><a class="btn" href="https://github.com/h-yang-26/inventory-shipping-optimization-lab">Source on GitHub<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a><a class="btn" href="https://github.com/h-yang-26/inventory-shipping-optimization-lab#readme">README and run instructions</a></div>
+      </header>
+      <div class="cs-layout">
+        <nav class="toc" aria-label="On this page">
+          <p class="toc__title">On this page</p>
+          <ol><li><a href="#professional">Professional work and public-demo boundary</a></li><li><a href="#problem">The problem</a></li><li><a href="#visuals">System diagrams and synthetic results</a></li><li><a href="#built">What the demonstration contains</a></li><li><a href="#approach">Technical approach</a></li><li><a href="#validation">Validation and results</a></li><li><a href="#limitations">Tradeoffs and limitations</a></li><li><a href="#contribution">My contribution</a></li><li><a href="#learned">What I learned</a></li><li><a href="#academic-connections">Academic connections</a></li><li><a href="#reproduce">Source and reproducibility</a></li></ol>
+        </nav>
+        <article class="prose">
+          <section id="professional" aria-labelledby="professional-title">
+            <h2 id="professional-title">Professional work and public-demo boundary</h2><div class="professional-bridge">
+      <div><h3>Relevant professional responsibility</h3><p>I designed and directed AI-assisted development of a forklift restock recommendation capability covering demand forecasts, live demand and shipping-container utilization. The capability was integrated into the business platform and continues to be developed.</p></div>
+      <div><h3>Scope of this public demonstration</h3><p>This public integer-programming lab isolates a single-period container allocation tradeoff, with fictional demand and costs. It does not reproduce the business platform&#39;s forecasting, replenishment, live integrations or operational decisions.</p></div>
+      </div></section><section id="problem" aria-labelledby="problem-title">
+            <h2 id="problem-title">The problem</h2><p>Shipping every requested unit may not be worthwhile when opening a container incurs a fixed charge. This fictional laboratory models that tradeoff explicitly: allocate available stock under demand, mass and volume constraints while balancing shortage penalties against container charges.</p></section><section id="visuals" aria-labelledby="visuals-title">
+            <h2 id="visuals-title">System diagrams and synthetic results</h2><div class="visual-gallery"><figure class="technical-figure">
+        <img src="../../assets/visuals/inventory-model.svg" alt="Constrained integer program diagram linking stock, demand and container capacities to shipment and shortage decisions." width="1000" height="475" loading="lazy" decoding="async">
+        <figcaption><span class="figure-label">SYSTEM / MODEL</span> The model minimizes fictional shortage penalties and fixed container-opening costs subject to mass, volume and demand constraints. It is not a 3D packing plan.</figcaption>
+      </figure><figure class="technical-figure">
+        <img src="../../assets/visuals/inventory-scenarios.svg" alt="Five horizontal stacked bars showing units shipped versus shortages for the normal, tight capacity, high penalty, low penalty and no inventory scenarios, with respective objective values." width="1000" height="552" loading="lazy" decoding="async">
+        <figcaption><span class="figure-label">SYNTHETIC RESULT</span> Published solver outputs compare demand coverage across five synthetic scenarios. Their objective costs use scenario-specific fictional parameters, so they are not operational savings.</figcaption>
+      </figure></div></section><section id="built" aria-labelledby="built-title">
+            <h2 id="built-title">What the demonstration contains</h2><p>A Python command-line model reads fictional scenarios, solves integer allocation decisions with PuLP and CBC, and reports shipments, shortages, container use, utilization, solver status and objective cost. Text and JSON exports replace their designated files on rerun. Five bundled scenarios illustrate normal capacity, tighter capacity, higher penalties, low penalties and no inventory.</p></section><section id="approach" aria-labelledby="approach-title">
+            <h2 id="approach-title">Technical approach</h2><p>Allocations and shortages are nonnegative integers; container-use decisions are binary. Shipments cannot exceed stock, and shipped units plus shortage must equal demand. Each used container must satisfy both its mass and approximate-volume limit.</p><p>The objective minimizes shortage penalties plus fixed charges, entirely in fictional <code>toy_cost_units</code>. A separate checker revalidates decisions and recomputes their cost before a plan is interpreted. <code>OPTIMAL</code> requires supporting solver status; a valid incumbent without an optimality proof is reported as <code>FEASIBLE</code>.</p><p>The README&#39;s hand-checkable example has demand for five units, each weighing 10 kg and occupying 1 m³. A 25 kg / 3 m³ container permits two units. With penalty 10 and fixed charge 12, shipping two costs <code>3 × 10 + 12 = 42</code>, compared with 50 for shipping nothing.</p></section><section id="validation" aria-labelledby="validation-title">
+            <h2 id="validation-title">Validation and results</h2><p>During the first review round, I also ran the documented commands myself in PowerShell, and the outputs matched the agents&#39; reports. The results below, including later corrections, are agent-run, on Windows 11 with Python 3.13.15, PuLP 3.3.2, CBC 2.10.3 and pytest 9.1.1. All costs are fictional.</p>
+      <table class="evidence" role="table">
+        <caption class="visually-hidden">Claims, evidence and verification status: Inventory and Shipping Optimization Lab</caption>
+        <thead role="rowgroup"><tr role="row">
+          <th scope="col" role="columnheader">Public-demo claim</th>
+          <th scope="col" role="columnheader">Command and result</th>
+          <th scope="col" role="columnheader">Status</th>
+        </tr></thead>
+        <tbody role="rowgroup"><tr role="row">
+        <th scope="row" role="rowheader">Model and checker regressions pass</th>
+        <td role="cell" data-label="Command and result"><code>python -m pytest -q</code>: <strong>130 passed</strong> (500 dependency deprecation warnings)</td>
+        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
+      </tr><tr role="row">
+        <th scope="row" role="rowheader">Scenario results are reproducible</th>
+        <td role="cell" data-label="Command and result"><code>python -m shiplab --json results/example_results.json --text results/example_output.txt</code>, then a repeat: byte-identical files; objectives <strong>1300 / 2976 / 8660 / 288.5 / 4305</strong> in the scenario order above</td>
+        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run; synthetic costs</span></td>
+      </tr><tr role="row">
+        <th scope="row" role="rowheader">Capacity and objective arithmetic match a hand-derived check</th>
+        <td role="cell" data-label="Command and result">The tests include the README&#39;s mass-bound optimum, <strong>42</strong></td>
+        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
+      </tr><tr role="row">
+        <th scope="row" role="rowheader">A real early-stop solution is distinguished from an optimum</th>
+        <td role="cell" data-label="Command and result">CBC runs with limits of 0.02 / 0.05 / 0.1 seconds returned <code>FEASIBLE</code> plans; constraints and cost were independently rechecked, and the CLI exited 0</td>
+        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
+      </tr><tr role="row">
+        <th scope="row" role="rowheader">Other environments and network-disabled execution</th>
+        <td role="cell" data-label="Command and result">Not tested</td>
+        <td role="cell" data-label="Status"><span class="status status--open">NOT VERIFIED</span></td>
+      </tr></tbody>
+      </table></section><section id="limitations" aria-labelledby="limitations-title">
+            <h2 id="limitations-title">Tradeoffs and limitations</h2><p>Aggregate mass and volume feasibility is <strong>not a validated 3D packing, stacking or load-restraint plan</strong>. Holding costs, forecasting and multi-period planning are excluded. Low penalties can make shipping nothing optimal; zero stock produces shortages rather than infeasibility. Utilization uses used-container capacity and reports <code>N/A</code> for a zero denominator.</p><p>The solver runs in CBC&#39;s native serial mode (<code>threads=0</code>), which resolved a reproduced hang on the tested binary. A universal wall-clock runtime bound is not verified; solver limits are not operating-system deadlines. PuLP is pinned and emits deprecation warnings. All costs and baseline differences are fictional, not real savings.</p></section><section id="contribution" aria-labelledby="contribution-title">
+            <h2 id="contribution-title">My contribution</h2><p>I co-developed the original agent prompt kit for this project with AI assistance, and I provided the business context, project purpose and initial architecture outline. I set requirements, evaluation criteria, edge-case priorities and approval decisions.</p><p>I used a planner-and-builder AI workflow to produce the implementation and supporting documentation. AI tools performed the implementation work, while I remained responsible for the project&#39;s direction and final approvals.</p><p>During the first review round, I personally followed the project&#39;s run-and-check instructions in PowerShell and confirmed that the outputs matched the agents&#39; reports. Later corrections and their regression results were verified by agents.</p></section><section id="learned" aria-labelledby="learned-title">
+            <h2 id="learned-title">What I learned</h2><p>I learned how product dimensions and container capacities change which allocations are feasible, and how shortage penalties influence whether opening another container is worthwhile. The exercise helped me distinguish a shipment-allocation decision from longer-term inventory strategy. Broader forecasting, inventory-policy and convex/nonconvex model-selection questions remain areas for further study.</p></section><section id="academic-connections" aria-labelledby="academic-connections-title">
+            <h2 id="academic-connections-title">Academic connections</h2><p>These are conceptual connections to the reasoning described in Applied Thinking. They do not claim formal implementation of every theory.</p><ul class="thinking-links"><li><a href="../../applied-thinking/#framework-recognition">A1 · Recognizing Applicable Frameworks</a></li><li><a href="../../applied-thinking/#invariance-perturbation">A4 · Testing What Remains True</a></li><li><a href="../../applied-thinking/#responsible-abstraction">P2 · Simplifying Without Losing What Matters</a></li></ul></section><section id="reproduce" aria-labelledby="reproduce-title">
+            <h2 id="reproduce-title">Source and reproducibility</h2><div class="actions"><a class="btn" href="https://github.com/h-yang-26/inventory-shipping-optimization-lab">Source on GitHub<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a><a class="btn" href="https://github.com/h-yang-26/inventory-shipping-optimization-lab#readme">README and run instructions</a></div>
+      <p>The README documents dependency setup and the <code>python -m shiplab</code> entry point.</p>
+      <p class="code-label">Windows PowerShell, from the repository root:</p>
+      <div class="code" role="region" tabindex="0" aria-label="Setup and check commands">
+        <pre><code>py -3.11 -m venv .venv
+.\.venv\Scripts\python -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python -m shiplab
+.\.venv\Scripts\python -m pytest</code></pre>
+      </div>
+      <p class="note"><strong>Tested environment:</strong> Windows 11, Python 3.13.15, PuLP 3.3.2, CBC 2.10.3 (bundled with PuLP), pytest 9.1.1 (agent-run).</p>
+      <p class="note">The Python projects run locally from their repositories. This static site shows their recorded results; it does not run them.</p></section>
+          <p class="independence"><strong>Independence statement:</strong> This is a fictional independent optimization demonstration. Its outputs illustrate the implemented model and do not establish production performance, freight economics or employer outcomes.</p>
+        </article>
+      </div>
+    </div>
+    <nav class="pager wrap" aria-label="Other projects">
+      <a class="prev" rel="prev" href="../../projects/synthetic-data-quality-pipeline/">
+        <span class="pager__dir">Previous project</span><span class="pager__title">Synthetic Data Quality Pipeline</span></a><a class="next" rel="next" href="../../projects/product-usage-analytics-demo/">
+        <span class="pager__dir">Next project</span><span class="pager__title">Product Usage Analytics Demo</span></a>
+    </nav>
+<!-- /main --></main>
+  <footer class="site-footer" id="site-footer"><div class="wrap footer__inner">
+      <p>Professional experience and public demonstrations are distinct: real workplace responsibilities are described at a high level, while the linked examples use fictional data and independent reduced-scope implementations. Synthetic outputs do not measure employer or production performance.</p>
+      <p>This site sets no cookies and loads no analytics, tracking scripts or third-party content.</p>
+    </div>
+<!-- /site-footer --></footer>
 </body>
 </html>
+

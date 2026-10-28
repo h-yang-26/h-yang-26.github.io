@@ -11,12 +11,120 @@
 </head>
 <body data-page="project" data-project="product-usage-analytics-demo" data-root="../..">
   <a class="skip-link" href="#main">Skip to main content</a>
-  <header class="site-header" id="site-header"></header>
-  <div class="draft-banner" id="draft-banner" role="region" aria-label="Draft status" hidden></div>
-  <main id="main" tabindex="-1">
-    <p class="wrap loading">Loading…</p>
-    <noscript><p class="wrap">This page builds its content from <code>content/site.json</code> with JavaScript. Please enable JavaScript to view it.</p></noscript>
-  </main>
-  <footer class="site-footer" id="site-footer"></footer>
+  <header class="site-header" id="site-header"><div class="wrap header__inner">
+      <a class="brand" href="../../">Portfolio</a>
+      <nav aria-label="Primary">
+        <ul class="nav">
+          <li><a href="../../#experience">Experience</a></li>
+          <li><a href="../../#projects">Projects</a></li>
+          <li><a href="../../applied-thinking/">Applied Thinking</a></li>
+          <li><a href="../../#about">About</a></li>
+          <li><a href="../../#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+<!-- /site-header --></header>
+  <div class="draft-banner" id="draft-banner" role="region" aria-label="Draft status" hidden>
+<!-- /draft-banner --></div>
+  <main id="main" tabindex="-1" data-prerendered="true">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../../#projects">Projects</a></li>
+          <li><span aria-current="page">Product Usage Analytics Demo</span></li>
+        </ol>
+      </nav>
+      <header class="cs-head">
+        <p class="chip">Independent / Synthetic Demonstration</p>
+        <h1>Product Usage Analytics Demo</h1>
+        <p class="cs-type"><strong>Type:</strong> Independent synthetic demonstration; not actual company analytics</p>
+        <p class="cs-context"><strong>Related professional work:</strong> Live administrative usage and storage reporting. <strong>Public artifact:</strong> independent fictional demonstration.</p>
+        <ul class="tags"><li>Python/pandas</li><li>Streamlit</li><li>Altair</li><li>Ordered session funnels</li></ul>
+        <div class="actions"><a class="btn" href="https://github.com/h-yang-26/product-usage-analytics-demo">Source on GitHub<span class="visually-hidden">: Product Usage Analytics Demo</span></a><a class="btn" href="https://github.com/h-yang-26/product-usage-analytics-demo#readme">README and run instructions</a></div>
+      </header>
+      <div class="cs-layout">
+        <nav class="toc" aria-label="On this page">
+          <p class="toc__title">On this page</p>
+          <ol><li><a href="#professional">Professional work and public-demo boundary</a></li><li><a href="#problem">The problem</a></li><li><a href="#visuals">System diagrams and synthetic results</a></li><li><a href="#built">What the demonstration contains</a></li><li><a href="#approach">Technical approach</a></li><li><a href="#validation">Validation and results</a></li><li><a href="#limitations">Tradeoffs and limitations</a></li><li><a href="#contribution">My contribution</a></li><li><a href="#learned">What I learned</a></li><li><a href="#academic-connections">Academic connections</a></li><li><a href="#reproduce">Source and reproducibility</a></li></ol>
+        </nav>
+        <article class="prose">
+          <section id="professional" aria-labelledby="professional-title">
+            <h2 id="professional-title">Professional work and public-demo boundary</h2><div class="professional-bridge">
+      <div><h3>Relevant professional responsibility</h3><p>I expanded live administrator reporting for an industrial B2B business platform to track adoption by role and organization, weekly retention and storage growth, while distinguishing frontend reporting needs from backend data requirements.</p></div>
+      <div><h3>Scope of this public demonstration</h3><p>This public Streamlit/pandas demonstration uses invented users, sessions and events to explore metric definitions, filtering and reconciliation. It does not display or reproduce company telemetry, production dashboards or business performance.</p></div>
+      </div></section><section id="problem" aria-labelledby="problem-title">
+            <h2 id="problem-title">The problem</h2><p>Event volume, distinct users and progression through a workflow answer different product questions. This fictional dashboard demonstrates how event validation, filter scope and explicit denominators affect those answers, without using real telemetry or drawing conclusions about a real company&#39;s adoption.</p></section><section id="visuals" aria-labelledby="visuals-title">
+            <h2 id="visuals-title">System diagrams and synthetic results</h2><div class="visual-gallery"><figure class="technical-figure">
+        <img src="../../assets/visuals/analytics-pipeline.svg" alt="Synthetic telemetry pipeline diagram: 5,766 raw records, 5,735 valid, 10 collapsed duplicates, 8 quarantined records and 13 rejected records." width="1000" height="475" loading="lazy" decoding="async">
+        <figcaption><span class="figure-label">SYSTEM / MODEL</span> File-wide validation precedes date and module filters; invalid or conflicting events do not enter the usage metrics.</figcaption>
+      </figure><figure class="technical-figure">
+        <img src="../../assets/visuals/analytics-funnel.svg" alt="Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view." width="1000" height="475" loading="lazy" decoding="async">
+        <figcaption><span class="figure-label">SYNTHETIC RESULT</span> The funnel uses distinct <code>(user_id, session_id)</code> pairs and strictly increasing event timestamps. It is not a user-conversion or employer adoption metric.</figcaption>
+      </figure></div></section><section id="built" aria-labelledby="built-title">
+            <h2 id="built-title">What the demonstration contains</h2><p>A seeded generator creates fictional timestamped events. Separate validation and metric modules feed a Streamlit dashboard with UTC date and module filters, daily active users, event volume, module event counts and an ordered session funnel. File-wide validation diagnostics remain separate from filtered usage totals.</p></section><section id="approach" aria-labelledby="approach-title">
+            <h2 id="approach-title">Technical approach</h2><p>Valid events use an ASCII UTC timestamp format. Identical payloads sharing an event ID collapse to one event; conflicting payloads quarantine every row for that ID. Missing required fields are rejected. Excluded-event diagnostics preserve original text and logical source-record numbers rather than claiming physical CSV line numbers.</p><p>Usage filters apply before aggregation. Date selection includes the start at midnight UTC and excludes midnight after the end date; filtering can cut a session. Daily active users are distinct users, not a sum of per-module user counts. A session is a <code>(user_id, session_id)</code> pair.</p><p>The funnel counts a session once per stage only when <code>page_view</code>, <code>search</code> and <code>detail_view</code> occur in strictly increasing time order. Repeated actions do not multiply sessions; tied timestamps alone do not establish order. Conversion uses first-step eligible sessions as its denominator and displays <code>N/A</code> when that population is empty.</p></section><section id="validation" aria-labelledby="validation-title">
+            <h2 id="validation-title">Validation and results</h2><p>During the first review round, I also ran the documented commands myself in PowerShell, and the outputs matched the agents&#39; reports. The results below, including later corrections, are agent-run, on Windows 11 with Python 3.13.15, pandas 3.1.0, Streamlit 1.66.1, Altair 6.3.0 and pytest 9.1.1. All data and counts are synthetic.</p>
+      <table class="evidence" role="table">
+        <caption class="visually-hidden">Claims, evidence and verification status: Product Usage Analytics Demo</caption>
+        <thead role="rowgroup"><tr role="row">
+          <th scope="col" role="columnheader">Public-demo claim</th>
+          <th scope="col" role="columnheader">Command and result</th>
+          <th scope="col" role="columnheader">Status</th>
+        </tr></thead>
+        <tbody role="rowgroup"><tr role="row">
+        <th scope="row" role="rowheader">Generation is deterministic and validation counts reconcile</th>
+        <td role="cell" data-label="Command and result"><code>python generate_sample_data.py</code>, then a repeat: <strong>5766 raw = 5735 valid + 10 collapsed + 8 quarantined + 13 rejected</strong>; byte-identical CSV</td>
+        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run; synthetic data</span></td>
+      </tr><tr role="row">
+        <th scope="row" role="rowheader">Metric, validation and dashboard regressions pass</th>
+        <td role="cell" data-label="Command and result"><code>python -m pytest -q</code>: <strong>44 passed</strong></td>
+        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
+      </tr><tr role="row">
+        <th scope="row" role="rowheader">Funnel semantics match hand-checkable fixtures</th>
+        <td role="cell" data-label="Command and result">The <code>test_funnel_full_range</code> fixture produces <strong>7 / 3 / 2</strong> sessions; tests cover ties, repeats, session identity, filters and empty denominators</td>
+        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
+      </tr><tr role="row">
+        <th scope="row" role="rowheader">Dashboard totals and empty selections render</th>
+        <td role="cell" data-label="Command and result">In a browser, <code>streamlit run app.py</code> shows <strong>5735 events / 175 invented users / 1520 sessions / 1357 funnel entries</strong>; clearing all modules gives zero usage while diagnostics stay file-wide, with no browser errors</td>
+        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
+      </tr><tr role="row">
+        <th scope="row" role="rowheader">Other platforms and dependency versions; accessibility audit</th>
+        <td role="cell" data-label="Command and result">Not performed</td>
+        <td role="cell" data-label="Status"><span class="status status--open">NOT VERIFIED</span></td>
+      </tr></tbody>
+      </table></section><section id="limitations" aria-labelledby="limitations-title">
+            <h2 id="limitations-title">Tradeoffs and limitations</h2><p>The small dataset spans 28 days and reflects invented generation assumptions. It supports no causal inference, forecasting, statistical-significance or production-readiness claim. Sessions are supplied identifiers rather than inactivity-based sessionization, and funnel steps are fixed in code. There is no live collection, authentication or production scheduling. A defensive guard handles an empty date selection; a failing case was not reproduced in the browser.</p></section><section id="contribution" aria-labelledby="contribution-title">
+            <h2 id="contribution-title">My contribution</h2><p>I co-developed the original agent prompt kit for this project with AI assistance, and I provided the business context, project purpose and initial architecture outline. I set requirements, evaluation criteria, edge-case priorities and approval decisions.</p><p>I used a planner-and-builder AI workflow to produce the implementation and supporting documentation. AI tools performed the implementation work, while I remained responsible for the project&#39;s direction and final approvals.</p><p>During the first review round, I personally followed the project&#39;s run-and-check instructions in PowerShell and confirmed that the outputs matched the agents&#39; reports. Later corrections and their regression results were verified by agents.</p></section><section id="learned" aria-labelledby="learned-title">
+            <h2 id="learned-title">What I learned</h2><p>I learned to connect a metric to the administrator&#39;s question before choosing a chart. Distinct users, event volume and funnel progression describe different aspects of activity. Clear populations, time windows, denominators and data-quality diagnostics help administrators interpret those numbers and decide what to investigate next.</p></section><section id="academic-connections" aria-labelledby="academic-connections-title">
+            <h2 id="academic-connections-title">Academic connections</h2><p>These are conceptual connections to the reasoning described in Applied Thinking. They do not claim formal implementation of every theory.</p><ul class="thinking-links"><li><a href="../../applied-thinking/#inference-evidence">P1 · Examining the Reasoning Behind Evidence</a></li><li><a href="../../applied-thinking/#responsible-abstraction">P2 · Simplifying Without Losing What Matters</a></li></ul></section><section id="reproduce" aria-labelledby="reproduce-title">
+            <h2 id="reproduce-title">Source and reproducibility</h2><div class="actions"><a class="btn" href="https://github.com/h-yang-26/product-usage-analytics-demo">Source on GitHub<span class="visually-hidden">: Product Usage Analytics Demo</span></a><a class="btn" href="https://github.com/h-yang-26/product-usage-analytics-demo#readme">README and run instructions</a></div>
+      <p>No public dashboard URL exists, and no deployment is implied. The README documents environment setup, <code>python generate_sample_data.py</code> and <code>.venv\Scripts\python -m streamlit run app.py</code>.</p>
+      <p class="code-label">Windows PowerShell or cmd, from the repository root:</p>
+      <div class="code" role="region" tabindex="0" aria-label="Setup and check commands">
+        <pre><code>python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python generate_sample_data.py
+.venv\Scripts\python -m pytest -q
+.venv\Scripts\python -m streamlit run app.py</code></pre>
+      </div>
+      <p class="note"><strong>Tested environment:</strong> Windows 11, Python 3.13.15, pandas 3.1.0, Streamlit 1.66.1, Altair 6.3.0, pytest 9.1.1 (agent-run).</p>
+      <p class="note">The Python projects run locally from their repositories. This static site shows their recorded results; it does not run them.</p></section>
+          <p class="independence"><strong>Independence statement:</strong> This is an independent demonstration using invented users, sessions and events. Its charts and counts are synthetic illustrations, not real platform-usage or employer results.</p>
+        </article>
+      </div>
+    </div>
+    <nav class="pager wrap" aria-label="Other projects">
+      <a class="prev" rel="prev" href="../../projects/inventory-shipping-optimization-lab/">
+        <span class="pager__dir">Previous project</span><span class="pager__title">Inventory and Shipping Optimization Lab</span></a><a class="next" rel="next" href="../../projects/b2b-sales-systems-case-study/">
+        <span class="pager__dir">Next project</span><span class="pager__title">B2B Sales Systems Case Study</span></a>
+    </nav>
+<!-- /main --></main>
+  <footer class="site-footer" id="site-footer"><div class="wrap footer__inner">
+      <p>Professional experience and public demonstrations are distinct: real workplace responsibilities are described at a high level, while the linked examples use fictional data and independent reduced-scope implementations. Synthetic outputs do not measure employer or production performance.</p>
+      <p>This site sets no cookies and loads no analytics, tracking scripts or third-party content.</p>
+    </div>
+<!-- /site-footer --></footer>
 </body>
 </html>
+
