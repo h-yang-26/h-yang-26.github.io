@@ -1356,7 +1356,7 @@
       "rows": [
         {
           "title": "Operations Research",
-          "translation": "Like packing a moving truck on a budget: finding the best plan among the ones that actually fit. It’s the method behind the shipping project’s choice of which containers to open."
+          "translation": "Like packing a moving truck on a budget: finding the best plan among the ones that actually fit. The shipping optimization project uses one of its standard tools, integer programming, to weigh the cost of unshipped units against the cost of opening another container."
         },
         {
           "title": "Mathematical Modeling",
