@@ -272,6 +272,7 @@
   function renderVisuals(project, only) {
     if (!Array.isArray(project.visuals) || !project.visuals.length) return "";
     const list = only ? only.map(src => project.visuals.find(v => v.src === src)) : project.visuals;
+    if (!list.some(Boolean)) return "";
     return `<div class="visual-gallery">${list.map(technicalFigure).join("")}</div>`;
   }
 
@@ -506,56 +507,6 @@
       <div class="cs-layout"><nav class="toc" aria-label="${esc(l.onThisPage)}"><p class="toc__title">${esc(l.onThisPage)}</p><ol>${a.proposedPageSections.map(id => `<li><a href="#${esc(id)}">${esc(l[id])}</a></li>`).join("")}</ol></nav><div class="prose thinking-content">${sections.join("")}</div></div></div>`;
   }
 
-  const STATUS = [
-    [/^NOT VERIFIED/, "open"],
-    [/^VERIFIED/, "ok"],
-    [/^FAILED/, "bad"]
-  ];
-
-  function status(text) {
-    const m = String(text).match(/^(NOT VERIFIED|VERIFIED|FAILED)\s*(.*)$/);
-    if (!m) return esc(text);
-    const kind = STATUS.find(([re]) => re.test(m[1]))[1];
-    const note = m[2].replace(/^\((.*)\)$/, "$1");
-    return `<span class="status status--${kind}">${m[1]}</span>${note ? `<span class="status__note">${esc(note)}</span>` : ""}`;
-  }
-
-  function renderValidation(content, project, statements) {
-    const path = `owner.projectStatements.${project.slug}.ownerVerification`;
-    const own = statements.ownerVerification;
-    const v = project.validation;
-    const lead = own === null || own === undefined
-      ? `${phBlock(content, path)}<p>${inline(v.intro)}</p>`
-      : `<p>${own === false ? "" : inline(own) + " "}${inline(v.intro)}</p>`;
-    const rows = v.rows.map((r) => `<tr role="row">
-        <th scope="row" role="rowheader">${inline(r.claim)}</th>
-        <td role="cell" data-label="Command and result">${inline(r.evidence)}</td>
-        <td role="cell" data-label="Status">${status(r.status)}</td>
-      </tr>`).join("");
-    return `${lead}
-      <table class="evidence" role="table">
-        <caption class="visually-hidden">Claims, evidence and verification status: ${esc(project.title)}</caption>
-        <thead role="rowgroup"><tr role="row">
-          <th scope="col" role="columnheader">Public-demo claim</th>
-          <th scope="col" role="columnheader">Command and result</th>
-          <th scope="col" role="columnheader">Status</th>
-        </tr></thead>
-        <tbody role="rowgroup">${rows}</tbody>
-      </table>`;
-  }
-
-  function renderReproduce(content, project) {
-    const r = project.reproduce;
-    return `<div class="actions">${repoLinks(project, true)}</div>
-      <p>${inline(r.summary)}</p>
-      <p class="code-label">${esc(r.shell)}</p>
-      <div class="code" role="region" tabindex="0" aria-label="Setup and check commands">
-        <pre><code>${r.commands.map(esc).join("\n")}</code></pre>
-      </div>
-      <p class="note"><strong>Tested environment:</strong> ${inline(r.tested)}</p>
-      <p class="note">${inline(content.site.runNote)}</p>`;
-  }
-
   function renderPager(content, index) {
     const list = content.projects;
     const prev = list[(index - 1 + list.length) % list.length];
@@ -657,61 +608,7 @@
         <p><a href="${home}#projects">Back to all projects</a></p></div>`;
     }
 
-    const p = content.projects[index];
-    if (p.story) return renderStory(content, index);
-    const s = statementsFor(content, p.slug);
-    const base = `owner.projectStatements.${p.slug}`;
-    document.title = pageTitle(content, p.title);
-
-    const professional = ownerText(content, s.professionalContext, `${base}.professionalContext`);
-    const bridge = professional ? `<div class="professional-bridge">
-      <div><h3>Relevant professional responsibility</h3>${professional}</div>
-      <div><h3>Scope of this public demonstration</h3>${paras(p.demoScope)}</div>
-      </div>` : null;
-    const sections = [
-      ["professional", "Professional work and public-demo boundary", bridge],
-      ["problem", "The problem", paras(p.problem)],
-      ["visuals", "System diagrams and synthetic results", renderVisuals(p)],
-      ["built", "What the demonstration contains", paras(p.built)],
-      ["approach", "Technical approach", paras(p.approach)],
-      ["validation", "Validation and results", renderValidation(content, p, s)],
-      ["limitations", "Tradeoffs and limitations", paras(p.limitations)],
-      ["contribution", "My contribution", ownerText(content, s.contribution, `${base}.contribution`)],
-      ["learned", "What I learned", ownerText(content, s.learned, `${base}.learned`)],
-      ["academic-connections", content.appliedThinking ? content.appliedThinking.labels.backlinks : "Academic connections", renderAcademicBacklinks(content, p.slug)],
-      ["reproduce", "Source and reproducibility", renderReproduce(content, p)]
-    ].filter(([, , html]) => html);
-
-    return `
-    <div class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <ol>
-          <li><a href="${home}">Home</a></li>
-          <li><a href="${home}#projects">Projects</a></li>
-          <li><span aria-current="page">${esc(p.title)}</span></li>
-        </ol>
-      </nav>
-      <header class="cs-head">
-        <p class="chip">${esc(p.label)}</p>
-        <h1>${esc(p.title)}</h1>
-        <p class="cs-type"><strong>Type:</strong> ${inline(p.type)}</p>
-        <p class="cs-context"><strong>Related professional work:</strong> ${esc(p.professionalArea)}. <strong>Public artifact:</strong> independent fictional demonstration.</p>
-        ${tags(p.focus)}
-        <div class="actions">${repoLinks(p, true)}</div>
-      </header>
-      <div class="cs-layout">
-        <nav class="toc" aria-label="On this page">
-          <p class="toc__title">On this page</p>
-          <ol>${sections.map(([id, title]) => `<li><a href="#${id}">${title}</a></li>`).join("")}</ol>
-        </nav>
-        <article class="prose">
-          ${sections.map(([id, title, html]) => `<section id="${id}" aria-labelledby="${id}-title">
-            <h2 id="${id}-title">${title}</h2>${html}</section>`).join("")}
-          <p class="independence"><strong>Independence statement:</strong> ${inline(p.independence)}</p>
-        </article>
-      </div>
-    </div>
-    ${renderPager(content, index)}`;
+    return renderStory(content, index);
   }
 
   /* ---------- boot ---------- */

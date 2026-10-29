@@ -35,7 +35,7 @@
     </div>
 <!-- /draft-banner --></div>
   <main id="main" tabindex="-1" data-prerendered="true">
-    <div class="wrap">
+    <div class="wrap story">
       <nav class="crumbs" aria-label="Breadcrumb">
         <ol>
           <li><a href="../../">Home</a></li>
@@ -43,84 +43,83 @@
           <li><span aria-current="page">B2B Sales Systems Case Study</span></li>
         </ol>
       </nav>
-      <header class="cs-head">
-        <p class="chip">Hypothetical Systems-Design Exercise</p>
-        <h1>B2B Sales Systems Case Study</h1>
-        <p class="cs-type"><strong>Type:</strong> Independent, hypothetical systems-design exercise</p>
-        <p class="cs-context"><strong>Related professional work:</strong> Deployed industrial B2B platform development. <strong>Public artifact:</strong> independent fictional demonstration.</p>
-        <ul class="tags"><li>Domain modeling</li><li>Mermaid</li><li>Architecture decision records</li><li>Python standard-library checks</li></ul>
-        <div class="actions"><a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study">Source on GitHub<span class="visually-hidden">: B2B Sales Systems Case Study</span></a><a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study#readme">README and run instructions</a></div>
+      <header class="story-head">
+        <p class="eyebrow">B2B Sales Systems Case Study</p>
+        <h1>Counting demand once</h1>
+        <p class="story-head__lede">A hypothetical systems design for a small distributor that keeps quotes, orders, reservations and shipments as separate facts, each with one owner.</p>
+        <dl class="story-facts"><div><dt>My role</dt><dd>Requirements, edge cases and approvals; AI tools produced the documents and checks</dd></div><div><dt>Built with</dt><dd>Markdown, Mermaid diagrams, Python checks</dd></div><div><dt>Scope</dt><dd>A proposed design, not a built system</dd></div></dl>
+        <div class="actions"><a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study">Source on GitHub<span class="visually-hidden">: B2B Sales Systems Case Study</span></a></div>
       </header>
-      <div class="cs-layout">
-        <nav class="toc" aria-label="On this page">
-          <p class="toc__title">On this page</p>
-          <ol><li><a href="#professional">Professional work and public-demo boundary</a></li><li><a href="#problem">The problem</a></li><li><a href="#visuals">System diagrams and synthetic results</a></li><li><a href="#built">What the demonstration contains</a></li><li><a href="#approach">Technical approach</a></li><li><a href="#validation">Validation and results</a></li><li><a href="#limitations">Tradeoffs and limitations</a></li><li><a href="#contribution">My contribution</a></li><li><a href="#learned">What I learned</a></li><li><a href="#academic-connections">Academic connections</a></li><li><a href="#reproduce">Source and reproducibility</a></li></ol>
-        </nav>
-        <article class="prose">
-          <section id="professional" aria-labelledby="professional-title">
-            <h2 id="professional-title">Professional work and public-demo boundary</h2><div class="professional-bridge">
-      <div><h3>Relevant professional responsibility</h3><p>I collaborate with a software lead in a two-person team on an industrial B2B platform used by staff and dealers, contributing business context, requirements clarification, reviews and AI-assisted development direction for sales and operational workflows.</p></div>
-      <div><h3>Scope of this public demonstration</h3><p>This public case study proposes a hypothetical sales lifecycle and conceptual module boundaries. It includes a fictional scenario and checking scripts, not the employer&#39;s architecture, software, deployed CRM/ERP or integrations.</p></div>
-      </div></section><section id="problem" aria-labelledby="problem-title">
-            <h2 id="problem-title">The problem</h2><p>A quotation, an accepted order, reserved stock and a physical shipment describe different business facts. This fictional distributor scenario illustrates why combining those quantities can double count demand, and how clear definitions and logical ownership keep the narrative and metrics consistent.</p></section><section id="visuals" aria-labelledby="visuals-title">
-            <h2 id="visuals-title">System diagrams and synthetic results</h2><div class="visual-gallery"><figure class="technical-figure">
-        <p class="figure-title">Each business fact has one owning module</p>
-        <picture><source media="(prefers-color-scheme: dark) and (max-width: 39.99rem)" srcset="../../assets/visuals/b2b-lifecycle-narrow-dark.svg" width="420" height="594"><source media="(max-width: 39.99rem)" srcset="../../assets/visuals/b2b-lifecycle-narrow.svg" width="420" height="594"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/b2b-lifecycle-dark.svg" width="760" height="330"><img src="../../assets/visuals/b2b-lifecycle.svg" alt="Hypothetical B2B process diagram with owning modules: CRM opportunity, Quotation quote for four units, Orders sales order for two, Fulfillment shipment of one. Two quoted units are not converted and one ordered unit is still owed." width="760" height="330" loading="lazy" decoding="async"></picture>
-        <figcaption><span class="figure-label">SYSTEM / MODEL</span> A quote is an offer, an order is a commitment, and a shipment is a physical event. The process is a fictional conceptual design, not the employer&#39;s architecture.</figcaption>
-      </figure><figure class="technical-figure">
+      <figure class="showcase">
+      <p class="showcase__title">Conflicting numbers in. One clear story out.</p>
+      <picture><source media="(prefers-color-scheme: dark) and (max-width: 49.99rem)" srcset="../../assets/visuals/ba-orders-narrow-dark.svg" width="420" height="900"><source media="(max-width: 49.99rem)" srcset="../../assets/visuals/ba-orders-narrow.svg" width="420" height="900"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/ba-orders-dark.svg" width="1000" height="470"><img src="../../assets/visuals/ba-orders.svg" alt="Before and after. Before: three sticky notes read quote 4 units, order 2 units and shipped 1 unit, and a report adds them into “4 + 2 + 1 = 7 units” of demand, crossed out. After: the same order as countable squares, 4 quoted, 2 ordered and 1 shipped, giving demand 2, shipped 1 and owed 1." width="1000" height="470" decoding="async"></picture>
+      <figcaption>Illustration: the “4 + 2 + 1” total is the kind of double counting this design prevents. The order itself comes from the case study’s fictional scenario.</figcaption>
+    </figure>
+      <article class="story-body">
+        <section id="situation" aria-labelledby="situation-title">
+          <h2 id="situation-title">The situation</h2>
+          <p>One customer request can show up three times: as a quote for 4 units, an order for 2 and a shipment of 1. Add them up and a report shows far more demand than anyone committed to.</p><p>This case study designs, on paper, how a small fictional distributor could keep those facts apart, and checks its own numbers with small scripts.</p>
+          <div class="story-origin"><p class="story-origin__label">Where this comes from</p><p>I collaborate with a software lead in a two-person team on an industrial B2B platform used by staff and dealers, contributing business context, requirements clarification, reviews and AI-assisted development direction for sales and operational workflows.</p></div>
+        </section>
+        <section id="decisions" aria-labelledby="decisions-title">
+          <h2 id="decisions-title">Three decisions that shape it</h2>
+          <ol class="decisions"><li class="decision decision--visual">
+          <div class="decision__text">
+            <p class="decision__num" aria-hidden="true">01</p>
+            <h3>Give every fact one owner.</h3>
+            <p>Quotes belong to Quotation, orders and their status to Orders, and stock and shipments to Inventory and Fulfillment. Other modules can read a fact but not edit it, so an order can’t be “closed” in one place and “partly shipped” in another.</p>
+            <p class="decision__term">Modular monolith; Reporting reads everything and owns nothing.</p>
+          </div>
+          <div class="decision__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/tile-decomposition-dark.svg" width="440" height="520"><img src="../../assets/visuals/tile-decomposition.svg" alt="Illustration: a quote for 4 units, an order for 2 and a shipment of 1 are different facts; adding 4 + 2 gives a wrong 6 units of demand, and committed demand is 2." width="440" height="520" loading="lazy" decoding="async"></picture></div>
+        </li><li class="decision">
+          <div class="decision__text">
+            <p class="decision__num" aria-hidden="true">02</p>
+            <h3>Count demand from accepted orders only.</h3>
+            <p>Committed demand is the 2 units on the accepted order. The 4 quoted units are reported separately as a signal, and shipping changes what’s still owed, not demand. Each record keeps the ID of the one it came from, so every number can be traced back.</p>
+            <p class="decision__term">Identifier lineage: order line → quote line → opportunity.</p>
+          </div>
+
+        </li><li class="decision">
+          <div class="decision__text">
+            <p class="decision__num" aria-hidden="true">03</p>
+            <h3>Reserve stock at the order, not the quote.</h3>
+            <p>Many quotes never convert, so a quote doesn’t hold stock; only an accepted order can reserve it. The cost is written down too: a customer told “in stock” when quoting may find that only part of the order can ship right away.</p>
+            <p class="decision__term">Architecture decision record ADR-001; worth revisiting for scarce or made-to-order items.</p>
+          </div>
+
+        </li></ol>
+        </section>
+        <section id="result" aria-labelledby="result-title">
+          <h2 id="result-title">The result</h2>
+          <p>The scenario’s numbers reconcile: 4 quoted, 2 ordered, 1 shipped and 1 still owed, and committed demand stays at 2 even after the second unit ships in the walkthrough. A small calculator and a document checker confirm the arithmetic and that every identifier in the documents exists in the data.</p>
+          <div class="visual-gallery"><figure class="technical-figure">
         <p class="figure-title">Of 4 quoted units, 2 became demand and 1 has shipped</p>
         <picture><source media="(prefers-color-scheme: dark) and (max-width: 39.99rem)" srcset="../../assets/visuals/b2b-quantities-narrow-dark.svg" width="420" height="497"><source media="(max-width: 39.99rem)" srcset="../../assets/visuals/b2b-quantities-narrow.svg" width="420" height="497"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/b2b-quantities-dark.svg" width="760" height="312"><img src="../../assets/visuals/b2b-quantities.svg" alt="Unit chart for one fictional order: 4 units quoted; 2 ordered and 2 not converted; 1 shipped and 1 still owed." width="760" height="312" loading="lazy" decoding="async"></picture>
         <figcaption><span class="figure-label">SYNTHETIC RESULT</span> The unconverted quantity is not backlog: 4 quoted − 2 accepted = 2 unconverted; 2 ordered − 1 shipped = 1 remaining.</figcaption>
-      </figure></div></section><section id="built" aria-labelledby="built-title">
-            <h2 id="built-title">What the demonstration contains</h2><p>The documentation covers a sales lifecycle, an entity glossary, a Mermaid business-process diagram, a conceptual module diagram, three architecture decision records and five metric definitions. A shared fictional JSON example supports a small arithmetic and consistency calculator and standard-library tests.</p><p>The modules and ownership boundaries are a <strong>proposed design</strong>, not an implemented or deployed CRM/ERP. The executable work consists of the checking scripts; it does not implement the depicted business application.</p></section><section id="approach" aria-labelledby="approach-title">
-            <h2 id="approach-title">Technical approach</h2><p>The shared snapshot is quote <strong>4</strong>, order <strong>2</strong>, ship <strong>1</strong>, remaining <strong>1</strong>. The other two quoted units are unconverted offers, not additional committed demand. A stock reservation is an allocation of on-hand units, not another sale or shipment. Estimated dates, observed facts and missing values remain distinct.</p><p>With cancellations and returns excluded, remaining quantity is <code>ordered_quantity - shipped_quantity</code>. In the later fictional walkthrough, the second unit ships: shipped becomes two and remaining becomes zero, while committed demand remains two. The conceptual architecture assigns logical owners for these facts without requiring separate services or databases.</p><p>Metrics use distinct populations. The win-rate calculator counts distinct opportunities, excludes and reports missing or out-of-period close dates, and rejects conflicting opportunity facts. Two quote rows for one opportunity therefore do not create two wins.</p></section><section id="validation" aria-labelledby="validation-title">
-            <h2 id="validation-title">Validation and results</h2><p>During the first review round, I also ran the documented commands myself in PowerShell, and the outputs matched the agents&#39; reports. The results below, including later corrections, are agent-run, on Windows 11 with Python 3.13.15; the scripts use only the standard library. All numbers are invented examples.</p>
-      <table class="evidence" role="table">
-        <caption class="visually-hidden">Claims, evidence and verification status: B2B Sales Systems Case Study</caption>
-        <thead role="rowgroup"><tr role="row">
-          <th scope="col" role="columnheader">Public-demo claim</th>
-          <th scope="col" role="columnheader">Command and result</th>
-          <th scope="col" role="columnheader">Status</th>
-        </tr></thead>
-        <tbody role="rowgroup"><tr role="row">
-        <th scope="row" role="rowheader">Calculator and error-case regressions pass</th>
-        <td role="cell" data-label="Command and result"><code>python -m unittest discover -s tests -v</code>: <strong>30 passed</strong></td>
-        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
-      </tr><tr role="row">
-        <th scope="row" role="rowheader">Scenario and metric arithmetic reconcile</th>
-        <td role="cell" data-label="Command and result"><code>python scripts/scenario_calc.py</code>: consistency PASS; scenario conversion <strong>2/4</strong>, fill <strong>1/2</strong>, backlog <strong>1 unit / USD 1850</strong>, turnaround <strong>30 h</strong>. Cohort: conversion <strong>5/18</strong>, fill <strong>4/5</strong>, backlog <strong>1</strong>, median turnaround <strong>27 h</strong>, win rate <strong>2/4</strong></td>
-        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run; invented examples</span></td>
-      </tr><tr role="row">
-        <th scope="row" role="rowheader">JSON and document references are consistent</th>
-        <td role="cell" data-label="Command and result"><code>python -m json.tool examples/fictional-order-scenario.json</code> parses; <code>python scripts/check_docs.py</code> passes for links, identifiers, Mermaid structure and required statements (it does not prove every prose statement)</td>
-        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
-      </tr><tr role="row">
-        <th scope="row" role="rowheader">Mermaid diagrams render</th>
-        <td role="cell" data-label="Command and result">Both blocks rendered locally with Mermaid 10.9.1 in a Chromium-based browser, with node and edge counts checked</td>
-        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">local rendering only</span></td>
-      </tr><tr role="row">
-        <th scope="row" role="rowheader">GitHub rendering, other Mermaid versions, human readability</th>
-        <td role="cell" data-label="Command and result">Not tested</td>
-        <td role="cell" data-label="Status"><span class="status status--open">NOT VERIFIED</span></td>
-      </tr></tbody>
-      </table></section><section id="limitations" aria-labelledby="limitations-title">
-            <h2 id="limitations-title">Tradeoffs and limitations</h2><p>The scenario has one SKU, warehouse, currency and price, with five invented cohort rows. Cancellations, returns, tax, discounts and allocation among competing orders are excluded. Numbers illustrate arithmetic and denominators, not measured business performance.</p><p>The optional calculator assumes preselected cohort rows for the other metrics. It does not enforce every documented issue-date, acceptance-date or missing-lineage exclusion rule, so it is not presented as a full reporting system. The document checker covers structure, identifiers and selected statements; it cannot establish complete semantic correctness or readability. Other operating systems and Python versions are not tested.</p></section><section id="contribution" aria-labelledby="contribution-title">
-            <h2 id="contribution-title">My contribution</h2><p>I co-developed the original agent prompt kit for this project with AI assistance, and I provided the business context, project purpose and initial architecture outline. I set requirements, evaluation criteria, edge-case priorities and approval decisions.</p><p>I used a planner-and-builder AI workflow to produce the written artifacts, fictional scenario and checking scripts. AI tools produced those materials, while I remained responsible for the project&#39;s direction and final approvals. This contribution concerns the hypothetical case study, not an implementation of its proposed business platform.</p><p>During the first review round, I personally followed the project&#39;s run-and-check instructions in PowerShell and confirmed that the outputs matched the agents&#39; reports. Later corrections and their regression results were verified by agents.</p></section><section id="learned" aria-labelledby="learned-title">
-            <h2 id="learned-title">What I learned</h2><p>I learned to separate quotations, commercial commitments, stock reservations and physical shipments, and to identify which responsibility owns each fact. The scenario also prompted questions about keeping reservation updates consistent when operations happen concurrently. Transactions and concurrency control are relevant implementation topics for a future prototype; this case study remains a conceptual design.</p></section><section id="academic-connections" aria-labelledby="academic-connections-title">
-            <h2 id="academic-connections-title">Academic connections</h2><p>These are conceptual connections to the reasoning described in Applied Thinking. They do not claim formal implementation of every theory.</p><ul class="thinking-links"><li><a href="../../applied-thinking/#graph-decomposition">A3 · Decomposing and Reconnecting Systems</a></li><li><a href="../../applied-thinking/#responsible-abstraction">P2 · Simplifying Without Losing What Matters</a></li><li><a href="../../applied-thinking/#opacity-management">P4 · Managing What Cannot Be Fully Understood</a></li></ul></section><section id="reproduce" aria-labelledby="reproduce-title">
-            <h2 id="reproduce-title">Source and reproducibility</h2><div class="actions"><a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study">Source on GitHub<span class="visually-hidden">: B2B Sales Systems Case Study</span></a><a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study#readme">README and run instructions</a></div>
-      <p>The README lists the calculator, document-checker and unittest commands. Requires Python 3.11 or newer; there are no third-party dependencies to install.</p>
-      <p class="code-label">Any shell, from the repository root:</p>
-      <div class="code" role="region" tabindex="0" aria-label="Setup and check commands">
-        <pre><code>python scripts/scenario_calc.py
-python scripts/check_docs.py
-python -m unittest discover -s tests -v</code></pre>
-      </div>
-      <p class="note"><strong>Tested environment:</strong> Windows 11, Python 3.13.15, standard library only (agent-run).</p>
-      <p class="note">The Python projects run locally from their repositories. This static site shows their recorded results; it does not run them.</p></section>
-          <p class="independence"><strong>Independence statement:</strong> This is a fictional design exercise using general technical concepts. The proposed architecture does not describe an employer implementation, and the example metrics are not production-performance claims.</p>
-        </article>
-      </div>
+      </figure></div>
+        </section>
+        <section id="next" aria-labelledby="next-title">
+          <h2 id="next-title">What I’d do next</h2>
+          <p>Build a small prototype of the Orders and Inventory modules to test what the design leaves open, such as keeping reservations consistent when two orders arrive at once.</p>
+        </section>
+        <section id="technical" aria-labelledby="technical-title">
+          <h2 id="technical-title">Technical notes</h2>
+          <ul class="tech-notes"><li>Remaining quantity is derived (ordered − shipped) and never edited by hand; cancellations and returns are out of scope.</li><li>Estimates, observed facts and missing values are tagged separately, and a missing arrival date is never treated as zero days.</li><li>Five metric definitions each state their unit, population and denominator; win rate counts opportunities, while conversion counts units.</li><li>Three short architecture decision records give the context, decision and consequences of each choice.</li><li>Standard-library Python only: a scenario calculator, a document checker and 30 unit tests.</li><li>One SKU, one warehouse and five invented cohort rows; the numbers illustrate arithmetic, not business performance.</li></ul>
+          <div class="visual-gallery"><figure class="technical-figure">
+        <p class="figure-title">Each business fact has one owning module</p>
+        <picture><source media="(prefers-color-scheme: dark) and (max-width: 39.99rem)" srcset="../../assets/visuals/b2b-lifecycle-narrow-dark.svg" width="420" height="594"><source media="(max-width: 39.99rem)" srcset="../../assets/visuals/b2b-lifecycle-narrow.svg" width="420" height="594"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/b2b-lifecycle-dark.svg" width="760" height="330"><img src="../../assets/visuals/b2b-lifecycle.svg" alt="Hypothetical B2B process diagram with owning modules: CRM opportunity, Quotation quote for four units, Orders sales order for two, Fulfillment shipment of one. Two quoted units are not converted and one ordered unit is still owed." width="760" height="330" loading="lazy" decoding="async"></picture>
+        <figcaption><span class="figure-label">SYSTEM / MODEL</span> A quote is an offer, an order is a commitment, and a shipment is a physical event. The process is a fictional conceptual design, not the employer&#39;s architecture.</figcaption>
+      </figure></div>
+          <p><a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study#readme">Full design documents and checks on GitHub</a></p>
+        </section>
+        <section id="role" aria-labelledby="role-title">
+          <h2 id="role-title">My role</h2>
+          <p>I co-developed the original agent prompt kit for this project with AI assistance, and I provided the business context, project purpose and initial architecture outline. I set requirements, evaluation criteria, edge-case priorities and approval decisions.</p><p>I used a planner-and-builder AI workflow to produce the written artifacts, fictional scenario and checking scripts. AI tools produced those materials, while I remained responsible for the project&#39;s direction and final approvals. This contribution concerns the hypothetical case study, not an implementation of its proposed business platform.</p><p>During the first review round, I personally followed the project&#39;s run-and-check instructions in PowerShell and confirmed that the outputs matched the agents&#39; reports. Later corrections and their regression results were verified by agents.</p>
+          <h3>What I learned</h3><p>I learned to separate quotations, commercial commitments, stock reservations and physical shipments, and to identify which responsibility owns each fact. The scenario also prompted questions about keeping reservation updates consistent when operations happen concurrently. Transactions and concurrency control are relevant implementation topics for a future prototype; this case study remains a conceptual design.</p>
+        </section>
+        <section id="academic-connections" aria-labelledby="academic-connections-title">
+          <h2 id="academic-connections-title">Academic connections</h2><p>These are conceptual connections to the reasoning described in Applied Thinking. They do not claim formal implementation of every theory.</p><ul class="thinking-links"><li><a href="../../applied-thinking/#graph-decomposition">A3 · Decomposing and Reconnecting Systems</a></li><li><a href="../../applied-thinking/#responsible-abstraction">P2 · Simplifying Without Losing What Matters</a></li><li><a href="../../applied-thinking/#opacity-management">P4 · Managing What Cannot Be Fully Understood</a></li></ul></section>
+      </article>
     </div>
     <nav class="pager wrap" aria-label="Other projects">
       <a class="prev" rel="prev" href="../../projects/product-usage-analytics-demo/">

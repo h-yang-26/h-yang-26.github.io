@@ -273,6 +273,9 @@ def main():
         if not thumb or "card" not in thumb.get("sizes", {}):
             problems.append(f"{project['slug']}: thumbnail must be one of its visuals with a card layout")
 
+    # Approved principle-to-project mapping from Applied Thinking.
+    principles = {p["id"]: p for p in a.get("principles", [])}
+    bridges = {b["slug"]: b.get("principleIds", []) for b in a.get("caseStudyBridges", [])}
     # Decision-led copy: required story fields, and no retired labels in the new voice.
     voiced = [(f"site.{key}", content["site"].get(key)) for key in ("hero", "disclosure", "howIWork", "work", "experience", "about")]
     voiced += [(f"projects[{p['slug']}].card", p.get("card")) for p in content["projects"]]
@@ -289,8 +292,6 @@ def main():
     slugs_set = set(slugs)
     # A tile pairs a principle with a project; the pairing must match the approved
     # Applied Thinking mapping (the principle's projectSlugs or the project's bridge).
-    principles = {p["id"]: p for p in a.get("principles", [])}
-    bridges = {b["slug"]: b.get("principleIds", []) for b in a.get("caseStudyBridges", [])}
     for tile in (content["site"].get("howIWork") or {}).get("tiles", []):
         project, principle = tile.get("project"), tile.get("principle")
         if project not in slugs_set:
@@ -304,7 +305,16 @@ def main():
     for project in content["projects"]:
         story = project.get("story")
         if not story:
+            problems.append(f"{project['slug']}: every project needs a story (the original case-study template was retired)")
             continue
+        for decision in story.get("decisions", []):
+            visual = decision.get("visual") or {}
+            if "/tile-" in visual.get("src", ""):
+                principle = visual.get("principle")
+                if principle not in principles:
+                    problems.append(f"{project['slug']}: decision tile {visual['src']} names unknown principle {principle!r}")
+                elif project["slug"] not in principles[principle].get("projectSlugs", []) and principle not in bridges.get(project["slug"], []):
+                    problems.append(f"{project['slug']}: decision tile {visual['src']} uses principle {principle}, which is not approved for this project")
         voiced.append((f"projects[{project['slug']}].story", story))
         missing = [f for f in STORY_FIELDS if not story.get(f)]
         if missing:
