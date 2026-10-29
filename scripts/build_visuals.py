@@ -452,26 +452,6 @@ def b2b_quantities(layout):
 
 
 # ---------------------------------------------------------------- Applied Thinking
-def thinking_foundations(layout):
-    a = ("APPLIED MATHEMATICS", ["What structure", "is present?"], ["variables, relationships,", "constraints"])
-    p = ("PHILOSOPHY", ["What justifies", "the conclusion?"], ["assumptions, evidence,", "uncertainty"])
-    if layout == "wide":
-        f = Fig(760, 330, layout)
-        f.box(24, 24, 330, 140, a[1], a[2], "accent", eyebrow=a[0])
-        f.box(406, 24, 330, 140, p[1], p[2], "accent", eyebrow=p[0])
-        f.arrow([(189, 164), (189, 196), (330, 196), (330, 224)])
-        f.arrow([(571, 164), (571, 196), (430, 196), (430, 224)])
-        f.box(200, 228, 360, 84, "A practical decision", ["domain knowledge + appropriate evidence"], "ok", centre=True)
-        return f
-    f = Fig(420, 520, layout)
-    f.box(24, 20, 372, 138, a[1], a[2], "accent", eyebrow=a[0])
-    f.box(24, 176, 372, 138, p[1], p[2], "accent", eyebrow=p[0])
-    f.arrow([(210, 314), (210, 362)])
-    f.text(222, 344, "both inform", 16, "muted")
-    f.box(24, 366, 372, 104, "A practical decision", ["domain knowledge +", "appropriate evidence"], "ok", centre=True)
-    return f
-
-
 CYCLE = [("01 · CLARIFY", "The decision"), ("02 · LOCATE", "The structure"), ("03 · SEPARATE", "Known vs unresolved"),
          ("04 · INVESTIGATE", "Models and evidence"), ("05 · VALIDATE", "Assumptions, limits"), ("06 · EXPLAIN", "What follows")]
 
@@ -514,7 +494,6 @@ FIGURES = {
     "analytics-funnel": (an_funnel, ("wide", "narrow", "card"), "Ordered session funnel for fictional events"),
     "b2b-lifecycle": (b2b_lifecycle, ("wide", "narrow"), "Each business fact has one owning module"),
     "b2b-quantities": (b2b_quantities, ("wide", "narrow", "card"), "Quoted, ordered and shipped units for one fictional order"),
-    "thinking-foundations": (thinking_foundations, ("wide", "narrow"), "Structure and justification inform one decision"),
     "thinking-cycle": (thinking_cycle, ("wide", "narrow"), "Six reusable reasoning operations"),
     **MARKETING,
 }

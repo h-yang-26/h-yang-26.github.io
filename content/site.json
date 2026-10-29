@@ -163,7 +163,7 @@
           "project": "product-usage-analytics-demo",
           "principle": "inference-evidence",
           "linkLabel": "See it in the Usage Analytics demo",
-          "alt": "Examining evidence: all modules for September show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
+          "alt": "Examining evidence: all modules for September 1–28 show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
           "sizes": {
             "wide": [
               440,
@@ -211,7 +211,88 @@
     "footer": "Professional experience and public demonstrations are distinct: real workplace responsibilities are described at a high level, while the linked examples use fictional data and independent reduced-scope implementations. Synthetic outputs do not measure employer or production performance.",
     "privacy": "This site sets no cookies and loads no analytics, tracking scripts or third-party content.",
     "headline": "Enterprise-motivated technical demonstrations",
-    "disclosure": "All data in these projects is fictional, and the results say nothing about my employer’s systems. The projects were built independently of my employer: AI tools did the implementation under my direction, and I approved the results."
+    "disclosure": "All data in these projects is fictional, and the results say nothing about my employer’s systems. The projects were built independently of my employer: AI tools did the implementation under my direction, and I approved the results.",
+    "process": {
+      "_help": "The 'How these were built' page. New copy for owner approval (Phase 4). Sources: owner.projectStatements, each repo's tests, and the owner's stated workflow.",
+      "route": "how-these-were-built/",
+      "navLabel": "How these were built",
+      "eyebrow": "Process",
+      "title": "How these were built",
+      "lede": "I directed these projects and AI tools did the implementation. This page sets out who decided what, how the results were checked, and what that means when you read the work.",
+      "split": {
+        "title": "Who did what",
+        "owner": {
+          "label": "I decided",
+          "items": [
+            "The business context, the purpose of each project and an initial architecture outline",
+            "Requirements and evaluation criteria",
+            "Which edge cases mattered most",
+            "Whether each result was approved"
+          ]
+        },
+        "ai": {
+          "label": "AI tools did",
+          "items": [
+            "Wrote the code, tests and documentation",
+            "Produced the B2B case study’s documents, fictional scenario and checking scripts",
+            "Verified later corrections and their regression results"
+          ]
+        }
+      },
+      "steps": {
+        "title": "From brief to published project",
+        "items": [
+          {
+            "title": "Write the brief",
+            "body": "I co-developed the original agent prompt kit with AI assistance. For each project I provided the business context, the purpose and an initial architecture outline, and set the requirements, evaluation criteria and edge-case priorities."
+          },
+          {
+            "title": "Plan, then build",
+            "body": "A planner-and-builder AI workflow turned the brief into code, tests and documentation, one project per session."
+          },
+          {
+            "title": "Build the checks in",
+            "body": "Every repo includes checks anyone can run: 21 tests for data quality, 130 for the inventory model, 44 for analytics (including headless dashboard runs), and 30 tests, a scenario consistency check and a document checker for the B2B case study."
+          },
+          {
+            "title": "Review in a fresh session",
+            "body": "Before publication, each project was reviewed in a fresh AI session. In the first review round I also followed each project’s run-and-check instructions in PowerShell myself and confirmed that the outputs matched the agents’ reports. Later corrections and their regression results were verified by agents."
+          },
+          {
+            "title": "Publish by hand",
+            "body": "Nothing goes live automatically. I review the changes and publish them myself."
+          }
+        ]
+      },
+      "boundaries": {
+        "title": "Boundaries",
+        "items": [
+          "The projects live on a separate, personal GitHub account.",
+          "The AI tools were given no data, code, or proprietary documents from my job.",
+          "All data is fictional. Each project is a simplified, independent version of a problem related to my work, not a copy of it."
+        ]
+      },
+      "site": {
+        "title": "This site",
+        "paragraphs": [
+          "This site is built in a similar way: AI tools write the code and draft the copy on branches under my direction and open pull requests, and I merge them.",
+          "Scripts in the repo generate every figure from numbers copied from the project repos, enforce minimum label sizes and contrast, and check links and placeholders. Each redesign phase was also fact-checked against the repositories by a separate AI reviewer before its pull request was opened."
+        ]
+      },
+      "reading": {
+        "title": "What this means for reading the work",
+        "items": [
+          "The code shows what I specified and accepted, not code I typed by hand.",
+          "The case studies focus on the decisions: the requirements and edge-case priorities I set, and the trade-offs I approved.",
+          "The tests let you rerun the checks yourself rather than take my word or the AI’s for the results. They show the code does what the tests expect, not that it is right in every case."
+        ]
+      },
+      "cta": {
+        "label": "See the projects",
+        "href": "#projects"
+      },
+      "linkLabel": "How these were built"
+    }
   },
   "projects": [
     {
@@ -637,7 +718,7 @@
             "visual": {
               "src": "assets/visuals/tile-filters.svg",
               "principle": "inference-evidence",
-              "alt": "Illustration: all modules for September show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
+              "alt": "Illustration: all modules for September 1–28 show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
               "sizes": {
                 "wide": [
                   440,
@@ -836,7 +917,7 @@
     }
   ],
   "appliedThinking": {
-    "_help": "Applied Thinking content. Publication authorized by the owner on 2026-10-28. Course titles verified by the owner on 2026-10-29.",
+    "_help": "Applied Thinking content. Publication authorized by the owner on 2026-10-28. Course titles verified by the owner on 2026-10-29. Phase 4 layout: principles render as tile cards (principles[].visual, with the scene's source project); the capabilities list and foundations diagram were removed as duplicates.",
     "moduleId": "applied-thinking",
     "draftStatus": "approved",
     "route": "applied-thinking/",
@@ -858,28 +939,6 @@
         "My academic background gives me complementary tools for these situations: applied mathematics for identifying structure and constructing models, and philosophy for examining assumptions, justification, uncertainty and the limits of those models."
       ]
     },
-    "capabilities": [
-      {
-        "id": "recognize",
-        "title": "Recognize structure",
-        "description": "Find established methods that may apply to unfamiliar problems."
-      },
-      {
-        "id": "narrow",
-        "title": "Narrow uncertainty",
-        "description": "Solve well-specified cases and isolate questions that need evidence or judgment."
-      },
-      {
-        "id": "connect",
-        "title": "Preserve relationships",
-        "description": "Break complexity into parts without ignoring critical dependencies."
-      },
-      {
-        "id": "test",
-        "title": "Test conclusions",
-        "description": "Change assumptions and examine whether the result still holds."
-      }
-    ],
     "foundations": [
       {
         "id": "structural",
@@ -916,7 +975,18 @@
           "RESUME_DRAFT",
           "PERSONAL_METHOD_DRAFT"
         ],
-        "evidenceStrength": "Medium"
+        "evidenceStrength": "Medium",
+        "visual": {
+          "src": "assets/visuals/tile-frameworks.svg",
+          "alt": "Recognizing frameworks: “Which containers should we open?” is a known fixed-charge allocation problem, so a proven method (PuLP with the CBC solver) is used instead of a new rule of thumb.",
+          "project": "inventory-shipping-optimization-lab",
+          "sizes": {
+            "wide": [
+              440,
+              520
+            ]
+          }
+        }
       },
       {
         "id": "boundary-refinement",
@@ -938,7 +1008,18 @@
           "OWNER_EXPERIENCE",
           "PERSONAL_METHOD_DRAFT"
         ],
-        "evidenceStrength": "High"
+        "evidenceStrength": "High",
+        "visual": {
+          "src": "assets/visuals/tile-ambiguity.svg",
+          "alt": "Narrowing ambiguity: is a “pressure unit” a pump or a sensor? The data can’t decide, so the row is sent to human review instead of guessed.",
+          "project": "synthetic-data-quality-pipeline",
+          "sizes": {
+            "wide": [
+              440,
+              520
+            ]
+          }
+        }
       },
       {
         "id": "graph-decomposition",
@@ -960,7 +1041,18 @@
           "OWNER_EXPERIENCE",
           "PERSONAL_METHOD_DRAFT"
         ],
-        "evidenceStrength": "Medium-High"
+        "evidenceStrength": "Medium-High",
+        "visual": {
+          "src": "assets/visuals/tile-decomposition.svg",
+          "alt": "Decomposing systems: a quote for 4 units, an order for 2 and a shipment of 1 are different facts. Adding 4 + 2 gives a wrong 6 units of demand; committed demand is 2.",
+          "project": "b2b-sales-systems-case-study",
+          "sizes": {
+            "wide": [
+              440,
+              520
+            ]
+          }
+        }
       },
       {
         "id": "invariance-perturbation",
@@ -982,7 +1074,18 @@
           "CONCEPTUAL",
           "RESUME_DRAFT"
         ],
-        "evidenceStrength": "Medium"
+        "evidenceStrength": "Medium",
+        "visual": {
+          "src": "assets/visuals/tile-invariance.svg",
+          "alt": "Testing what remains true: changing one input at a time. Normal: both containers open, 309 units ship. Smaller containers: only the large one opens, 112 ship. Smaller containers with penalties times 4: both open, 130 ship. Tiny penalties: none open, 0 ship, because all shortages together cost 288.5, less than the cheapest opening charge (400).",
+          "project": "inventory-shipping-optimization-lab",
+          "sizes": {
+            "wide": [
+              440,
+              520
+            ]
+          }
+        }
       },
       {
         "id": "inference-evidence",
@@ -1004,7 +1107,18 @@
           "CONCEPTUAL",
           "PERSONAL_METHOD_DRAFT"
         ],
-        "evidenceStrength": "Medium"
+        "evidenceStrength": "Medium",
+        "visual": {
+          "src": "assets/visuals/tile-filters.svg",
+          "alt": "Examining evidence: all modules for September 1–28 show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
+          "project": "product-usage-analytics-demo",
+          "sizes": {
+            "wide": [
+              440,
+              520
+            ]
+          }
+        }
       },
       {
         "id": "responsible-abstraction",
@@ -1027,7 +1141,18 @@
           "CONCEPTUAL",
           "RESUME_DRAFT"
         ],
-        "evidenceStrength": "Medium-High"
+        "evidenceStrength": "Medium-High",
+        "visual": {
+          "src": "assets/visuals/tile-abstraction.svg",
+          "alt": "Simplifying responsibly: a container can be 100% full by volume and 82% by weight on paper and still not pack in 3D. The model keeps weight and volume, leaves out 3D packing and says so in every output.",
+          "project": "inventory-shipping-optimization-lab",
+          "sizes": {
+            "wide": [
+              440,
+              520
+            ]
+          }
+        }
       },
       {
         "id": "abductive-reasoning",
@@ -1046,7 +1171,17 @@
           "CONCEPTUAL",
           "PERSONAL_METHOD_DRAFT"
         ],
-        "evidenceStrength": "Low-Moderate"
+        "evidenceStrength": "Low-Moderate",
+        "visual": {
+          "src": "assets/visuals/tile-uncertainty.svg",
+          "alt": "Choosing under uncertainty, a conceptual illustration: a shipment is late, and three causes fit. Supplier shipped late, decided by the ship date; carrier was slow, decided by the transit time; wrong date on file, decided by the order history. The likeliest cause guides the next check but stays a hypothesis.",
+          "sizes": {
+            "wide": [
+              440,
+              520
+            ]
+          }
+        }
       },
       {
         "id": "opacity-management",
@@ -1070,7 +1205,18 @@
           "CONCEPTUAL",
           "PERSONAL_METHOD_DRAFT"
         ],
-        "evidenceStrength": "Medium"
+        "evidenceStrength": "Medium",
+        "visual": {
+          "src": "assets/visuals/tile-opacity.svg",
+          "alt": "Managing opaque systems: headless tests give the dashboard a test file with known answers and check the numbers shown in the app: 17 valid events, 6 rejected and 2 quarantined rows.",
+          "project": "product-usage-analytics-demo",
+          "sizes": {
+            "wide": [
+              440,
+              520
+            ]
+          }
+        }
       }
     ],
     "connections": [
@@ -1190,7 +1336,7 @@
       {
         "slug": "b2b-sales-systems-case-study",
         "label": "B2B systems — Preserving business distinctions",
-        "body": "The B2B Sales Systems Case Study separates quotations, commitments, reservations and shipments in a hypothetical architecture. This makes responsibility and system boundaries clearer without pretending the fictional design is the employer’s deployed system.",
+        "body": "The B2B Sales Systems Case Study separates quotations, commitments, reservations and shipments in a hypothetical architecture. This makes responsibility and system boundaries clearer; it is a hypothetical design, not a deployed system.",
         "principleIds": [
           "graph-decomposition",
           "responsible-abstraction",
@@ -1257,28 +1403,22 @@
     "projectsCtaLabel": "Explore the case studies",
     "projectsCtaPath": "../#projects",
     "proposedPageSections": [
-      "intro",
-      "capabilities",
-      "foundations",
       "principles",
-      "connections",
-      "workflow",
       "in-practice",
+      "workflow",
+      "connections",
       "academic",
       "limitations"
     ],
     "labels": {
       "home": "Home",
       "onThisPage": "On this page",
-      "capabilities": "Four ways of approaching complexity",
-      "foundations": "Two complementary foundations",
       "principles": "Eight reasoning principles",
       "connections": "Where the disciplines intersect",
       "workflow": "Approaching an unfamiliar domain",
       "in-practice": "Connections to portfolio work",
       "academic": "Academic foundations and further detail",
       "limitations": "What this page claims",
-      "intro": "What academic training changes about a problem",
       "approach": "Approach and academic connections",
       "method": "How I approach it",
       "concepts": "Related coursework and concepts",
@@ -1297,7 +1437,7 @@
       "connectionsIntro": "These pairings are conceptual interpretations. The same problem can require both kinds of reasoning.",
       "reviewDetails": "Publication review items",
       "workflowDiagramCaption": "The loop is illustrative: new evidence can return the process to any earlier operation. The six operations are described below.",
-      "foundationsDiagramCaption": "Structure and justification inform the same decision. Both depend on domain knowledge and evidence."
+      "principlesIntro": "Each principle pairs a question I ask with a scene, taken from one of the projects where one exists (P3’s is a conceptual illustration). Open a card for the method and the coursework behind it."
     },
     "review": {
       "personalVoice": "approved",
@@ -1308,21 +1448,6 @@
       "authorship": "approved"
     },
     "diagrams": [
-      {
-        "src": "assets/visuals/thinking-foundations.svg",
-        "alt": "Applied mathematics asks what structure is present; philosophy asks what justifies the conclusion. Both inform a practical decision supported by domain knowledge and appropriate evidence.",
-        "caption": "Structure and justification inform the same decision. Both depend on domain knowledge and evidence.",
-        "sizes": {
-          "wide": [
-            760,
-            330
-          ],
-          "narrow": [
-            420,
-            520
-          ]
-        }
-      },
       {
         "src": "assets/visuals/thinking-cycle.svg",
         "alt": "Six reasoning operations form a cycle: clarify, locate, separate, investigate, validate and explain. A return path indicates that new evidence may reopen earlier questions.",

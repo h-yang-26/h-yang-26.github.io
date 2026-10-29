@@ -1,29 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520" width="440" height="520" role="img" aria-labelledby="t"><title id="t">The solver's optimal plan is re-checked independently before it is trusted.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker></defs><rect width="440" height="520" rx="18" fill="#191C1F"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="28" y="46" font-size="17" fill="#8CC0EA" font-weight="800" letter-spacing="1.2">MANAGING OPAQUE SYSTEMS</text>
-<text x="28" y="92" font-size="29" fill="#E9E7E2" font-weight="800" data-box="24,60,392,80">The solver says</text>
-<text x="28" y="128" font-size="29" fill="#E9E7E2" font-weight="800" data-box="24,60,392,80">“optimal.” Prove it.</text>
-<text x="28" y="446" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">Separate code re-checks every plan</text>
-<text x="28" y="471" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">without trusting the solver, the same</text>
-<text x="28" y="496" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">habit I bring to AI-assisted work.</text>
-<rect x="28" y="156" width="130" height="118" rx="14" fill="#07090B" stroke="#848D98" stroke-width="1.5"/>
-<circle cx="74" cy="198" r="16" fill="none" stroke="#E9E7E2" stroke-width="8" stroke-dasharray="5 4.4"/><circle cx="74" cy="198" r="6" fill="#E9E7E2"/>
-<circle cx="114" cy="218" r="11" fill="none" stroke="#E9E7E2" stroke-width="7" stroke-dasharray="4 3.6"/><circle cx="114" cy="218" r="4" fill="#E9E7E2"/>
-<text x="93" y="262" font-size="17" fill="#E9E7E2" font-weight="800" text-anchor="middle" letter-spacing="1" data-box="28,156,130,118">SOLVER</text>
-<path d="M158 214 L192 214" stroke="#848D98" stroke-width="2.5" marker-end="url(#ah)"/>
-<rect x="198" y="150" width="104" height="132" rx="10" fill="#22272C" stroke="#848D98" stroke-width="2"/>
-<text x="250" y="176" font-size="17" fill="#A9AEB5" font-weight="800" text-anchor="middle" letter-spacing="1">PLAN</text>
-<rect x="214" y="190" width="70" height="8" rx="4" fill="#848D98" opacity="0.55"/>
-<rect x="214" y="210" width="50" height="8" rx="4" fill="#848D98" opacity="0.55"/>
-<rect x="214" y="230" width="70" height="8" rx="4" fill="#848D98" opacity="0.55"/>
-<rect x="214" y="250" width="50" height="8" rx="4" fill="#848D98" opacity="0.55"/>
-<circle cx="318" cy="234" r="34" fill="#16302D" fill-opacity="0.9" stroke="#6FCDC2" stroke-width="4"/>
-<path d="M343 259 L372 288" stroke="#6FCDC2" stroke-width="9" stroke-linecap="round"/>
-<path d="M304 234 l6.9 6.9 l13.8 -14.95" fill="none" stroke="#6FCDC2" stroke-width="3.68" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M34 312 l5.1 5.1 l10.2 -11.05" fill="none" stroke="#6FCDC2" stroke-width="2.72" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="56" y="318" font-size="17" fill="#E9E7E2" font-weight="700">weight</text>
-<path d="M162 312 l5.1 5.1 l10.2 -11.05" fill="none" stroke="#6FCDC2" stroke-width="2.72" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="184" y="318" font-size="17" fill="#E9E7E2" font-weight="700">volume</text>
-<path d="M290 312 l5.1 5.1 l10.2 -11.05" fill="none" stroke="#6FCDC2" stroke-width="2.72" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="312" y="318" font-size="17" fill="#E9E7E2" font-weight="700">cost</text>
-<rect x="86" y="348" width="268" height="52" rx="26" fill="#6FCDC2"/>
-<path d="M112 374 l6.6 6.6 l13.2 -14.3" fill="none" stroke="#101418" stroke-width="3.52" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="142" y="381" font-size="19" fill="#101418" font-weight="800" data-box="86,348,268,52">Verified OPTIMAL</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520" width="440" height="520" role="img" aria-labelledby="t"><title id="t">Headless tests feed the dashboard a file with known answers and check the numbers it displays.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker></defs><rect width="440" height="520" rx="18" fill="#191C1F"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="28" y="46" font-size="17" fill="#8CC0EA" font-weight="800" letter-spacing="1.2">MANAGING OPAQUE SYSTEMS</text>
+<text x="28" y="92" font-size="29" fill="#E9E7E2" font-weight="800" data-box="24,60,392,80">Can’t see every layer?</text>
+<text x="28" y="128" font-size="29" fill="#E9E7E2" font-weight="800" data-box="24,60,392,80">Test what it shows.</text>
+<text x="28" y="446" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">Headless tests give the dashboard data</text>
+<text x="28" y="471" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">with known answers and check the</text>
+<text x="28" y="496" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">numbers it shows, not how it draws them.</text>
+<path d="M28 150 h136 l18 18 v40 h-154 z" fill="#22272C" stroke="#848D98" stroke-width="2" stroke-linejoin="round"/>
+<text x="40" y="178" font-size="17" fill="#E9E7E2" font-weight="800" data-box="28,150,154,58">Test file</text>
+<text x="40" y="200" font-size="17" fill="#A9AEB5" data-box="28,150,154,58">answers known</text>
+<path d="M102 210 L102 226" stroke="#848D98" stroke-width="2.5" marker-end="url(#ah)"/>
+<rect x="28" y="232" width="148" height="96" rx="12" fill="#07090B" stroke="#848D98" stroke-width="1.5"/>
+<circle cx="78" cy="268" r="14" fill="none" stroke="#E9E7E2" stroke-width="7" stroke-dasharray="4.4 3.9"/><circle cx="78" cy="268" r="5" fill="#E9E7E2"/>
+<circle cx="114" cy="284" r="9" fill="none" stroke="#E9E7E2" stroke-width="6" stroke-dasharray="3.5 3"/><circle cx="114" cy="284" r="3.5" fill="#E9E7E2"/>
+<text x="102" y="318" font-size="17" fill="#E9E7E2" font-weight="800" text-anchor="middle" letter-spacing="1" data-box="28,232,148,96">DASHBOARD</text>
+<path d="M178 280 L198 280" stroke="#848D98" stroke-width="2.5" marker-end="url(#ah)"/>
+<rect x="204" y="150" width="216" height="178" rx="12" fill="#191C1F" stroke="#8CC0EA" stroke-width="2"/>
+<text x="216" y="178" font-size="17" fill="#A9AEB5" font-weight="700" data-box="204,150,216,178">Shown in the app</text>
+<text x="216" y="214" font-size="17" fill="#E9E7E2" font-weight="700" data-box="204,150,216,178">Valid events</text>
+<text x="376" y="214" font-size="20" fill="#8CC0EA" font-weight="800" text-anchor="end" data-box="204,150,216,178">17</text>
+<path d="M388 206 l5.1 5.1 l10.2 -11.05" fill="none" stroke="#6FCDC2" stroke-width="2.72" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M216 229 H408" stroke="#2B3137" stroke-width="1.5"/>
+<text x="216" y="256" font-size="17" fill="#E9E7E2" font-weight="700" data-box="204,150,216,178">Rejected</text>
+<text x="376" y="256" font-size="20" fill="#8CC0EA" font-weight="800" text-anchor="end" data-box="204,150,216,178">6</text>
+<path d="M388 248 l5.1 5.1 l10.2 -11.05" fill="none" stroke="#6FCDC2" stroke-width="2.72" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M216 271 H408" stroke="#2B3137" stroke-width="1.5"/>
+<text x="216" y="298" font-size="17" fill="#E9E7E2" font-weight="700" data-box="204,150,216,178">Quarantined</text>
+<text x="376" y="298" font-size="20" fill="#8CC0EA" font-weight="800" text-anchor="end" data-box="204,150,216,178">2</text>
+<path d="M388 290 l5.1 5.1 l10.2 -11.05" fill="none" stroke="#6FCDC2" stroke-width="2.72" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="56" y="352" width="328" height="52" rx="26" fill="#6FCDC2"/>
+<path d="M82 378 l6.6 6.6 l13.2 -14.3" fill="none" stroke="#101418" stroke-width="3.52" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="112" y="385" font-size="18" fill="#101418" font-weight="800" data-box="56,352,328,52">Checked at the interface</text></g></svg>

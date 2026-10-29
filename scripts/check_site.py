@@ -146,7 +146,8 @@ def main():
         problems.append("duplicate project slugs in content/site.json")
 
     academic_page = ROOT / "applied-thinking/index.html"
-    pages = sorted(ROOT.glob("index.html")) + sorted(ROOT.glob("projects/*/index.html")) + ([academic_page] if academic_page.is_file() else [])
+    process_page = ROOT / "how-these-were-built/index.html"
+    pages = sorted(ROOT.glob("index.html")) + sorted(ROOT.glob("projects/*/index.html")) + [p for p in (academic_page, process_page) if p.is_file()]
     page_slugs = set()
     noindex_pages = []
     parsed = {}
@@ -331,6 +332,42 @@ def main():
         if page:
             for phrase in retired_in("".join(page.main_text)):
                 problems.append(f"{project['slug']}: story page still says '{phrase}'")
+    # Applied Thinking tiles: one per principle; a tile's scene must come from a project
+    # approved for that principle, and a conceptual-only principle shows no project data.
+    tile_srcs = []
+    for p in a.get("principles", []):
+        visual = p.get("visual") or {}
+        src, source = visual.get("src", ""), visual.get("project")
+        tile_srcs.append(src)
+        if not src.startswith("assets/visuals/tile-") or not (ROOT / src).is_file() or not visual.get("alt"):
+            problems.append(f"{p['id']}: needs a tile visual with alt text")
+        if p.get("supportType") == "conceptual-only":
+            if source:
+                problems.append(f"{p['id']}: conceptual-only principle must not draw its tile from project {source}")
+        elif source not in p.get("projectSlugs", []) and p["id"] not in bridges.get(source, []):
+            problems.append(f"{p['id']}: tile scene from {source!r} is not an approved project for this principle")
+    if len(set(tile_srcs)) != len(tile_srcs):
+        problems.append("Applied Thinking: each principle needs its own tile")
+    thinking_page = parsed.get(academic_page.resolve())
+    if thinking_page and sum(1 for i in principle_ids if i in thinking_page.ids) != 8:
+        problems.append("Applied Thinking: rendered page must show all eight principle cards")
+
+    # How these were built: the page exists, renders and keeps the new voice.
+    process = content["site"].get("process")
+    if process:
+        voiced.append(("site.process", process))
+        rendered = parsed.get(process_page.resolve())
+        if not rendered or rendered.body.get("data-page") != "process" or rendered.body.get("data-root") != "..":
+            problems.append("how-these-were-built/index.html is missing or has the wrong route attributes")
+        else:
+            for section in ("who", "workflow", "boundaries", "this-site", "reading"):
+                if section not in rendered.ids:
+                    problems.append(f"How these were built: missing section {section}")
+            for phrase in retired_in("".join(rendered.main_text)):
+                problems.append(f"how-these-were-built: page still says '{phrase}'")
+        if process.get("route") != "how-these-were-built/":
+            problems.append("site.process.route must be how-these-were-built/")
+
     # Course titles were verified by the owner on 2026-10-29; the old caveats must not return.
     if a.get("courseVerification"):
         thinking = parsed.get(academic_page.resolve())

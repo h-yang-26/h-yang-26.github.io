@@ -26,7 +26,16 @@ for (const t of content.site.howIWork.tiles) assert.ok(home.includes(`href="./pr
 assert.equal((home.match(/class="card__outcome"/g) || []).length, content.projects.length);
 assert.ok(!/Recorded result|Related professional work|Real work\. Independent public models/.test(home));
 assert.match((await render("project")).main.innerHTML, /id="academic-connections"/);
-assert.match((await render("applied-thinking")).main.innerHTML, /id="opacity-management"/);
+const thinkingHtml = (await render("applied-thinking")).main.innerHTML;
+assert.match(thinkingHtml, /id="opacity-management"/);
+assert.equal((thinkingHtml.match(/class="principle-card"/g) || []).length, 8, "eight principle tile cards");
+assert.equal((thinkingHtml.match(/principle-card__visual/g) || []).length, 8, "every principle card has its tile");
+assert.doesNotMatch(thinkingHtml, /thinking-capabilities|class="toc"/, "duplicate capabilities list and sidebar are gone");
+const processHtml = (await render("process")).main.innerHTML;
+for (const id of ["who", "workflow", "boundaries", "this-site", "reading"]) assert.match(processHtml, new RegExp(`id="${id}"`));
+assert.match((await render("home"))["site-footer"].innerHTML, /href="\.\/how-these-were-built\/"/, "footer links to the process page");
+assert.doesNotMatch((await render("process"))["site-footer"].innerHTML, /how-these-were-built/, "process page does not link to itself");
+assert.match((await render("project")).main.innerHTML, /href="\.\.\/\.\.\/how-these-were-built\/"/, "case study role links to the process page");
 // Figures: narrow and dark variants on project pages, card layout on the homepage.
 const projectHtml = (await render("project")).main.innerHTML;
 assert.match(projectHtml, /<source media="\(prefers-color-scheme: dark\) and \(max-width: 39\.99rem\)" srcset="[^"]+-narrow-dark\.svg"/);
@@ -86,4 +95,4 @@ assert.ok(!result.includes('<script>') && !result.includes('src="javascript:') &
 assert.ok(!(await render("project", hostile)).main.innerHTML.includes('javascript:'));
 assert.ok(!(await render("home", hostile)).main.innerHTML.includes('href="javascript:'));
 assert.equal((await render("applied-thinking", content, true)).main.innerHTML, "STATIC FALLBACK");
-console.log("PASS: three routes, homepage order, hero and story templates, escaped copy, rejected active URL schemes and offline fallback.");
+console.log("PASS: four routes, Applied Thinking tile cards, process page, homepage order, hero and story templates, escaped copy, rejected active URL schemes and offline fallback.");
