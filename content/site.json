@@ -1,15 +1,15 @@
 {
   "_help": "All site text lives here; layout lives in index.html, projects/*/index.html and assets/. Convention: null = pending owner input (shown as a visible placeholder and counted in the draft banner); false = intentionally omitted (nothing shown). Every personal field is in the 'owner' block. Inline text supports `code` and **bold** only. See README.md.",
   "owner": {
-    "_help": "Personal details are intentionally omitted in this release. Only add approved facts.",
-    "name": false,
+    "_help": "Name, public email, résumé and LinkedIn are pending (null) and show as placeholders until filled in; see _formats. Only add approved facts.",
+    "name": null,
     "githubUsername": "h-yang-26",
     "intro": false,
     "bio": false,
     "skills": false,
-    "email": false,
-    "resume": false,
-    "otherLinks": false,
+    "email": null,
+    "resume": null,
+    "otherLinks": null,
     "_formats": "intro: one short paragraph (string). bio: list of paragraphs. skills: list of strings. resume: {\"label\": \"Resume (PDF)\", \"url\": \"assets/resume.pdf\"}. otherLinks: list of {\"label\": \"LinkedIn\", \"url\": \"https://...\"}. professionalContext: list of paragraphs, exact owner-approved wording only.",
     "projectStatements": {
       "synthetic-data-quality-pipeline": {
@@ -106,7 +106,7 @@
       },
       "visual": {
         "src": "assets/visuals/ba-data.svg",
-        "title": "Messy records in. Data you can trust out.",
+        "title": "Messy records in. Traceable data out.",
         "alt": "Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons.",
         "caption": "Real rows from the Data Quality Pipeline’s fictional sample.",
         "link": {
@@ -270,7 +270,7 @@
         ],
         "banner": {
           "src": "assets/visuals/ba-data.svg",
-          "title": "Messy records in. Data you can trust out.",
+          "title": "Messy records in. Traceable data out.",
           "alt": "Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons.",
           "caption": "Real rows from this project’s fictional sample data.",
           "narrowMax": "49.99rem",
@@ -708,7 +708,7 @@
     }
   ],
   "appliedThinking": {
-    "_help": "Applied Thinking content. Publication authorized by the owner on 2026-10-28. Academic topics retain their explicit verification limits.",
+    "_help": "Applied Thinking content. Publication authorized by the owner on 2026-10-28. Course titles verified by the owner on 2026-10-29.",
     "moduleId": "applied-thinking",
     "draftStatus": "approved",
     "route": "applied-thinking/",
@@ -1071,34 +1071,50 @@
       }
     ],
     "academicFoundations": {
-      "verificationStatus": "resume-draft-only; confirm exact course titles before publish",
+      "verificationStatus": "verified by owner 2026-10-29 (owner-supplied list of completed courses)",
       "rows": [
         {
-          "title": "Operations Research / Optimization",
+          "title": "Operations Research",
           "translation": "Choose among feasible alternatives subject to constraints."
+        },
+        {
+          "title": "Mathematical Modeling",
+          "translation": "Formalize interacting variables, relationships and assumptions so they can be tested."
+        },
+        {
+          "title": "Network Models",
+          "translation": "Represent dependencies as connections, so an effect can be traced through a system."
         },
         {
           "title": "Probability",
           "translation": "Represent uncertainty and update expectations."
         },
         {
-          "title": "Mathematical Modeling / Network Models",
-          "translation": "Formalize interacting variables, relationships and dependencies."
-        },
-        {
-          "title": "Numerical Linear Algebra",
-          "translation": "Represent and transform structured data, including matrix computation."
+          "title": "Ordinary Differential Equations",
+          "translation": "Model how a system changes over time, not just where it ends up."
         },
         {
           "title": "Real Analysis",
           "translation": "Examine the assumptions behind limits, continuity and convergence."
         },
         {
-          "title": "Symbolic Logic / Philosophy of Science",
-          "translation": "Evaluate arguments, evidence and methodological assumptions."
+          "title": "Topology",
+          "translation": "Ask which properties survive when a problem is stretched or reshaped."
         },
         {
-          "title": "High-Performance Computing",
+          "title": "Numerical Linear Algebra",
+          "translation": "Represent and transform structured data, including matrix computation."
+        },
+        {
+          "title": "Symbolic Logic",
+          "translation": "Check whether a conclusion actually follows from its premises."
+        },
+        {
+          "title": "Philosophy of Science",
+          "translation": "Ask what counts as evidence and how a method could mislead."
+        },
+        {
+          "title": "High Performance Computing",
           "translation": "Understand computational constraints on numerical approaches."
         }
       ],
@@ -1137,7 +1153,7 @@
       "intro": "What academic training changes about a problem",
       "approach": "Approach and academic connections",
       "method": "How I approach it",
-      "concepts": "Related academic concepts — not verified course titles",
+      "concepts": "Related coursework and concepts",
       "caveat": "Keep in view",
       "relatedProject": "Independent public demonstration",
       "conceptual": "Conceptual connection; no published demonstration claimed.",
@@ -1145,8 +1161,8 @@
       "backlinksIntro": "These are conceptual connections to the reasoning described in Applied Thinking. They do not claim formal implementation of every theory.",
       "draftTitle": "Applied Thinking · Draft for owner review",
       "draftBody": "First-person methodology, academic titles and professional boundaries require owner review before publication.",
-      "academicIntro": "The areas below connect academic topics to practical questions. They come from résumé drafts; exact course titles and completion have not been verified against a transcript. They are not a confirmed course list.",
-      "academicArea": "Academic area (unverified title)",
+      "academicIntro": "Courses I completed in applied mathematics and philosophy, and the practical question each one sharpens.",
+      "academicArea": "Course",
       "academicUse": "Connection to practical reasoning",
       "academicDeferred": "Detailed academic projects are deferred until reviewed artifacts are available.",
       "evidenceBoundary": "Evidence boundary",
@@ -1199,6 +1215,10 @@
       "date": "2026-10-28",
       "instruction": "Merge and publish",
       "scope": "Approval to publish the presented copy, including its explicit unverified academic-topic labels; this does not establish transcript verification."
+    },
+    "courseVerification": {
+      "date": "2026-10-29",
+      "note": "Owner supplied the verified list of completed courses; course titles are presented as completed coursework, a selection of the full list."
     }
   }
 }

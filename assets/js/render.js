@@ -346,17 +346,23 @@
       </div>
     </section>`;
   }
-  // Positioning hero. Contact buttons appear only for owner fields that are set;
-  // pending (null) or omitted (false) fields add nothing here.
+  // Positioning hero. Contact buttons come from the owner fields: a set field
+  // links, a pending (null) field shows a marked placeholder in its final
+  // position, and an omitted (false) field adds nothing.
   function renderHero(content) {
     const o = content.owner;
     const h = content.site.hero;
-    const kicker = typeof o.name === "string" && o.name ? esc(o.name) : inline(h.eyebrow);
+    const kicker = typeof o.name === "string" && o.name ? esc(o.name)
+      : o.name === null ? `${ph(content, "owner.name")} · ${inline(h.eyebrow)}` : inline(h.eyebrow);
     const buttons = [];
+    const pending = (label) => disabledLink(label, "Placeholder");
     const cta = h.primaryCta && url(h.primaryCta.href);
     if (cta) buttons.push(`<a class="btn btn--primary" href="${cta}">${esc(h.primaryCta.label)}</a>`);
-    if (o.resume && o.resume.url && url(o.resume.url)) buttons.push(`<a class="btn" href="${url(o.resume.url)}">${esc(o.resume.label || "Résumé")}</a>`);
-    if (typeof o.email === "string" && o.email) buttons.push(`<a class="btn" href="mailto:${esc(o.email)}">Email</a>`);
+    if (o.resume === null) buttons.push(pending("Résumé"));
+    else if (o.resume && o.resume.url && url(o.resume.url)) buttons.push(`<a class="btn" href="${url(o.resume.url)}">${esc(o.resume.label || "Résumé")}</a>`);
+    if (o.email === null) buttons.push(pending("Email"));
+    else if (typeof o.email === "string" && o.email) buttons.push(`<a class="btn" href="mailto:${esc(o.email)}">Email</a>`);
+    if (o.otherLinks === null) buttons.push(pending("LinkedIn"));
     for (const link of Array.isArray(o.otherLinks) ? o.otherLinks : []) {
       const href = url(link.url);
       if (href) buttons.push(`<a class="btn" href="${href}">${esc(link.label)}</a>`);

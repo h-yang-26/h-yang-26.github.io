@@ -297,6 +297,11 @@ def main():
         if page:
             for phrase in retired_in("".join(page.main_text)):
                 problems.append(f"{project['slug']}: story page still says '{phrase}'")
+    # Course titles were verified by the owner on 2026-10-29; the old caveats must not return.
+    if a.get("courseVerification"):
+        thinking = parsed.get(academic_page.resolve())
+        for phrase in retired_in("".join(thinking.main_text) if thinking else ""):
+            problems.append(f"applied-thinking: verified coursework page still says '{phrase}'")
     for where, node in voiced:
         for text in strings(node):
             for phrase in retired_in(text):

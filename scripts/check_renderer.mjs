@@ -30,7 +30,17 @@ assert.match(home, /<div class="card__visual"><picture><source media="\(prefers-
 // Phase 1 redesign: positioning hero and decision-led story template.
 assert.match(home, /<section class="hero hero--story wrap"/);
 assert.match(home, /<source media="\(prefers-color-scheme: dark\) and \(max-width: 49\.99rem\)" srcset="[^"]+ba-data-narrow-dark\.svg"/);
-assert.ok(!/class="ph/.test(home.slice(0, home.indexOf("</section>"))), "hero must not show placeholders");
+// Pending owner fields show marked placeholders in the hero; omitted ones show nothing.
+const heroHtml = home.slice(0, home.indexOf("</section>"));
+for (const label of ["Résumé", "Email", "LinkedIn"]) assert.match(heroHtml, new RegExp(`btn--off[^>]*>[\\s\\S]*?<span>${label}</span>`));
+const omitted = structuredClone(content);
+Object.assign(omitted.owner, {name: false, email: false, resume: false, otherLinks: false});
+const omittedHero = (await render("home", omitted)).main.innerHTML;
+assert.ok(!/class="ph|btn--off/.test(omittedHero.slice(0, omittedHero.indexOf("</section>"))), "omitted fields must add nothing to the hero");
+const filled = structuredClone(content);
+Object.assign(filled.owner, {name: "A. Person", email: "a@example.com", resume: {label: "Résumé (PDF)", url: "https://example.com/r.pdf"}, otherLinks: [{label: "LinkedIn", url: "https://www.linkedin.com/in/example"}]});
+const filledHero = (await render("home", filled)).main.innerHTML;
+assert.ok(filledHero.includes('href="mailto:a@example.com"') && filledHero.includes('href="https://www.linkedin.com/in/example"') && filledHero.includes("A. Person"));
 for (const id of ["situation", "decisions", "result", "next", "technical", "role", "academic-connections"]) {
   assert.match(projectHtml, new RegExp(`<section id="${id}"`));
 }

@@ -2,7 +2,7 @@
 
 Static GitHub Pages site showing four independently constructed fictional demonstrations: data-quality ETL, shipping allocation optimization, product analytics, and conceptual B2B sales systems design.
 
-No personal biography, personal contact address, or resume link is published in this release. Approved first-person contribution and professional-experience statements appear in the case studies, distinguishing workplace responsibilities from fictional, independent artifacts. The associated source repositories are linked from the case studies. All example numbers are synthetic and must not be read as employer outcomes.
+Name, public email, résumé and LinkedIn are pending placeholders (`null` in `content/site.json`): they render as marked placeholders, and `check_site.py --release` fails until they are filled in. To fill them, set `owner.name`, `owner.email`, `owner.resume` (`{"label": "Résumé (PDF)", "url": "..."}`) and `owner.otherLinks` (`[{"label": "LinkedIn", "url": "https://..."}]`), then run `node scripts/render_static.mjs`. No personal biography is published. Approved first-person contribution and professional-experience statements appear in the case studies, distinguishing workplace responsibilities from fictional, independent artifacts. The associated source repositories are linked from the case studies. All example numbers are synthetic and must not be read as employer outcomes.
 
 ## Site files
 
