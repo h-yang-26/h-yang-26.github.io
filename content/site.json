@@ -206,7 +206,14 @@
         "I translate how a business runs into requirements, coordinate data-quality reviews and check results against what the business actually needs.",
         "My background is in applied mathematics and philosophy. Mathematics gives me ways to model a problem; philosophy makes me ask what would justify the answer."
       ],
-      "toolsLabel": "Tools and methods in these projects"
+      "toolsLabel": "Tools and methods in these projects",
+      "aiToolsLabel": "AI tools used to build them",
+      "aiTools": [
+        "ChatGPT",
+        "Claude",
+        "Codex",
+        "Claude Code"
+      ]
     },
     "footer": "Professional experience and public demonstrations are distinct: real workplace responsibilities are described at a high level, while the linked examples use fictional data and independent reduced-scope implementations. Synthetic outputs do not measure employer or production performance.",
     "privacy": "This site sets no cookies and loads no analytics, tracking scripts or third-party content.",
@@ -218,7 +225,7 @@
       "navLabel": "How these were built",
       "eyebrow": "Process",
       "title": "How these were built",
-      "lede": "I directed these projects and AI tools did the implementation. This page sets out who decided what, how the results were checked, and what that means when you read the work.",
+      "lede": "I directed these projects: ChatGPT and Claude helped design and plan them, and Codex and Claude Code did the technical work. This page sets out who decided what, how the results were checked, and what that means when you read the work.",
       "split": {
         "title": "Who did what",
         "owner": {
@@ -227,15 +234,15 @@
             "The business context, the purpose of each project and an initial architecture outline",
             "Requirements and evaluation criteria",
             "Which edge cases mattered most",
-            "Whether each result was approved"
+            "The judgment calls, and whether each result was approved"
           ]
         },
         "ai": {
           "label": "AI tools did",
           "items": [
-            "Wrote the code, tests and documentation",
-            "Produced the B2B case study’s documents, fictional scenario and checking scripts",
-            "Verified later corrections and their regression results"
+            "**ChatGPT and Claude:** design and planning, and generating the agent prompts",
+            "**Codex and Claude Code:** the code, tests and documentation, including the B2B case study’s documents, fictional scenario and checking scripts",
+            "**Codex and Claude Code:** verifying later corrections and their regression results"
           ]
         }
       },
@@ -244,11 +251,11 @@
         "items": [
           {
             "title": "Write the brief",
-            "body": "I co-developed the original agent prompt kit with AI assistance. For each project I provided the business context, the purpose and an initial architecture outline, and set the requirements, evaluation criteria and edge-case priorities."
+            "body": "I co-developed the original agent prompt kit with ChatGPT and Claude. For each project I provided the business context, the purpose and an initial architecture outline, and set the requirements, evaluation criteria and edge-case priorities."
           },
           {
             "title": "Plan, then build",
-            "body": "A planner-and-builder AI workflow turned the brief into code, tests and documentation, one project per session."
+            "body": "A planner-and-builder AI workflow turned the brief into code, tests and documentation, one project per session, with Codex and Claude Code doing the technical work."
           },
           {
             "title": "Build the checks in",
@@ -275,8 +282,8 @@
       "site": {
         "title": "This site",
         "paragraphs": [
-          "This site is built in a similar way: AI tools write the code and draft the copy on branches under my direction and open pull requests, and I merge them.",
-          "Scripts in the repo generate every figure from numbers copied from the project repos, enforce minimum label sizes and contrast, and check links and placeholders. Each redesign phase was also fact-checked against the repositories by a separate AI reviewer before its pull request was opened."
+          "ChatGPT built the first version of this site. Claude then redesigned and restructured it, writing the code and drafting the copy on branches under my direction and opening pull requests; I made the judgment calls and merged them.",
+          "Scripts in the repo generate every figure from numbers copied from the project repos, enforce minimum label sizes and contrast, and check links and placeholders. Each redesign phase was also fact-checked against the repositories by a separate Claude session before its pull request was opened."
         ]
       },
       "reading": {
