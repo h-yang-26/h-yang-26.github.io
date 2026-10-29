@@ -40,3 +40,9 @@ dark-mode variants. Their data sources, fictional data boundaries and design rul
 are documented in [`assets/visuals/README.md`](assets/visuals/README.md).
 The figures are static; interactive calculators are not part of this release.
 
+
+## Before/after transformation imagery
+
+All four project cards and case-study pages display a shared **illustrative input → public-demo output** visual. The input panels are schematic scenarios, not employer screenshots or measured baselines. The output panels reuse the existing generated SVG results (fictional data or a checked conceptual example). Full, project-specific disclosures are shown on the case-study pages; none of the comparisons claims an employer performance improvement. The original system diagrams remain in the technical case-study sections.
+
+Template labels and content are defined under each project's `transformation` entry in `content/site.json`; the shared HTML generator and CSS create accessible responsive compositions. No new external assets or scripts are required. See `docs/before-after-visuals.md`.

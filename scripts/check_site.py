@@ -255,6 +255,29 @@ def main():
             if not visual.get("alt") or not visual.get("caption"):
                 problems.append(f"{project['slug']}: image is missing alt text or caption")
 
+    # Schematic input views and recorded synthetic-output figures are shown together.
+    allowed_scenes = {"records", "capacity", "events", "stages"}
+    homepage = (ROOT / "index.html").read_text(encoding="utf-8")
+    if homepage.count('class="transformation transformation--card"') != len(slugs):
+        problems.append("homepage: before/after comparison missing for a project")
+    for project in content["projects"]:
+        slug = project["slug"]
+        transform = project.get("transformation") or {}
+        if transform.get("scene") not in allowed_scenes:
+            problems.append(f"{slug}: missing or invalid transformation scene")
+        for field in ("headline", "beforeTitle", "beforeNote", "afterTitle", "afterNote", "takeaway", "disclosure"):
+            if not transform.get(field):
+                problems.append(f"{slug}: missing transformation {field}")
+        if len(transform.get("beforeItems", [])) < 3:
+            problems.append(f"{slug}: insufficient schematic input examples")
+        html = (ROOT / "projects" / slug / "index.html").read_text(encoding="utf-8")
+        if 'class="transformation transformation--feature"' not in html or 'id="transformation"' not in html:
+            problems.append(f"{slug}: before/after visual missing from case study")
+        if transform.get("headline") not in html:
+            problems.append(f"{slug}: incorrect transformation heading")
+        if 'class="transformation__disclosure"' not in html:
+            problems.append(f"{slug}: missing schematic/results disclosure")
+
     pending = pending_items(content)
     links = [p for p in pending if p.endswith(".repoUrl")]
     print(f"Pages checked: {len(pages)}; projects: {len(slugs)}")

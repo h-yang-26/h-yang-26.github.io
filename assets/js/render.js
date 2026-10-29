@@ -255,23 +255,65 @@
     }).join("")}</div>`;
   }
 
+  /* Shared transformation template. Input states are illustrative, not workplace screenshots. */
+  function renderBeforeScene(t) {
+    const scene = ["records", "capacity", "events", "stages"].includes(t.scene) ? t.scene : "records";
+    const rows = t.beforeItems.map((item, i) => `<div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
+      <span class="transform-scene__item-label">${esc(item)}</span>
+      <span class="transform-scene__indicator" aria-hidden="true">${scene === "records" ? "!" : scene === "capacity" ? "◌" : scene === "events" ? "·" : "?"}</span>
+    </div>`).join("");
+    return `<div class="transform-scene transform-scene--${scene}">
+      <div class="transform-scene__overline">${esc(t.beforeTitle)}</div>
+      <div class="transform-scene__items">${rows}</div>
+      <p class="transform-scene__question">${esc(t.beforeNote)}</p>
+    </div>`;
+  }
+
+  function renderTransformation(project, mode) {
+    const t = project.transformation;
+    if (!t) return "";
+    const thumb = (project.visuals || []).find(v => v.src === project.thumbnail);
+    const output = thumb ? picture(thumb, thumb.alt, "card") : "";
+    const format = mode === "card" ? "card" : "feature";
+    return `<figure class="transformation transformation--${format}" aria-label="Illustrative before and after: ${esc(project.title)}">
+      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
+        <strong>${esc(t.headline)}</strong></div>
+      <div class="transformation__panels">
+        <div class="transformation__panel transformation__panel--before">
+          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
+            <span class="transformation__bar-note">Input / question</span></div>
+          <div class="transformation__canvas">${renderBeforeScene(t)}</div>
+        </div>
+        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
+        <div class="transformation__panel transformation__panel--after">
+          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
+            <span class="transformation__bar-note">Public model output</span></div>
+          <div class="transformation__canvas transformation__canvas--result">${output}</div>
+          <p class="transformation__result-note">${esc(t.afterTitle)} · ${esc(t.afterNote)}</p>
+        </div>
+      </div>
+      ${format === "feature" ? `<figcaption class="transformation__disclosure">${esc(t.disclosure)}</figcaption>` : ""}
+    </figure>`;
+  }
+
   function renderCard(project) {
     const c = project.card;
+    const t = project.transformation;
     return `<li>
-      <article class="card" aria-labelledby="card-${esc(project.slug)}">
-        <div class="card__visual">${picture((project.visuals || []).find(v => v.src === project.thumbnail) || {src: project.thumbnail}, "", "card")}</div>
-        <p class="chip">${esc(project.label)}</p>
-        <h3 id="card-${esc(project.slug)}">${esc(project.title)}</h3>
-        <p class="card__connection"><strong>Related professional work:</strong> ${esc(project.professionalArea)}</p>
-        <dl class="facts">
-          <dt>Problem</dt><dd>${inline(c.problem)}</dd>
-          <dt>Method</dt><dd>${inline(c.method)}</dd>
-          <dt>Recorded result</dt><dd>${inline(c.evidence)}</dd>
-        </dl>
-        ${tags(project.focus)}
-        <div class="actions">
-          <a class="btn btn--primary" href="${home}projects/${esc(project.slug)}/">Read case study<span class="visually-hidden">: ${esc(project.title)}</span></a>
-          ${repoLinks(project, false)}
+      <article class="card card--transformation" aria-labelledby="card-${esc(project.slug)}">
+        ${renderTransformation(project, "card")}
+        <div class="card__body">
+          <p class="chip">${esc(project.label)}</p>
+          <h3 id="card-${esc(project.slug)}">${esc(project.title)}</h3>
+          <p class="card__takeaway">${esc(t.takeaway)}</p>
+          <p class="card__connection"><strong>Related professional work:</strong> ${esc(project.professionalArea)}</p>
+          <p class="card__evidence"><strong>Public-demo evidence:</strong> ${inline(c.evidence)}</p>
+          ${tags(project.focus)}
+          <div class="actions">
+            <a class="btn btn--primary" href="${home}projects/${esc(project.slug)}/">Explore transformation &amp; case study<span class="visually-hidden">: ${esc(project.title)}</span></a>
+            ${repoLinks(project, false)}
+          </div>
         </div>
       </article>
     </li>`;
@@ -353,6 +395,7 @@
       <div class="wrap">
         <h2 id="projects-title">Featured projects</h2>
         <p class="section__lede">${inline(content.site.projectsIntro)}</p>
+        <p class="section__visual-intro">${inline(content.site.transformationIntro)}</p>
         <ul class="cards">${content.projects.map(renderCard).join("")}</ul>
       </div>
     </section>
@@ -523,6 +566,7 @@
       <div><h3>Scope of this public demonstration</h3>${paras(p.demoScope)}</div>
       </div>` : null;
     const sections = [
+      ["transformation", "Before and after: the public model", renderTransformation(p, "feature")],
       ["professional", "Professional work and public-demo boundary", bridge],
       ["problem", "The problem", paras(p.problem)],
       ["visuals", "System diagrams and synthetic results", renderVisuals(p)],

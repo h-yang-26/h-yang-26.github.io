@@ -46,10 +46,45 @@
       <div class="cs-layout">
         <nav class="toc" aria-label="On this page">
           <p class="toc__title">On this page</p>
-          <ol><li><a href="#professional">Professional work and public-demo boundary</a></li><li><a href="#problem">The problem</a></li><li><a href="#visuals">System diagrams and synthetic results</a></li><li><a href="#built">What the demonstration contains</a></li><li><a href="#approach">Technical approach</a></li><li><a href="#validation">Validation and results</a></li><li><a href="#limitations">Tradeoffs and limitations</a></li><li><a href="#contribution">My contribution</a></li><li><a href="#learned">What I learned</a></li><li><a href="#academic-connections">Academic connections</a></li><li><a href="#reproduce">Source and reproducibility</a></li></ol>
+          <ol><li><a href="#transformation">Before and after: the public model</a></li><li><a href="#professional">Professional work and public-demo boundary</a></li><li><a href="#problem">The problem</a></li><li><a href="#visuals">System diagrams and synthetic results</a></li><li><a href="#built">What the demonstration contains</a></li><li><a href="#approach">Technical approach</a></li><li><a href="#validation">Validation and results</a></li><li><a href="#limitations">Tradeoffs and limitations</a></li><li><a href="#contribution">My contribution</a></li><li><a href="#learned">What I learned</a></li><li><a href="#academic-connections">Academic connections</a></li><li><a href="#reproduce">Source and reproducibility</a></li></ol>
         </nav>
         <article class="prose">
-          <section id="professional" aria-labelledby="professional-title">
+          <section id="transformation" aria-labelledby="transformation-title">
+            <h2 id="transformation-title">Before and after: the public model</h2><figure class="transformation transformation--feature" aria-label="Illustrative before and after: B2B Sales Systems Case Study">
+      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
+        <strong>From mixed business quantities to distinct lifecycle facts</strong></div>
+      <div class="transformation__panels">
+        <div class="transformation__panel transformation__panel--before">
+          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
+            <span class="transformation__bar-note">Input / question</span></div>
+          <div class="transformation__canvas"><div class="transform-scene transform-scene--stages">
+      <div class="transform-scene__overline">Stage counts without definitions</div>
+      <div class="transform-scene__items"><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">01</span>
+      <span class="transform-scene__item-label">4 units quoted</span>
+      <span class="transform-scene__indicator" aria-hidden="true">?</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">02</span>
+      <span class="transform-scene__item-label">2 units ordered</span>
+      <span class="transform-scene__indicator" aria-hidden="true">?</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">03</span>
+      <span class="transform-scene__item-label">1 unit shipped</span>
+      <span class="transform-scene__indicator" aria-hidden="true">?</span>
+    </div></div>
+      <p class="transform-scene__question">These quantities must not be added together.</p>
+    </div></div>
+        </div>
+        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
+        <div class="transformation__panel transformation__panel--after">
+          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
+            <span class="transformation__bar-note">Public model output</span></div>
+          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/b2b-quantities-card-dark.svg" width="440" height="260"><img src="../../assets/visuals/b2b-quantities-card.svg" alt="Unit chart for one fictional order: 4 units quoted; 2 ordered and 2 not converted; 1 shipped and 1 still owed." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+          <p class="transformation__result-note">Separated business states · 2 converted · 1 shipped · 1 still owed</p>
+        </div>
+      </div>
+      <figcaption class="transformation__disclosure">Both panels illustrate a hypothetical business scenario. The right chart is a conceptual arithmetic check, not a screenshot or claim about an implemented employer architecture.</figcaption>
+    </figure></section><section id="professional" aria-labelledby="professional-title">
             <h2 id="professional-title">Professional work and public-demo boundary</h2><div class="professional-bridge">
       <div><h3>Relevant professional responsibility</h3><p>I collaborate with a software lead in a two-person team on an industrial B2B platform used by staff and dealers, contributing business context, requirements clarification, reviews and AI-assisted development direction for sales and operational workflows.</p></div>
       <div><h3>Scope of this public demonstration</h3><p>This public case study proposes a hypothetical sales lifecycle and conceptual module boundaries. It includes a fictional scenario and checking scripts, not the employer&#39;s architecture, software, deployed CRM/ERP or integrations.</p></div>

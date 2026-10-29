@@ -63,72 +63,209 @@
       <div class="wrap">
         <h2 id="projects-title">Featured projects</h2>
         <p class="section__lede">Each project pairs a documented professional workstream with a separate, simplified public implementation. The three Python demonstrations run locally; the B2B systems case study is a conceptual design with executable consistency checks. None of the public examples claims to be the deployed workplace system.</p>
+        <p class="section__visual-intro">The left panels show schematic public-model inputs; the right panels show recorded synthetic outputs or checked conceptual examples. These are not employer screenshots, performance improvements or operational before-and-after measurements.</p>
         <ul class="cards"><li>
-      <article class="card" aria-labelledby="card-synthetic-data-quality-pipeline">
-        <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/data-quality-results-card-dark.svg" width="440" height="260"><img src="./assets/visuals/data-quality-results-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
-        <p class="chip">Independent / Synthetic Demonstration</p>
-        <h3 id="card-synthetic-data-quality-pipeline">Synthetic Data Quality Pipeline</h3>
-        <p class="card__connection"><strong>Related professional work:</strong> Inventory data migration and exception review</p>
-        <dl class="facts">
-          <dt>Problem</dt><dd>Inventory records mix missing identifiers, ambiguous categories and quantities that look alike but mean different things.</dd>
-          <dt>Method</dt><dd>A seeded command-line pipeline normalizes and validates fictional records, maps categories by exact alias, and routes ambiguous or invalid rows to a traceable exceptions file instead of guessing.</dd>
-          <dt>Recorded result</dt><dd>60 input rows = 37 accepted + 23 rejected; 21 tests passed (agent-run).</dd>
-        </dl>
-        <ul class="tags"><li>Python</li><li>CSV ETL</li><li>Deterministic reference mapping</li><li>pytest</li></ul>
-        <div class="actions">
-          <a class="btn btn--primary" href="./projects/synthetic-data-quality-pipeline/">Read case study<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
-          <a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline">Source on GitHub<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
+      <article class="card card--transformation" aria-labelledby="card-synthetic-data-quality-pipeline">
+        <figure class="transformation transformation--card" aria-label="Illustrative before and after: Synthetic Data Quality Pipeline">
+      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
+        <strong>From inconsistent records to traceable decisions</strong></div>
+      <div class="transformation__panels">
+        <div class="transformation__panel transformation__panel--before">
+          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
+            <span class="transformation__bar-note">Input / question</span></div>
+          <div class="transformation__canvas"><div class="transform-scene transform-scene--records">
+      <div class="transform-scene__overline">Unresolved source records</div>
+      <div class="transform-scene__items"><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">01</span>
+      <span class="transform-scene__item-label">Duplicate identifier</span>
+      <span class="transform-scene__indicator" aria-hidden="true">!</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">02</span>
+      <span class="transform-scene__item-label">Ambiguous category</span>
+      <span class="transform-scene__indicator" aria-hidden="true">!</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">03</span>
+      <span class="transform-scene__item-label">Invalid date</span>
+      <span class="transform-scene__indicator" aria-hidden="true">!</span>
+    </div></div>
+      <p class="transform-scene__question">Which rows can be safely accepted?</p>
+    </div></div>
+        </div>
+        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
+        <div class="transformation__panel transformation__panel--after">
+          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
+            <span class="transformation__bar-note">Public model output</span></div>
+          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/data-quality-results-card-dark.svg" width="440" height="260"><img src="./assets/visuals/data-quality-results-card.svg" alt="Synthetic sample chart: 60 rows, 37 accepted and 23 held for review. Review reasons, one per row: duplicate ID 4; ambiguous category, invalid date, invalid quantity and unknown category 3 each; missing ID and missing quantity 2 each; missing category, missing date and missing item name 1 each." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+          <p class="transformation__result-note">Validated or flagged · 37 accepted · 23 held for review</p>
+        </div>
+      </div>
+
+    </figure>
+        <div class="card__body">
+          <p class="chip">Independent / Synthetic Demonstration</p>
+          <h3 id="card-synthetic-data-quality-pipeline">Synthetic Data Quality Pipeline</h3>
+          <p class="card__takeaway">All 60 fictional rows are accounted for; unresolved entries are held for review, not guessed into place.</p>
+          <p class="card__connection"><strong>Related professional work:</strong> Inventory data migration and exception review</p>
+          <p class="card__evidence"><strong>Public-demo evidence:</strong> 60 input rows = 37 accepted + 23 rejected; 21 tests passed (agent-run).</p>
+          <ul class="tags"><li>Python</li><li>CSV ETL</li><li>Deterministic reference mapping</li><li>pytest</li></ul>
+          <div class="actions">
+            <a class="btn btn--primary" href="./projects/synthetic-data-quality-pipeline/">Explore transformation &amp; case study<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
+            <a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline">Source on GitHub<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
+          </div>
         </div>
       </article>
     </li><li>
-      <article class="card" aria-labelledby="card-inventory-shipping-optimization-lab">
-        <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/inventory-scenarios-card-dark.svg" width="440" height="260"><img src="./assets/visuals/inventory-scenarios-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
-        <p class="chip">Independent / Synthetic Demonstration</p>
-        <h3 id="card-inventory-shipping-optimization-lab">Inventory and Shipping Optimization Lab</h3>
-        <p class="card__connection"><strong>Related professional work:</strong> Implemented inventory recommendation capability</p>
-        <dl class="facts">
-          <dt>Problem</dt><dd>Shipping every requested unit is not always worthwhile when opening a container incurs a fixed charge.</dd>
-          <dt>Method</dt><dd>An integer program solved with PuLP and CBC allocates fictional stock under demand, mass and volume limits, trading shortage penalties against container charges. A separate checker revalidates every plan.</dd>
-          <dt>Recorded result</dt><dd>Five scenarios reproduce byte-identical results; 130 tests passed (agent-run).</dd>
-        </dl>
-        <ul class="tags"><li>Python</li><li>PuLP/CBC</li><li>Integer optimization</li><li>Independent feasibility checks</li></ul>
-        <div class="actions">
-          <a class="btn btn--primary" href="./projects/inventory-shipping-optimization-lab/">Read case study<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
-          <a class="btn" href="https://github.com/h-yang-26/inventory-shipping-optimization-lab">Source on GitHub<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
+      <article class="card card--transformation" aria-labelledby="card-inventory-shipping-optimization-lab">
+        <figure class="transformation transformation--card" aria-label="Illustrative before and after: Inventory and Shipping Optimization Lab">
+      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
+        <strong>From an unallocated request to constraint-checked scenarios</strong></div>
+      <div class="transformation__panels">
+        <div class="transformation__panel transformation__panel--before">
+          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
+            <span class="transformation__bar-note">Input / question</span></div>
+          <div class="transformation__canvas"><div class="transform-scene transform-scene--capacity">
+      <div class="transform-scene__overline">Request + limits</div>
+      <div class="transform-scene__items"><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">01</span>
+      <span class="transform-scene__item-label">309 units requested</span>
+      <span class="transform-scene__indicator" aria-hidden="true">◌</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">02</span>
+      <span class="transform-scene__item-label">Mass constraint</span>
+      <span class="transform-scene__indicator" aria-hidden="true">◌</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">03</span>
+      <span class="transform-scene__item-label">Volume constraint</span>
+      <span class="transform-scene__indicator" aria-hidden="true">◌</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">04</span>
+      <span class="transform-scene__item-label">Available inventory</span>
+      <span class="transform-scene__indicator" aria-hidden="true">◌</span>
+    </div></div>
+      <p class="transform-scene__question">What allocation is feasible?</p>
+    </div></div>
+        </div>
+        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
+        <div class="transformation__panel transformation__panel--after">
+          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
+            <span class="transformation__bar-note">Public model output</span></div>
+          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/inventory-scenarios-card-dark.svg" width="440" height="260"><img src="./assets/visuals/inventory-scenarios-card.svg" alt="Stacked bars of units shipped and short out of 309 requested: normal 309 shipped; high shortage penalty 130 shipped and 179 short; tight capacity 112 shipped and 197 short; low shortage penalty and no inventory 0 shipped and 309 short." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+          <p class="transformation__result-note">Modelled allocation · Five scenarios · shipped and short units</p>
+        </div>
+      </div>
+
+    </figure>
+        <div class="card__body">
+          <p class="chip">Independent / Synthetic Demonstration</p>
+          <h3 id="card-inventory-shipping-optimization-lab">Inventory and Shipping Optimization Lab</h3>
+          <p class="card__takeaway">The optimizer distinguishes demand from what can be shipped under fictional stock, capacity and cost assumptions.</p>
+          <p class="card__connection"><strong>Related professional work:</strong> Implemented inventory recommendation capability</p>
+          <p class="card__evidence"><strong>Public-demo evidence:</strong> Five scenarios reproduce byte-identical results; 130 tests passed (agent-run).</p>
+          <ul class="tags"><li>Python</li><li>PuLP/CBC</li><li>Integer optimization</li><li>Independent feasibility checks</li></ul>
+          <div class="actions">
+            <a class="btn btn--primary" href="./projects/inventory-shipping-optimization-lab/">Explore transformation &amp; case study<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
+            <a class="btn" href="https://github.com/h-yang-26/inventory-shipping-optimization-lab">Source on GitHub<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
+          </div>
         </div>
       </article>
     </li><li>
-      <article class="card" aria-labelledby="card-product-usage-analytics-demo">
-        <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/analytics-funnel-card-dark.svg" width="440" height="260"><img src="./assets/visuals/analytics-funnel-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
-        <p class="chip">Independent / Synthetic Demonstration</p>
-        <h3 id="card-product-usage-analytics-demo">Product Usage Analytics Demo</h3>
-        <p class="card__connection"><strong>Related professional work:</strong> Live administrative usage and storage reporting</p>
-        <dl class="facts">
-          <dt>Problem</dt><dd>Event volume, distinct users and progression through a workflow answer different product questions.</dd>
-          <dt>Method</dt><dd>A seeded event generator feeds separate validation and metric modules and a local Streamlit dashboard with explicit filters, denominators and an ordered session funnel.</dd>
-          <dt>Recorded result</dt><dd>5766 raw events reconcile to 5735 valid; 44 tests passed (agent-run).</dd>
-        </dl>
-        <ul class="tags"><li>Python/pandas</li><li>Streamlit</li><li>Altair</li><li>Ordered session funnels</li></ul>
-        <div class="actions">
-          <a class="btn btn--primary" href="./projects/product-usage-analytics-demo/">Read case study<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
-          <a class="btn" href="https://github.com/h-yang-26/product-usage-analytics-demo">Source on GitHub<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
+      <article class="card card--transformation" aria-labelledby="card-product-usage-analytics-demo">
+        <figure class="transformation transformation--card" aria-label="Illustrative before and after: Product Usage Analytics Demo">
+      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
+        <strong>From raw telemetry to interpretable session metrics</strong></div>
+      <div class="transformation__panels">
+        <div class="transformation__panel transformation__panel--before">
+          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
+            <span class="transformation__bar-note">Input / question</span></div>
+          <div class="transformation__canvas"><div class="transform-scene transform-scene--events">
+      <div class="transform-scene__overline">Unvalidated event stream</div>
+      <div class="transform-scene__items"><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">01</span>
+      <span class="transform-scene__item-label">5,766 raw event rows</span>
+      <span class="transform-scene__indicator" aria-hidden="true">·</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">02</span>
+      <span class="transform-scene__item-label">Duplicate event IDs</span>
+      <span class="transform-scene__indicator" aria-hidden="true">·</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">03</span>
+      <span class="transform-scene__item-label">Conflicting / invalid rows</span>
+      <span class="transform-scene__indicator" aria-hidden="true">·</span>
+    </div></div>
+      <p class="transform-scene__question">Which events belong in the denominator?</p>
+    </div></div>
+        </div>
+        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
+        <div class="transformation__panel transformation__panel--after">
+          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
+            <span class="transformation__bar-note">Public model output</span></div>
+          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/analytics-funnel-card-dark.svg" width="440" height="260"><img src="./assets/visuals/analytics-funnel-card.svg" alt="Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+          <p class="transformation__result-note">Ordered session funnel · 1,357 opened → 844 searched → 619 viewed detail</p>
+        </div>
+      </div>
+
+    </figure>
+        <div class="card__body">
+          <p class="chip">Independent / Synthetic Demonstration</p>
+          <h3 id="card-product-usage-analytics-demo">Product Usage Analytics Demo</h3>
+          <p class="card__takeaway">Filtering invalid events and defining session order makes the public-demo funnel auditable.</p>
+          <p class="card__connection"><strong>Related professional work:</strong> Live administrative usage and storage reporting</p>
+          <p class="card__evidence"><strong>Public-demo evidence:</strong> 5766 raw events reconcile to 5735 valid; 44 tests passed (agent-run).</p>
+          <ul class="tags"><li>Python/pandas</li><li>Streamlit</li><li>Altair</li><li>Ordered session funnels</li></ul>
+          <div class="actions">
+            <a class="btn btn--primary" href="./projects/product-usage-analytics-demo/">Explore transformation &amp; case study<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
+            <a class="btn" href="https://github.com/h-yang-26/product-usage-analytics-demo">Source on GitHub<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
+          </div>
         </div>
       </article>
     </li><li>
-      <article class="card" aria-labelledby="card-b2b-sales-systems-case-study">
-        <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/b2b-quantities-card-dark.svg" width="440" height="260"><img src="./assets/visuals/b2b-quantities-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
-        <p class="chip">Hypothetical Systems-Design Exercise</p>
-        <h3 id="card-b2b-sales-systems-case-study">B2B Sales Systems Case Study</h3>
-        <p class="card__connection"><strong>Related professional work:</strong> Deployed industrial B2B platform development</p>
-        <dl class="facts">
-          <dt>Problem</dt><dd>A quotation, an accepted order, reserved stock and a shipment are different business facts; adding them together double counts demand.</dd>
-          <dt>Method</dt><dd>A documented sales lifecycle, entity glossary, Mermaid diagrams, three architecture decision records and five metric definitions, checked by a small standard-library calculator. The architecture is a proposed design, not an implemented system.</dd>
-          <dt>Recorded result</dt><dd>Consistency checks PASS; 30 unittest tests passed (agent-run).</dd>
-        </dl>
-        <ul class="tags"><li>Domain modeling</li><li>Mermaid</li><li>Architecture decision records</li><li>Python standard-library checks</li></ul>
-        <div class="actions">
-          <a class="btn btn--primary" href="./projects/b2b-sales-systems-case-study/">Read case study<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
-          <a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study">Source on GitHub<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
+      <article class="card card--transformation" aria-labelledby="card-b2b-sales-systems-case-study">
+        <figure class="transformation transformation--card" aria-label="Illustrative before and after: B2B Sales Systems Case Study">
+      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
+        <strong>From mixed business quantities to distinct lifecycle facts</strong></div>
+      <div class="transformation__panels">
+        <div class="transformation__panel transformation__panel--before">
+          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
+            <span class="transformation__bar-note">Input / question</span></div>
+          <div class="transformation__canvas"><div class="transform-scene transform-scene--stages">
+      <div class="transform-scene__overline">Stage counts without definitions</div>
+      <div class="transform-scene__items"><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">01</span>
+      <span class="transform-scene__item-label">4 units quoted</span>
+      <span class="transform-scene__indicator" aria-hidden="true">?</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">02</span>
+      <span class="transform-scene__item-label">2 units ordered</span>
+      <span class="transform-scene__indicator" aria-hidden="true">?</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">03</span>
+      <span class="transform-scene__item-label">1 unit shipped</span>
+      <span class="transform-scene__indicator" aria-hidden="true">?</span>
+    </div></div>
+      <p class="transform-scene__question">These quantities must not be added together.</p>
+    </div></div>
+        </div>
+        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
+        <div class="transformation__panel transformation__panel--after">
+          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
+            <span class="transformation__bar-note">Public model output</span></div>
+          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/b2b-quantities-card-dark.svg" width="440" height="260"><img src="./assets/visuals/b2b-quantities-card.svg" alt="Unit chart for one fictional order: 4 units quoted; 2 ordered and 2 not converted; 1 shipped and 1 still owed." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+          <p class="transformation__result-note">Separated business states · 2 converted · 1 shipped · 1 still owed</p>
+        </div>
+      </div>
+
+    </figure>
+        <div class="card__body">
+          <p class="chip">Hypothetical Systems-Design Exercise</p>
+          <h3 id="card-b2b-sales-systems-case-study">B2B Sales Systems Case Study</h3>
+          <p class="card__takeaway">The design distinguishes offers, commercial commitments and fulfillment so the same units are not counted as separate demand.</p>
+          <p class="card__connection"><strong>Related professional work:</strong> Deployed industrial B2B platform development</p>
+          <p class="card__evidence"><strong>Public-demo evidence:</strong> Consistency checks PASS; 30 unittest tests passed (agent-run).</p>
+          <ul class="tags"><li>Domain modeling</li><li>Mermaid</li><li>Architecture decision records</li><li>Python standard-library checks</li></ul>
+          <div class="actions">
+            <a class="btn btn--primary" href="./projects/b2b-sales-systems-case-study/">Explore transformation &amp; case study<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
+            <a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study">Source on GitHub<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
+          </div>
         </div>
       </article>
     </li></ul>

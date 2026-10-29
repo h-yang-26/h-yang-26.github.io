@@ -46,10 +46,45 @@
       <div class="cs-layout">
         <nav class="toc" aria-label="On this page">
           <p class="toc__title">On this page</p>
-          <ol><li><a href="#professional">Professional work and public-demo boundary</a></li><li><a href="#problem">The problem</a></li><li><a href="#visuals">System diagrams and synthetic results</a></li><li><a href="#built">What the demonstration contains</a></li><li><a href="#approach">Technical approach</a></li><li><a href="#validation">Validation and results</a></li><li><a href="#limitations">Tradeoffs and limitations</a></li><li><a href="#contribution">My contribution</a></li><li><a href="#learned">What I learned</a></li><li><a href="#academic-connections">Academic connections</a></li><li><a href="#reproduce">Source and reproducibility</a></li></ol>
+          <ol><li><a href="#transformation">Before and after: the public model</a></li><li><a href="#professional">Professional work and public-demo boundary</a></li><li><a href="#problem">The problem</a></li><li><a href="#visuals">System diagrams and synthetic results</a></li><li><a href="#built">What the demonstration contains</a></li><li><a href="#approach">Technical approach</a></li><li><a href="#validation">Validation and results</a></li><li><a href="#limitations">Tradeoffs and limitations</a></li><li><a href="#contribution">My contribution</a></li><li><a href="#learned">What I learned</a></li><li><a href="#academic-connections">Academic connections</a></li><li><a href="#reproduce">Source and reproducibility</a></li></ol>
         </nav>
         <article class="prose">
-          <section id="professional" aria-labelledby="professional-title">
+          <section id="transformation" aria-labelledby="transformation-title">
+            <h2 id="transformation-title">Before and after: the public model</h2><figure class="transformation transformation--feature" aria-label="Illustrative before and after: Product Usage Analytics Demo">
+      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
+        <strong>From raw telemetry to interpretable session metrics</strong></div>
+      <div class="transformation__panels">
+        <div class="transformation__panel transformation__panel--before">
+          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
+            <span class="transformation__bar-note">Input / question</span></div>
+          <div class="transformation__canvas"><div class="transform-scene transform-scene--events">
+      <div class="transform-scene__overline">Unvalidated event stream</div>
+      <div class="transform-scene__items"><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">01</span>
+      <span class="transform-scene__item-label">5,766 raw event rows</span>
+      <span class="transform-scene__indicator" aria-hidden="true">·</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">02</span>
+      <span class="transform-scene__item-label">Duplicate event IDs</span>
+      <span class="transform-scene__indicator" aria-hidden="true">·</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">03</span>
+      <span class="transform-scene__item-label">Conflicting / invalid rows</span>
+      <span class="transform-scene__indicator" aria-hidden="true">·</span>
+    </div></div>
+      <p class="transform-scene__question">Which events belong in the denominator?</p>
+    </div></div>
+        </div>
+        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
+        <div class="transformation__panel transformation__panel--after">
+          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
+            <span class="transformation__bar-note">Public model output</span></div>
+          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/analytics-funnel-card-dark.svg" width="440" height="260"><img src="../../assets/visuals/analytics-funnel-card.svg" alt="Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+          <p class="transformation__result-note">Ordered session funnel · 1,357 opened → 844 searched → 619 viewed detail</p>
+        </div>
+      </div>
+      <figcaption class="transformation__disclosure">The left panel schematically represents validation questions. The right chart displays recorded fictional-session results; it is not a production conversion rate or employer adoption statistic.</figcaption>
+    </figure></section><section id="professional" aria-labelledby="professional-title">
             <h2 id="professional-title">Professional work and public-demo boundary</h2><div class="professional-bridge">
       <div><h3>Relevant professional responsibility</h3><p>I expanded live administrator reporting for an industrial B2B business platform to track adoption by role and organization, weekly retention and storage growth, while distinguishing frontend reporting needs from backend data requirements.</p></div>
       <div><h3>Scope of this public demonstration</h3><p>This public Streamlit/pandas demonstration uses invented users, sessions and events to explore metric definitions, filtering and reconciliation. It does not display or reproduce company telemetry, production dashboards or business performance.</p></div>

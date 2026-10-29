@@ -101,7 +101,8 @@
     "footer": "Professional experience and public demonstrations are distinct: real workplace responsibilities are described at a high level, while the linked examples use fictional data and independent reduced-scope implementations. Synthetic outputs do not measure employer or production performance.",
     "privacy": "This site sets no cookies and loads no analytics, tracking scripts or third-party content.",
     "headline": "Enterprise-motivated technical demonstrations",
-    "professionalDisclosure": "The professional work described here includes live, integrated or deployed capabilities, with project-specific status indicated below. The linked GitHub repositories are independent representations built from fictional inputs and general methods; their test results and example metrics are not employer results."
+    "professionalDisclosure": "The professional work described here includes live, integrated or deployed capabilities, with project-specific status indicated below. The linked GitHub repositories are independent representations built from fictional inputs and general methods; their test results and example metrics are not employer results.",
+    "transformationIntro": "The left panels show schematic public-model inputs; the right panels show recorded synthetic outputs or checked conceptual examples. These are not employer screenshots, performance improvements or operational before-and-after measurements."
   },
   "projects": [
     {
@@ -218,7 +219,22 @@
           }
         }
       ],
-      "thumbnail": "assets/visuals/data-quality-results.svg"
+      "thumbnail": "assets/visuals/data-quality-results.svg",
+      "transformation": {
+        "scene": "records",
+        "headline": "From inconsistent records to traceable decisions",
+        "beforeTitle": "Unresolved source records",
+        "beforeItems": [
+          "Duplicate identifier",
+          "Ambiguous category",
+          "Invalid date"
+        ],
+        "beforeNote": "Which rows can be safely accepted?",
+        "afterTitle": "Validated or flagged",
+        "afterNote": "37 accepted · 23 held for review",
+        "takeaway": "All 60 fictional rows are accounted for; unresolved entries are held for review, not guessed into place.",
+        "disclosure": "The left-hand input is a schematic of example error types, not a screenshot. The right-hand chart comes from the public synthetic demo's recorded output. Neither depicts employer data or measured workplace improvement."
+      }
     },
     {
       "slug": "inventory-shipping-optimization-lab",
@@ -336,7 +352,23 @@
           }
         }
       ],
-      "thumbnail": "assets/visuals/inventory-scenarios.svg"
+      "thumbnail": "assets/visuals/inventory-scenarios.svg",
+      "transformation": {
+        "scene": "capacity",
+        "headline": "From an unallocated request to constraint-checked scenarios",
+        "beforeTitle": "Request + limits",
+        "beforeItems": [
+          "309 units requested",
+          "Mass constraint",
+          "Volume constraint",
+          "Available inventory"
+        ],
+        "beforeNote": "What allocation is feasible?",
+        "afterTitle": "Modelled allocation",
+        "afterNote": "Five scenarios · shipped and short units",
+        "takeaway": "The optimizer distinguishes demand from what can be shipped under fictional stock, capacity and cost assumptions.",
+        "disclosure": "The left panel represents model inputs, not a measured pre-optimization shipment. The right chart reproduces synthetic scenario outputs, not employer cost savings or deployed operations."
+      }
     },
     {
       "slug": "product-usage-analytics-demo",
@@ -454,7 +486,22 @@
           }
         }
       ],
-      "thumbnail": "assets/visuals/analytics-funnel.svg"
+      "thumbnail": "assets/visuals/analytics-funnel.svg",
+      "transformation": {
+        "scene": "events",
+        "headline": "From raw telemetry to interpretable session metrics",
+        "beforeTitle": "Unvalidated event stream",
+        "beforeItems": [
+          "5,766 raw event rows",
+          "Duplicate event IDs",
+          "Conflicting / invalid rows"
+        ],
+        "beforeNote": "Which events belong in the denominator?",
+        "afterTitle": "Ordered session funnel",
+        "afterNote": "1,357 opened → 844 searched → 619 viewed detail",
+        "takeaway": "Filtering invalid events and defining session order makes the public-demo funnel auditable.",
+        "disclosure": "The left panel schematically represents validation questions. The right chart displays recorded fictional-session results; it is not a production conversion rate or employer adoption statistic."
+      }
     },
     {
       "slug": "b2b-sales-systems-case-study",
@@ -572,7 +619,22 @@
           }
         }
       ],
-      "thumbnail": "assets/visuals/b2b-quantities.svg"
+      "thumbnail": "assets/visuals/b2b-quantities.svg",
+      "transformation": {
+        "scene": "stages",
+        "headline": "From mixed business quantities to distinct lifecycle facts",
+        "beforeTitle": "Stage counts without definitions",
+        "beforeItems": [
+          "4 units quoted",
+          "2 units ordered",
+          "1 unit shipped"
+        ],
+        "beforeNote": "These quantities must not be added together.",
+        "afterTitle": "Separated business states",
+        "afterNote": "2 converted · 1 shipped · 1 still owed",
+        "takeaway": "The design distinguishes offers, commercial commitments and fulfillment so the same units are not counted as separate demand.",
+        "disclosure": "Both panels illustrate a hypothetical business scenario. The right chart is a conceptual arithmetic check, not a screenshot or claim about an implemented employer architecture."
+      }
     }
   ],
   "appliedThinking": {

@@ -46,10 +46,45 @@
       <div class="cs-layout">
         <nav class="toc" aria-label="On this page">
           <p class="toc__title">On this page</p>
-          <ol><li><a href="#professional">Professional work and public-demo boundary</a></li><li><a href="#problem">The problem</a></li><li><a href="#visuals">System diagrams and synthetic results</a></li><li><a href="#built">What the demonstration contains</a></li><li><a href="#approach">Technical approach</a></li><li><a href="#validation">Validation and results</a></li><li><a href="#limitations">Tradeoffs and limitations</a></li><li><a href="#contribution">My contribution</a></li><li><a href="#learned">What I learned</a></li><li><a href="#academic-connections">Academic connections</a></li><li><a href="#reproduce">Source and reproducibility</a></li></ol>
+          <ol><li><a href="#transformation">Before and after: the public model</a></li><li><a href="#professional">Professional work and public-demo boundary</a></li><li><a href="#problem">The problem</a></li><li><a href="#visuals">System diagrams and synthetic results</a></li><li><a href="#built">What the demonstration contains</a></li><li><a href="#approach">Technical approach</a></li><li><a href="#validation">Validation and results</a></li><li><a href="#limitations">Tradeoffs and limitations</a></li><li><a href="#contribution">My contribution</a></li><li><a href="#learned">What I learned</a></li><li><a href="#academic-connections">Academic connections</a></li><li><a href="#reproduce">Source and reproducibility</a></li></ol>
         </nav>
         <article class="prose">
-          <section id="professional" aria-labelledby="professional-title">
+          <section id="transformation" aria-labelledby="transformation-title">
+            <h2 id="transformation-title">Before and after: the public model</h2><figure class="transformation transformation--feature" aria-label="Illustrative before and after: Synthetic Data Quality Pipeline">
+      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
+        <strong>From inconsistent records to traceable decisions</strong></div>
+      <div class="transformation__panels">
+        <div class="transformation__panel transformation__panel--before">
+          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
+            <span class="transformation__bar-note">Input / question</span></div>
+          <div class="transformation__canvas"><div class="transform-scene transform-scene--records">
+      <div class="transform-scene__overline">Unresolved source records</div>
+      <div class="transform-scene__items"><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">01</span>
+      <span class="transform-scene__item-label">Duplicate identifier</span>
+      <span class="transform-scene__indicator" aria-hidden="true">!</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">02</span>
+      <span class="transform-scene__item-label">Ambiguous category</span>
+      <span class="transform-scene__indicator" aria-hidden="true">!</span>
+    </div><div class="transform-scene__item">
+      <span class="transform-scene__index" aria-hidden="true">03</span>
+      <span class="transform-scene__item-label">Invalid date</span>
+      <span class="transform-scene__indicator" aria-hidden="true">!</span>
+    </div></div>
+      <p class="transform-scene__question">Which rows can be safely accepted?</p>
+    </div></div>
+        </div>
+        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
+        <div class="transformation__panel transformation__panel--after">
+          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
+            <span class="transformation__bar-note">Public model output</span></div>
+          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/data-quality-results-card-dark.svg" width="440" height="260"><img src="../../assets/visuals/data-quality-results-card.svg" alt="Synthetic sample chart: 60 rows, 37 accepted and 23 held for review. Review reasons, one per row: duplicate ID 4; ambiguous category, invalid date, invalid quantity and unknown category 3 each; missing ID and missing quantity 2 each; missing category, missing date and missing item name 1 each." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+          <p class="transformation__result-note">Validated or flagged · 37 accepted · 23 held for review</p>
+        </div>
+      </div>
+      <figcaption class="transformation__disclosure">The left-hand input is a schematic of example error types, not a screenshot. The right-hand chart comes from the public synthetic demo&#39;s recorded output. Neither depicts employer data or measured workplace improvement.</figcaption>
+    </figure></section><section id="professional" aria-labelledby="professional-title">
             <h2 id="professional-title">Professional work and public-demo boundary</h2><div class="professional-bridge">
       <div><h3>Relevant professional responsibility</h3><p>In my professional role, I led an accuracy-first migration of approximately 2,500 inventory records into an in-house quoting module. I coordinated five review rounds with sales and product teams to resolve ambiguous equipment rules and legacy free-text entries before launch.</p></div>
       <div><h3>Scope of this public demonstration</h3><p>This public Python pipeline reconstructs selected validation and exception-handling principles using fictional records, invented mapping rules and independently reproducible checks. It is not the employer&#39;s migration implementation or its data.</p></div>
