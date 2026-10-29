@@ -867,3 +867,15 @@ h1 .ph { font-size: 0.5em; vertical-align: middle; }
  .transformation__heading strong { font-size: 1.03rem; }
  .card--transformation .card__body { padding-inline: 1.1rem; }
 }
+
+/* Editorial cards: keep the after-image readable by giving comparisons room. */
+.cards { grid-template-columns: minmax(0,1fr); }
+.card--transformation { display: grid; grid-template-columns: minmax(0,1.65fr) minmax(0,1fr); align-items: stretch; }
+.card--transformation .card__body { border-left: 1px solid var(--border); }
+.card--transformation .transformation__heading { padding-inline: 1.2rem; }
+.transformation__canvas--result { background: var(--surface); }
+@media (max-width: 56rem) {
+  .card--transformation { grid-template-columns: minmax(0,1fr); }
+  .card--transformation .card__body { border-left: 0; border-top: 1px solid var(--border); }
+  .transformation--card .transformation__canvas--result img { max-width: 440px; margin-inline: auto; }
+}
