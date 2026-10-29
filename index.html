@@ -12,7 +12,7 @@
 <body data-page="home" data-root=".">
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header" id="site-header"><div class="wrap header__inner">
-      <a class="brand" href="./">Portfolio</a>
+      <a class="brand" href="./"><span class="ph"><span class="ph__tag">Placeholder</span> Name</span></a>
       <nav aria-label="Primary">
         <ul class="nav">
           <li><a href="./#experience">Experience</a></li>
@@ -24,14 +24,27 @@
       </nav>
     </div>
 <!-- /site-header --></header>
-  <div class="draft-banner" id="draft-banner" role="region" aria-label="Draft status" hidden>
+  <div class="draft-banner" id="draft-banner" role="region" aria-label="Draft status"><div class="wrap">
+      <p><strong>Draft preview.</strong> 4 placeholders and 0 unpublished links still need owner input. Resolve or omit them before publishing.</p>
+      <details>
+        <summary>Show open items</summary>
+        <ul class="pending-list">
+          <li>Name <code>owner.name</code></li><li>Public contact email <code>owner.email</code></li><li>Resume file or link <code>owner.resume</code></li><li>Other links (LinkedIn, etc.) <code>owner.otherLinks</code></li>
+        </ul>
+      </details>
+    </div>
 <!-- /draft-banner --></div>
   <main id="main" tabindex="-1" data-prerendered="true">
-    <section class="hero wrap" aria-labelledby="intro-title">
-      <p class="eyebrow">Independent portfolio · Enterprise-informed public examples</p>
-      <h1 id="intro-title">Enterprise-motivated technical demonstrations</h1>
-
-      <p class="hero__summary">Four independently developed, testable public demonstrations informed by professional work on industrial B2B systems. Each deliberately narrows a real-world problem into a fictional, reproducible example—not an export of employer code, data or architecture.</p>
+    <section class="hero hero--story wrap" aria-labelledby="intro-title">
+      <p class="eyebrow"><span class="ph"><span class="ph__tag">Placeholder</span> Name</span> · Business analysis · Applied mathematics</p>
+      <h1 id="intro-title">I turn messy business data into decisions people can check.</h1>
+      <p class="hero__lede">I’m an IT business analyst intern on an industrial B2B platform, with a background in applied mathematics and philosophy. The four projects below rebuild problems from that work with fictional data, so you can see how I reason, not just what I did.</p>
+      <div class="actions hero__actions"><a class="btn btn--primary" href="#projects">See the work</a><a class="btn btn--off" role="link" aria-disabled="true"><svg class="icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false"><path fill="currentColor" d="M5 7V5a3 3 0 1 1 6 0v2h.5A1.5 1.5 0 0 1 13 8.5v5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 13.5v-5A1.5 1.5 0 0 1 4.5 7H5Zm1.5 0h3V5a1.5 1.5 0 1 0-3 0v2Z"/></svg><span>Résumé</span><span class="btn__note">Placeholder</span></a><a class="btn btn--off" role="link" aria-disabled="true"><svg class="icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false"><path fill="currentColor" d="M5 7V5a3 3 0 1 1 6 0v2h.5A1.5 1.5 0 0 1 13 8.5v5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 13.5v-5A1.5 1.5 0 0 1 4.5 7H5Zm1.5 0h3V5a1.5 1.5 0 1 0-3 0v2Z"/></svg><span>Email</span><span class="btn__note">Placeholder</span></a><a class="btn btn--off" role="link" aria-disabled="true"><svg class="icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false"><path fill="currentColor" d="M5 7V5a3 3 0 1 1 6 0v2h.5A1.5 1.5 0 0 1 13 8.5v5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 13.5v-5A1.5 1.5 0 0 1 4.5 7H5Zm1.5 0h3V5a1.5 1.5 0 1 0-3 0v2Z"/></svg><span>LinkedIn</span><span class="btn__note">Placeholder</span></a><a class="btn" href="https://github.com/h-yang-26">GitHub</a></div>
+      <figure class="showcase">
+      <p class="showcase__title">Messy records in. Traceable data out.</p>
+      <picture><source media="(prefers-color-scheme: dark) and (max-width: 49.99rem)" srcset="./assets/visuals/ba-data-narrow-dark.svg" width="420" height="872"><source media="(max-width: 49.99rem)" srcset="./assets/visuals/ba-data-narrow.svg" width="420" height="872"><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/ba-data-dark.svg" width="1000" height="470"><img src="./assets/visuals/ba-data.svg" alt="Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons." width="1000" height="470" decoding="async"></picture>
+      <figcaption>Real rows from the Data Quality Pipeline’s fictional sample. <a href="./projects/synthetic-data-quality-pipeline/">See how it works →</a></figcaption>
+    </figure>
     </section>
 
     <section class="section section--experience" id="experience" aria-labelledby="experience-title">
@@ -153,7 +166,7 @@
     <section class="section" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
         <h2 id="contact-title">Public links</h2>
-        <dl class="contact"><dt>GitHub</dt><dd><a href="https://github.com/h-yang-26">github.com/h-yang-26</a></dd></dl>
+        <dl class="contact"><dt>Email</dt><dd><span class="ph"><span class="ph__tag">Placeholder</span> Public contact email</span></dd><dt>Resume</dt><dd><span class="ph"><span class="ph__tag">Placeholder</span> Resume file or link</span></dd><dt>GitHub</dt><dd><a href="https://github.com/h-yang-26">github.com/h-yang-26</a></dd><dt>Other links</dt><dd><span class="ph"><span class="ph__tag">Placeholder</span> Other links (LinkedIn, etc.)</span></dd></dl>
       </div>
     </section>
 <!-- /main --></main>

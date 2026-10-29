@@ -1,15 +1,15 @@
 {
   "_help": "All site text lives here; layout lives in index.html, projects/*/index.html and assets/. Convention: null = pending owner input (shown as a visible placeholder and counted in the draft banner); false = intentionally omitted (nothing shown). Every personal field is in the 'owner' block. Inline text supports `code` and **bold** only. See README.md.",
   "owner": {
-    "_help": "Personal details are intentionally omitted in this release. Only add approved facts.",
-    "name": false,
+    "_help": "Name, public email, résumé and LinkedIn are pending (null) and show as placeholders until filled in; see _formats. Only add approved facts.",
+    "name": null,
     "githubUsername": "h-yang-26",
     "intro": false,
     "bio": false,
     "skills": false,
-    "email": false,
-    "resume": false,
-    "otherLinks": false,
+    "email": null,
+    "resume": null,
+    "otherLinks": null,
     "_formats": "intro: one short paragraph (string). bio: list of paragraphs. skills: list of strings. resume: {\"label\": \"Resume (PDF)\", \"url\": \"assets/resume.pdf\"}. otherLinks: list of {\"label\": \"LinkedIn\", \"url\": \"https://...\"}. professionalContext: list of paragraphs, exact owner-approved wording only.",
     "projectStatements": {
       "synthetic-data-quality-pipeline": {
@@ -96,12 +96,44 @@
   },
   "site": {
     "summary": "Four independently developed, testable public demonstrations informed by professional work on industrial B2B systems. Each deliberately narrows a real-world problem into a fictional, reproducible example—not an export of employer code, data or architecture.",
+    "hero": {
+      "eyebrow": "Business analysis · Applied mathematics",
+      "title": "I turn messy business data into decisions people can check.",
+      "lede": "I’m an IT business analyst intern on an industrial B2B platform, with a background in applied mathematics and philosophy. The four projects below rebuild problems from that work with fictional data, so you can see how I reason, not just what I did.",
+      "primaryCta": {
+        "label": "See the work",
+        "href": "#projects"
+      },
+      "visual": {
+        "src": "assets/visuals/ba-data.svg",
+        "title": "Messy records in. Traceable data out.",
+        "alt": "Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons.",
+        "caption": "Real rows from the Data Quality Pipeline’s fictional sample.",
+        "link": {
+          "label": "See how it works →",
+          "href": "projects/synthetic-data-quality-pipeline/"
+        },
+        "narrowMax": "49.99rem",
+        "eager": true,
+        "sizes": {
+          "wide": [
+            1000,
+            470
+          ],
+          "narrow": [
+            420,
+            872
+          ]
+        }
+      }
+    },
     "projectsIntro": "Each project pairs a documented professional workstream with a separate, simplified public implementation. The three Python demonstrations run locally; the B2B systems case study is a conceptual design with executable consistency checks. None of the public examples claims to be the deployed workplace system.",
     "runNote": "The Python projects run locally from their repositories. This static site shows their recorded results; it does not run them.",
     "footer": "Professional experience and public demonstrations are distinct: real workplace responsibilities are described at a high level, while the linked examples use fictional data and independent reduced-scope implementations. Synthetic outputs do not measure employer or production performance.",
     "privacy": "This site sets no cookies and loads no analytics, tracking scripts or third-party content.",
     "headline": "Enterprise-motivated technical demonstrations",
-    "professionalDisclosure": "The professional work described here includes live, integrated or deployed capabilities, with project-specific status indicated below. The linked GitHub repositories are independent representations built from fictional inputs and general methods; their test results and example metrics are not employer results."
+    "professionalDisclosure": "The professional work described here includes live, integrated or deployed capabilities, with project-specific status indicated below. The linked GitHub repositories are independent representations built from fictional inputs and general methods; their test results and example metrics are not employer results.",
+    "disclosure": "All data in these projects is fictional. They were built independently of my employer: AI tools did the implementation under my direction, and I approved the results."
   },
   "projects": [
     {
@@ -218,7 +250,107 @@
           }
         }
       ],
-      "thumbnail": "assets/visuals/data-quality-results.svg"
+      "thumbnail": "assets/visuals/data-quality-results.svg",
+      "story": {
+        "headline": "Moving messy records without guessing",
+        "lede": "A small Python pipeline that cleans what it safely can and hands everything else to a person, with the reason attached.",
+        "facts": [
+          {
+            "label": "My role",
+            "value": "Requirements, edge cases and approvals; AI tools did the implementation"
+          },
+          {
+            "label": "Built with",
+            "value": "Python, pytest"
+          },
+          {
+            "label": "Data",
+            "value": "60 fictional equipment records"
+          }
+        ],
+        "banner": {
+          "src": "assets/visuals/ba-data.svg",
+          "title": "Messy records in. Traceable data out.",
+          "alt": "Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons.",
+          "caption": "Real rows from this project’s fictional sample data.",
+          "narrowMax": "49.99rem",
+          "eager": true,
+          "sizes": {
+            "wide": [
+              1000,
+              470
+            ],
+            "narrow": [
+              420,
+              872
+            ]
+          }
+        },
+        "situation": [
+          "Before inventory moves into a new system, someone has to decide what every messy record means. Guess wrong and a pump gets quoted as a sensor, or a quantity nobody entered quietly becomes zero.",
+          "This project rebuilds that problem with 60 fictional equipment records and one rule: when the data can’t decide, a person does."
+        ],
+        "decisionsTitle": "Three decisions that shape it",
+        "decisions": [
+          {
+            "title": "Flag, don’t fix.",
+            "body": "A category like “pressure unit” could mean a pump or a sensor. Instead of picking one, the row goes to a person with the reason attached. It’s slower, but an ambiguous category is never resolved silently.",
+            "term": "Exact alias matching; no fuzzy matching.",
+            "visual": {
+              "src": "assets/visuals/tile-ambiguity.svg",
+              "alt": "Illustration: the label “pressure unit” could point to a pump or a sensor, so the row is sent to human review.",
+              "sizes": {
+                "wide": [
+                  440,
+                  520
+                ]
+              }
+            }
+          },
+          {
+            "title": "Accept one date format.",
+            "body": "03/04/2024 is March 4 to one reader and April 3 to another, and an impossible date like February 30th looks normal at a glance. Only real calendar dates written as YYYY-MM-DD get through.",
+            "term": "Strict `YYYY-MM-DD` with ASCII digits; impossible dates rejected.",
+            "visual": {
+              "src": "assets/visuals/tile-evidence.svg",
+              "alt": "Illustration: 03/04/2024 reads as March 4 in the US and April 3 in the UK, so the date is rejected rather than guessed.",
+              "sizes": {
+                "wide": [
+                  440,
+                  520
+                ]
+              }
+            }
+          },
+          {
+            "title": "Reject every copy of a duplicated ID.",
+            "body": "When two rows claim the same ID, nothing in the data says which one is real, so neither is kept. Rejecting only the second copy would quietly trust whichever happened to come first.",
+            "term": "IDs compared after trimming; case-sensitive."
+          }
+        ],
+        "result": {
+          "text": [
+            "All 60 rows are accounted for: 37 clean records and 23 held for review, each with its reason. Run it twice and you get the same files."
+          ],
+          "visuals": [
+            "assets/visuals/data-quality-results.svg"
+          ]
+        },
+        "next": [
+          "A simple review screen: each held row with its reason and the closest likely match shown, with the final call left to the reviewer."
+        ],
+        "technical": {
+          "notes": [
+            "Input and mapping files are checked for structural problems before anything is written; a malformed file stops the run with exit code 2, while bad rows become reviewable exceptions.",
+            "Every input row gets exactly one outcome, and `summary.json` reconciles input = accepted + rejected.",
+            "A blank quantity is missing, while an explicit `0` is a valid count; neither is defaulted.",
+            "Exceptions keep the source row number, the raw values and every error code, so a reviewer sees exactly what arrived.",
+            "Outputs carry no timestamps, so a rerun is byte-for-byte identical.",
+            "Standard-library Python at runtime; 21 pytest tests, including a small fixture whose expected output was worked out by hand."
+          ],
+          "linkLabel": "Full method, tests and run instructions on GitHub"
+        }
+      }
     },
     {
       "slug": "inventory-shipping-optimization-lab",
@@ -576,7 +708,7 @@
     }
   ],
   "appliedThinking": {
-    "_help": "Applied Thinking content. Publication authorized by the owner on 2026-10-28. Academic topics retain their explicit verification limits.",
+    "_help": "Applied Thinking content. Publication authorized by the owner on 2026-10-28. Course titles verified by the owner on 2026-10-29.",
     "moduleId": "applied-thinking",
     "draftStatus": "approved",
     "route": "applied-thinking/",
@@ -939,34 +1071,50 @@
       }
     ],
     "academicFoundations": {
-      "verificationStatus": "resume-draft-only; confirm exact course titles before publish",
+      "verificationStatus": "verified by owner 2026-10-29 (owner-supplied list of completed courses)",
       "rows": [
         {
-          "title": "Operations Research / Optimization",
+          "title": "Operations Research",
           "translation": "Choose among feasible alternatives subject to constraints."
+        },
+        {
+          "title": "Mathematical Modeling",
+          "translation": "Formalize interacting variables, relationships and assumptions so they can be tested."
+        },
+        {
+          "title": "Network Models",
+          "translation": "Represent dependencies as connections, so an effect can be traced through a system."
         },
         {
           "title": "Probability",
           "translation": "Represent uncertainty and update expectations."
         },
         {
-          "title": "Mathematical Modeling / Network Models",
-          "translation": "Formalize interacting variables, relationships and dependencies."
-        },
-        {
-          "title": "Numerical Linear Algebra",
-          "translation": "Represent and transform structured data, including matrix computation."
+          "title": "Ordinary Differential Equations",
+          "translation": "Model how a system changes over time, not just where it ends up."
         },
         {
           "title": "Real Analysis",
           "translation": "Examine the assumptions behind limits, continuity and convergence."
         },
         {
-          "title": "Symbolic Logic / Philosophy of Science",
-          "translation": "Evaluate arguments, evidence and methodological assumptions."
+          "title": "Topology",
+          "translation": "Ask which properties survive when a problem is stretched or reshaped."
         },
         {
-          "title": "High-Performance Computing",
+          "title": "Numerical Linear Algebra",
+          "translation": "Represent and transform structured data, including matrix computation."
+        },
+        {
+          "title": "Symbolic Logic",
+          "translation": "Check whether a conclusion actually follows from its premises."
+        },
+        {
+          "title": "Philosophy of Science",
+          "translation": "Ask what counts as evidence and how a method could mislead."
+        },
+        {
+          "title": "High Performance Computing",
           "translation": "Understand computational constraints on numerical approaches."
         }
       ],
@@ -1005,7 +1153,7 @@
       "intro": "What academic training changes about a problem",
       "approach": "Approach and academic connections",
       "method": "How I approach it",
-      "concepts": "Related academic concepts — not verified course titles",
+      "concepts": "Related coursework and concepts",
       "caveat": "Keep in view",
       "relatedProject": "Independent public demonstration",
       "conceptual": "Conceptual connection; no published demonstration claimed.",
@@ -1013,8 +1161,8 @@
       "backlinksIntro": "These are conceptual connections to the reasoning described in Applied Thinking. They do not claim formal implementation of every theory.",
       "draftTitle": "Applied Thinking · Draft for owner review",
       "draftBody": "First-person methodology, academic titles and professional boundaries require owner review before publication.",
-      "academicIntro": "The areas below connect academic topics to practical questions. They come from résumé drafts; exact course titles and completion have not been verified against a transcript. They are not a confirmed course list.",
-      "academicArea": "Academic area (unverified title)",
+      "academicIntro": "Courses I completed in applied mathematics and philosophy, and the practical question each one sharpens.",
+      "academicArea": "Course",
       "academicUse": "Connection to practical reasoning",
       "academicDeferred": "Detailed academic projects are deferred until reviewed artifacts are available.",
       "evidenceBoundary": "Evidence boundary",
@@ -1067,6 +1215,10 @@
       "date": "2026-10-28",
       "instruction": "Merge and publish",
       "scope": "Approval to publish the presented copy, including its explicit unverified academic-topic labels; this does not establish transcript verification."
+    },
+    "courseVerification": {
+      "date": "2026-10-29",
+      "note": "Owner supplied the verified list of completed courses; course titles are presented as completed coursework, a selection of the full list."
     }
   }
 }

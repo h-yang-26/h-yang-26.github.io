@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520" width="440" height="520" role="img" aria-labelledby="t"><title id="t">A container 100% full by volume may still not pack in 3D; the model states that limit.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7D8691"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8A5A0C"/></marker></defs><rect width="440" height="520" rx="18" fill="#FFFFFF"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="28" y="46" font-size="17" fill="#1C5785" font-weight="800" letter-spacing="1.2">SIMPLIFYING RESPONSIBLY</text>
+<text x="28" y="92" font-size="29" fill="#1A1D21" font-weight="800" data-box="24,60,392,80">100% full on paper.</text>
+<text x="28" y="128" font-size="29" fill="#1A1D21" font-weight="800" data-box="24,60,392,80">Does it really fit?</text>
+<text x="28" y="446" font-size="18" fill="#4F5660" data-box="24,424,392,86">My model keeps weight and volume and</text>
+<text x="28" y="471" font-size="18" fill="#4F5660" data-box="24,424,392,86">leaves out 3D packing, so no one</text>
+<text x="28" y="496" font-size="18" fill="#4F5660" data-box="24,424,392,86">mistakes it for a loading plan.</text>
+<text x="28" y="168" font-size="17" fill="#1A1D21" font-weight="800">Volume</text>
+<text x="196" y="168" font-size="17" fill="#1A1D21" font-weight="800" text-anchor="end">100%</text>
+<rect x="28" y="178" width="168" height="18" rx="9" fill="#E5EAEF"/>
+<rect x="28" y="178" width="168" height="18" rx="9" fill="#1C5785"/>
+<text x="28" y="224" font-size="17" fill="#1A1D21" font-weight="800">Weight</text>
+<text x="196" y="224" font-size="17" fill="#1A1D21" font-weight="800" text-anchor="end">82%</text>
+<rect x="28" y="234" width="168" height="18" rx="9" fill="#E5EAEF"/>
+<rect x="28" y="234" width="138" height="18" rx="9" fill="#1C5785"/>
+<text x="28" y="300" font-size="17" fill="#8A5A0C" font-weight="800">3D packing:</text>
+<text x="28" y="322" font-size="17" fill="#8A5A0C" font-weight="800">not modelled</text>
+<path d="M228 186 V322 H412 V186" fill="none" stroke="#7D8691" stroke-width="3" stroke-linejoin="round"/>
+<rect x="234" y="262" width="70" height="56" rx="4" fill="#1C5785"/>
+<rect x="308" y="274" width="46" height="44" rx="4" fill="#146C67"/>
+<rect x="358" y="252" width="50" height="66" rx="4" fill="#1C5785"/>
+<rect x="234" y="214" width="44" height="44" rx="4" fill="#146C67"/>
+<rect x="282" y="222" width="72" height="48" rx="4" fill="#1C5785"/>
+<path d="M356 150 h52 v26 h-26 v40 h-26 z" fill="#FBF1DE" stroke="#8A5A0C" stroke-width="2.5" stroke-dasharray="5 3" stroke-linejoin="round"/>
+<text x="372" y="204" font-size="26" fill="#8A5A0C" font-weight="800" text-anchor="middle">?</text>
+<rect x="40" y="352" width="360" height="52" rx="26" fill="#1C5785"/>
+<path d="M64 366 h18 l6 6 v20 h-24 z" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round"/><path d="M69 378 h12 M69 385 h12" stroke="#FFFFFF" stroke-width="2.2"/>
+<text x="98" y="385" font-size="18" fill="#FFFFFF" font-weight="800" data-box="40,352,360,52">Limit stated in every output</text></g></svg>

@@ -22,6 +22,40 @@ ROOT = Path(__file__).resolve().parent.parent
 CONTENT = ROOT / "content" / "site.json"
 STATEMENT_KEYS = ("ownerVerification", "contribution", "learned", "professionalContext")
 
+# Voice check. Copy rewritten in the decision-led voice (the homepage hero, the
+# site disclosure, every project `story` and the pages those stories render)
+# must not bring back the retired defensive labels.
+RETIRED_PHRASES = ("agent-run", "unverified", "not verified", "independence statement",
+                   "public-demo boundary", "not an export of")
+STORY_FIELDS = ("headline", "lede", "facts", "banner", "situation", "decisionsTitle", "decisions", "result", "next", "technical")
+
+
+def strings(node):
+    if isinstance(node, str):
+        yield node
+    elif isinstance(node, dict):
+        for value in node.values():
+            yield from strings(value)
+    elif isinstance(node, list):
+        for value in node:
+            yield from strings(value)
+
+
+def figure_entries(node):
+    if isinstance(node, dict):
+        if str(node.get("src", "")).startswith("assets/visuals/"):
+            yield node
+        for value in node.values():
+            yield from figure_entries(value)
+    elif isinstance(node, list):
+        for value in node:
+            yield from figure_entries(value)
+
+
+def retired_in(text):
+    low = text.lower()
+    return [phrase for phrase in RETIRED_PHRASES if phrase in low]
+
 
 def walk_pending(node, path, out):
     if node is None:
@@ -221,7 +255,7 @@ def main():
 
     # Generated figures: every listed layout exists in both colour schemes, and
     # the SVGs and their recorded sizes match scripts/build_visuals.py.
-    figures = [v for p in content["projects"] for v in p.get("visuals", [])] + a.get("diagrams", [])
+    figures = list(figure_entries(content))
     for fig in figures:
         src = fig.get("src", "")
         if "wide" not in fig.get("sizes", {}):
@@ -238,6 +272,40 @@ def main():
         thumb = next((v for v in project.get("visuals", []) if v.get("src") == project.get("thumbnail")), None)
         if not thumb or "card" not in thumb.get("sizes", {}):
             problems.append(f"{project['slug']}: thumbnail must be one of its visuals with a card layout")
+
+    # Decision-led copy: required story fields, and no retired labels in the new voice.
+    voiced = [("site.hero", content["site"].get("hero")), ("site.disclosure", content["site"].get("disclosure"))]
+    if content["site"].get("hero") and not content["site"].get("disclosure"):
+        problems.append("site.disclosure is required once the new hero is used")
+    for project in content["projects"]:
+        story = project.get("story")
+        if not story:
+            continue
+        voiced.append((f"projects[{project['slug']}].story", story))
+        missing = [f for f in STORY_FIELDS if not story.get(f)]
+        if missing:
+            problems.append(f"{project['slug']}: story is missing {', '.join(missing)}")
+        if not 2 <= len(story.get("decisions", [])) <= 4 or any(not d.get("title") or not d.get("body") for d in story.get("decisions", [])):
+            problems.append(f"{project['slug']}: story needs 2-4 decisions, each with a title and body")
+        if not 3 <= len(story.get("technical", {}).get("notes", [])) <= 7:
+            problems.append(f"{project['slug']}: story needs 3-7 technical notes")
+        srcs = {v["src"] for v in project.get("visuals", [])}
+        for ref in story.get("result", {}).get("visuals", []) + story.get("technical", {}).get("visuals", []):
+            if ref not in srcs:
+                problems.append(f"{project['slug']}: story references {ref}, which is not one of its visuals")
+        page = parsed.get((ROOT / "projects" / project["slug"] / "index.html").resolve())
+        if page:
+            for phrase in retired_in("".join(page.main_text)):
+                problems.append(f"{project['slug']}: story page still says '{phrase}'")
+    # Course titles were verified by the owner on 2026-10-29; the old caveats must not return.
+    if a.get("courseVerification"):
+        thinking = parsed.get(academic_page.resolve())
+        for phrase in retired_in("".join(thinking.main_text) if thinking else ""):
+            problems.append(f"applied-thinking: verified coursework page still says '{phrase}'")
+    for where, node in voiced:
+        for text in strings(node):
+            for phrase in retired_in(text):
+                problems.append(f"{where}: retired phrase '{phrase}'")
 
     # Content-managed images are injected at runtime, so the shell parser cannot see them.
     for project in content["projects"]:

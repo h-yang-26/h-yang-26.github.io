@@ -12,7 +12,7 @@
 <body data-page="project" data-project="synthetic-data-quality-pipeline" data-root="../..">
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header" id="site-header"><div class="wrap header__inner">
-      <a class="brand" href="../../">Portfolio</a>
+      <a class="brand" href="../../"><span class="ph"><span class="ph__tag">Placeholder</span> Name</span></a>
       <nav aria-label="Primary">
         <ul class="nav">
           <li><a href="../../#experience">Experience</a></li>
@@ -24,10 +24,18 @@
       </nav>
     </div>
 <!-- /site-header --></header>
-  <div class="draft-banner" id="draft-banner" role="region" aria-label="Draft status" hidden>
+  <div class="draft-banner" id="draft-banner" role="region" aria-label="Draft status"><div class="wrap">
+      <p><strong>Draft preview.</strong> 4 placeholders and 0 unpublished links still need owner input. Resolve or omit them before publishing.</p>
+      <details>
+        <summary>Show open items</summary>
+        <ul class="pending-list">
+          <li>Name <code>owner.name</code></li><li>Public contact email <code>owner.email</code></li><li>Resume file or link <code>owner.resume</code></li><li>Other links (LinkedIn, etc.) <code>owner.otherLinks</code></li>
+        </ul>
+      </details>
+    </div>
 <!-- /draft-banner --></div>
   <main id="main" tabindex="-1" data-prerendered="true">
-    <div class="wrap">
+    <div class="wrap story">
       <nav class="crumbs" aria-label="Breadcrumb">
         <ol>
           <li><a href="../../">Home</a></li>
@@ -35,85 +43,80 @@
           <li><span aria-current="page">Synthetic Data Quality Pipeline</span></li>
         </ol>
       </nav>
-      <header class="cs-head">
-        <p class="chip">Independent / Synthetic Demonstration</p>
-        <h1>Synthetic Data Quality Pipeline</h1>
-        <p class="cs-type"><strong>Type:</strong> Independent demonstration using fictional data</p>
-        <p class="cs-context"><strong>Related professional work:</strong> Inventory data migration and exception review. <strong>Public artifact:</strong> independent fictional demonstration.</p>
-        <ul class="tags"><li>Python</li><li>CSV ETL</li><li>Deterministic reference mapping</li><li>pytest</li></ul>
-        <div class="actions"><a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline">Source on GitHub<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a><a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline#readme">README and run instructions</a></div>
+      <header class="story-head">
+        <p class="eyebrow">Synthetic Data Quality Pipeline</p>
+        <h1>Moving messy records without guessing</h1>
+        <p class="story-head__lede">A small Python pipeline that cleans what it safely can and hands everything else to a person, with the reason attached.</p>
+        <dl class="story-facts"><div><dt>My role</dt><dd>Requirements, edge cases and approvals; AI tools did the implementation</dd></div><div><dt>Built with</dt><dd>Python, pytest</dd></div><div><dt>Data</dt><dd>60 fictional equipment records</dd></div></dl>
+        <div class="actions"><a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline">Source on GitHub<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a></div>
       </header>
-      <div class="cs-layout">
-        <nav class="toc" aria-label="On this page">
-          <p class="toc__title">On this page</p>
-          <ol><li><a href="#professional">Professional work and public-demo boundary</a></li><li><a href="#problem">The problem</a></li><li><a href="#visuals">System diagrams and synthetic results</a></li><li><a href="#built">What the demonstration contains</a></li><li><a href="#approach">Technical approach</a></li><li><a href="#validation">Validation and results</a></li><li><a href="#limitations">Tradeoffs and limitations</a></li><li><a href="#contribution">My contribution</a></li><li><a href="#learned">What I learned</a></li><li><a href="#academic-connections">Academic connections</a></li><li><a href="#reproduce">Source and reproducibility</a></li></ol>
-        </nav>
-        <article class="prose">
-          <section id="professional" aria-labelledby="professional-title">
-            <h2 id="professional-title">Professional work and public-demo boundary</h2><div class="professional-bridge">
-      <div><h3>Relevant professional responsibility</h3><p>In my professional role, I led an accuracy-first migration of approximately 2,500 inventory records into an in-house quoting module. I coordinated five review rounds with sales and product teams to resolve ambiguous equipment rules and legacy free-text entries before launch.</p></div>
-      <div><h3>Scope of this public demonstration</h3><p>This public Python pipeline reconstructs selected validation and exception-handling principles using fictional records, invented mapping rules and independently reproducible checks. It is not the employer&#39;s migration implementation or its data.</p></div>
-      </div></section><section id="problem" aria-labelledby="problem-title">
-            <h2 id="problem-title">The problem</h2><p>Inconsistent inventory records can contain missing identifiers, ambiguous categories and quantities that look similar but mean different things. This fictional equipment-inventory demonstration separates safe formatting changes from decisions that require human review, while retaining a trace from each result to its source row.</p></section><section id="visuals" aria-labelledby="visuals-title">
-            <h2 id="visuals-title">System diagrams and synthetic results</h2><div class="visual-gallery"><figure class="technical-figure">
-        <p class="figure-title">Traceable decisions, not guessed repairs</p>
-        <picture><source media="(prefers-color-scheme: dark) and (max-width: 39.99rem)" srcset="../../assets/visuals/data-quality-flow-narrow-dark.svg" width="420" height="556"><source media="(max-width: 39.99rem)" srcset="../../assets/visuals/data-quality-flow-narrow.svg" width="420" height="556"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/data-quality-flow-dark.svg" width="760" height="300"><img src="../../assets/visuals/data-quality-flow.svg" alt="Fictional validation diagram: 60 source rows go through row checks; the 37 that pass become accepted records and the 23 that fail any check go to an exceptions file for human review." width="760" height="300" loading="lazy" decoding="async"></picture>
-        <figcaption><span class="figure-label">SYSTEM / MODEL</span> A record&#39;s path depends on deterministic checks. Ambiguous categories and invalid fields are retained for review, not silently repaired.</figcaption>
-      </figure><figure class="technical-figure">
+      <figure class="showcase">
+      <p class="showcase__title">Messy records in. Traceable data out.</p>
+      <picture><source media="(prefers-color-scheme: dark) and (max-width: 49.99rem)" srcset="../../assets/visuals/ba-data-narrow-dark.svg" width="420" height="872"><source media="(max-width: 49.99rem)" srcset="../../assets/visuals/ba-data-narrow.svg" width="420" height="872"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/ba-data-dark.svg" width="1000" height="470"><img src="../../assets/visuals/ba-data.svg" alt="Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons." width="1000" height="470" decoding="async"></picture>
+      <figcaption>Real rows from this project’s fictional sample data.</figcaption>
+    </figure>
+      <article class="story-body">
+        <section id="situation" aria-labelledby="situation-title">
+          <h2 id="situation-title">The situation</h2>
+          <p>Before inventory moves into a new system, someone has to decide what every messy record means. Guess wrong and a pump gets quoted as a sensor, or a quantity nobody entered quietly becomes zero.</p><p>This project rebuilds that problem with 60 fictional equipment records and one rule: when the data can’t decide, a person does.</p>
+          <div class="story-origin"><p class="story-origin__label">Where this comes from</p><p>In my professional role, I led an accuracy-first migration of approximately 2,500 inventory records into an in-house quoting module. I coordinated five review rounds with sales and product teams to resolve ambiguous equipment rules and legacy free-text entries before launch.</p></div>
+        </section>
+        <section id="decisions" aria-labelledby="decisions-title">
+          <h2 id="decisions-title">Three decisions that shape it</h2>
+          <ol class="decisions"><li class="decision decision--visual">
+          <div class="decision__text">
+            <p class="decision__num" aria-hidden="true">01</p>
+            <h3>Flag, don’t fix.</h3>
+            <p>A category like “pressure unit” could mean a pump or a sensor. Instead of picking one, the row goes to a person with the reason attached. It’s slower, but an ambiguous category is never resolved silently.</p>
+            <p class="decision__term">Exact alias matching; no fuzzy matching.</p>
+          </div>
+          <div class="decision__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/tile-ambiguity-dark.svg" width="440" height="520"><img src="../../assets/visuals/tile-ambiguity.svg" alt="Illustration: the label “pressure unit” could point to a pump or a sensor, so the row is sent to human review." width="440" height="520" loading="lazy" decoding="async"></picture></div>
+        </li><li class="decision decision--visual">
+          <div class="decision__text">
+            <p class="decision__num" aria-hidden="true">02</p>
+            <h3>Accept one date format.</h3>
+            <p>03/04/2024 is March 4 to one reader and April 3 to another, and an impossible date like February 30th looks normal at a glance. Only real calendar dates written as YYYY-MM-DD get through.</p>
+            <p class="decision__term">Strict <code>YYYY-MM-DD</code> with ASCII digits; impossible dates rejected.</p>
+          </div>
+          <div class="decision__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/tile-evidence-dark.svg" width="440" height="520"><img src="../../assets/visuals/tile-evidence.svg" alt="Illustration: 03/04/2024 reads as March 4 in the US and April 3 in the UK, so the date is rejected rather than guessed." width="440" height="520" loading="lazy" decoding="async"></picture></div>
+        </li><li class="decision">
+          <div class="decision__text">
+            <p class="decision__num" aria-hidden="true">03</p>
+            <h3>Reject every copy of a duplicated ID.</h3>
+            <p>When two rows claim the same ID, nothing in the data says which one is real, so neither is kept. Rejecting only the second copy would quietly trust whichever happened to come first.</p>
+            <p class="decision__term">IDs compared after trimming; case-sensitive.</p>
+          </div>
+
+        </li></ol>
+        </section>
+        <section id="result" aria-labelledby="result-title">
+          <h2 id="result-title">The result</h2>
+          <p>All 60 rows are accounted for: 37 clean records and 23 held for review, each with its reason. Run it twice and you get the same files.</p>
+          <div class="visual-gallery"><figure class="technical-figure">
         <p class="figure-title">All 60 rows reconciled; duplicate IDs are the most common review reason</p>
         <picture><source media="(prefers-color-scheme: dark) and (max-width: 39.99rem)" srcset="../../assets/visuals/data-quality-results-narrow-dark.svg" width="420" height="535"><source media="(max-width: 39.99rem)" srcset="../../assets/visuals/data-quality-results-narrow.svg" width="420" height="535"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/data-quality-results-dark.svg" width="760" height="514"><img src="../../assets/visuals/data-quality-results.svg" alt="Synthetic sample chart: 60 rows, 37 accepted and 23 held for review. Review reasons, one per row: duplicate ID 4; ambiguous category, invalid date, invalid quantity and unknown category 3 each; missing ID and missing quantity 2 each; missing category, missing date and missing item name 1 each." width="760" height="514" loading="lazy" decoding="async"></picture>
         <figcaption><span class="figure-label">SYNTHETIC RESULT</span> The 60-row generated sample reconciles completely. Counts come from the committed <code>outputs/summary.json</code>, not employer data.</figcaption>
-      </figure></div></section><section id="built" aria-labelledby="built-title">
-            <h2 id="built-title">What the demonstration contains</h2><p>A command-line pipeline generates a seeded fictional sample, normalizes and validates its records, and writes three outputs: <code>cleaned_records.csv</code>, <code>exceptions.csv</code> and <code>summary.json</code>. Each data row receives one disposition. Multiple issues on one rejected row remain separate from the rejected-row count.</p></section><section id="approach" aria-labelledby="approach-title">
-            <h2 id="approach-title">Technical approach</h2><p>Source-row numbers identify records independently of business IDs. IDs are trimmed and case-sensitive; every occurrence of a duplicated normalized ID is rejected. Explicit quantity zero is valid, while a blank quantity is missing. Dates must be real calendar dates in ASCII <code>YYYY-MM-DD</code> form.</p><p>Category aliases use exact normalized matches. An unknown alias is rejected; an alias such as the fictional <code>pressure unit</code>, which maps to both <code>PUMP</code> and <code>SENSOR</code>, is sent to review rather than guessed. Exceptions retain raw values and error codes. Duplicate input-column names are fatal configuration errors because silently selecting one could change business meaning.</p></section><section id="validation" aria-labelledby="validation-title">
-            <h2 id="validation-title">Validation and results</h2><p>During the first review round, I also ran the documented commands myself in PowerShell, and the outputs matched the agents&#39; reports. The results below, including later corrections, are agent-run, on Windows 11 with Python 3.13.15 and pytest 9.1.1. All counts are synthetic scenario results.</p>
-      <table class="evidence" role="table">
-        <caption class="visually-hidden">Claims, evidence and verification status: Synthetic Data Quality Pipeline</caption>
-        <thead role="rowgroup"><tr role="row">
-          <th scope="col" role="columnheader">Public-demo claim</th>
-          <th scope="col" role="columnheader">Command and result</th>
-          <th scope="col" role="columnheader">Status</th>
-        </tr></thead>
-        <tbody role="rowgroup"><tr role="row">
-        <th scope="row" role="rowheader">The synthetic sample reconciles</th>
-        <td role="cell" data-label="Command and result"><code>python -m dq_pipeline demo</code>, run twice: <strong>60 input = 37 accepted + 23 rejected</strong>, with 23 issues</td>
-        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
-      </tr><tr role="row">
-        <th scope="row" role="rowheader">Validation regressions pass, including duplicate headers</th>
-        <td role="cell" data-label="Command and result"><code>python -m pytest -q</code>: <strong>21 passed</strong></td>
-        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
-      </tr><tr role="row">
-        <th scope="row" role="rowheader">Reruns replace outputs reproducibly</th>
-        <td role="cell" data-label="Command and result">Two <code>demo</code> runs produced byte-identical generated files</td>
-        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
-      </tr><tr role="row">
-        <th scope="row" role="rowheader">Row counts remain distinct from issue counts</th>
-        <td role="cell" data-label="Command and result">A separate hand-derived fixture gives <strong>7 input = 1 accepted + 6 rejected</strong>, with <strong>8 issues</strong></td>
-        <td role="cell" data-label="Status"><span class="status status--ok">VERIFIED</span><span class="status__note">agent-run</span></td>
-      </tr><tr role="row">
-        <th scope="row" role="rowheader">Other operating systems and Python versions, performance</th>
-        <td role="cell" data-label="Command and result">Not tested</td>
-        <td role="cell" data-label="Status"><span class="status status--open">NOT VERIFIED</span></td>
-      </tr></tbody>
-      </table></section><section id="limitations" aria-labelledby="limitations-title">
-            <h2 id="limitations-title">Tradeoffs and limitations</h2><p>This is an in-memory, single-file reduced-scope demonstration with invented policies and 60 sample rows. It provides no fuzzy matching, database, UI or review workflow. Completely empty input lines are skipped. Input and configuration validation happen before any output is written, but an output I/O failure can leave partial files; the outputs have no transactional multi-file guarantee. Generator stability across untested Python versions is not verified.</p></section><section id="contribution" aria-labelledby="contribution-title">
-            <h2 id="contribution-title">My contribution</h2><p>I co-developed the original agent prompt kit for this project with AI assistance, and I provided the business context, project purpose and initial architecture outline. I set requirements, evaluation criteria, edge-case priorities and approval decisions.</p><p>I used a planner-and-builder AI workflow to produce the implementation and supporting documentation. AI tools performed the implementation work, while I remained responsible for the project&#39;s direction and final approvals.</p><p>During the first review round, I personally followed the project&#39;s run-and-check instructions in PowerShell and confirmed that the outputs matched the agents&#39; reports. Later corrections and their regression results were verified by agents.</p></section><section id="learned" aria-labelledby="learned-title">
-            <h2 id="learned-title">What I learned</h2><p>I learned to distinguish missing information from an explicit zero and to preserve that distinction throughout validation. I also became more deliberate about using deterministic transformations only when the available facts support a clear decision. Ambiguous mappings belong in a traceable review process rather than being resolved through an undocumented guess.</p></section><section id="academic-connections" aria-labelledby="academic-connections-title">
-            <h2 id="academic-connections-title">Academic connections</h2><p>These are conceptual connections to the reasoning described in Applied Thinking. They do not claim formal implementation of every theory.</p><ul class="thinking-links"><li><a href="../../applied-thinking/#boundary-refinement">A2 · Narrowing Ambiguity</a></li><li><a href="../../applied-thinking/#inference-evidence">P1 · Examining the Reasoning Behind Evidence</a></li></ul></section><section id="reproduce" aria-labelledby="reproduce-title">
-            <h2 id="reproduce-title">Source and reproducibility</h2><div class="actions"><a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline">Source on GitHub<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a><a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline#readme">README and run instructions</a></div>
-      <p>The README documents environment setup and the <code>python -m dq_pipeline demo</code> entry point.</p>
-      <p class="code-label">Windows PowerShell, from the repository root:</p>
-      <div class="code" role="region" tabindex="0" aria-label="Setup and check commands">
-        <pre><code>py -m venv .venv
-.venv\Scripts\python -m pip install -r requirements.txt
-.venv\Scripts\python -m dq_pipeline demo
-.venv\Scripts\python -m pytest</code></pre>
-      </div>
-      <p class="note"><strong>Tested environment:</strong> Windows 11, Python 3.13.15 (agent-run).</p>
-      <p class="note">The Python projects run locally from their repositories. This static site shows their recorded results; it does not run them.</p></section>
-          <p class="independence"><strong>Independence statement:</strong> This is an independently developed demonstration using fictional data and general technical methods. Its counts are synthetic results, not evidence about an employer system or real operational performance.</p>
-        </article>
-      </div>
+      </figure></div>
+        </section>
+        <section id="next" aria-labelledby="next-title">
+          <h2 id="next-title">What I’d do next</h2>
+          <p>A simple review screen: each held row with its reason and the closest likely match shown, with the final call left to the reviewer.</p>
+        </section>
+        <section id="technical" aria-labelledby="technical-title">
+          <h2 id="technical-title">Technical notes</h2>
+          <ul class="tech-notes"><li>Input and mapping files are checked for structural problems before anything is written; a malformed file stops the run with exit code 2, while bad rows become reviewable exceptions.</li><li>Every input row gets exactly one outcome, and <code>summary.json</code> reconciles input = accepted + rejected.</li><li>A blank quantity is missing, while an explicit <code>0</code> is a valid count; neither is defaulted.</li><li>Exceptions keep the source row number, the raw values and every error code, so a reviewer sees exactly what arrived.</li><li>Outputs carry no timestamps, so a rerun is byte-for-byte identical.</li><li>Standard-library Python at runtime; 21 pytest tests, including a small fixture whose expected output was worked out by hand.</li></ul>
+
+          <p><a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline#readme">Full method, tests and run instructions on GitHub</a></p>
+        </section>
+        <section id="role" aria-labelledby="role-title">
+          <h2 id="role-title">My role</h2>
+          <p>I co-developed the original agent prompt kit for this project with AI assistance, and I provided the business context, project purpose and initial architecture outline. I set requirements, evaluation criteria, edge-case priorities and approval decisions.</p><p>I used a planner-and-builder AI workflow to produce the implementation and supporting documentation. AI tools performed the implementation work, while I remained responsible for the project&#39;s direction and final approvals.</p><p>During the first review round, I personally followed the project&#39;s run-and-check instructions in PowerShell and confirmed that the outputs matched the agents&#39; reports. Later corrections and their regression results were verified by agents.</p>
+          <h3>What I learned</h3><p>I learned to distinguish missing information from an explicit zero and to preserve that distinction throughout validation. I also became more deliberate about using deterministic transformations only when the available facts support a clear decision. Ambiguous mappings belong in a traceable review process rather than being resolved through an undocumented guess.</p>
+        </section>
+        <section id="academic-connections" aria-labelledby="academic-connections-title">
+          <h2 id="academic-connections-title">Academic connections</h2><p>These are conceptual connections to the reasoning described in Applied Thinking. They do not claim formal implementation of every theory.</p><ul class="thinking-links"><li><a href="../../applied-thinking/#boundary-refinement">A2 · Narrowing Ambiguity</a></li><li><a href="../../applied-thinking/#inference-evidence">P1 · Examining the Reasoning Behind Evidence</a></li></ul></section>
+        <p class="story-disclosure">All data in these projects is fictional. They were built independently of my employer: AI tools did the implementation under my direction, and I approved the results.</p>
+      </article>
     </div>
     <nav class="pager wrap" aria-label="Other projects">
       <a class="prev" rel="prev" href="../../projects/b2b-sales-systems-case-study/">

@@ -2,7 +2,7 @@
 
 Static GitHub Pages site showing four independently constructed fictional demonstrations: data-quality ETL, shipping allocation optimization, product analytics, and conceptual B2B sales systems design.
 
-No personal biography, personal contact address, or resume link is published in this release. Approved first-person contribution and professional-experience statements appear in the case studies, distinguishing workplace responsibilities from fictional, independent artifacts. The associated source repositories are linked from the case studies. All example numbers are synthetic and must not be read as employer outcomes.
+Name, public email, résumé and LinkedIn are pending placeholders (`null` in `content/site.json`): they render as marked placeholders, and `check_site.py --release` fails until they are filled in. To fill them, set `owner.name`, `owner.email`, `owner.resume` (`{"label": "Résumé (PDF)", "url": "..."}`) and `owner.otherLinks` (`[{"label": "LinkedIn", "url": "https://..."}]`), then run `node scripts/render_static.mjs`. No personal biography is published. Approved first-person contribution and professional-experience statements appear in the case studies, distinguishing workplace responsibilities from fictional, independent artifacts. The associated source repositories are linked from the case studies. All example numbers are synthetic and must not be read as employer outcomes.
 
 ## Site files
 
@@ -11,7 +11,14 @@ No personal biography, personal contact address, or resume link is published in 
 - `applied-thinking/index.html` explains eight reasoning principles, with static diagrams and case-study connections.
 - `index.html`, `applied-thinking/index.html` and `projects/*/index.html` include generated HTML for visitors without JavaScript.
 - `scripts/render_static.mjs` generates these snapshots with the shared renderer; run it after editing JSON or layout code (Node 18+).
-- `scripts/build_visuals.py` generates every figure in `assets/visuals/` (wide, narrow and card layouts, light and dark) and records their sizes in `content/site.json`; run it before `render_static.mjs` after changing figure data or layout (Python 3.9+, no dependencies).
+- `scripts/build_visuals.py` generates every figure in `assets/visuals/` (wide, narrow and card layouts, light and dark), including the tiles and before/after banners in `scripts/marketing_visuals.py`, and records sizes on every figure entry in `content/site.json`; run it before `render_static.mjs` after changing figure data or layout (Python 3.9+, no dependencies).
+
+## Content model for the redesign
+
+- `site.hero`: the homepage positioning hero (eyebrow, title, lede, primary button, headline figure). Résumé, email, LinkedIn and GitHub buttons appear automatically from the `owner` fields that are set; pending or omitted fields add nothing to the hero.
+- `site.disclosure`: the single one-line disclosure used on story pages.
+- `projects[].story`: a decision-led case study (headline, lede, facts, banner, situation, 2–4 decisions, result, what's next, technical notes). A project with a `story` renders with the new template; projects without one keep the original template until they are migrated. Owner statements (`professionalContext`, `contribution`, `learned`) are reused verbatim.
+- `check_site.py` enforces the story fields and a voice check: the hero, the disclosure, every story and every rendered story page must not use retired labels such as "agent-run" or "unverified".
 - `scripts/check_site.py --release` verifies the static structure and placeholder state.
 
 ## Local preview
