@@ -448,6 +448,7 @@
         ${skills ? `<h3>Skills</h3>${skills}` : ""}
         <h3>${esc(about ? about.toolsLabel : "Methods and tools in these projects")}</h3>
         ${tags(tools)}
+        ${about && Array.isArray(about.aiTools) && about.aiTools.length ? `<h3>${esc(about.aiToolsLabel || "AI tools")}</h3>${tags(about.aiTools)}` : ""}
       </div>
     </section>
 
