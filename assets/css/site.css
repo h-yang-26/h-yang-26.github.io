@@ -907,3 +907,13 @@ h1 .ph { font-size: 0.5em; vertical-align: middle; }
   .jump-links ul { flex-direction: column; gap: 0.15rem; margin-top: 1.1rem; padding-left: 0.9rem; border-left: 2px solid var(--border-strong); }
   .jump-links a { padding: 0.2rem 0; border: 0; border-radius: 0; background: none; text-decoration: underline; text-underline-offset: 0.2em; }
 }
+
+/* Coursework table: narrow course column; stacked cards on phones */
+.thinking-table thead th:first-child { width: 30%; }
+@media (max-width: 39.99rem) {
+  .thinking-table, .thinking-table tbody, .thinking-table tr, .thinking-table th, .thinking-table td { display: block; width: auto; }
+  .thinking-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .thinking-table tr { margin-bottom: 0.75rem; padding: 0.85rem 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+  .thinking-table th, .thinking-table td { padding: 0; border: 0; overflow-wrap: normal; }
+  .thinking-table th[scope="row"] { margin-bottom: 0.35rem; font-weight: 700; }
+}
