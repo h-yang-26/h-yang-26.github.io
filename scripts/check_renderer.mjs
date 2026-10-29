@@ -17,8 +17,14 @@ async function render(page, input = content, failFetch = false) {
   return nodes;
 }
 const home = (await render("home")).main.innerHTML;
-assert.ok(home.indexOf('id="experience"') < home.indexOf('id="applied-thinking"'));
-assert.ok(home.indexOf('id="applied-thinking"') < home.indexOf('id="projects"'));
+// Homepage order: hero, How I work, selected work, experience, about, contact.
+const order = ['class="hero hero--story', 'id="how-i-work"', 'id="projects"', 'id="experience"', 'id="about"', 'id="contact"'].map(m => home.indexOf(m));
+assert.ok(order.every((v, i) => v >= 0 && (i === 0 || v > order[i - 1])), `homepage sections out of order: ${order}`);
+// Each tile links to its project page with real HTML; cards carry one outcome line and no legacy fields.
+assert.equal((home.match(/class="how-tile"/g) || []).length, content.site.howIWork.tiles.length);
+for (const t of content.site.howIWork.tiles) assert.ok(home.includes(`href="./projects/${t.project}/">${t.linkLabel}`));
+assert.equal((home.match(/class="card__outcome"/g) || []).length, content.projects.length);
+assert.ok(!/Recorded result|Related professional work|Real work\. Independent public models/.test(home));
 assert.match((await render("project")).main.innerHTML, /id="academic-connections"/);
 assert.match((await render("applied-thinking")).main.innerHTML, /id="opacity-management"/);
 // Figures: narrow and dark variants on project pages, card layout on the homepage.
@@ -53,9 +59,12 @@ hostile.site.hero.primaryCta.href = 'javascript:alert(1)';
 hostile.site.hero.visual.narrowMax = '1px), (min-width: 0';
 hostile.projects[0].story.banner.src = 'javascript:alert(1)';
 hostile.projects[0].story.headline = '<img src=x onerror="alert(1)">';
+hostile.site.howIWork.tiles[0].src = 'javascript:alert(1)';
+hostile.site.howIWork.moreLink.href = 'javascript:alert(1)';
+hostile.projects[1].card.outcome = '<script>alert(1)</script>';
 const hostileHome = (await render("home", hostile)).main.innerHTML;
 const hostileStory = (await render("project", hostile)).main.innerHTML;
-assert.ok(!hostileHome.includes("javascript:") && !hostileHome.includes("1px), (min-width: 0"));
+assert.ok(!hostileHome.includes("javascript:") && !hostileHome.includes("1px), (min-width: 0") && !hostileHome.includes("<script>"));
 assert.ok(!hostileStory.includes("javascript:") && hostileStory.includes("&lt;img src=x"));
 hostile.projects[0].visuals[0].src = 'javascript:alert(1)';
 hostile.appliedThinking.hero.title = '<img src=x onerror="alert(1)">';

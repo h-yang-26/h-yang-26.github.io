@@ -16,9 +16,12 @@ Name, public email, résumé and LinkedIn are pending placeholders (`null` in `c
 ## Content model for the redesign
 
 - `site.hero`: the homepage positioning hero (eyebrow, title, lede, primary button, headline figure). Résumé, email, LinkedIn and GitHub buttons appear automatically from the `owner` fields that are set; pending or omitted fields add nothing to the hero.
-- `site.disclosure`: the single one-line disclosure used on story pages.
+- `site.disclosure`: the single one-line disclosure, shown in the footer of every page.
+- `site.howIWork`: the homepage "How I work" tiles; each names the project it links to (`project` slug) and the link text, rendered as a real HTML link under the tile.
+- `site.work`, `site.experience`, `site.about`: homepage section headings and copy. The experience section reuses `owner.professionalExperience` (role line and summary, verbatim) with a résumé button; an owner `bio`, once set, replaces the About paragraphs.
+- `projects[].card`: the homepage card's `kicker` and one-line `outcome`.
 - `projects[].story`: a decision-led case study (headline, lede, facts, banner, situation, 2–4 decisions, result, what's next, technical notes). A project with a `story` renders with the new template; projects without one keep the original template until they are migrated. Owner statements (`professionalContext`, `contribution`, `learned`) are reused verbatim.
-- `check_site.py` enforces the story fields and a voice check: the hero, the disclosure, every story and every rendered story page must not use retired labels such as "agent-run" or "unverified".
+- `check_site.py` enforces the story and card fields and a voice check: the homepage copy, the disclosure, every card and story, the rendered homepage, story pages and Applied Thinking page must not use retired labels such as "agent-run" or "unverified".
 - `scripts/check_site.py --release` verifies the static structure and placeholder state.
 
 ## Local preview

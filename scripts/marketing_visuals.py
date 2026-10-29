@@ -163,9 +163,9 @@ def tile_decomposition():
     return t
 
 
-def tile_invariance():
+def tile_filters():
     t = Tile()
-    t.frame("TESTING WHAT REMAINS TRUE", ["Change the filters.", "Do the facts change?"],
+    t.frame("EXAMINING EVIDENCE", ["Change the filters.", "Do the facts change?"],
             ["Filters change what you look at, not", "what is true about the data. Validation", "runs on the whole file first."])
     for x, scope, dates, events in [(28, "All modules", "Sep 1–28", "5,735"), (228, "Catalog only", "Sep 7–13", "480")]:
         box = (x, 146, 184, 190)
@@ -527,7 +527,7 @@ MARKETING = {
     "tile-frameworks": (lambda layout: tile_frameworks(), ("wide",), "Which containers to open is a known fixed-charge allocation problem, solved with a proven method."),
     "tile-ambiguity": (lambda layout: tile_ambiguity(), ("wide",), "Is a pressure unit a pump or a sensor? Ambiguous rows go to human review."),
     "tile-decomposition": (lambda layout: tile_decomposition(), ("wide",), "A quote for 4 is not a sale of 4: committed demand is 2."),
-    "tile-invariance": (lambda layout: tile_invariance(), ("wide",), "Filters change the events in view, but the 31 rows not counted stay the same."),
+    "tile-filters": (lambda layout: tile_filters(), ("wide",), "Filters change the events in view, but the 31 rows not counted stay the same."),
     "tile-evidence": (lambda layout: tile_evidence(), ("wide",), "03/04/2024 could be March 4 or April 3, so it is rejected rather than guessed."),
     "tile-abstraction": (lambda layout: tile_abstraction(), ("wide",), "A container 100% full by volume may still not pack in 3D; the model states that limit."),
     "tile-uncertainty": (lambda layout: tile_uncertainty(), ("wide",), "An expected arrival of March 27 was an estimate; the observed date, March 30, replaces it."),

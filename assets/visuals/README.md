@@ -63,7 +63,7 @@ They still follow the accuracy rule: every row and number is copied from a publi
 | ba-orders | `b2b-sales-systems-case-study/examples/fictional-order-scenario.json`: 4 quoted, 2 ordered, 1 shipped, 1 owed. The "4 + 2 + 1 = 7" report is a deliberate illustration of the double counting the case study warns against, not a figure from the repo. |
 | tile-ambiguity, tile-evidence | Data quality README: `pressure unit` maps to both PUMP and SENSOR and goes to review; only `YYYY-MM-DD` is accepted, so `03/04/2024` is rejected. |
 | tile-frameworks, tile-abstraction, tile-opacity | Inventory lab: fixed container charges 400 and 900 (fictional `toy_cost_units`, shown without a currency), PuLP + CBC, `CNT-L` 100% volume / 82% mass in the normal scenario, mass/volume-only limitation printed in every text and JSON output, independent `check_plan`. |
-| tile-invariance | Analytics demo: 31 raw rows not counted as valid events, file-wide (10 identical copies collapsed, 8 quarantined, 13 rejected); 5,735 valid events Sep 1–28 all modules; 480 for catalog, Sep 7–13. |
+| tile-filters | Analytics demo (illustrates P1, Examining Evidence, as approved for this project): 31 raw rows not counted as valid events, file-wide (10 identical copies collapsed, 8 quarantined, 13 rejected); 5,735 valid events Sep 1–28 all modules; 480 for catalog, Sep 7–13. |
 | tile-decomposition, tile-uncertainty | B2B case study: 4 quoted, 2 ordered, 1 shipped; `PO-5001` expected 2026-03-27, received three days late in the walkthrough. |
 
 ## Applied Thinking diagrams
