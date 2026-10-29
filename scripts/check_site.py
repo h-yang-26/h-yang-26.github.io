@@ -274,7 +274,22 @@ def main():
             problems.append(f"{project['slug']}: thumbnail must be one of its visuals with a card layout")
 
     # Decision-led copy: required story fields, and no retired labels in the new voice.
-    voiced = [("site.hero", content["site"].get("hero")), ("site.disclosure", content["site"].get("disclosure"))]
+    voiced = [(f"site.{key}", content["site"].get(key)) for key in ("hero", "disclosure", "howIWork", "work", "experience", "about")]
+    voiced += [(f"projects[{p['slug']}].card", p.get("card")) for p in content["projects"]]
+    home_page = parsed.get((ROOT / "index.html").resolve())
+    if content["site"].get("howIWork") and home_page:
+        for phrase in retired_in("".join(home_page.main_text)):
+            problems.append(f"index.html: homepage still says '{phrase}'")
+    for project in content["projects"]:
+        card = project.get("card", {})
+        if not card.get("kicker") or not card.get("outcome"):
+            problems.append(f"{project['slug']}: card needs a kicker and a one-line outcome")
+        if len(card.get("outcome", "")) > 140:
+            problems.append(f"{project['slug']}: card outcome should be one line (140 characters or fewer)")
+    slugs_set = set(slugs)
+    for tile in (content["site"].get("howIWork") or {}).get("tiles", []):
+        if tile.get("project") not in slugs_set:
+            problems.append(f"How I work tile {tile.get('src')} links to unknown project {tile.get('project')!r}")
     if content["site"].get("hero") and not content["site"].get("disclosure"):
         problems.append("site.disclosure is required once the new hero is used")
     for project in content["projects"]:

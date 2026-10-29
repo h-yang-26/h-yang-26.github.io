@@ -834,3 +834,23 @@ h1 .ph { font-size: 0.5em; vertical-align: middle; }
 .tech-notes { margin: 0 0 1.25rem; padding-left: 1.2rem; }
 .tech-notes li { margin-bottom: 0.45rem; }
 .story-disclosure { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+
+/* Redesign phase 2: homepage sections. */
+.how-tiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; max-width: 58rem; margin: 1.75rem 0 0; padding: 0; list-style: none; }
+@media (min-width: 40rem) { .how-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.how-tile figure { margin: 0; height: 100%; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+.how-tile img { display: block; width: 100%; height: auto; }
+.how-tile figcaption { margin-top: auto; padding: 0.85rem 1.1rem; border-top: 1px solid var(--border); font-weight: 650; }
+.how-tile figcaption a { text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.how-more { margin: 1.5rem 0 0; }
+.card--work { gap: 0; }
+.card__kicker { margin: 0 0 0.35rem; color: var(--accent); font-size: 0.78rem; font-weight: 750; letter-spacing: 0.07em; text-transform: uppercase; }
+.card--work h3 { margin-bottom: 0.5rem; }
+.card__outcome { margin: 0 0 1.25rem; color: var(--text); font-size: 1.05rem; line-height: 1.5; }
+.card--work .actions { margin-top: auto; }
+.experience-compact > *, .about-compact > :not(.tags) { max-width: 46rem; }
+.about-compact .tags { max-width: 58rem; }
+.experience-compact .section__lede { margin-bottom: 1.25rem; }
+.about-compact h3 { margin-top: 1.5rem; font-size: 1.05rem; font-family: var(--sans); }
+/* One content column for the tiles and the project cards. */
+.how-i-work .how-tiles, #projects .cards { max-width: 58rem; }

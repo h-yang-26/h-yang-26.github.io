@@ -127,6 +127,83 @@
         }
       }
     },
+    "howIWork": {
+      "eyebrow": "How I work",
+      "title": "Four habits, each shown in one of the projects",
+      "lede": "Each card pairs a reasoning habit with the moment it mattered. The other four are on the Applied Thinking page.",
+      "tiles": [
+        {
+          "src": "assets/visuals/tile-ambiguity.svg",
+          "project": "synthetic-data-quality-pipeline",
+          "linkLabel": "See it in the Data Quality Pipeline",
+          "alt": "Narrowing ambiguity: is a “pressure unit” a pump or a sensor? The data can’t decide, so the row is sent to human review instead of guessed.",
+          "sizes": {
+            "wide": [
+              440,
+              520
+            ]
+          }
+        },
+        {
+          "src": "assets/visuals/tile-opacity.svg",
+          "project": "inventory-shipping-optimization-lab",
+          "linkLabel": "See it in the Optimization Lab",
+          "alt": "Managing opaque systems: the solver says a plan is optimal, and separate code re-checks weight, volume and cost before the plan is labelled verified optimal.",
+          "sizes": {
+            "wide": [
+              440,
+              520
+            ]
+          }
+        },
+        {
+          "src": "assets/visuals/tile-invariance.svg",
+          "project": "product-usage-analytics-demo",
+          "linkLabel": "See it in the Usage Analytics demo",
+          "alt": "Testing what remains true: all modules for September show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter.",
+          "sizes": {
+            "wide": [
+              440,
+              520
+            ]
+          }
+        },
+        {
+          "src": "assets/visuals/tile-uncertainty.svg",
+          "project": "b2b-sales-systems-case-study",
+          "linkLabel": "See it in the B2B Sales Systems study",
+          "alt": "Choosing under uncertainty: an expected arrival of March 27 is an estimate; the received date, March 30, is an observed fact that replaces it.",
+          "sizes": {
+            "wide": [
+              440,
+              520
+            ]
+          }
+        }
+      ],
+      "moreLink": {
+        "label": "All eight principles in Applied Thinking",
+        "href": "applied-thinking/"
+      }
+    },
+    "work": {
+      "eyebrow": "Selected work",
+      "title": "Four projects, one way of working",
+      "lede": "Each project rebuilds one problem from my work with fictional data, small enough to read in a few minutes and run on a laptop."
+    },
+    "experience": {
+      "eyebrow": "Experience",
+      "title": "Where these problems come from",
+      "resumeLabel": "Full résumé"
+    },
+    "about": {
+      "title": "About",
+      "paragraphs": [
+        "I work where business operations meet data: turning how a business actually runs into requirements, checking data before anyone relies on it, and making the reasoning behind a decision easy to follow.",
+        "My background is in applied mathematics and philosophy. Mathematics gives me ways to model a problem; philosophy makes me ask what would justify the answer."
+      ],
+      "toolsLabel": "Tools and methods in these projects"
+    },
     "projectsIntro": "Each project pairs a documented professional workstream with a separate, simplified public implementation. The three Python demonstrations run locally; the B2B systems case study is a conceptual design with executable consistency checks. None of the public examples claims to be the deployed workplace system.",
     "runNote": "The Python projects run locally from their repositories. This static site shows their recorded results; it does not run them.",
     "footer": "Professional experience and public demonstrations are distinct: real workplace responsibilities are described at a high level, while the linked examples use fictional data and independent reduced-scope implementations. Synthetic outputs do not measure employer or production performance.",
@@ -149,9 +226,8 @@
         "pytest"
       ],
       "card": {
-        "problem": "Inventory records mix missing identifiers, ambiguous categories and quantities that look alike but mean different things.",
-        "method": "A seeded command-line pipeline normalizes and validates fictional records, maps categories by exact alias, and routes ambiguous or invalid rows to a traceable exceptions file instead of guessing.",
-        "evidence": "60 input rows = 37 accepted + 23 rejected; 21 tests passed (agent-run)."
+        "kicker": "Data quality",
+        "outcome": "Cleans what it safely can and hands everything else to a person, with the reason attached."
       },
       "problem": [
         "Inconsistent inventory records can contain missing identifiers, ambiguous categories and quantities that look similar but mean different things. This fictional equipment-inventory demonstration separates safe formatting changes from decisions that require human review, while retaining a trace from each result to its source row."
@@ -365,9 +441,8 @@
         "Independent feasibility checks"
       ],
       "card": {
-        "problem": "Shipping every requested unit is not always worthwhile when opening a container incurs a fixed charge.",
-        "method": "An integer program solved with PuLP and CBC allocates fictional stock under demand, mass and volume limits, trading shortage penalties against container charges. A separate checker revalidates every plan.",
-        "evidence": "Five scenarios reproduce byte-identical results; 130 tests passed (agent-run)."
+        "kicker": "Optimization",
+        "outcome": "Decides which containers are worth opening when shipping every unit isn’t, and re-checks every plan independently."
       },
       "problem": [
         "Shipping every requested unit may not be worthwhile when opening a container incurs a fixed charge. This fictional laboratory models that tradeoff explicitly: allocate available stock under demand, mass and volume constraints while balancing shortage penalties against container charges."
@@ -483,9 +558,8 @@
         "Ordered session funnels"
       ],
       "card": {
-        "problem": "Event volume, distinct users and progression through a workflow answer different product questions.",
-        "method": "A seeded event generator feeds separate validation and metric modules and a local Streamlit dashboard with explicit filters, denominators and an ordered session funnel.",
-        "evidence": "5766 raw events reconcile to 5735 valid; 44 tests passed (agent-run)."
+        "kicker": "Product analytics",
+        "outcome": "Turns a raw event log into daily activity, module usage and an ordered funnel, with every excluded row accounted for."
       },
       "problem": [
         "Event volume, distinct users and progression through a workflow answer different product questions. This fictional dashboard demonstrates how event validation, filter scope and explicit denominators affect those answers, without using real telemetry or drawing conclusions about a real company's adoption."
@@ -601,9 +675,8 @@
         "Python standard-library checks"
       ],
       "card": {
-        "problem": "A quotation, an accepted order, reserved stock and a shipment are different business facts; adding them together double counts demand.",
-        "method": "A documented sales lifecycle, entity glossary, Mermaid diagrams, three architecture decision records and five metric definitions, checked by a small standard-library calculator. The architecture is a proposed design, not an implemented system.",
-        "evidence": "Consistency checks PASS; 30 unittest tests passed (agent-run)."
+        "kicker": "Systems design",
+        "outcome": "Keeps quotes, orders and shipments separate, so each unit of demand is counted once."
       },
       "problem": [
         "A quotation, an accepted order, reserved stock and a physical shipment describe different business facts. This fictional distributor scenario illustrates why combining those quantities can double count demand, and how clear definitions and logical ownership keep the narrative and metrics consistent."

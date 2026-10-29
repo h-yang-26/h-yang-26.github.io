@@ -209,8 +209,8 @@
       <a class="brand" href="${home}">${brand}</a>
       <nav aria-label="Primary">
         <ul class="nav">
-          <li><a href="${home}#experience">Experience</a></li>
           <li><a href="${home}#projects">Projects</a></li>
+          <li><a href="${home}#experience">Experience</a></li>
           ${content.appliedThinking ? `<li><a href="${url(content.appliedThinking.route)}"${body.dataset.page === "applied-thinking" ? ' aria-current="page"' : ""}>${esc(content.appliedThinking.navLabel)}</a></li>` : ""}
           <li><a href="${home}#about">About</a></li>
           <li><a href="${home}#contact">Contact</a></li>
@@ -241,7 +241,7 @@
 
   function renderFooter(content) {
     return `<div class="wrap footer__inner">
-      <p>${inline(content.site.footer)}</p>
+      <p>${inline(content.site.disclosure || content.site.footer)}</p>
       <p>${inline(content.site.privacy)}</p>
     </div>`;
   }
@@ -278,23 +278,50 @@
   function renderCard(project) {
     const c = project.card;
     return `<li>
-      <article class="card" aria-labelledby="card-${esc(project.slug)}">
+      <article class="card card--work" aria-labelledby="card-${esc(project.slug)}">
         <div class="card__visual">${picture((project.visuals || []).find(v => v.src === project.thumbnail) || {src: project.thumbnail}, "", "card")}</div>
-        <p class="chip">${esc(project.label)}</p>
+        <p class="card__kicker">${esc(c.kicker)}</p>
         <h3 id="card-${esc(project.slug)}">${esc(project.title)}</h3>
-        <p class="card__connection"><strong>Related professional work:</strong> ${esc(project.professionalArea)}</p>
-        <dl class="facts">
-          <dt>Problem</dt><dd>${inline(c.problem)}</dd>
-          <dt>Method</dt><dd>${inline(c.method)}</dd>
-          <dt>Recorded result</dt><dd>${inline(c.evidence)}</dd>
-        </dl>
-        ${tags(project.focus)}
+        <p class="card__outcome">${inline(c.outcome)}</p>
         <div class="actions">
-          <a class="btn btn--primary" href="${home}projects/${esc(project.slug)}/">Read case study<span class="visually-hidden">: ${esc(project.title)}</span></a>
+          <a class="btn btn--primary" href="${home}projects/${esc(project.slug)}/">Read the case study<span class="visually-hidden">: ${esc(project.title)}</span></a>
           ${repoLinks(project, false)}
         </div>
       </article>
     </li>`;
+  }
+
+  // "How I work": one tile per project, each with a real link to that project.
+  function renderHowIWork(content) {
+    const s = content.site.howIWork;
+    if (!s) return "";
+    const tiles = s.tiles.map((t) => {
+      const project = content.projects.find(p => p.slug === t.project);
+      const image = project && picture(t, t.alt, "figure");
+      if (!image) return "";
+      return `<li class="how-tile"><figure>
+          ${image}
+          <figcaption><a href="${home}projects/${esc(project.slug)}/">${esc(t.linkLabel)}<span aria-hidden="true">&nbsp;→</span></a></figcaption>
+        </figure></li>`;
+    }).join("");
+    const more = s.moreLink && url(s.moreLink.href);
+    return `<section class="section how-i-work" id="how-i-work" aria-labelledby="how-title">
+      <div class="wrap">
+        <p class="eyebrow">${esc(s.eyebrow)}</p>
+        <h2 id="how-title">${esc(s.title)}</h2>
+        <p class="section__lede">${inline(s.lede)}</p>
+        <ul class="how-tiles">${tiles}</ul>
+        ${more ? `<p class="how-more"><a class="btn" href="${more}">${esc(s.moreLink.label)}</a></p>` : ""}
+      </div>
+    </section>`;
+  }
+
+  // Résumé button shared by the hero and the experience section.
+  function resumeButton(content, label) {
+    const r = content.owner.resume;
+    if (r === null) return disabledLink(label, "Placeholder");
+    const href = r && r.url ? url(r.url) : null;
+    return href ? `<a class="btn" href="${href}">${esc(label)}</a>` : "";
   }
 
   function renderContact(content) {
@@ -307,7 +334,7 @@
     }
     if (o.resume !== false) {
       const href = o.resume && o.resume.url ? url(o.resume.url) : null;
-      rows.push(["Resume", href ? `<a href="${href}">${esc(o.resume.label || "Resume")}</a>`
+      rows.push(["Résumé", href ? `<a href="${href}">${esc(o.resume.label || "Résumé")}</a>`
         : ph(content, "owner.resume")]);
     }
     if (o.githubUsername !== false) {
@@ -328,21 +355,14 @@
   function renderExperience(content) {
     const ex = content.owner.professionalExperience;
     if (!ex || ex === false) return "";
+    const e = content.site.experience || {};
     return `<section class="section section--experience" id="experience" aria-labelledby="experience-title">
-      <div class="wrap">
-        <p class="eyebrow">Where the public demos come from</p>
-        <h2 id="experience-title">Professional experience behind the demonstrations</h2>
-        <div class="experience-grid">
-          <div>
-            <p class="experience-role"><strong>${esc(ex.role)}</strong> · ${esc(ex.organization)} · ${esc(ex.period)}</p>
-            <p class="section__lede">${inline(ex.summary)}</p>
-            <ul class="experience-list">${ex.workstreams.map(w => `<li><strong>${esc(w.title)}</strong><span>${inline(w.detail)}</span></li>`).join("")}</ul>
-          </div>
-          <aside class="scope-note" aria-label="Boundary between professional experience and public demonstrations">
-            <h3>Real work. Independent public models.</h3>
-            <p>${inline(content.site.professionalDisclosure)}</p>
-          </aside>
-        </div>
+      <div class="wrap experience-compact">
+        <p class="eyebrow">${esc(e.eyebrow || "Experience")}</p>
+        <h2 id="experience-title">${esc(e.title || "Experience")}</h2>
+        <p class="experience-role"><strong>${esc(ex.role)}</strong> · ${esc(ex.organization)} · ${esc(ex.period)}</p>
+        <p class="section__lede">${inline(ex.summary)}</p>
+        <div class="actions">${resumeButton(content, e.resumeLabel || "Full résumé")}</div>
       </div>
     </section>`;
   }
@@ -358,8 +378,8 @@
     const pending = (label) => disabledLink(label, "Placeholder");
     const cta = h.primaryCta && url(h.primaryCta.href);
     if (cta) buttons.push(`<a class="btn btn--primary" href="${cta}">${esc(h.primaryCta.label)}</a>`);
-    if (o.resume === null) buttons.push(pending("Résumé"));
-    else if (o.resume && o.resume.url && url(o.resume.url)) buttons.push(`<a class="btn" href="${url(o.resume.url)}">${esc(o.resume.label || "Résumé")}</a>`);
+    const resume = resumeButton(content, (o.resume && o.resume.label) || "Résumé");
+    if (resume) buttons.push(resume);
     if (o.email === null) buttons.push(pending("Email"));
     else if (typeof o.email === "string" && o.email) buttons.push(`<a class="btn" href="mailto:${esc(o.email)}">Email</a>`);
     if (o.otherLinks === null) buttons.push(pending("LinkedIn"));
@@ -398,57 +418,45 @@
       <p class="hero__summary">${inline(content.site.summary)}</p>
     </section>`;
 
+    const w = content.site.work;
+    const about = content.site.about;
+    // An owner-written bio, once set, replaces the site's About paragraphs.
+    const aboutText = bio || (about ? paras(about.paragraphs) : "");
     return `
     ${hero}
 
-    ${renderExperience(content)}
-
-    ${renderThinkingPreview(content)}
+    ${renderHowIWork(content)}
 
     <section class="section" id="projects" aria-labelledby="projects-title">
       <div class="wrap">
-        <h2 id="projects-title">Featured projects</h2>
-        <p class="section__lede">${inline(content.site.projectsIntro)}</p>
+        <p class="eyebrow">${esc(w.eyebrow)}</p>
+        <h2 id="projects-title">${esc(w.title)}</h2>
+        <p class="section__lede">${inline(w.lede)}</p>
         <ul class="cards">${content.projects.map(renderCard).join("")}</ul>
       </div>
     </section>
 
+    ${renderExperience(content)}
+
     <section class="section" id="about" aria-labelledby="about-title">
-      <div class="wrap">
-        <h2 id="about-title">About</h2>
-        <div class="about-grid">
-          ${bio ? `<div><h3>Background</h3>${bio}</div>` : ""}
-          ${skills ? `<div><h3>Skills</h3>${skills}</div>` : ""}
-          <div>
-            <h3>Methods and tools in these projects</h3>
-            ${tags(tools)}
-            <p class="note">Collected from the project pages above.</p>
-          </div>
-        </div>
+      <div class="wrap about-compact">
+        <h2 id="about-title">${esc(about ? about.title : "About")}</h2>
+        ${aboutText}
+        ${skills ? `<h3>Skills</h3>${skills}` : ""}
+        <h3>${esc(about ? about.toolsLabel : "Methods and tools in these projects")}</h3>
+        ${tags(tools)}
       </div>
     </section>
 
     <section class="section" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
-        <h2 id="contact-title">Public links</h2>
+        <h2 id="contact-title">Contact</h2>
         ${renderContact(content)}
       </div>
     </section>`;
   }
 
   /* ---------- case study page ---------- */
-
-  function renderThinkingPreview(content) {
-    const a = content.appliedThinking;
-    if (!a) return "";
-    const p = a.homePreview;
-    return `<section class="section thinking-preview" id="applied-thinking" aria-labelledby="thinking-preview-title"><div class="wrap">
-      <p class="eyebrow">${esc(p.eyebrow)}</p>
-      <div class="thinking-preview__intro"><div><h2 id="thinking-preview-title">${esc(p.title)}</h2><p class="section__lede">${inline(p.description)}</p></div>
-      <a class="btn" href="${url(p.ctaPath)}">${esc(p.ctaLabel)} <span aria-hidden="true">↗</span></a></div>
-      <ul class="thinking-anchors">${a.capabilities.map((c, i) => `<li><a href="${url(a.route)}#${esc(a.principles[i].id)}"><span class="thinking-number" aria-hidden="true">0${i + 1}</span>${esc(c.title)}</a></li>`).join("")}</ul>
-    </div></section>`;
-  }
 
   function principleLinks(a, ids, fromPage) {
     return `<ul class="thinking-links">${ids.map(id => {
@@ -635,7 +643,6 @@
         </section>
         ${backlinks ? `<section id="academic-connections" aria-labelledby="academic-connections-title">
           <h2 id="academic-connections-title">${esc(content.appliedThinking.labels.backlinks)}</h2>${backlinks}</section>` : ""}
-        <p class="story-disclosure">${inline(content.site.disclosure)}</p>
       </article>
     </div>
     ${renderPager(content, index)}`;
