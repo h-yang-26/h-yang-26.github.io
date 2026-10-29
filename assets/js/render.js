@@ -482,6 +482,13 @@
     return image ? `<figure class="technical-figure thinking-figure">${image}<figcaption>${inline(d.caption)}</figcaption></figure>` : "";
   }
 
+  // A course row may name a principle; "{principle}" in its text becomes a link to that card.
+  function courseText(a, row) {
+    const p = row.principle && a.principles.find(item => item.id === row.principle);
+    const link = p ? `<a href="#${esc(p.id)}">${esc(p.title)}</a>` : "";
+    return inline(row.translation).replace("{principle}", link);
+  }
+
   // Applied Thinking: the eight principles lead as tile cards, grouped by
   // discipline; the longer explanation, method and coursework sit in <details>.
   function renderAppliedThinking(content) {
@@ -515,7 +522,7 @@
       "in-practice": `<p class="thinking-boundary">${inline(a.disclosure)}</p><ul class="thinking-cards">${a.caseStudyBridges.map(b => `<li><article><p class="eyebrow">${esc(l.relatedProject)}</p><h3><a href="${home}projects/${esc(b.slug)}/">${esc(b.label)}</a></h3><p>${inline(b.body)}</p>${principleLinks(a, b.principleIds, false)}</article></li>`).join("")}</ul>`,
       workflow: `<p>${inline(a.workflow.intro)}</p>${renderThinkingFigure(a, "thinking-cycle")}<ol class="thinking-workflow">${a.workflow.steps.map(s => `<li id="step-${esc(s.id)}"><h3>${esc(s.title)}</h3><p>${inline(s.body)}</p></li>`).join("")}</ol><p>${inline(a.workflow.closing)}</p>`,
       connections: `<p>${inline(l.connectionsIntro)}</p><ul class="thinking-cards">${a.connections.map(c => `<li><article id="${esc(c.id)}"><h3>${esc(c.title)}</h3><p>${inline(c.body)}</p>${principleLinks(a, c.principleIds, false)}</article></li>`).join("")}</ul>`,
-      academic: `<p>${inline(l.academicIntro)}</p><table class="thinking-table"><thead><tr><th scope="col">${esc(l.academicArea)}</th><th scope="col">${esc(l.academicUse)}</th></tr></thead><tbody>${a.academicFoundations.rows.map(r => `<tr><th scope="row">${esc(r.title)}</th><td>${inline(r.translation)}</td></tr>`).join("")}</tbody></table><p class="note">${inline(l.academicDeferred)}</p>`,
+      academic: `<p>${inline(l.academicIntro)}</p><table class="thinking-table"><thead><tr><th scope="col">${esc(l.academicArea)}</th><th scope="col">${esc(l.academicUse)}</th></tr></thead><tbody>${a.academicFoundations.rows.map(r => `<tr><th scope="row">${esc(r.title)}</th><td>${courseText(a, r)}</td></tr>`).join("")}</tbody></table><p class="note">${inline(l.academicDeferred)}</p>`,
       limitations: `${paras(a.closing)}<p class="thinking-boundary"><strong>${esc(l.evidenceBoundary)}:</strong> ${inline(a.disclosure)}</p><div class="actions"><a class="btn btn--primary" href="${home}#projects">${esc(a.projectsCtaLabel)}</a></div>`
     };
     const order = a.proposedPageSections.filter(id => sections[id]);

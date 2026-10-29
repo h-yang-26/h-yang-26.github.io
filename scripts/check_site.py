@@ -352,6 +352,14 @@ def main():
     if thinking_page and sum(1 for i in principle_ids if i in thinking_page.ids) != 8:
         problems.append("Applied Thinking: rendered page must show all eight principle cards")
 
+    # Course rows that name a principle must name a real one and place its link.
+    for row in a.get("academicFoundations", {}).get("rows", []):
+        has_token = "{principle}" in row.get("translation", "")
+        if row.get("principle") and (row["principle"] not in principle_ids or not has_token):
+            problems.append(f"course row {row.get('title')!r}: principle {row['principle']!r} is unknown or has no {{principle}} placeholder")
+        elif has_token and not row.get("principle"):
+            problems.append(f"course row {row.get('title')!r}: {{principle}} placeholder without a principle")
+
     # How these were built: the page exists, renders and keeps the new voice.
     process = content["site"].get("process")
     if process:
