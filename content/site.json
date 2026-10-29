@@ -102,7 +102,8 @@
     "privacy": "This site sets no cookies and loads no analytics, tracking scripts or third-party content.",
     "headline": "Enterprise-motivated technical demonstrations",
     "professionalDisclosure": "The professional work described here includes live, integrated or deployed capabilities, with project-specific status indicated below. The linked GitHub repositories are independent representations built from fictional inputs and general methods; their test results and example metrics are not employer results.",
-    "transformationIntro": "The left panels show schematic public-model inputs; the right panels show recorded synthetic outputs or checked conceptual examples. These are not employer screenshots, performance improvements or operational before-and-after measurements."
+    "transformationIntro": "Explore a single split-screen comparison for each public case study: a fictional input interface on the left and a dashboard-style presentation of the recorded synthetic result or checked conceptual example on the right. These are illustrative UI mockups—not employer screenshots or measured workplace improvements.",
+    "transformationDisclaimer": "Illustrative interfaces and fictional examples. Not employer screenshots, production dashboards, or measured before/after improvements."
   },
   "projects": [
     {
@@ -223,17 +224,100 @@
       "transformation": {
         "scene": "records",
         "headline": "From inconsistent records to traceable decisions",
-        "beforeTitle": "Unresolved source records",
+        "beforeTitle": "Cluttered raw records",
         "beforeItems": [
           "Duplicate identifier",
           "Ambiguous category",
           "Invalid date"
         ],
         "beforeNote": "Which rows can be safely accepted?",
-        "afterTitle": "Validated or flagged",
+        "afterTitle": "Review-ready data",
         "afterNote": "37 accepted · 23 held for review",
         "takeaway": "All 60 fictional rows are accounted for; unresolved entries are held for review, not guessed into place.",
-        "disclosure": "The left-hand input is a schematic of example error types, not a screenshot. The right-hand chart comes from the public synthetic demo's recorded output. Neither depicts employer data or measured workplace improvement."
+        "disclosure": "The left-hand input is a schematic of example error types, not a screenshot. The right-hand chart comes from the public synthetic demo's recorded output. Neither depicts employer data or measured workplace improvement.",
+        "beforeHeaders": [
+          "Row",
+          "Item ID",
+          "Category",
+          "Qty",
+          "Flag"
+        ],
+        "beforeRows": [
+          [
+            "01",
+            "EQ-014",
+            "Forklift",
+            "4",
+            "—"
+          ],
+          [
+            "02",
+            "EQ-021",
+            "Unknown",
+            "2",
+            "Alias?"
+          ],
+          [
+            "03",
+            "EQ-021",
+            "Reach truck",
+            "2",
+            "Duplicate"
+          ],
+          [
+            "04",
+            "EQ-029",
+            "Forklift",
+            "-3",
+            "Invalid"
+          ],
+          [
+            "05",
+            "EQ-031",
+            "Equipment",
+            "?",
+            "Missing"
+          ],
+          [
+            "06",
+            "EQ-034",
+            "Forklift",
+            "6",
+            "—"
+          ],
+          [
+            "07",
+            "EQ-038",
+            "?",
+            "1",
+            "Review"
+          ],
+          [
+            "08",
+            "EQ-042",
+            "Forklift",
+            "3",
+            "—"
+          ]
+        ],
+        "afterMetrics": [
+          {
+            "value": "60",
+            "label": "Input rows"
+          },
+          {
+            "value": "37",
+            "label": "Accepted"
+          },
+          {
+            "value": "23",
+            "label": "For review"
+          }
+        ],
+        "screenTitle": "Inventory quality overview",
+        "screenSubtitle": "Synthetic sample • deterministic validation",
+        "beforeFile": "raw_inventory_example.csv",
+        "beforeStatus": "Illustrative example rows, not the actual source CSV"
       }
     },
     {
@@ -356,18 +440,83 @@
       "transformation": {
         "scene": "capacity",
         "headline": "From an unallocated request to constraint-checked scenarios",
-        "beforeTitle": "Request + limits",
+        "beforeTitle": "Manual allocation inputs",
         "beforeItems": [
           "309 units requested",
           "Mass constraint",
           "Volume constraint",
           "Available inventory"
         ],
-        "beforeNote": "What allocation is feasible?",
-        "afterTitle": "Modelled allocation",
+        "beforeNote": "Apply mass, volume, stock and container-cost limits before selecting a feasible allocation.",
+        "afterTitle": "Planning dashboard",
         "afterNote": "Five scenarios · shipped and short units",
         "takeaway": "The optimizer distinguishes demand from what can be shipped under fictional stock, capacity and cost assumptions.",
-        "disclosure": "The left panel represents model inputs, not a measured pre-optimization shipment. The right chart reproduces synthetic scenario outputs, not employer cost savings or deployed operations."
+        "disclosure": "The left panel represents model inputs, not a measured pre-optimization shipment. The right chart reproduces synthetic scenario outputs, not employer cost savings or deployed operations.",
+        "beforeHeaders": [
+          "Input",
+          "Value",
+          "Check"
+        ],
+        "beforeRows": [
+          [
+            "Requested units",
+            "309",
+            "Demand"
+          ],
+          [
+            "Available stock",
+            "Varies",
+            "Constraint"
+          ],
+          [
+            "Container mass",
+            "Limited",
+            "Capacity"
+          ],
+          [
+            "Container volume",
+            "Limited",
+            "Capacity"
+          ],
+          [
+            "Shortage penalty",
+            "Scenario",
+            "Cost"
+          ],
+          [
+            "Container charge",
+            "Fixed",
+            "Cost"
+          ],
+          [
+            "Units to ship",
+            "?",
+            "Unallocated"
+          ],
+          [
+            "Short units",
+            "?",
+            "Unallocated"
+          ]
+        ],
+        "afterMetrics": [
+          {
+            "value": "309",
+            "label": "Units requested"
+          },
+          {
+            "value": "5",
+            "label": "Scenarios"
+          },
+          {
+            "value": "130",
+            "label": "Tests passed"
+          }
+        ],
+        "screenTitle": "Allocation scenario results",
+        "screenSubtitle": "Synthetic cost and capacity assumptions",
+        "beforeFile": "planning_inputs_example.csv",
+        "beforeStatus": "Illustrative inputs; scenario outcomes shown at right"
       }
     },
     {
@@ -490,17 +639,91 @@
       "transformation": {
         "scene": "events",
         "headline": "From raw telemetry to interpretable session metrics",
-        "beforeTitle": "Unvalidated event stream",
+        "beforeTitle": "Cluttered event logs",
         "beforeItems": [
           "5,766 raw event rows",
           "Duplicate event IDs",
           "Conflicting / invalid rows"
         ],
         "beforeNote": "Which events belong in the denominator?",
-        "afterTitle": "Ordered session funnel",
+        "afterTitle": "Usage dashboard",
         "afterNote": "1,357 opened → 844 searched → 619 viewed detail",
         "takeaway": "Filtering invalid events and defining session order makes the public-demo funnel auditable.",
-        "disclosure": "The left panel schematically represents validation questions. The right chart displays recorded fictional-session results; it is not a production conversion rate or employer adoption statistic."
+        "disclosure": "The left panel schematically represents validation questions. The right chart displays recorded fictional-session results; it is not a production conversion rate or employer adoption statistic.",
+        "beforeHeaders": [
+          "Time",
+          "Event",
+          "Session",
+          "Flag"
+        ],
+        "beforeRows": [
+          [
+            "10:01",
+            "Page view",
+            "S-011",
+            "—"
+          ],
+          [
+            "10:01",
+            "Search",
+            "S-011",
+            "—"
+          ],
+          [
+            "10:02",
+            "Search",
+            "S-011",
+            "Repeat"
+          ],
+          [
+            "10:04",
+            "Detail view",
+            "S-011",
+            "—"
+          ],
+          [
+            "10:06",
+            "Page view",
+            "S-012",
+            "—"
+          ],
+          [
+            "10:06",
+            "Page view",
+            "S-012",
+            "Duplicate"
+          ],
+          [
+            "10:08",
+            "Unknown",
+            "S-013",
+            "Invalid"
+          ],
+          [
+            "10:09",
+            "Search",
+            "S-014",
+            "Check"
+          ]
+        ],
+        "afterMetrics": [
+          {
+            "value": "5,735",
+            "label": "Valid events"
+          },
+          {
+            "value": "31",
+            "label": "Excluded rows"
+          },
+          {
+            "value": "44",
+            "label": "Tests passed"
+          }
+        ],
+        "screenTitle": "Product usage overview",
+        "screenSubtitle": "Validated fictional events • ordered sessions",
+        "beforeFile": "events_raw_example.csv",
+        "beforeStatus": "Illustrative log excerpt; 5,766 total synthetic events"
       }
     },
     {
@@ -623,17 +846,82 @@
       "transformation": {
         "scene": "stages",
         "headline": "From mixed business quantities to distinct lifecycle facts",
-        "beforeTitle": "Stage counts without definitions",
+        "beforeTitle": "Mixed transaction records",
         "beforeItems": [
           "4 units quoted",
           "2 units ordered",
           "1 unit shipped"
         ],
-        "beforeNote": "These quantities must not be added together.",
-        "afterTitle": "Separated business states",
+        "beforeNote": "Quotation, commitment and shipment are not additive demand.",
+        "afterTitle": "Lifecycle dashboard",
         "afterNote": "2 converted · 1 shipped · 1 still owed",
         "takeaway": "The design distinguishes offers, commercial commitments and fulfillment so the same units are not counted as separate demand.",
-        "disclosure": "Both panels illustrate a hypothetical business scenario. The right chart is a conceptual arithmetic check, not a screenshot or claim about an implemented employer architecture."
+        "disclosure": "Both panels illustrate a hypothetical business scenario. The right chart is a conceptual arithmetic check, not a screenshot or claim about an implemented employer architecture.",
+        "beforeHeaders": [
+          "Document",
+          "Units",
+          "Meaning"
+        ],
+        "beforeRows": [
+          [
+            "Quotation",
+            "4",
+            "Offer"
+          ],
+          [
+            "Sales order",
+            "2",
+            "Commitment"
+          ],
+          [
+            "Shipment",
+            "1",
+            "Fulfilled"
+          ],
+          [
+            "Remaining",
+            "?",
+            "Unresolved"
+          ],
+          [
+            "Open quotation",
+            "2",
+            "Not ordered"
+          ],
+          [
+            "On hand",
+            "—",
+            "Not shown"
+          ],
+          [
+            "Reserved",
+            "—",
+            "Separate"
+          ],
+          [
+            "Backlog",
+            "?",
+            "Definition"
+          ]
+        ],
+        "afterMetrics": [
+          {
+            "value": "4",
+            "label": "Quoted"
+          },
+          {
+            "value": "2",
+            "label": "Ordered"
+          },
+          {
+            "value": "1",
+            "label": "Shipped"
+          }
+        ],
+        "screenTitle": "Quotation → order → fulfillment",
+        "screenSubtitle": "Hypothetical checked scenario",
+        "beforeFile": "sales_stage_example.csv",
+        "beforeStatus": "Illustrative model; not an implemented CRM"
       }
     }
   ],

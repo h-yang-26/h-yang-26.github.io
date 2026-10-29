@@ -255,45 +255,67 @@
     }).join("")}</div>`;
   }
 
-  /* Shared transformation template. Input states are illustrative, not workplace screenshots. */
+  /* One illustrative split-screen monitor per public demo. Text comes from site.json.
+     Mock spreadsheet rows are not the employer's data, nor exact dataset rows. */
   function renderBeforeScene(t) {
-    const scene = ["records", "capacity", "events", "stages"].includes(t.scene) ? t.scene : "records";
-    const rows = t.beforeItems.map((item, i) => `<div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
-      <span class="transform-scene__item-label">${esc(item)}</span>
-      <span class="transform-scene__indicator" aria-hidden="true">${scene === "records" ? "!" : scene === "capacity" ? "◌" : scene === "events" ? "·" : "?"}</span>
-    </div>`).join("");
-    return `<div class="transform-scene transform-scene--${scene}">
-      <div class="transform-scene__overline">${esc(t.beforeTitle)}</div>
-      <div class="transform-scene__items">${rows}</div>
-      <p class="transform-scene__question">${esc(t.beforeNote)}</p>
+    const columns = t.beforeHeaders.map(h => `<th scope="col">${esc(h)}</th>`).join("");
+    const rows = t.beforeRows.map((row, i) => `<tr>${row.map((cell, j) =>
+      `<td class="${i % 3 === 1 && j === row.length - 1 ? "screen-cell--issue" : ""}">${esc(cell)}</td>`).join("")}</tr>`).join("");
+    return `<div class="monitor-app monitor-app--before">
+      <div class="monitor-app__toolbar"><span class="monitor-app__sheet-icon" aria-hidden="true">▦</span><span class="monitor-app__filename">${esc(t.beforeFile)}</span><span class="monitor-app__toolbar-dots" aria-hidden="true">•••</span></div>
+      <div class="monitor-app__menu" aria-hidden="true">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Data&nbsp;&nbsp; Tools</div>
+      <div class="monitor-app__sheet-wrap">
+        <table class="monitor-app__sheet" aria-label="Illustrative input records, not exported source data">
+          <thead><tr>${columns}</tr></thead><tbody>${rows}</tbody>
+        </table>
+      </div>
+      <div class="monitor-app__status"><span class="monitor-app__status-dot" aria-hidden="true"></span>${esc(t.beforeStatus)}</div>
     </div>`;
   }
 
-  function renderTransformation(project, mode) {
+  function renderAfterScene(project) {
+    const t = project.transformation;
+    const thumb = (project.visuals || []).find(v => v.src === project.thumbnail);
+    const resultImage = thumb ? picture(thumb, thumb.alt, "card") : "";
+    return `<div class="monitor-app monitor-app--after">
+      <div class="monitor-app__toolbar monitor-app__toolbar--after"><span class="monitor-app__logo" aria-hidden="true">◈</span><strong>Public demo</strong><span class="monitor-app__view">Overview</span></div>
+      <div class="monitor-app__dashboard">
+        <div class="monitor-app__dashboard-title"><strong>${esc(t.screenTitle)}</strong><span>${esc(t.screenSubtitle)}</span></div>
+        <div class="monitor-app__metrics">${t.afterMetrics.map((m,i) => `<div class="monitor-app__metric"><span class="monitor-app__metric-label">${esc(m.label)}</span><strong>${esc(m.value)}</strong><span class="monitor-app__metric-mark" aria-hidden="true">${i === 0 ? "●" : i === 1 ? "◆" : "✓"}</span></div>`).join("")}</div>
+        <div class="monitor-app__chart"><div class="monitor-app__chart-label">Recorded public-demo result</div>${resultImage}</div>
+        <div class="monitor-app__result-footer">${esc(t.afterNote)}</div>
+      </div>
+    </div>`;
+  }
+
+  function renderTransformation(project, mode, disclaimer) {
     const t = project.transformation;
     if (!t) return "";
-    const thumb = (project.visuals || []).find(v => v.src === project.thumbnail);
-    const output = thumb ? picture(thumb, thumb.alt, "card") : "";
     const format = mode === "card" ? "card" : "feature";
-    return `<figure class="transformation transformation--${format}" aria-label="Illustrative before and after: ${esc(project.title)}">
-      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
-        <strong>${esc(t.headline)}</strong></div>
-      <div class="transformation__panels">
-        <div class="transformation__panel transformation__panel--before">
-          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
-            <span class="transformation__bar-note">Input / question</span></div>
-          <div class="transformation__canvas">${renderBeforeScene(t)}</div>
-        </div>
-        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
-        <div class="transformation__panel transformation__panel--after">
-          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
-            <span class="transformation__bar-note">Public model output</span></div>
-          <div class="transformation__canvas transformation__canvas--result">${output}</div>
-          <p class="transformation__result-note">${esc(t.afterTitle)} · ${esc(t.afterNote)}</p>
-        </div>
+    return `<figure class="transformation transformation--${format}" aria-label="Illustrative split-screen before and after: ${esc(project.title)}">
+      <div class="transformation__eyebrow">ILLUSTRATIVE TRANSFORMATION · PUBLIC CASE STUDY</div>
+      <div class="transformation__labels">
+        <div><span class="transformation__phase">BEFORE</span><strong>${esc(t.beforeTitle)}</strong></div>
+        <div><span class="transformation__phase transformation__phase--after">AFTER</span><strong>${esc(t.afterTitle)}</strong></div>
       </div>
-      ${format === "feature" ? `<figcaption class="transformation__disclosure">${esc(t.disclosure)}</figcaption>` : ""}
+      <div class="transformation__monitor">
+        <div class="transformation__bezel">
+          <div class="transformation__screen">
+            <div class="transformation__side transformation__side--before">
+              <span class="transformation__mobile-tag">BEFORE · ILLUSTRATIVE INPUT</span>
+              ${renderBeforeScene(t)}
+            </div>
+            <div class="transformation__side transformation__side--after">
+              <span class="transformation__mobile-tag">AFTER · PUBLIC DEMO</span>
+              ${renderAfterScene(project)}
+            </div>
+          </div>
+        </div>
+        <div class="transformation__stand" aria-hidden="true"></div>
+        <div class="transformation__stand-base" aria-hidden="true"></div>
+      </div>
+      <figcaption class="transformation__caption"><strong>${esc(t.headline)}</strong>
+        <span>${esc(format === "feature" ? t.disclosure : disclaimer)}</span></figcaption>
     </figure>`;
   }
 
@@ -302,7 +324,7 @@
     const t = project.transformation;
     return `<li>
       <article class="card card--transformation" aria-labelledby="card-${esc(project.slug)}">
-        ${renderTransformation(project, "card")}
+        ${renderTransformation(project, "card", "Illustrative inputs and fictional public-model outputs; no employer screenshots or measured improvement.")}
         <div class="card__body">
           <p class="chip">${esc(project.label)}</p>
           <h3 id="card-${esc(project.slug)}">${esc(project.title)}</h3>
@@ -566,7 +588,7 @@
       <div><h3>Scope of this public demonstration</h3>${paras(p.demoScope)}</div>
       </div>` : null;
     const sections = [
-      ["transformation", "Before and after: the public model", renderTransformation(p, "feature")],
+      ["transformation", "Before and after: the public model", renderTransformation(p, "feature", content.site.transformationDisclaimer)],
       ["professional", "Professional work and public-demo boundary", bridge],
       ["problem", "The problem", paras(p.problem)],
       ["visuals", "System diagrams and synthetic results", renderVisuals(p)],

@@ -1,14 +1,25 @@
-# Before/after: case-study visual template
+# Split-screen monitor transformation previews (reference-based redesign)
 
-Each of the four homepage project cards shows a compact input/after diagram; the corresponding case study opens with the large version. Both are generated from content/site.json, share the same HTML/CSS, and work without JavaScript.
+The comparison graphic deliberately adopts the user's single-monitor split-screen visual reference: a raw spreadsheet-style interface on the left, a polished dashboard-style interface on the right, a strong central divider, and prominent BEFORE and AFTER labels above the screen. It is rendered with original HTML/CSS and existing synthetic-data SVG results, not reproduced from the reference image.
 
-**Before** = a clearly labelled schematic input or modelling question (not a screenshot, employer record, production defect or measured baseline). **After** = the project's existing generated public-demo SVG results or checked hypothetical arithmetic, not employer performance. The feature contains a visible project-specific disclosure.
+## Source honesty
 
-- Data quality: inconsistent source-row types → 37 accepted and 23 flagged (60 fictional rows).
-- Inventory: 309 requested units and allocation constraints → five synthetic shipped/short scenarios. Not an operational savings comparison.
-- Analytics: 5,766 raw fictional events and validation questions → ordered funnel 1,357 / 844 / 619.
-- B2B sales: quoted / ordered / shipped counts → distinct business facts and remaining fulfillment, a conceptual model.
+- Every before screen is an **illustrative fictional UI**: sample spreadsheet rows are designed to show the class of problem, NOT copied from employer records or asserted to match the literal committed data rows.
+- Every after screen is an **illustrative dashboard shell** around a verified public-demo chart or the checked hypothetical B2B example. It is NOT an employer dashboard screenshot or a record of improvements to a live system.
+- Numeric KPI summaries derive from the public project's previously documented synthetic results. Do not add unverified uplift percentages, revenue, or saved-hours claims.
+- The site's existing real-professional-work versus simplified-public-demo boundary, tests, technical figures and provenance sections are unchanged.
 
-The right-side image uses generated dark/light responsive SVG variants; the left-side graphic is a CSS UI illustration. The compact version is on the homepage, the expanded version at the start of each case study, and existing diagrams still appear in the technical section. On narrow viewports the panels stack vertically.
+## Four screen designs
 
-Verify with `node scripts/check_renderer.mjs`, `node scripts/render_static.mjs --check`, `python scripts/build_visuals.py --check`, and `python scripts/check_site.py --release`. Review light/dark mode, accessibility and 320/390px layouts in a browser before merging.
+1. Data quality: messy equipment inventory rows → synthetic 60 / 37 / 23 validation report.
+2. Shipping: unallocated demand and capacity/cost constraints → fictional 309 requested, five shipping scenarios, 130 tests.
+3. Product analytics: noisy raw event logs → synthetic 5,735 valid events, 31 excluded, and the ordered funnel.
+4. B2B sales: mixed quotation/order/shipment records → conceptual 4 quoted, 2 ordered, 1 shipped.
+
+## Implementation
+
+`projects[].transformation.beforeHeaders`, `beforeRows`, `afterMetrics`, `screenTitle` etc. in `content/site.json` are the content source. `assets/js/render.js` builds HTML mock UIs and reuses the existing `picture()` chart renderer; `assets/css/site.css` draws the monitor bezel, split screen, stand, dashboard chrome, and responsive stacked mobile view. No new tracking, remote images or third-party code. The static `index.html` and four case study pages are regenerated from the renderer.
+
+## Verification
+
+`node scripts/check_renderer.mjs`; `node scripts/render_static.mjs --check`; `python scripts/build_visuals.py --check`; `python scripts/check_site.py --release`. Verify in real browser at desktop, narrow desktop, 390px and 320px, dark theme, with JS disabled.

@@ -50,40 +50,47 @@
         </nav>
         <article class="prose">
           <section id="transformation" aria-labelledby="transformation-title">
-            <h2 id="transformation-title">Before and after: the public model</h2><figure class="transformation transformation--feature" aria-label="Illustrative before and after: B2B Sales Systems Case Study">
-      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
-        <strong>From mixed business quantities to distinct lifecycle facts</strong></div>
-      <div class="transformation__panels">
-        <div class="transformation__panel transformation__panel--before">
-          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
-            <span class="transformation__bar-note">Input / question</span></div>
-          <div class="transformation__canvas"><div class="transform-scene transform-scene--stages">
-      <div class="transform-scene__overline">Stage counts without definitions</div>
-      <div class="transform-scene__items"><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">01</span>
-      <span class="transform-scene__item-label">4 units quoted</span>
-      <span class="transform-scene__indicator" aria-hidden="true">?</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">02</span>
-      <span class="transform-scene__item-label">2 units ordered</span>
-      <span class="transform-scene__indicator" aria-hidden="true">?</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">03</span>
-      <span class="transform-scene__item-label">1 unit shipped</span>
-      <span class="transform-scene__indicator" aria-hidden="true">?</span>
-    </div></div>
-      <p class="transform-scene__question">These quantities must not be added together.</p>
-    </div></div>
-        </div>
-        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
-        <div class="transformation__panel transformation__panel--after">
-          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
-            <span class="transformation__bar-note">Public model output</span></div>
-          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/b2b-quantities-card-dark.svg" width="440" height="260"><img src="../../assets/visuals/b2b-quantities-card.svg" alt="Unit chart for one fictional order: 4 units quoted; 2 ordered and 2 not converted; 1 shipped and 1 still owed." width="440" height="260" loading="lazy" decoding="async"></picture></div>
-          <p class="transformation__result-note">Separated business states · 2 converted · 1 shipped · 1 still owed</p>
-        </div>
+            <h2 id="transformation-title">Before and after: the public model</h2><figure class="transformation transformation--feature" aria-label="Illustrative split-screen before and after: B2B Sales Systems Case Study">
+      <div class="transformation__eyebrow">ILLUSTRATIVE TRANSFORMATION · PUBLIC CASE STUDY</div>
+      <div class="transformation__labels">
+        <div><span class="transformation__phase">BEFORE</span><strong>Mixed transaction records</strong></div>
+        <div><span class="transformation__phase transformation__phase--after">AFTER</span><strong>Lifecycle dashboard</strong></div>
       </div>
-      <figcaption class="transformation__disclosure">Both panels illustrate a hypothetical business scenario. The right chart is a conceptual arithmetic check, not a screenshot or claim about an implemented employer architecture.</figcaption>
+      <div class="transformation__monitor">
+        <div class="transformation__bezel">
+          <div class="transformation__screen">
+            <div class="transformation__side transformation__side--before">
+              <span class="transformation__mobile-tag">BEFORE · ILLUSTRATIVE INPUT</span>
+              <div class="monitor-app monitor-app--before">
+      <div class="monitor-app__toolbar"><span class="monitor-app__sheet-icon" aria-hidden="true">▦</span><span class="monitor-app__filename">sales_stage_example.csv</span><span class="monitor-app__toolbar-dots" aria-hidden="true">•••</span></div>
+      <div class="monitor-app__menu" aria-hidden="true">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Data&nbsp;&nbsp; Tools</div>
+      <div class="monitor-app__sheet-wrap">
+        <table class="monitor-app__sheet" aria-label="Illustrative input records, not exported source data">
+          <thead><tr><th scope="col">Document</th><th scope="col">Units</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td class="">Quotation</td><td class="">4</td><td class="">Offer</td></tr><tr><td class="">Sales order</td><td class="">2</td><td class="screen-cell--issue">Commitment</td></tr><tr><td class="">Shipment</td><td class="">1</td><td class="">Fulfilled</td></tr><tr><td class="">Remaining</td><td class="">?</td><td class="">Unresolved</td></tr><tr><td class="">Open quotation</td><td class="">2</td><td class="screen-cell--issue">Not ordered</td></tr><tr><td class="">On hand</td><td class="">—</td><td class="">Not shown</td></tr><tr><td class="">Reserved</td><td class="">—</td><td class="">Separate</td></tr><tr><td class="">Backlog</td><td class="">?</td><td class="screen-cell--issue">Definition</td></tr></tbody>
+        </table>
+      </div>
+      <div class="monitor-app__status"><span class="monitor-app__status-dot" aria-hidden="true"></span>Illustrative model; not an implemented CRM</div>
+    </div>
+            </div>
+            <div class="transformation__side transformation__side--after">
+              <span class="transformation__mobile-tag">AFTER · PUBLIC DEMO</span>
+              <div class="monitor-app monitor-app--after">
+      <div class="monitor-app__toolbar monitor-app__toolbar--after"><span class="monitor-app__logo" aria-hidden="true">◈</span><strong>Public demo</strong><span class="monitor-app__view">Overview</span></div>
+      <div class="monitor-app__dashboard">
+        <div class="monitor-app__dashboard-title"><strong>Quotation → order → fulfillment</strong><span>Hypothetical checked scenario</span></div>
+        <div class="monitor-app__metrics"><div class="monitor-app__metric"><span class="monitor-app__metric-label">Quoted</span><strong>4</strong><span class="monitor-app__metric-mark" aria-hidden="true">●</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Ordered</span><strong>2</strong><span class="monitor-app__metric-mark" aria-hidden="true">◆</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Shipped</span><strong>1</strong><span class="monitor-app__metric-mark" aria-hidden="true">✓</span></div></div>
+        <div class="monitor-app__chart"><div class="monitor-app__chart-label">Recorded public-demo result</div><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/b2b-quantities-card-dark.svg" width="440" height="260"><img src="../../assets/visuals/b2b-quantities-card.svg" alt="Unit chart for one fictional order: 4 units quoted; 2 ordered and 2 not converted; 1 shipped and 1 still owed." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+        <div class="monitor-app__result-footer">2 converted · 1 shipped · 1 still owed</div>
+      </div>
+    </div>
+            </div>
+          </div>
+        </div>
+        <div class="transformation__stand" aria-hidden="true"></div>
+        <div class="transformation__stand-base" aria-hidden="true"></div>
+      </div>
+      <figcaption class="transformation__caption"><strong>From mixed business quantities to distinct lifecycle facts</strong>
+        <span>Both panels illustrate a hypothetical business scenario. The right chart is a conceptual arithmetic check, not a screenshot or claim about an implemented employer architecture.</span></figcaption>
     </figure></section><section id="professional" aria-labelledby="professional-title">
             <h2 id="professional-title">Professional work and public-demo boundary</h2><div class="professional-bridge">
       <div><h3>Relevant professional responsibility</h3><p>I collaborate with a software lead in a two-person team on an industrial B2B platform used by staff and dealers, contributing business context, requirements clarification, reviews and AI-assisted development direction for sales and operational workflows.</p></div>

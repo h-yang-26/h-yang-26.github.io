@@ -50,44 +50,47 @@
         </nav>
         <article class="prose">
           <section id="transformation" aria-labelledby="transformation-title">
-            <h2 id="transformation-title">Before and after: the public model</h2><figure class="transformation transformation--feature" aria-label="Illustrative before and after: Inventory and Shipping Optimization Lab">
-      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
-        <strong>From an unallocated request to constraint-checked scenarios</strong></div>
-      <div class="transformation__panels">
-        <div class="transformation__panel transformation__panel--before">
-          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
-            <span class="transformation__bar-note">Input / question</span></div>
-          <div class="transformation__canvas"><div class="transform-scene transform-scene--capacity">
-      <div class="transform-scene__overline">Request + limits</div>
-      <div class="transform-scene__items"><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">01</span>
-      <span class="transform-scene__item-label">309 units requested</span>
-      <span class="transform-scene__indicator" aria-hidden="true">◌</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">02</span>
-      <span class="transform-scene__item-label">Mass constraint</span>
-      <span class="transform-scene__indicator" aria-hidden="true">◌</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">03</span>
-      <span class="transform-scene__item-label">Volume constraint</span>
-      <span class="transform-scene__indicator" aria-hidden="true">◌</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">04</span>
-      <span class="transform-scene__item-label">Available inventory</span>
-      <span class="transform-scene__indicator" aria-hidden="true">◌</span>
-    </div></div>
-      <p class="transform-scene__question">What allocation is feasible?</p>
-    </div></div>
-        </div>
-        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
-        <div class="transformation__panel transformation__panel--after">
-          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
-            <span class="transformation__bar-note">Public model output</span></div>
-          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/inventory-scenarios-card-dark.svg" width="440" height="260"><img src="../../assets/visuals/inventory-scenarios-card.svg" alt="Stacked bars of units shipped and short out of 309 requested: normal 309 shipped; high shortage penalty 130 shipped and 179 short; tight capacity 112 shipped and 197 short; low shortage penalty and no inventory 0 shipped and 309 short." width="440" height="260" loading="lazy" decoding="async"></picture></div>
-          <p class="transformation__result-note">Modelled allocation · Five scenarios · shipped and short units</p>
-        </div>
+            <h2 id="transformation-title">Before and after: the public model</h2><figure class="transformation transformation--feature" aria-label="Illustrative split-screen before and after: Inventory and Shipping Optimization Lab">
+      <div class="transformation__eyebrow">ILLUSTRATIVE TRANSFORMATION · PUBLIC CASE STUDY</div>
+      <div class="transformation__labels">
+        <div><span class="transformation__phase">BEFORE</span><strong>Manual allocation inputs</strong></div>
+        <div><span class="transformation__phase transformation__phase--after">AFTER</span><strong>Planning dashboard</strong></div>
       </div>
-      <figcaption class="transformation__disclosure">The left panel represents model inputs, not a measured pre-optimization shipment. The right chart reproduces synthetic scenario outputs, not employer cost savings or deployed operations.</figcaption>
+      <div class="transformation__monitor">
+        <div class="transformation__bezel">
+          <div class="transformation__screen">
+            <div class="transformation__side transformation__side--before">
+              <span class="transformation__mobile-tag">BEFORE · ILLUSTRATIVE INPUT</span>
+              <div class="monitor-app monitor-app--before">
+      <div class="monitor-app__toolbar"><span class="monitor-app__sheet-icon" aria-hidden="true">▦</span><span class="monitor-app__filename">planning_inputs_example.csv</span><span class="monitor-app__toolbar-dots" aria-hidden="true">•••</span></div>
+      <div class="monitor-app__menu" aria-hidden="true">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Data&nbsp;&nbsp; Tools</div>
+      <div class="monitor-app__sheet-wrap">
+        <table class="monitor-app__sheet" aria-label="Illustrative input records, not exported source data">
+          <thead><tr><th scope="col">Input</th><th scope="col">Value</th><th scope="col">Check</th></tr></thead><tbody><tr><td class="">Requested units</td><td class="">309</td><td class="">Demand</td></tr><tr><td class="">Available stock</td><td class="">Varies</td><td class="screen-cell--issue">Constraint</td></tr><tr><td class="">Container mass</td><td class="">Limited</td><td class="">Capacity</td></tr><tr><td class="">Container volume</td><td class="">Limited</td><td class="">Capacity</td></tr><tr><td class="">Shortage penalty</td><td class="">Scenario</td><td class="screen-cell--issue">Cost</td></tr><tr><td class="">Container charge</td><td class="">Fixed</td><td class="">Cost</td></tr><tr><td class="">Units to ship</td><td class="">?</td><td class="">Unallocated</td></tr><tr><td class="">Short units</td><td class="">?</td><td class="screen-cell--issue">Unallocated</td></tr></tbody>
+        </table>
+      </div>
+      <div class="monitor-app__status"><span class="monitor-app__status-dot" aria-hidden="true"></span>Illustrative inputs; scenario outcomes shown at right</div>
+    </div>
+            </div>
+            <div class="transformation__side transformation__side--after">
+              <span class="transformation__mobile-tag">AFTER · PUBLIC DEMO</span>
+              <div class="monitor-app monitor-app--after">
+      <div class="monitor-app__toolbar monitor-app__toolbar--after"><span class="monitor-app__logo" aria-hidden="true">◈</span><strong>Public demo</strong><span class="monitor-app__view">Overview</span></div>
+      <div class="monitor-app__dashboard">
+        <div class="monitor-app__dashboard-title"><strong>Allocation scenario results</strong><span>Synthetic cost and capacity assumptions</span></div>
+        <div class="monitor-app__metrics"><div class="monitor-app__metric"><span class="monitor-app__metric-label">Units requested</span><strong>309</strong><span class="monitor-app__metric-mark" aria-hidden="true">●</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Scenarios</span><strong>5</strong><span class="monitor-app__metric-mark" aria-hidden="true">◆</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Tests passed</span><strong>130</strong><span class="monitor-app__metric-mark" aria-hidden="true">✓</span></div></div>
+        <div class="monitor-app__chart"><div class="monitor-app__chart-label">Recorded public-demo result</div><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/inventory-scenarios-card-dark.svg" width="440" height="260"><img src="../../assets/visuals/inventory-scenarios-card.svg" alt="Stacked bars of units shipped and short out of 309 requested: normal 309 shipped; high shortage penalty 130 shipped and 179 short; tight capacity 112 shipped and 197 short; low shortage penalty and no inventory 0 shipped and 309 short." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+        <div class="monitor-app__result-footer">Five scenarios · shipped and short units</div>
+      </div>
+    </div>
+            </div>
+          </div>
+        </div>
+        <div class="transformation__stand" aria-hidden="true"></div>
+        <div class="transformation__stand-base" aria-hidden="true"></div>
+      </div>
+      <figcaption class="transformation__caption"><strong>From an unallocated request to constraint-checked scenarios</strong>
+        <span>The left panel represents model inputs, not a measured pre-optimization shipment. The right chart reproduces synthetic scenario outputs, not employer cost savings or deployed operations.</span></figcaption>
     </figure></section><section id="professional" aria-labelledby="professional-title">
             <h2 id="professional-title">Professional work and public-demo boundary</h2><div class="professional-bridge">
       <div><h3>Relevant professional responsibility</h3><p>I designed and directed AI-assisted development of a forklift restock recommendation capability covering demand forecasts, live demand and shipping-container utilization. The capability was integrated into the business platform and continues to be developed.</p></div>

@@ -63,43 +63,50 @@
       <div class="wrap">
         <h2 id="projects-title">Featured projects</h2>
         <p class="section__lede">Each project pairs a documented professional workstream with a separate, simplified public implementation. The three Python demonstrations run locally; the B2B systems case study is a conceptual design with executable consistency checks. None of the public examples claims to be the deployed workplace system.</p>
-        <p class="section__visual-intro">The left panels show schematic public-model inputs; the right panels show recorded synthetic outputs or checked conceptual examples. These are not employer screenshots, performance improvements or operational before-and-after measurements.</p>
+        <p class="section__visual-intro">Explore a single split-screen comparison for each public case study: a fictional input interface on the left and a dashboard-style presentation of the recorded synthetic result or checked conceptual example on the right. These are illustrative UI mockups—not employer screenshots or measured workplace improvements.</p>
         <ul class="cards"><li>
       <article class="card card--transformation" aria-labelledby="card-synthetic-data-quality-pipeline">
-        <figure class="transformation transformation--card" aria-label="Illustrative before and after: Synthetic Data Quality Pipeline">
-      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
-        <strong>From inconsistent records to traceable decisions</strong></div>
-      <div class="transformation__panels">
-        <div class="transformation__panel transformation__panel--before">
-          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
-            <span class="transformation__bar-note">Input / question</span></div>
-          <div class="transformation__canvas"><div class="transform-scene transform-scene--records">
-      <div class="transform-scene__overline">Unresolved source records</div>
-      <div class="transform-scene__items"><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">01</span>
-      <span class="transform-scene__item-label">Duplicate identifier</span>
-      <span class="transform-scene__indicator" aria-hidden="true">!</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">02</span>
-      <span class="transform-scene__item-label">Ambiguous category</span>
-      <span class="transform-scene__indicator" aria-hidden="true">!</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">03</span>
-      <span class="transform-scene__item-label">Invalid date</span>
-      <span class="transform-scene__indicator" aria-hidden="true">!</span>
-    </div></div>
-      <p class="transform-scene__question">Which rows can be safely accepted?</p>
-    </div></div>
-        </div>
-        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
-        <div class="transformation__panel transformation__panel--after">
-          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
-            <span class="transformation__bar-note">Public model output</span></div>
-          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/data-quality-results-card-dark.svg" width="440" height="260"><img src="./assets/visuals/data-quality-results-card.svg" alt="Synthetic sample chart: 60 rows, 37 accepted and 23 held for review. Review reasons, one per row: duplicate ID 4; ambiguous category, invalid date, invalid quantity and unknown category 3 each; missing ID and missing quantity 2 each; missing category, missing date and missing item name 1 each." width="440" height="260" loading="lazy" decoding="async"></picture></div>
-          <p class="transformation__result-note">Validated or flagged · 37 accepted · 23 held for review</p>
-        </div>
+        <figure class="transformation transformation--card" aria-label="Illustrative split-screen before and after: Synthetic Data Quality Pipeline">
+      <div class="transformation__eyebrow">ILLUSTRATIVE TRANSFORMATION · PUBLIC CASE STUDY</div>
+      <div class="transformation__labels">
+        <div><span class="transformation__phase">BEFORE</span><strong>Cluttered raw records</strong></div>
+        <div><span class="transformation__phase transformation__phase--after">AFTER</span><strong>Review-ready data</strong></div>
       </div>
-
+      <div class="transformation__monitor">
+        <div class="transformation__bezel">
+          <div class="transformation__screen">
+            <div class="transformation__side transformation__side--before">
+              <span class="transformation__mobile-tag">BEFORE · ILLUSTRATIVE INPUT</span>
+              <div class="monitor-app monitor-app--before">
+      <div class="monitor-app__toolbar"><span class="monitor-app__sheet-icon" aria-hidden="true">▦</span><span class="monitor-app__filename">raw_inventory_example.csv</span><span class="monitor-app__toolbar-dots" aria-hidden="true">•••</span></div>
+      <div class="monitor-app__menu" aria-hidden="true">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Data&nbsp;&nbsp; Tools</div>
+      <div class="monitor-app__sheet-wrap">
+        <table class="monitor-app__sheet" aria-label="Illustrative input records, not exported source data">
+          <thead><tr><th scope="col">Row</th><th scope="col">Item ID</th><th scope="col">Category</th><th scope="col">Qty</th><th scope="col">Flag</th></tr></thead><tbody><tr><td class="">01</td><td class="">EQ-014</td><td class="">Forklift</td><td class="">4</td><td class="">—</td></tr><tr><td class="">02</td><td class="">EQ-021</td><td class="">Unknown</td><td class="">2</td><td class="screen-cell--issue">Alias?</td></tr><tr><td class="">03</td><td class="">EQ-021</td><td class="">Reach truck</td><td class="">2</td><td class="">Duplicate</td></tr><tr><td class="">04</td><td class="">EQ-029</td><td class="">Forklift</td><td class="">-3</td><td class="">Invalid</td></tr><tr><td class="">05</td><td class="">EQ-031</td><td class="">Equipment</td><td class="">?</td><td class="screen-cell--issue">Missing</td></tr><tr><td class="">06</td><td class="">EQ-034</td><td class="">Forklift</td><td class="">6</td><td class="">—</td></tr><tr><td class="">07</td><td class="">EQ-038</td><td class="">?</td><td class="">1</td><td class="">Review</td></tr><tr><td class="">08</td><td class="">EQ-042</td><td class="">Forklift</td><td class="">3</td><td class="screen-cell--issue">—</td></tr></tbody>
+        </table>
+      </div>
+      <div class="monitor-app__status"><span class="monitor-app__status-dot" aria-hidden="true"></span>Illustrative example rows, not the actual source CSV</div>
+    </div>
+            </div>
+            <div class="transformation__side transformation__side--after">
+              <span class="transformation__mobile-tag">AFTER · PUBLIC DEMO</span>
+              <div class="monitor-app monitor-app--after">
+      <div class="monitor-app__toolbar monitor-app__toolbar--after"><span class="monitor-app__logo" aria-hidden="true">◈</span><strong>Public demo</strong><span class="monitor-app__view">Overview</span></div>
+      <div class="monitor-app__dashboard">
+        <div class="monitor-app__dashboard-title"><strong>Inventory quality overview</strong><span>Synthetic sample • deterministic validation</span></div>
+        <div class="monitor-app__metrics"><div class="monitor-app__metric"><span class="monitor-app__metric-label">Input rows</span><strong>60</strong><span class="monitor-app__metric-mark" aria-hidden="true">●</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Accepted</span><strong>37</strong><span class="monitor-app__metric-mark" aria-hidden="true">◆</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">For review</span><strong>23</strong><span class="monitor-app__metric-mark" aria-hidden="true">✓</span></div></div>
+        <div class="monitor-app__chart"><div class="monitor-app__chart-label">Recorded public-demo result</div><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/data-quality-results-card-dark.svg" width="440" height="260"><img src="./assets/visuals/data-quality-results-card.svg" alt="Synthetic sample chart: 60 rows, 37 accepted and 23 held for review. Review reasons, one per row: duplicate ID 4; ambiguous category, invalid date, invalid quantity and unknown category 3 each; missing ID and missing quantity 2 each; missing category, missing date and missing item name 1 each." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+        <div class="monitor-app__result-footer">37 accepted · 23 held for review</div>
+      </div>
+    </div>
+            </div>
+          </div>
+        </div>
+        <div class="transformation__stand" aria-hidden="true"></div>
+        <div class="transformation__stand-base" aria-hidden="true"></div>
+      </div>
+      <figcaption class="transformation__caption"><strong>From inconsistent records to traceable decisions</strong>
+        <span>Illustrative inputs and fictional public-model outputs; no employer screenshots or measured improvement.</span></figcaption>
     </figure>
         <div class="card__body">
           <p class="chip">Independent / Synthetic Demonstration</p>
@@ -116,44 +123,47 @@
       </article>
     </li><li>
       <article class="card card--transformation" aria-labelledby="card-inventory-shipping-optimization-lab">
-        <figure class="transformation transformation--card" aria-label="Illustrative before and after: Inventory and Shipping Optimization Lab">
-      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
-        <strong>From an unallocated request to constraint-checked scenarios</strong></div>
-      <div class="transformation__panels">
-        <div class="transformation__panel transformation__panel--before">
-          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
-            <span class="transformation__bar-note">Input / question</span></div>
-          <div class="transformation__canvas"><div class="transform-scene transform-scene--capacity">
-      <div class="transform-scene__overline">Request + limits</div>
-      <div class="transform-scene__items"><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">01</span>
-      <span class="transform-scene__item-label">309 units requested</span>
-      <span class="transform-scene__indicator" aria-hidden="true">◌</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">02</span>
-      <span class="transform-scene__item-label">Mass constraint</span>
-      <span class="transform-scene__indicator" aria-hidden="true">◌</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">03</span>
-      <span class="transform-scene__item-label">Volume constraint</span>
-      <span class="transform-scene__indicator" aria-hidden="true">◌</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">04</span>
-      <span class="transform-scene__item-label">Available inventory</span>
-      <span class="transform-scene__indicator" aria-hidden="true">◌</span>
-    </div></div>
-      <p class="transform-scene__question">What allocation is feasible?</p>
-    </div></div>
-        </div>
-        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
-        <div class="transformation__panel transformation__panel--after">
-          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
-            <span class="transformation__bar-note">Public model output</span></div>
-          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/inventory-scenarios-card-dark.svg" width="440" height="260"><img src="./assets/visuals/inventory-scenarios-card.svg" alt="Stacked bars of units shipped and short out of 309 requested: normal 309 shipped; high shortage penalty 130 shipped and 179 short; tight capacity 112 shipped and 197 short; low shortage penalty and no inventory 0 shipped and 309 short." width="440" height="260" loading="lazy" decoding="async"></picture></div>
-          <p class="transformation__result-note">Modelled allocation · Five scenarios · shipped and short units</p>
-        </div>
+        <figure class="transformation transformation--card" aria-label="Illustrative split-screen before and after: Inventory and Shipping Optimization Lab">
+      <div class="transformation__eyebrow">ILLUSTRATIVE TRANSFORMATION · PUBLIC CASE STUDY</div>
+      <div class="transformation__labels">
+        <div><span class="transformation__phase">BEFORE</span><strong>Manual allocation inputs</strong></div>
+        <div><span class="transformation__phase transformation__phase--after">AFTER</span><strong>Planning dashboard</strong></div>
       </div>
-
+      <div class="transformation__monitor">
+        <div class="transformation__bezel">
+          <div class="transformation__screen">
+            <div class="transformation__side transformation__side--before">
+              <span class="transformation__mobile-tag">BEFORE · ILLUSTRATIVE INPUT</span>
+              <div class="monitor-app monitor-app--before">
+      <div class="monitor-app__toolbar"><span class="monitor-app__sheet-icon" aria-hidden="true">▦</span><span class="monitor-app__filename">planning_inputs_example.csv</span><span class="monitor-app__toolbar-dots" aria-hidden="true">•••</span></div>
+      <div class="monitor-app__menu" aria-hidden="true">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Data&nbsp;&nbsp; Tools</div>
+      <div class="monitor-app__sheet-wrap">
+        <table class="monitor-app__sheet" aria-label="Illustrative input records, not exported source data">
+          <thead><tr><th scope="col">Input</th><th scope="col">Value</th><th scope="col">Check</th></tr></thead><tbody><tr><td class="">Requested units</td><td class="">309</td><td class="">Demand</td></tr><tr><td class="">Available stock</td><td class="">Varies</td><td class="screen-cell--issue">Constraint</td></tr><tr><td class="">Container mass</td><td class="">Limited</td><td class="">Capacity</td></tr><tr><td class="">Container volume</td><td class="">Limited</td><td class="">Capacity</td></tr><tr><td class="">Shortage penalty</td><td class="">Scenario</td><td class="screen-cell--issue">Cost</td></tr><tr><td class="">Container charge</td><td class="">Fixed</td><td class="">Cost</td></tr><tr><td class="">Units to ship</td><td class="">?</td><td class="">Unallocated</td></tr><tr><td class="">Short units</td><td class="">?</td><td class="screen-cell--issue">Unallocated</td></tr></tbody>
+        </table>
+      </div>
+      <div class="monitor-app__status"><span class="monitor-app__status-dot" aria-hidden="true"></span>Illustrative inputs; scenario outcomes shown at right</div>
+    </div>
+            </div>
+            <div class="transformation__side transformation__side--after">
+              <span class="transformation__mobile-tag">AFTER · PUBLIC DEMO</span>
+              <div class="monitor-app monitor-app--after">
+      <div class="monitor-app__toolbar monitor-app__toolbar--after"><span class="monitor-app__logo" aria-hidden="true">◈</span><strong>Public demo</strong><span class="monitor-app__view">Overview</span></div>
+      <div class="monitor-app__dashboard">
+        <div class="monitor-app__dashboard-title"><strong>Allocation scenario results</strong><span>Synthetic cost and capacity assumptions</span></div>
+        <div class="monitor-app__metrics"><div class="monitor-app__metric"><span class="monitor-app__metric-label">Units requested</span><strong>309</strong><span class="monitor-app__metric-mark" aria-hidden="true">●</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Scenarios</span><strong>5</strong><span class="monitor-app__metric-mark" aria-hidden="true">◆</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Tests passed</span><strong>130</strong><span class="monitor-app__metric-mark" aria-hidden="true">✓</span></div></div>
+        <div class="monitor-app__chart"><div class="monitor-app__chart-label">Recorded public-demo result</div><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/inventory-scenarios-card-dark.svg" width="440" height="260"><img src="./assets/visuals/inventory-scenarios-card.svg" alt="Stacked bars of units shipped and short out of 309 requested: normal 309 shipped; high shortage penalty 130 shipped and 179 short; tight capacity 112 shipped and 197 short; low shortage penalty and no inventory 0 shipped and 309 short." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+        <div class="monitor-app__result-footer">Five scenarios · shipped and short units</div>
+      </div>
+    </div>
+            </div>
+          </div>
+        </div>
+        <div class="transformation__stand" aria-hidden="true"></div>
+        <div class="transformation__stand-base" aria-hidden="true"></div>
+      </div>
+      <figcaption class="transformation__caption"><strong>From an unallocated request to constraint-checked scenarios</strong>
+        <span>Illustrative inputs and fictional public-model outputs; no employer screenshots or measured improvement.</span></figcaption>
     </figure>
         <div class="card__body">
           <p class="chip">Independent / Synthetic Demonstration</p>
@@ -170,40 +180,47 @@
       </article>
     </li><li>
       <article class="card card--transformation" aria-labelledby="card-product-usage-analytics-demo">
-        <figure class="transformation transformation--card" aria-label="Illustrative before and after: Product Usage Analytics Demo">
-      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
-        <strong>From raw telemetry to interpretable session metrics</strong></div>
-      <div class="transformation__panels">
-        <div class="transformation__panel transformation__panel--before">
-          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
-            <span class="transformation__bar-note">Input / question</span></div>
-          <div class="transformation__canvas"><div class="transform-scene transform-scene--events">
-      <div class="transform-scene__overline">Unvalidated event stream</div>
-      <div class="transform-scene__items"><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">01</span>
-      <span class="transform-scene__item-label">5,766 raw event rows</span>
-      <span class="transform-scene__indicator" aria-hidden="true">·</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">02</span>
-      <span class="transform-scene__item-label">Duplicate event IDs</span>
-      <span class="transform-scene__indicator" aria-hidden="true">·</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">03</span>
-      <span class="transform-scene__item-label">Conflicting / invalid rows</span>
-      <span class="transform-scene__indicator" aria-hidden="true">·</span>
-    </div></div>
-      <p class="transform-scene__question">Which events belong in the denominator?</p>
-    </div></div>
-        </div>
-        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
-        <div class="transformation__panel transformation__panel--after">
-          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
-            <span class="transformation__bar-note">Public model output</span></div>
-          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/analytics-funnel-card-dark.svg" width="440" height="260"><img src="./assets/visuals/analytics-funnel-card.svg" alt="Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view." width="440" height="260" loading="lazy" decoding="async"></picture></div>
-          <p class="transformation__result-note">Ordered session funnel · 1,357 opened → 844 searched → 619 viewed detail</p>
-        </div>
+        <figure class="transformation transformation--card" aria-label="Illustrative split-screen before and after: Product Usage Analytics Demo">
+      <div class="transformation__eyebrow">ILLUSTRATIVE TRANSFORMATION · PUBLIC CASE STUDY</div>
+      <div class="transformation__labels">
+        <div><span class="transformation__phase">BEFORE</span><strong>Cluttered event logs</strong></div>
+        <div><span class="transformation__phase transformation__phase--after">AFTER</span><strong>Usage dashboard</strong></div>
       </div>
-
+      <div class="transformation__monitor">
+        <div class="transformation__bezel">
+          <div class="transformation__screen">
+            <div class="transformation__side transformation__side--before">
+              <span class="transformation__mobile-tag">BEFORE · ILLUSTRATIVE INPUT</span>
+              <div class="monitor-app monitor-app--before">
+      <div class="monitor-app__toolbar"><span class="monitor-app__sheet-icon" aria-hidden="true">▦</span><span class="monitor-app__filename">events_raw_example.csv</span><span class="monitor-app__toolbar-dots" aria-hidden="true">•••</span></div>
+      <div class="monitor-app__menu" aria-hidden="true">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Data&nbsp;&nbsp; Tools</div>
+      <div class="monitor-app__sheet-wrap">
+        <table class="monitor-app__sheet" aria-label="Illustrative input records, not exported source data">
+          <thead><tr><th scope="col">Time</th><th scope="col">Event</th><th scope="col">Session</th><th scope="col">Flag</th></tr></thead><tbody><tr><td class="">10:01</td><td class="">Page view</td><td class="">S-011</td><td class="">—</td></tr><tr><td class="">10:01</td><td class="">Search</td><td class="">S-011</td><td class="screen-cell--issue">—</td></tr><tr><td class="">10:02</td><td class="">Search</td><td class="">S-011</td><td class="">Repeat</td></tr><tr><td class="">10:04</td><td class="">Detail view</td><td class="">S-011</td><td class="">—</td></tr><tr><td class="">10:06</td><td class="">Page view</td><td class="">S-012</td><td class="screen-cell--issue">—</td></tr><tr><td class="">10:06</td><td class="">Page view</td><td class="">S-012</td><td class="">Duplicate</td></tr><tr><td class="">10:08</td><td class="">Unknown</td><td class="">S-013</td><td class="">Invalid</td></tr><tr><td class="">10:09</td><td class="">Search</td><td class="">S-014</td><td class="screen-cell--issue">Check</td></tr></tbody>
+        </table>
+      </div>
+      <div class="monitor-app__status"><span class="monitor-app__status-dot" aria-hidden="true"></span>Illustrative log excerpt; 5,766 total synthetic events</div>
+    </div>
+            </div>
+            <div class="transformation__side transformation__side--after">
+              <span class="transformation__mobile-tag">AFTER · PUBLIC DEMO</span>
+              <div class="monitor-app monitor-app--after">
+      <div class="monitor-app__toolbar monitor-app__toolbar--after"><span class="monitor-app__logo" aria-hidden="true">◈</span><strong>Public demo</strong><span class="monitor-app__view">Overview</span></div>
+      <div class="monitor-app__dashboard">
+        <div class="monitor-app__dashboard-title"><strong>Product usage overview</strong><span>Validated fictional events • ordered sessions</span></div>
+        <div class="monitor-app__metrics"><div class="monitor-app__metric"><span class="monitor-app__metric-label">Valid events</span><strong>5,735</strong><span class="monitor-app__metric-mark" aria-hidden="true">●</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Excluded rows</span><strong>31</strong><span class="monitor-app__metric-mark" aria-hidden="true">◆</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Tests passed</span><strong>44</strong><span class="monitor-app__metric-mark" aria-hidden="true">✓</span></div></div>
+        <div class="monitor-app__chart"><div class="monitor-app__chart-label">Recorded public-demo result</div><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/analytics-funnel-card-dark.svg" width="440" height="260"><img src="./assets/visuals/analytics-funnel-card.svg" alt="Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+        <div class="monitor-app__result-footer">1,357 opened → 844 searched → 619 viewed detail</div>
+      </div>
+    </div>
+            </div>
+          </div>
+        </div>
+        <div class="transformation__stand" aria-hidden="true"></div>
+        <div class="transformation__stand-base" aria-hidden="true"></div>
+      </div>
+      <figcaption class="transformation__caption"><strong>From raw telemetry to interpretable session metrics</strong>
+        <span>Illustrative inputs and fictional public-model outputs; no employer screenshots or measured improvement.</span></figcaption>
     </figure>
         <div class="card__body">
           <p class="chip">Independent / Synthetic Demonstration</p>
@@ -220,40 +237,47 @@
       </article>
     </li><li>
       <article class="card card--transformation" aria-labelledby="card-b2b-sales-systems-case-study">
-        <figure class="transformation transformation--card" aria-label="Illustrative before and after: B2B Sales Systems Case Study">
-      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
-        <strong>From mixed business quantities to distinct lifecycle facts</strong></div>
-      <div class="transformation__panels">
-        <div class="transformation__panel transformation__panel--before">
-          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
-            <span class="transformation__bar-note">Input / question</span></div>
-          <div class="transformation__canvas"><div class="transform-scene transform-scene--stages">
-      <div class="transform-scene__overline">Stage counts without definitions</div>
-      <div class="transform-scene__items"><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">01</span>
-      <span class="transform-scene__item-label">4 units quoted</span>
-      <span class="transform-scene__indicator" aria-hidden="true">?</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">02</span>
-      <span class="transform-scene__item-label">2 units ordered</span>
-      <span class="transform-scene__indicator" aria-hidden="true">?</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">03</span>
-      <span class="transform-scene__item-label">1 unit shipped</span>
-      <span class="transform-scene__indicator" aria-hidden="true">?</span>
-    </div></div>
-      <p class="transform-scene__question">These quantities must not be added together.</p>
-    </div></div>
-        </div>
-        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
-        <div class="transformation__panel transformation__panel--after">
-          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
-            <span class="transformation__bar-note">Public model output</span></div>
-          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/b2b-quantities-card-dark.svg" width="440" height="260"><img src="./assets/visuals/b2b-quantities-card.svg" alt="Unit chart for one fictional order: 4 units quoted; 2 ordered and 2 not converted; 1 shipped and 1 still owed." width="440" height="260" loading="lazy" decoding="async"></picture></div>
-          <p class="transformation__result-note">Separated business states · 2 converted · 1 shipped · 1 still owed</p>
-        </div>
+        <figure class="transformation transformation--card" aria-label="Illustrative split-screen before and after: B2B Sales Systems Case Study">
+      <div class="transformation__eyebrow">ILLUSTRATIVE TRANSFORMATION · PUBLIC CASE STUDY</div>
+      <div class="transformation__labels">
+        <div><span class="transformation__phase">BEFORE</span><strong>Mixed transaction records</strong></div>
+        <div><span class="transformation__phase transformation__phase--after">AFTER</span><strong>Lifecycle dashboard</strong></div>
       </div>
-
+      <div class="transformation__monitor">
+        <div class="transformation__bezel">
+          <div class="transformation__screen">
+            <div class="transformation__side transformation__side--before">
+              <span class="transformation__mobile-tag">BEFORE · ILLUSTRATIVE INPUT</span>
+              <div class="monitor-app monitor-app--before">
+      <div class="monitor-app__toolbar"><span class="monitor-app__sheet-icon" aria-hidden="true">▦</span><span class="monitor-app__filename">sales_stage_example.csv</span><span class="monitor-app__toolbar-dots" aria-hidden="true">•••</span></div>
+      <div class="monitor-app__menu" aria-hidden="true">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Data&nbsp;&nbsp; Tools</div>
+      <div class="monitor-app__sheet-wrap">
+        <table class="monitor-app__sheet" aria-label="Illustrative input records, not exported source data">
+          <thead><tr><th scope="col">Document</th><th scope="col">Units</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td class="">Quotation</td><td class="">4</td><td class="">Offer</td></tr><tr><td class="">Sales order</td><td class="">2</td><td class="screen-cell--issue">Commitment</td></tr><tr><td class="">Shipment</td><td class="">1</td><td class="">Fulfilled</td></tr><tr><td class="">Remaining</td><td class="">?</td><td class="">Unresolved</td></tr><tr><td class="">Open quotation</td><td class="">2</td><td class="screen-cell--issue">Not ordered</td></tr><tr><td class="">On hand</td><td class="">—</td><td class="">Not shown</td></tr><tr><td class="">Reserved</td><td class="">—</td><td class="">Separate</td></tr><tr><td class="">Backlog</td><td class="">?</td><td class="screen-cell--issue">Definition</td></tr></tbody>
+        </table>
+      </div>
+      <div class="monitor-app__status"><span class="monitor-app__status-dot" aria-hidden="true"></span>Illustrative model; not an implemented CRM</div>
+    </div>
+            </div>
+            <div class="transformation__side transformation__side--after">
+              <span class="transformation__mobile-tag">AFTER · PUBLIC DEMO</span>
+              <div class="monitor-app monitor-app--after">
+      <div class="monitor-app__toolbar monitor-app__toolbar--after"><span class="monitor-app__logo" aria-hidden="true">◈</span><strong>Public demo</strong><span class="monitor-app__view">Overview</span></div>
+      <div class="monitor-app__dashboard">
+        <div class="monitor-app__dashboard-title"><strong>Quotation → order → fulfillment</strong><span>Hypothetical checked scenario</span></div>
+        <div class="monitor-app__metrics"><div class="monitor-app__metric"><span class="monitor-app__metric-label">Quoted</span><strong>4</strong><span class="monitor-app__metric-mark" aria-hidden="true">●</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Ordered</span><strong>2</strong><span class="monitor-app__metric-mark" aria-hidden="true">◆</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Shipped</span><strong>1</strong><span class="monitor-app__metric-mark" aria-hidden="true">✓</span></div></div>
+        <div class="monitor-app__chart"><div class="monitor-app__chart-label">Recorded public-demo result</div><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/b2b-quantities-card-dark.svg" width="440" height="260"><img src="./assets/visuals/b2b-quantities-card.svg" alt="Unit chart for one fictional order: 4 units quoted; 2 ordered and 2 not converted; 1 shipped and 1 still owed." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+        <div class="monitor-app__result-footer">2 converted · 1 shipped · 1 still owed</div>
+      </div>
+    </div>
+            </div>
+          </div>
+        </div>
+        <div class="transformation__stand" aria-hidden="true"></div>
+        <div class="transformation__stand-base" aria-hidden="true"></div>
+      </div>
+      <figcaption class="transformation__caption"><strong>From mixed business quantities to distinct lifecycle facts</strong>
+        <span>Illustrative inputs and fictional public-model outputs; no employer screenshots or measured improvement.</span></figcaption>
     </figure>
         <div class="card__body">
           <p class="chip">Hypothetical Systems-Design Exercise</p>

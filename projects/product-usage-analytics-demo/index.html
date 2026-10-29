@@ -50,40 +50,47 @@
         </nav>
         <article class="prose">
           <section id="transformation" aria-labelledby="transformation-title">
-            <h2 id="transformation-title">Before and after: the public model</h2><figure class="transformation transformation--feature" aria-label="Illustrative before and after: Product Usage Analytics Demo">
-      <div class="transformation__heading"><span class="transformation__kicker">BEFORE / AFTER · PUBLIC DEMO</span>
-        <strong>From raw telemetry to interpretable session metrics</strong></div>
-      <div class="transformation__panels">
-        <div class="transformation__panel transformation__panel--before">
-          <div class="transformation__bar"><span class="transformation__ordinal">01</span> BEFORE
-            <span class="transformation__bar-note">Input / question</span></div>
-          <div class="transformation__canvas"><div class="transform-scene transform-scene--events">
-      <div class="transform-scene__overline">Unvalidated event stream</div>
-      <div class="transform-scene__items"><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">01</span>
-      <span class="transform-scene__item-label">5,766 raw event rows</span>
-      <span class="transform-scene__indicator" aria-hidden="true">·</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">02</span>
-      <span class="transform-scene__item-label">Duplicate event IDs</span>
-      <span class="transform-scene__indicator" aria-hidden="true">·</span>
-    </div><div class="transform-scene__item">
-      <span class="transform-scene__index" aria-hidden="true">03</span>
-      <span class="transform-scene__item-label">Conflicting / invalid rows</span>
-      <span class="transform-scene__indicator" aria-hidden="true">·</span>
-    </div></div>
-      <p class="transform-scene__question">Which events belong in the denominator?</p>
-    </div></div>
-        </div>
-        <div class="transformation__connector" aria-hidden="true"><span>→</span></div>
-        <div class="transformation__panel transformation__panel--after">
-          <div class="transformation__bar"><span class="transformation__ordinal">02</span> AFTER
-            <span class="transformation__bar-note">Public model output</span></div>
-          <div class="transformation__canvas transformation__canvas--result"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/analytics-funnel-card-dark.svg" width="440" height="260"><img src="../../assets/visuals/analytics-funnel-card.svg" alt="Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view." width="440" height="260" loading="lazy" decoding="async"></picture></div>
-          <p class="transformation__result-note">Ordered session funnel · 1,357 opened → 844 searched → 619 viewed detail</p>
-        </div>
+            <h2 id="transformation-title">Before and after: the public model</h2><figure class="transformation transformation--feature" aria-label="Illustrative split-screen before and after: Product Usage Analytics Demo">
+      <div class="transformation__eyebrow">ILLUSTRATIVE TRANSFORMATION · PUBLIC CASE STUDY</div>
+      <div class="transformation__labels">
+        <div><span class="transformation__phase">BEFORE</span><strong>Cluttered event logs</strong></div>
+        <div><span class="transformation__phase transformation__phase--after">AFTER</span><strong>Usage dashboard</strong></div>
       </div>
-      <figcaption class="transformation__disclosure">The left panel schematically represents validation questions. The right chart displays recorded fictional-session results; it is not a production conversion rate or employer adoption statistic.</figcaption>
+      <div class="transformation__monitor">
+        <div class="transformation__bezel">
+          <div class="transformation__screen">
+            <div class="transformation__side transformation__side--before">
+              <span class="transformation__mobile-tag">BEFORE · ILLUSTRATIVE INPUT</span>
+              <div class="monitor-app monitor-app--before">
+      <div class="monitor-app__toolbar"><span class="monitor-app__sheet-icon" aria-hidden="true">▦</span><span class="monitor-app__filename">events_raw_example.csv</span><span class="monitor-app__toolbar-dots" aria-hidden="true">•••</span></div>
+      <div class="monitor-app__menu" aria-hidden="true">File&nbsp;&nbsp; Edit&nbsp;&nbsp; View&nbsp;&nbsp; Data&nbsp;&nbsp; Tools</div>
+      <div class="monitor-app__sheet-wrap">
+        <table class="monitor-app__sheet" aria-label="Illustrative input records, not exported source data">
+          <thead><tr><th scope="col">Time</th><th scope="col">Event</th><th scope="col">Session</th><th scope="col">Flag</th></tr></thead><tbody><tr><td class="">10:01</td><td class="">Page view</td><td class="">S-011</td><td class="">—</td></tr><tr><td class="">10:01</td><td class="">Search</td><td class="">S-011</td><td class="screen-cell--issue">—</td></tr><tr><td class="">10:02</td><td class="">Search</td><td class="">S-011</td><td class="">Repeat</td></tr><tr><td class="">10:04</td><td class="">Detail view</td><td class="">S-011</td><td class="">—</td></tr><tr><td class="">10:06</td><td class="">Page view</td><td class="">S-012</td><td class="screen-cell--issue">—</td></tr><tr><td class="">10:06</td><td class="">Page view</td><td class="">S-012</td><td class="">Duplicate</td></tr><tr><td class="">10:08</td><td class="">Unknown</td><td class="">S-013</td><td class="">Invalid</td></tr><tr><td class="">10:09</td><td class="">Search</td><td class="">S-014</td><td class="screen-cell--issue">Check</td></tr></tbody>
+        </table>
+      </div>
+      <div class="monitor-app__status"><span class="monitor-app__status-dot" aria-hidden="true"></span>Illustrative log excerpt; 5,766 total synthetic events</div>
+    </div>
+            </div>
+            <div class="transformation__side transformation__side--after">
+              <span class="transformation__mobile-tag">AFTER · PUBLIC DEMO</span>
+              <div class="monitor-app monitor-app--after">
+      <div class="monitor-app__toolbar monitor-app__toolbar--after"><span class="monitor-app__logo" aria-hidden="true">◈</span><strong>Public demo</strong><span class="monitor-app__view">Overview</span></div>
+      <div class="monitor-app__dashboard">
+        <div class="monitor-app__dashboard-title"><strong>Product usage overview</strong><span>Validated fictional events • ordered sessions</span></div>
+        <div class="monitor-app__metrics"><div class="monitor-app__metric"><span class="monitor-app__metric-label">Valid events</span><strong>5,735</strong><span class="monitor-app__metric-mark" aria-hidden="true">●</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Excluded rows</span><strong>31</strong><span class="monitor-app__metric-mark" aria-hidden="true">◆</span></div><div class="monitor-app__metric"><span class="monitor-app__metric-label">Tests passed</span><strong>44</strong><span class="monitor-app__metric-mark" aria-hidden="true">✓</span></div></div>
+        <div class="monitor-app__chart"><div class="monitor-app__chart-label">Recorded public-demo result</div><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/analytics-funnel-card-dark.svg" width="440" height="260"><img src="../../assets/visuals/analytics-funnel-card.svg" alt="Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view." width="440" height="260" loading="lazy" decoding="async"></picture></div>
+        <div class="monitor-app__result-footer">1,357 opened → 844 searched → 619 viewed detail</div>
+      </div>
+    </div>
+            </div>
+          </div>
+        </div>
+        <div class="transformation__stand" aria-hidden="true"></div>
+        <div class="transformation__stand-base" aria-hidden="true"></div>
+      </div>
+      <figcaption class="transformation__caption"><strong>From raw telemetry to interpretable session metrics</strong>
+        <span>The left panel schematically represents validation questions. The right chart displays recorded fictional-session results; it is not a production conversion rate or employer adoption statistic.</span></figcaption>
     </figure></section><section id="professional" aria-labelledby="professional-title">
             <h2 id="professional-title">Professional work and public-demo boundary</h2><div class="professional-bridge">
       <div><h3>Relevant professional responsibility</h3><p>I expanded live administrator reporting for an industrial B2B business platform to track adoption by role and organization, weekly retention and storage growth, while distinguishing frontend reporting needs from backend data requirements.</p></div>

@@ -27,15 +27,21 @@ assert.match(projectHtml, /<source media="\(prefers-color-scheme: dark\) and \(m
 assert.match(projectHtml, /<source media="\(max-width: 39\.99rem\)" srcset="[^"]+-narrow\.svg"/);
 assert.match(projectHtml, /<p class="figure-title">/);
 assert.equal((home.match(/class="transformation transformation--card"/g) || []).length, 4);
-assert.match(home, /class="transformation__panel transformation__panel--before"/);
-assert.match(home, /class="transformation__panel transformation__panel--after"/);
+assert.equal((home.match(/class="transformation__monitor"/g) || []).length, 4);
+assert.equal((home.match(/class="monitor-app__sheet"/g) || []).length, 4);
+assert.equal((home.match(/class="monitor-app__dashboard"/g) || []).length, 4);
+assert.match(home, /class="transformation__side transformation__side--before"/);
+assert.match(home, /class="transformation__side transformation__side--after"/);
 assert.match(home, /<picture><source media="\(prefers-color-scheme: dark\)" srcset="[^"]+-card-dark\.svg"/);
 assert.match(projectHtml, /id="transformation"/);
 assert.match(projectHtml, /class="transformation transformation--feature"/);
-assert.match(projectHtml, /class="transformation__disclosure"/);
+assert.match(projectHtml, /class="transformation__disclosure/);
+assert.match(projectHtml, /class="transformation__screen"/);
+assert.ok(content.site.transformationIntro.includes("not employer screenshots"));
 for (const project of content.projects) {
-  assert.ok(project.transformation.beforeItems.length >= 3);
-  assert.ok(["records", "capacity", "events", "stages"].includes(project.transformation.scene));
+  assert.ok(project.transformation.beforeRows.length >= 6);
+  assert.ok(project.transformation.afterMetrics.length === 3);
+  assert.ok(project.transformation.beforeRows.every(r => r.length === project.transformation.beforeHeaders.length));
 }
 const hostile = structuredClone(content);
 hostile.projects[0].visuals[0].src = 'javascript:alert(1)';
