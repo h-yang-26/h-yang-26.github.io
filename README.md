@@ -11,6 +11,7 @@ No personal biography, personal contact address, or resume link is published in 
 - `applied-thinking/index.html` explains eight reasoning principles, with static diagrams and case-study connections.
 - `index.html`, `applied-thinking/index.html` and `projects/*/index.html` include generated HTML for visitors without JavaScript.
 - `scripts/render_static.mjs` generates these snapshots with the shared renderer; run it after editing JSON or layout code (Node 18+).
+- `scripts/build_visuals.py` generates every figure in `assets/visuals/` (wide, narrow and card layouts, light and dark) and records their sizes in `content/site.json`; run it before `render_static.mjs` after changing figure data or layout (Python 3.9+, no dependencies).
 - `scripts/check_site.py --release` verifies the static structure and placeholder state.
 
 ## Local preview
@@ -33,8 +34,9 @@ No license is currently granted for original material in this repository; a lice
 
 ## Technical diagrams and synthetic result images
 
-The homepage and each case study now use original static SVG diagrams and numerical
-visualizations from `assets/visuals/`. Their citations, fictional data boundaries,
-and computation definitions are documented in [`assets/visuals/README.md`](assets/visuals/README.md).
+The homepage cards show each project's result chart; each case study shows a
+system diagram and a result chart. All are generated SVGs with phone-sized and
+dark-mode variants. Their data sources, fictional data boundaries and design rules
+are documented in [`assets/visuals/README.md`](assets/visuals/README.md).
 The figures are static; interactive calculators are not part of this release.
 

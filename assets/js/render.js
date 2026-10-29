@@ -70,6 +70,38 @@
     return esc(s.startsWith("/") || s.startsWith("#") ? s : home + s);
   }
 
+  /* ---------- responsive figures ---------- */
+
+  // scripts/build_visuals.py writes each figure in layouts (wide, narrow, card)
+  // and colour schemes; `sizes` in site.json lists the layouts that exist.
+  const NARROW = "(max-width: 39.99rem)";
+  const DARK = "(prefers-color-scheme: dark)";
+
+  function variant(src, layout, dark) {
+    const suffix = (layout === "wide" ? "" : "-" + layout) + (dark ? "-dark" : "");
+    return url(String(src).replace(/\.svg$/, suffix + ".svg"));
+  }
+
+  // <picture> that swaps in the dark scheme and, for figures, the narrow layout
+  // on phones. Homepage cards use the compact card layout at every width.
+  function picture(entry, alt, mode) {
+    const sizes = entry.sizes || {};
+    const layout = mode === "card" && sizes.card ? "card" : "wide";
+    const main = sizes[layout];
+    const base = variant(entry.src, layout, false);
+    if (!base || !main) return "";
+    // media: comma-separated viewport queries, or "" for any viewport.
+    const source = (layout, dark, media) => {
+      const [w, h] = sizes[layout];
+      const queries = media ? media.split(",").map(q => q.trim()) : [];
+      const m = dark ? (queries.length ? queries.map(q => `${DARK} and ${q}`).join(", ") : DARK) : queries.join(", ");
+      return `<source media="${m}" srcset="${variant(entry.src, layout, dark)}" width="${w}" height="${h}">`;
+    };
+    const sources = layout === "wide" && sizes.narrow ? [source("narrow", true, NARROW), source("narrow", false, NARROW)] : [];
+    sources.push(source(layout, true, ""));
+    return `<picture>${sources.join("")}<img src="${base}" alt="${esc(alt)}" width="${main[0]}" height="${main[1]}" loading="lazy" decoding="async"></picture>`;
+  }
+
   /* ---------- pending items ---------- */
 
   function walkPending(node, path, out) {
@@ -213,10 +245,11 @@
   function renderVisuals(project) {
     if (!Array.isArray(project.visuals) || !project.visuals.length) return "";
     return `<div class="visual-gallery">${project.visuals.map((visual) => {
-      const src = url(visual.src);
-      if (!src) return "";
+      const image = picture(visual, visual.alt, "figure");
+      if (!image) return "";
       return `<figure class="technical-figure">
-        <img src="${src}" alt="${esc(visual.alt)}" width="1000" height="${visual.kind === "result" && project.slug === "inventory-shipping-optimization-lab" ? "552" : "475"}" loading="lazy" decoding="async">
+        ${visual.title ? `<p class="figure-title">${inline(visual.title)}</p>` : ""}
+        ${image}
         <figcaption><span class="figure-label">${visual.kind === "diagram" ? "SYSTEM / MODEL" : "SYNTHETIC RESULT"}</span> ${inline(visual.caption)}</figcaption>
       </figure>`;
     }).join("")}</div>`;
@@ -226,7 +259,7 @@
     const c = project.card;
     return `<li>
       <article class="card" aria-labelledby="card-${esc(project.slug)}">
-        <div class="card__visual"><img src="${home}${esc(project.thumbnail)}" alt="" width="1000" height="475" loading="lazy" decoding="async"></div>
+        <div class="card__visual">${picture((project.visuals || []).find(v => v.src === project.thumbnail) || {src: project.thumbnail}, "", "card")}</div>
         <p class="chip">${esc(project.label)}</p>
         <h3 id="card-${esc(project.slug)}">${esc(project.title)}</h3>
         <p class="card__connection"><strong>Related professional work:</strong> ${esc(project.professionalArea)}</p>
@@ -377,8 +410,8 @@
 
   function renderThinkingFigure(a, index) {
     const d = a.diagrams[index];
-    const src = url(d.src);
-    return src ? `<figure class="technical-figure thinking-figure"><img src="${src}" alt="${esc(d.alt)}" width="960" height="${index ? "440" : "320"}" loading="lazy" decoding="async"><figcaption>${inline(d.caption)}</figcaption></figure>` : "";
+    const image = picture(d, d.alt, "figure");
+    return image ? `<figure class="technical-figure thinking-figure">${image}<figcaption>${inline(d.caption)}</figcaption></figure>` : "";
   }
 
   function renderAppliedThinking(content) {

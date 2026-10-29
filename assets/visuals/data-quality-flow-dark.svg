@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="760" height="300" role="img" aria-labelledby="t">
+<title id="t">Fictional CSV rows are checked and routed to accepted records or human review</title>
+<defs>
+<marker id="m-line" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker>
+<marker id="m-ok" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6FCDC2"/></marker>
+<marker id="m-warn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker>
+</defs>
+<rect width="760" height="300" fill="#191C1F"/>
+<g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<rect x="24" y="76" width="180" height="128" rx="10" fill="#22272C" stroke="#848D98" stroke-width="1.5"/>
+<text x="38" y="104.4" font-size="18" fill="#E9E7E2" font-weight="700" data-box="24,76,180,128">Source CSV</text>
+<text x="38" y="127.4" font-size="15" fill="#A9AEB5" data-box="24,76,180,128">60 fictional rows</text>
+<text x="38" y="147.4" font-size="15" fill="#A9AEB5" data-box="24,76,180,128">IDs, categories,</text>
+<text x="38" y="167.4" font-size="15" fill="#A9AEB5" data-box="24,76,180,128">quantities, dates</text>
+<rect x="262" y="60" width="214" height="160" rx="10" fill="#1D2A36" stroke="#8CC0EA" stroke-width="1.5"/>
+<text x="276" y="88.4" font-size="18" fill="#E9E7E2" font-weight="700" data-box="262,60,214,160">Row checks</text>
+<text x="276" y="111.4" font-size="15" fill="#A9AEB5" data-box="262,60,214,160">trim whitespace</text>
+<text x="276" y="131.4" font-size="15" fill="#A9AEB5" data-box="262,60,214,160">exact category aliases</text>
+<text x="276" y="151.4" font-size="15" fill="#A9AEB5" data-box="262,60,214,160">ID, quantity and</text>
+<text x="276" y="171.4" font-size="15" fill="#A9AEB5" data-box="262,60,214,160">date rules</text>
+<rect x="566" y="24" width="170" height="100" rx="10" fill="#16302D" stroke="#6FCDC2" stroke-width="1.5"/>
+<text x="580" y="52.4" font-size="18" fill="#E9E7E2" font-weight="700" data-box="566,24,170,100">Accepted</text>
+<text x="580" y="75.4" font-size="15" fill="#A9AEB5" data-box="566,24,170,100">37 canonical rows</text>
+<rect x="566" y="156" width="170" height="116" rx="10" fill="#33290F" stroke="#E6B15C" stroke-width="1.5"/>
+<text x="580" y="184.4" font-size="18" fill="#E9E7E2" font-weight="700" data-box="566,156,170,116">Exceptions</text>
+<text x="580" y="207.4" font-size="15" fill="#A9AEB5" data-box="566,156,170,116">23 rows held</text>
+<text x="580" y="227.4" font-size="15" fill="#A9AEB5" data-box="566,156,170,116">for human review</text>
+<path d="M204 140 L258 140" fill="none" stroke="#848D98" stroke-width="2" marker-end="url(#m-line)"/>
+<path d="M476 116 L520 116 L520 74 L562 74" fill="none" stroke="#6FCDC2" stroke-width="2" marker-end="url(#m-ok)"/>
+<path d="M476 168 L520 168 L520 214 L562 214" fill="none" stroke="#E6B15C" stroke-width="2" marker-end="url(#m-warn)"/>
+<text x="498" y="62" font-size="15" fill="#6FCDC2" font-weight="700" text-anchor="middle">pass</text>
+<text x="498" y="238" font-size="15" fill="#E6B15C" font-weight="700" text-anchor="middle">fail</text>
+<text x="24" y="288" font-size="15" fill="#A9AEB5">No fuzzy matching: an ambiguous category is reviewed, never guessed.</text>
+</g></svg>

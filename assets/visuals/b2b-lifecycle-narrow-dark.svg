@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 594" width="420" height="594" role="img" aria-labelledby="t">
+<title id="t">Each business fact has one owning module</title>
+<defs>
+<marker id="m-line" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker>
+</defs>
+<rect width="420" height="594" fill="#191C1F"/>
+<g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<rect x="24" y="20" width="196" height="100" rx="10" fill="#1D2A36" stroke="#8CC0EA" stroke-width="1.5"/>
+<text x="38" y="49.2" font-size="16" fill="#8CC0EA" font-weight="700" data-box="24,20,196,100">CRM</text>
+<text x="38" y="74.2" font-size="19" fill="#E9E7E2" font-weight="700" data-box="24,20,196,100">Opportunity</text>
+<text x="38" y="99.2" font-size="16" fill="#A9AEB5" data-box="24,20,196,100">qualified lead</text>
+<path d="M122 120 L122 144" fill="none" stroke="#848D98" stroke-width="2" marker-end="url(#m-line)"/>
+<rect x="24" y="148" width="196" height="100" rx="10" fill="#1D2A36" stroke="#8CC0EA" stroke-width="1.5"/>
+<text x="38" y="177.2" font-size="16" fill="#8CC0EA" font-weight="700" data-box="24,148,196,100">QUOTATION</text>
+<text x="38" y="202.2" font-size="19" fill="#E9E7E2" font-weight="700" data-box="24,148,196,100">Quote</text>
+<text x="38" y="227.2" font-size="16" fill="#A9AEB5" data-box="24,148,196,100">4 units offered</text>
+<path d="M122 248 L122 272" fill="none" stroke="#848D98" stroke-width="2" marker-end="url(#m-line)"/>
+<path d="M220 198 L236 198" fill="none" stroke="#848D98" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#m-line)"/>
+<rect x="240" y="146" width="156" height="104" rx="10" fill="#22272C" stroke="#848D98" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="254" y="173.6" font-size="17" fill="#E9E7E2" font-weight="700" data-box="240,146,156,104">Not converted</text>
+<text x="254" y="195.6" font-size="16" fill="#A9AEB5" data-box="240,146,156,104">2 units: quote</text>
+<text x="254" y="216.6" font-size="16" fill="#A9AEB5" data-box="240,146,156,104">signal only</text>
+<rect x="24" y="276" width="196" height="100" rx="10" fill="#1D2A36" stroke="#8CC0EA" stroke-width="1.5"/>
+<text x="38" y="305.2" font-size="16" fill="#8CC0EA" font-weight="700" data-box="24,276,196,100">ORDERS</text>
+<text x="38" y="330.2" font-size="19" fill="#E9E7E2" font-weight="700" data-box="24,276,196,100">Sales order</text>
+<text x="38" y="355.2" font-size="16" fill="#A9AEB5" data-box="24,276,196,100">2 units committed</text>
+<path d="M122 376 L122 400" fill="none" stroke="#848D98" stroke-width="2" marker-end="url(#m-line)"/>
+<path d="M220 326 L236 326" fill="none" stroke="#848D98" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#m-line)"/>
+<rect x="240" y="274" width="156" height="104" rx="10" fill="#22272C" stroke="#848D98" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="254" y="301.6" font-size="17" fill="#E9E7E2" font-weight="700" data-box="240,274,156,104">Still owed</text>
+<text x="254" y="323.6" font-size="16" fill="#A9AEB5" data-box="240,274,156,104">2 ordered</text>
+<text x="254" y="344.6" font-size="16" fill="#A9AEB5" data-box="240,274,156,104">− 1 shipped = 1</text>
+<rect x="24" y="404" width="196" height="100" rx="10" fill="#1D2A36" stroke="#8CC0EA" stroke-width="1.5"/>
+<text x="38" y="433.2" font-size="16" fill="#8CC0EA" font-weight="700" data-box="24,404,196,100">FULFILLMENT</text>
+<text x="38" y="458.2" font-size="19" fill="#E9E7E2" font-weight="700" data-box="24,404,196,100">Shipment</text>
+<text x="38" y="483.2" font-size="16" fill="#A9AEB5" data-box="24,404,196,100">1 unit shipped</text>
+<text x="24" y="552" font-size="16" fill="#A9AEB5">Small capitals name the module that owns</text>
+<text x="24" y="573" font-size="16" fill="#A9AEB5">each fact. Dashed: derived or uncommitted.</text>
+</g></svg>

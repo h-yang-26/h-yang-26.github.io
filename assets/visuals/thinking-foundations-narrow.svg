@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520" width="420" height="520" role="img" aria-labelledby="t">
+<title id="t">Structure and justification inform one decision</title>
+<defs>
+<marker id="m-line" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7D8691"/></marker>
+</defs>
+<rect width="420" height="520" fill="#FFFFFF"/>
+<g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<rect x="24" y="20" width="372" height="138" rx="10" fill="#EAF1F7" stroke="#1C5785" stroke-width="1.5"/>
+<text x="38" y="49.2" font-size="16" fill="#1C5785" font-weight="700" data-box="24,20,372,138">APPLIED MATHEMATICS</text>
+<text x="38" y="74.2" font-size="19" fill="#1A1D21" font-weight="700" data-box="24,20,372,138">What structure</text>
+<text x="38" y="99.2" font-size="19" fill="#1A1D21" font-weight="700" data-box="24,20,372,138">is present?</text>
+<text x="38" y="124.2" font-size="16" fill="#4F5660" data-box="24,20,372,138">variables, relationships,</text>
+<text x="38" y="145.2" font-size="16" fill="#4F5660" data-box="24,20,372,138">constraints</text>
+<rect x="24" y="176" width="372" height="138" rx="10" fill="#EAF1F7" stroke="#1C5785" stroke-width="1.5"/>
+<text x="38" y="205.2" font-size="16" fill="#1C5785" font-weight="700" data-box="24,176,372,138">PHILOSOPHY</text>
+<text x="38" y="230.2" font-size="19" fill="#1A1D21" font-weight="700" data-box="24,176,372,138">What justifies</text>
+<text x="38" y="255.2" font-size="19" fill="#1A1D21" font-weight="700" data-box="24,176,372,138">the conclusion?</text>
+<text x="38" y="280.2" font-size="16" fill="#4F5660" data-box="24,176,372,138">assumptions, evidence,</text>
+<text x="38" y="301.2" font-size="16" fill="#4F5660" data-box="24,176,372,138">uncertainty</text>
+<path d="M210 314 L210 362" fill="none" stroke="#7D8691" stroke-width="2" marker-end="url(#m-line)"/>
+<text x="222" y="344" font-size="16" fill="#4F5660">both inform</text>
+<rect x="24" y="366" width="372" height="104" rx="10" fill="#E3F2F0" stroke="#146C67" stroke-width="1.5"/>
+<text x="210" y="395.2" font-size="19" fill="#1A1D21" font-weight="700" text-anchor="middle" data-box="24,366,372,104">A practical decision</text>
+<text x="210" y="420.2" font-size="16" fill="#4F5660" text-anchor="middle" data-box="24,366,372,104">domain knowledge +</text>
+<text x="210" y="441.2" font-size="16" fill="#4F5660" text-anchor="middle" data-box="24,366,372,104">appropriate evidence</text>
+</g></svg>
