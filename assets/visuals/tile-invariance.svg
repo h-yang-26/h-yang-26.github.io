@@ -2,8 +2,8 @@
 <text x="28" y="92" font-size="29" fill="#1A1D21" font-weight="800" data-box="24,60,392,80">Change one input.</text>
 <text x="28" y="128" font-size="29" fill="#1A1D21" font-weight="800" data-box="24,60,392,80">Does the answer hold?</text>
 <text x="28" y="446" font-size="18" fill="#4F5660" data-box="24,424,392,86">I change one assumption at a time and</text>
-<text x="28" y="471" font-size="18" fill="#4F5660" data-box="24,424,392,86">note where the answer stops holding:</text>
-<text x="28" y="496" font-size="18" fill="#4F5660" data-box="24,424,392,86">here, when all shortages cost under 400.</text>
+<text x="28" y="471" font-size="18" fill="#4F5660" data-box="24,424,392,86">watch where the plan changes. When all</text>
+<text x="28" y="496" font-size="18" fill="#4F5660" data-box="24,424,392,86">shortages cost under 400, nothing ships.</text>
 <text x="28" y="162" font-size="17" fill="#4F5660" font-weight="700">Scenario</text>
 <text x="262" y="162" font-size="17" fill="#4F5660" font-weight="700" text-anchor="middle">Opened</text>
 <text x="412" y="162" font-size="17" fill="#4F5660" font-weight="700" text-anchor="end">Shipped</text>
@@ -27,6 +27,6 @@
 <rect x="226" y="312" width="24" height="18" rx="3" fill="none" stroke="#7D8691" stroke-width="1.6" stroke-dasharray="4 3"/>
 <rect x="258" y="308" width="32" height="26" rx="3" fill="none" stroke="#7D8691" stroke-width="1.6" stroke-dasharray="4 3"/>
 <text x="404" y="328" font-size="20" fill="#8A5A0C" font-weight="800" text-anchor="end" data-box="20,302,400,38">0</text>
-<rect x="70" y="352" width="300" height="52" rx="26" fill="#1C5785"/>
-<path d="M96 378 l6.6 6.6 l13.2 -14.3" fill="none" stroke="#FFFFFF" stroke-width="3.52" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="126" y="385" font-size="18" fill="#FFFFFF" font-weight="800" data-box="70,352,300,52">Breaking point found</text></g></svg>
+<rect x="60" y="352" width="320" height="52" rx="26" fill="#1C5785"/>
+<path d="M86 378 l6.6 6.6 l13.2 -14.3" fill="none" stroke="#FFFFFF" stroke-width="3.52" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="116" y="385" font-size="18" fill="#FFFFFF" font-weight="800" data-box="60,352,320,52">Where the plan changes</text></g></svg>

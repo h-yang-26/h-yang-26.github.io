@@ -232,7 +232,7 @@ def tile_abstraction():
 def tile_invariance():
     t = Tile()
     t.frame("TESTING WHAT REMAINS TRUE", ["Change one input.", "Does the answer hold?"],
-            ["I change one assumption at a time and", "note where the answer stops holding:", "here, when all shortages cost under 400."])
+            ["I change one assumption at a time and", "watch where the plan changes. When all", "shortages cost under 400, nothing ships."])
     t.text(28, 162, "Scenario", TILE_MIN, "muted", 700)
     t.text(262, 162, "Opened", TILE_MIN, "muted", 700, "middle")
     t.text(412, 162, "Shipped", TILE_MIN, "muted", 700, "end")
@@ -250,7 +250,7 @@ def tile_invariance():
                 t.raw(f'<rect x="{x}" y="{top:g}" width="{w}" height="{h}" rx="3" fill="none" stroke="{{line}}" stroke-width="1.6" stroke-dasharray="4 3"/>')
         t.text(404, y + 26, shipped, 20, tone, 800, "end", box=(20, y, 400, 38))
         y += 42
-    badge(t, 70, 300, "Breaking point found", "accent", y=352)
+    badge(t, 60, 320, "Where the plan changes", "accent", y=352)
     return t
 
 
@@ -288,7 +288,7 @@ def tile_opacity():
     t.text(102, 318, "DASHBOARD", TILE_MIN, "onOpaque", 800, "middle", box=(28, 232, 148, 96), spacing=1)
     t.raw('<path d="M178 280 L198 280" stroke="{line}" stroke-width="2.5" marker-end="url(#ah)"/>')
     t.raw('<rect x="204" y="150" width="216" height="178" rx="12" fill="{bg}" stroke="{accent}" stroke-width="2"/>')
-    t.text(216, 178, "On the screen", TILE_MIN, "muted", 700, box=(204, 150, 216, 178))
+    t.text(216, 178, "Shown in the app", TILE_MIN, "muted", 700, box=(204, 150, 216, 178))
     y = 214
     for label, value in [("Valid events", "17"), ("Rejected", "6"), ("Quarantined", "2")]:
         t.text(216, y, label, TILE_MIN, "text", 700, box=(204, 150, 216, 178))

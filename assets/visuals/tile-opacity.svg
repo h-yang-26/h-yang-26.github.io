@@ -14,7 +14,7 @@
 <text x="102" y="318" font-size="17" fill="#FFFFFF" font-weight="800" text-anchor="middle" letter-spacing="1" data-box="28,232,148,96">DASHBOARD</text>
 <path d="M178 280 L198 280" stroke="#7D8691" stroke-width="2.5" marker-end="url(#ah)"/>
 <rect x="204" y="150" width="216" height="178" rx="12" fill="#FFFFFF" stroke="#1C5785" stroke-width="2"/>
-<text x="216" y="178" font-size="17" fill="#4F5660" font-weight="700" data-box="204,150,216,178">On the screen</text>
+<text x="216" y="178" font-size="17" fill="#4F5660" font-weight="700" data-box="204,150,216,178">Shown in the app</text>
 <text x="216" y="214" font-size="17" fill="#1A1D21" font-weight="700" data-box="204,150,216,178">Valid events</text>
 <text x="376" y="214" font-size="20" fill="#1C5785" font-weight="800" text-anchor="end" data-box="204,150,216,178">17</text>
 <path d="M388 206 l5.1 5.1 l10.2 -11.05" fill="none" stroke="#146C67" stroke-width="2.72" stroke-linecap="round" stroke-linejoin="round"/>

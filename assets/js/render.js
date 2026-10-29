@@ -489,7 +489,7 @@
     const l = a.labels;
     const section = (id, html) => `<section id="${id}" class="thinking-section" aria-labelledby="${id}-title"><h2 id="${id}-title">${esc(l[id])}</h2>${html}</section>`;
     const projectLinks = p => p.projectSlugs.length
-      ? `<ul class="thinking-links">${p.projectSlugs.map(slug => { const project = content.projects.find(item => item.slug === slug); return project ? `<li><a href="${home}projects/${esc(slug)}/">${esc(project.title)}<span aria-hidden="true">&nbsp;→</span></a></li>` : ""; }).join("")}</ul>`
+      ? `<ul class="thinking-links">${p.projectSlugs.map(slug => { const project = content.projects.find(item => item.slug === slug); return project ? `<li><a href="${home}projects/${esc(slug)}/">${esc(l.relatedProject)}: ${esc(project.title)}<span aria-hidden="true">&nbsp;→</span></a></li>` : ""; }).join("")}</ul>`
       : `<p class="note">${esc(l.conceptual)}</p>`;
     const principle = p => `<li class="principle-card" id="${esc(p.id)}">
       <article aria-labelledby="${esc(p.id)}-title">
@@ -511,7 +511,7 @@
       </div>`).join("");
     const sections = {
       principles: `${l.principlesIntro ? `<p class="section__lede">${inline(l.principlesIntro)}</p>` : ""}${groups}<p class="thinking-shared">${inline(a.sharedConcern)}</p>`,
-      "in-practice": `<ul class="thinking-cards">${a.caseStudyBridges.map(b => `<li><article><p class="eyebrow">${esc(l.relatedProject)}</p><h3><a href="${home}projects/${esc(b.slug)}/">${esc(b.label)}</a></h3><p>${inline(b.body)}</p>${principleLinks(a, b.principleIds, false)}</article></li>`).join("")}</ul>`,
+      "in-practice": `<p class="thinking-boundary">${inline(a.disclosure)}</p><ul class="thinking-cards">${a.caseStudyBridges.map(b => `<li><article><p class="eyebrow">${esc(l.relatedProject)}</p><h3><a href="${home}projects/${esc(b.slug)}/">${esc(b.label)}</a></h3><p>${inline(b.body)}</p>${principleLinks(a, b.principleIds, false)}</article></li>`).join("")}</ul>`,
       workflow: `<p>${inline(a.workflow.intro)}</p>${renderThinkingFigure(a, "thinking-cycle")}<ol class="thinking-workflow">${a.workflow.steps.map(s => `<li id="step-${esc(s.id)}"><h3>${esc(s.title)}</h3><p>${inline(s.body)}</p></li>`).join("")}</ol><p>${inline(a.workflow.closing)}</p>`,
       connections: `<p>${inline(l.connectionsIntro)}</p><ul class="thinking-cards">${a.connections.map(c => `<li><article id="${esc(c.id)}"><h3>${esc(c.title)}</h3><p>${inline(c.body)}</p>${principleLinks(a, c.principleIds, false)}</article></li>`).join("")}</ul>`,
       academic: `<p>${inline(l.academicIntro)}</p><table class="thinking-table"><thead><tr><th scope="col">${esc(l.academicArea)}</th><th scope="col">${esc(l.academicUse)}</th></tr></thead><tbody>${a.academicFoundations.rows.map(r => `<tr><th scope="row">${esc(r.title)}</th><td>${inline(r.translation)}</td></tr>`).join("")}</tbody></table><p class="note">${inline(l.academicDeferred)}</p>`,

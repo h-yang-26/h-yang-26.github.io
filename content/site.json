@@ -163,7 +163,7 @@
           "project": "product-usage-analytics-demo",
           "principle": "inference-evidence",
           "linkLabel": "See it in the Usage Analytics demo",
-          "alt": "Examining evidence: all modules for September show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
+          "alt": "Examining evidence: all modules for September 1–28 show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
           "sizes": {
             "wide": [
               440,
@@ -244,7 +244,7 @@
         "items": [
           {
             "title": "Write the brief",
-            "body": "For each project I co-developed an agent prompt kit with AI assistance. It sets out the business context, the purpose, an initial architecture outline, the requirements, the evaluation criteria and which edge cases come first."
+            "body": "I co-developed the original agent prompt kit with AI assistance. For each project I provided the business context, the purpose and an initial architecture outline, and set the requirements, evaluation criteria and edge-case priorities."
           },
           {
             "title": "Plan, then build",
@@ -252,11 +252,11 @@
           },
           {
             "title": "Build the checks in",
-            "body": "Every repo includes checks anyone can run: 21 tests for data quality, 130 for the inventory model, 44 for analytics (including headless dashboard runs), and 30 tests plus two document checkers for the B2B case study."
+            "body": "Every repo includes checks anyone can run: 21 tests for data quality, 130 for the inventory model, 44 for analytics (including headless dashboard runs), and 30 tests, a scenario consistency check and a document checker for the B2B case study."
           },
           {
             "title": "Review in a fresh session",
-            "body": "Before publication, each project was reviewed in a fresh AI session. In the first review round I also followed each project’s run-and-check instructions in PowerShell myself and confirmed that the outputs matched the agents’ reports."
+            "body": "Before publication, each project was reviewed in a fresh AI session. In the first review round I also followed each project’s run-and-check instructions in PowerShell myself and confirmed that the outputs matched the agents’ reports. Later corrections and their regression results were verified by agents."
           },
           {
             "title": "Publish by hand",
@@ -268,23 +268,23 @@
         "title": "Boundaries",
         "items": [
           "The projects live on a separate, personal GitHub account.",
-          "The AI tools were given no workplace content: no data, code or documents from my job.",
+          "The AI tools are set up to have no access to workplace content, such as my employer’s data, code or documents.",
           "All data is fictional. Each project is a simplified, independent version of a problem related to my work, not a copy of it."
         ]
       },
       "site": {
         "title": "This site",
         "paragraphs": [
-          "This site was built the same way. AI tools wrote the code and drafted the copy under my direction, and changes come to me as pull requests that I review before merging.",
-          "Each change passes automated checks: figures are generated from numbers copied from the repos, labels meet minimum sizes and contrast, and links and placeholders are checked. A separate AI review then compares the claims on the page with the repositories before I merge."
+          "This site is built in a similar way: AI tools write the code and draft the copy on branches under my direction and open pull requests, and I merge them.",
+          "Scripts in the repo generate every figure from numbers copied from the project repos, enforce minimum label sizes and contrast, and check links and placeholders. Each redesign phase was also fact-checked against the repositories by a separate AI reviewer before its pull request was opened."
         ]
       },
       "reading": {
         "title": "What this means for reading the work",
         "items": [
           "The code shows what I specified and accepted, not code I typed by hand.",
-          "The case studies focus on the decisions: the requirements, edge cases and trade-offs I set and approved.",
-          "The tests are there so you can check the results without having to trust me or the AI."
+          "The case studies focus on the decisions: the requirements and edge-case priorities I set, and the trade-offs I approved.",
+          "The tests let you rerun the checks yourself rather than take my word or the AI’s for the results. They show the code does what the tests expect, not that it is right in every case."
         ]
       },
       "cta": {
@@ -718,7 +718,7 @@
             "visual": {
               "src": "assets/visuals/tile-filters.svg",
               "principle": "inference-evidence",
-              "alt": "Illustration: all modules for September show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
+              "alt": "Illustration: all modules for September 1–28 show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
               "sizes": {
                 "wide": [
                   440,
@@ -1077,7 +1077,7 @@
         "evidenceStrength": "Medium",
         "visual": {
           "src": "assets/visuals/tile-invariance.svg",
-          "alt": "Testing what remains true: changing one input at a time. Normal: both containers open, 309 units ship. Smaller containers: only the large one opens, 112 ship. Smaller containers with penalties times 4: both open, 130 ship. Tiny penalties: none open, 0 ship, because all shortages cost less than the 400 opening charge.",
+          "alt": "Testing what remains true: changing one input at a time. Normal: both containers open, 309 units ship. Smaller containers: only the large one opens, 112 ship. Smaller containers with penalties times 4: both open, 130 ship. Tiny penalties: none open, 0 ship, because all shortages together cost 288.5, less than the cheapest opening charge (400).",
           "project": "inventory-shipping-optimization-lab",
           "sizes": {
             "wide": [
@@ -1110,7 +1110,7 @@
         "evidenceStrength": "Medium",
         "visual": {
           "src": "assets/visuals/tile-filters.svg",
-          "alt": "Examining evidence: all modules for September show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
+          "alt": "Examining evidence: all modules for September 1–28 show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
           "project": "product-usage-analytics-demo",
           "sizes": {
             "wide": [
@@ -1208,7 +1208,7 @@
         "evidenceStrength": "Medium",
         "visual": {
           "src": "assets/visuals/tile-opacity.svg",
-          "alt": "Managing opaque systems: headless tests give the dashboard a test file with known answers and check the numbers it shows: 17 valid events, 6 rejected and 2 quarantined rows.",
+          "alt": "Managing opaque systems: headless tests give the dashboard a test file with known answers and check the numbers shown in the app: 17 valid events, 6 rejected and 2 quarantined rows.",
           "project": "product-usage-analytics-demo",
           "sizes": {
             "wide": [
@@ -1308,7 +1308,7 @@
       {
         "slug": "synthetic-data-quality-pipeline",
         "label": "Data quality — Deciding what not to automate",
-        "body": "The Synthetic Data Quality Pipeline distinguishes valid zero values from missing data and routes ambiguous category mappings to exceptions. It illustrates how the boundary between deterministic transformation and unsupported inference can be made explicit.",
+        "body": "The Synthetic Data Quality Pipeline distinguishes valid zero values from missing data and routes ambiguous category mappings to exceptions. It illustrates how the boundary between deterministic transformation and unsupported inference can be made explicit. This synthetic Python project is separate from professional inventory migration work.",
         "principleIds": [
           "boundary-refinement",
           "inference-evidence"
@@ -1336,7 +1336,7 @@
       {
         "slug": "b2b-sales-systems-case-study",
         "label": "B2B systems — Preserving business distinctions",
-        "body": "The B2B Sales Systems Case Study separates quotations, commitments, reservations and shipments in a hypothetical architecture. This makes responsibility and system boundaries clearer; it is a proposed design, not a deployed system.",
+        "body": "The B2B Sales Systems Case Study separates quotations, commitments, reservations and shipments in a hypothetical architecture. This makes responsibility and system boundaries clearer; it is a hypothetical design, not a deployed system.",
         "principleIds": [
           "graph-decomposition",
           "responsible-abstraction",
@@ -1437,7 +1437,7 @@
       "connectionsIntro": "These pairings are conceptual interpretations. The same problem can require both kinds of reasoning.",
       "reviewDetails": "Publication review items",
       "workflowDiagramCaption": "The loop is illustrative: new evidence can return the process to any earlier operation. The six operations are described below.",
-      "principlesIntro": "Each principle pairs a question I ask with a scene from one of the projects. Open a card for the method and the coursework behind it."
+      "principlesIntro": "Each principle pairs a question I ask with a scene, taken from one of the projects where one exists (P3’s is a conceptual illustration). Open a card for the method and the coursework behind it."
     },
     "review": {
       "personalVoice": "approved",
