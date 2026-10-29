@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>B2B Sales Systems Case Study · Independent Technical Portfolio</title>
-  <meta name="description" content="Hypothetical B2B sales process and system design case study informed by professional platform work; not an employer architecture or deployed implementation.">
+  <meta name="description" content="Hypothetical B2B sales process and system design case study with a fictional order scenario: a proposed design, not a deployed system.">
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="../../assets/css/site.css">
   <script src="../../assets/js/render.js" defer></script>
@@ -51,9 +51,9 @@
         <div class="actions"><a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study">Source on GitHub<span class="visually-hidden">: B2B Sales Systems Case Study</span></a></div>
       </header>
       <figure class="showcase">
-      <p class="showcase__title">Conflicting numbers in. One clear story out.</p>
+      <p class="showcase__title">Same order, three numbers. One meaning each.</p>
       <picture><source media="(prefers-color-scheme: dark) and (max-width: 49.99rem)" srcset="../../assets/visuals/ba-orders-narrow-dark.svg" width="420" height="900"><source media="(max-width: 49.99rem)" srcset="../../assets/visuals/ba-orders-narrow.svg" width="420" height="900"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/ba-orders-dark.svg" width="1000" height="470"><img src="../../assets/visuals/ba-orders.svg" alt="Before and after. Before: three sticky notes read quote 4 units, order 2 units and shipped 1 unit, and a report adds them into “4 + 2 + 1 = 7 units” of demand, crossed out. After: the same order as countable squares, 4 quoted, 2 ordered and 1 shipped, giving demand 2, shipped 1 and owed 1." width="1000" height="470" decoding="async"></picture>
-      <figcaption>Illustration: the “4 + 2 + 1” total is the kind of double counting this design prevents. The order itself comes from the case study’s fictional scenario.</figcaption>
+      <figcaption>Illustration: the “4 + 2 + 1” total is the kind of double counting this design is meant to rule out. The order itself comes from the case study’s fictional scenario.</figcaption>
     </figure>
       <article class="story-body">
         <section id="situation" aria-labelledby="situation-title">
@@ -68,14 +68,14 @@
             <p class="decision__num" aria-hidden="true">01</p>
             <h3>Give every fact one owner.</h3>
             <p>Quotes belong to Quotation, orders and their status to Orders, and stock and shipments to Inventory and Fulfillment. Other modules can read a fact but not edit it, so an order can’t be “closed” in one place and “partly shipped” in another.</p>
-            <p class="decision__term">Modular monolith; Reporting reads everything and owns nothing.</p>
+            <p class="decision__term">Modular monolith; Reporting reads everything and owns no source facts.</p>
           </div>
           <div class="decision__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/tile-decomposition-dark.svg" width="440" height="520"><img src="../../assets/visuals/tile-decomposition.svg" alt="Illustration: a quote for 4 units, an order for 2 and a shipment of 1 are different facts; adding 4 + 2 gives a wrong 6 units of demand, and committed demand is 2." width="440" height="520" loading="lazy" decoding="async"></picture></div>
         </li><li class="decision">
           <div class="decision__text">
             <p class="decision__num" aria-hidden="true">02</p>
             <h3>Count demand from accepted orders only.</h3>
-            <p>Committed demand is the 2 units on the accepted order. The 4 quoted units are reported separately as a signal, and shipping changes what’s still owed, not demand. Each record keeps the ID of the one it came from, so every number can be traced back.</p>
+            <p>Committed demand is the 2 units on the accepted order. The 4 quoted units are reported separately as a signal, and shipping changes what’s still owed, not demand. Each record keeps the ID of the one it came from, so demand and conversion numbers can be traced back to the records they came from.</p>
             <p class="decision__term">Identifier lineage: order line → quote line → opportunity.</p>
           </div>
 
@@ -95,7 +95,7 @@
           <div class="visual-gallery"><figure class="technical-figure">
         <p class="figure-title">Of 4 quoted units, 2 became demand and 1 has shipped</p>
         <picture><source media="(prefers-color-scheme: dark) and (max-width: 39.99rem)" srcset="../../assets/visuals/b2b-quantities-narrow-dark.svg" width="420" height="497"><source media="(max-width: 39.99rem)" srcset="../../assets/visuals/b2b-quantities-narrow.svg" width="420" height="497"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/b2b-quantities-dark.svg" width="760" height="312"><img src="../../assets/visuals/b2b-quantities.svg" alt="Unit chart for one fictional order: 4 units quoted; 2 ordered and 2 not converted; 1 shipped and 1 still owed." width="760" height="312" loading="lazy" decoding="async"></picture>
-        <figcaption><span class="figure-label">SYNTHETIC RESULT</span> The unconverted quantity is not backlog: 4 quoted − 2 accepted = 2 unconverted; 2 ordered − 1 shipped = 1 remaining.</figcaption>
+        <figcaption><span class="figure-label">WORKED EXAMPLE</span> The unconverted quantity is not backlog: 4 quoted − 2 accepted = 2 unconverted; 2 ordered − 1 shipped = 1 remaining.</figcaption>
       </figure></div>
         </section>
         <section id="next" aria-labelledby="next-title">
@@ -108,7 +108,7 @@
           <div class="visual-gallery"><figure class="technical-figure">
         <p class="figure-title">Each business fact has one owning module</p>
         <picture><source media="(prefers-color-scheme: dark) and (max-width: 39.99rem)" srcset="../../assets/visuals/b2b-lifecycle-narrow-dark.svg" width="420" height="594"><source media="(max-width: 39.99rem)" srcset="../../assets/visuals/b2b-lifecycle-narrow.svg" width="420" height="594"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/b2b-lifecycle-dark.svg" width="760" height="330"><img src="../../assets/visuals/b2b-lifecycle.svg" alt="Hypothetical B2B process diagram with owning modules: CRM opportunity, Quotation quote for four units, Orders sales order for two, Fulfillment shipment of one. Two quoted units are not converted and one ordered unit is still owed." width="760" height="330" loading="lazy" decoding="async"></picture>
-        <figcaption><span class="figure-label">SYSTEM / MODEL</span> A quote is an offer, an order is a commitment, and a shipment is a physical event. The process is a fictional conceptual design, not the employer&#39;s architecture.</figcaption>
+        <figcaption><span class="figure-label">SYSTEM / MODEL</span> A quote is an offer, an order is a commitment, and a shipment is a physical event. The process is a fictional conceptual design.</figcaption>
       </figure></div>
           <p><a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study#readme">Full design documents and checks on GitHub</a></p>
         </section>

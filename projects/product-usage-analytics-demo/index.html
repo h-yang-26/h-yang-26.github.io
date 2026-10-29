@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Product Usage Analytics Demo · Independent Technical Portfolio</title>
-  <meta name="description" content="Synthetic product analytics demonstration informed by live administrator reporting work; no employer telemetry or production dashboard reproduced.">
+  <meta name="description" content="Product analytics demonstration on fictional event data: validation first, then daily activity, module usage and an ordered funnel.">
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="../../assets/css/site.css">
   <script src="../../assets/js/render.js" defer></script>
@@ -47,13 +47,13 @@
         <p class="eyebrow">Product Usage Analytics Demo</p>
         <h1>Usage metrics that mean one thing</h1>
         <p class="story-head__lede">A small dashboard that validates raw event logs first, then turns them into daily activity, module usage and an ordered funnel, each with its definition written down.</p>
-        <dl class="story-facts"><div><dt>My role</dt><dd>Requirements, edge cases and approvals; AI tools did the implementation</dd></div><div><dt>Built with</dt><dd>Python, pandas, Streamlit, Altair</dd></div><div><dt>Data</dt><dd>5,766 fictional events over 28 days</dd></div></dl>
+        <dl class="story-facts"><div><dt>My role</dt><dd>Requirements, edge cases and approvals; AI tools did the implementation</dd></div><div><dt>Built with</dt><dd>Python, pandas, Streamlit, Altair</dd></div><div><dt>Data</dt><dd>5,766 fictional event rows over 28 days</dd></div></dl>
         <div class="actions"><a class="btn" href="https://github.com/h-yang-26/product-usage-analytics-demo">Source on GitHub<span class="visually-hidden">: Product Usage Analytics Demo</span></a></div>
       </header>
       <figure class="showcase">
       <p class="showcase__title">Raw clicks in. Clear answers out.</p>
-      <picture><source media="(prefers-color-scheme: dark) and (max-width: 49.99rem)" srcset="../../assets/visuals/ba-usage-narrow-dark.svg" width="420" height="862"><source media="(max-width: 49.99rem)" srcset="../../assets/visuals/ba-usage-narrow.svg" width="420" height="862"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/ba-usage-dark.svg" width="1000" height="470"><img src="../../assets/visuals/ba-usage.svg" alt="Before and after. Before: rows from the fictional event log, with time, user, module and action, fading into “5,766 rows like these”. After: a dashboard showing 175 active users, 1,520 sessions and 619 full-funnel sessions, with a September daily active users chart where weekends are shaded." width="1000" height="470" decoding="async"></picture>
-      <figcaption>Real rows and numbers from this project’s fictional event data.</figcaption>
+      <picture><source media="(prefers-color-scheme: dark) and (max-width: 49.99rem)" srcset="../../assets/visuals/ba-usage-narrow-dark.svg" width="420" height="862"><source media="(max-width: 49.99rem)" srcset="../../assets/visuals/ba-usage-narrow.svg" width="420" height="862"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/ba-usage-dark.svg" width="1000" height="470"><img src="../../assets/visuals/ba-usage.svg" alt="Before and after. Before: rows from the fictional event log, with time, user, module and action, fading into “5,766 rows like these”. After: a dashboard showing 175 users in scope, 1,520 sessions and 619 full-funnel sessions, with a September daily active users chart where weekends are shaded." width="1000" height="470" decoding="async"></picture>
+      <figcaption>Redrawn from this project’s fictional event data; the rows and numbers are real, the layout is simplified.</figcaption>
     </figure>
       <article class="story-body">
         <section id="situation" aria-labelledby="situation-title">
@@ -67,7 +67,7 @@
           <div class="decision__text">
             <p class="decision__num" aria-hidden="true">01</p>
             <h3>Validate the whole file before any filter.</h3>
-            <p>Exact duplicate events collapse to one, conflicting copies are quarantined and rows with missing fields are rejected, all before any date or module filter is applied. Changing the view never changes what counts as valid data.</p>
+            <p>Exact duplicate events collapse to one, conflicting copies are quarantined and rows with missing or invalid fields are rejected, all before any date or module filter is applied. Changing the view never changes what counts as valid data.</p>
             <p class="decision__term">File-wide validation; every raw row gets exactly one outcome.</p>
           </div>
           <div class="decision__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/tile-filters-dark.svg" width="440" height="520"><img src="../../assets/visuals/tile-filters.svg" alt="Illustration: all modules for September show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first." width="440" height="520" loading="lazy" decoding="async"></picture></div>
@@ -91,11 +91,11 @@
         </section>
         <section id="result" aria-labelledby="result-title">
           <h2 id="result-title">The result</h2>
-          <p>Of 5,766 raw rows, 5,735 are valid and every other row has a recorded outcome. In September, 1,357 sessions opened a page, 844 then searched and 619 then viewed a detail: 46% of the sessions that started.</p>
+          <p>Of 5,766 raw rows, 5,735 are valid and every other row is accounted for: 10 duplicate copies collapsed, 8 quarantined and 13 rejected. In September, 1,357 sessions opened a page, 844 then searched and 619 then viewed a detail: 46% of the sessions that opened a page.</p>
           <div class="visual-gallery"><figure class="technical-figure">
         <p class="figure-title">Fewer than half of page-opening sessions reach a detail view</p>
         <picture><source media="(prefers-color-scheme: dark) and (max-width: 39.99rem)" srcset="../../assets/visuals/analytics-funnel-narrow-dark.svg" width="420" height="324"><source media="(max-width: 39.99rem)" srcset="../../assets/visuals/analytics-funnel-narrow.svg" width="420" height="324"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/analytics-funnel-dark.svg" width="760" height="266"><img src="../../assets/visuals/analytics-funnel.svg" alt="Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view." width="760" height="266" loading="lazy" decoding="async"></picture>
-        <figcaption><span class="figure-label">SYNTHETIC RESULT</span> The funnel uses distinct <code>(user_id, session_id)</code> pairs and strictly increasing event timestamps. It is not a user-conversion or employer adoption metric.</figcaption>
+        <figcaption><span class="figure-label">SYNTHETIC RESULT</span> The funnel uses distinct <code>(user_id, session_id)</code> pairs and strictly increasing event timestamps. It is not a user-level conversion rate.</figcaption>
       </figure></div>
         </section>
         <section id="next" aria-labelledby="next-title">

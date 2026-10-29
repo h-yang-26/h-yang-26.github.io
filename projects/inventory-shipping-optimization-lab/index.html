@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inventory and Shipping Optimization Lab · Independent Technical Portfolio</title>
-  <meta name="description" content="Independent integer-optimization demonstration motivated by implemented inventory decision-support work; fictional costs, demand and constraints.">
+  <meta name="description" content="Independent integer-optimization demonstration with fictional costs, demand and constraints, and an independent check of every plan.">
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="../../assets/css/site.css">
   <script src="../../assets/js/render.js" defer></script>
@@ -91,16 +91,16 @@
         </section>
         <section id="result" aria-labelledby="result-title">
           <h2 id="result-title">The result</h2>
-          <p>Across the five scenarios the model behaves as the trade-off predicts. With normal containers every unit ships; with small containers some demand goes unmet, and raising the shortage penalty ships more of it; with tiny penalties, shipping nothing is cheapest. Reruns produce byte-identical results.</p>
+          <p>Across the five scenarios the model behaves as the trade-off predicts. With normal containers every unit ships; with small containers some demand goes unmet, and raising the shortage penalty ships more of it; with tiny penalties, shipping nothing is cheapest. Reruns in the same environment produce byte-identical output.</p>
 
         </section>
         <section id="next" aria-labelledby="next-title">
           <h2 id="next-title">What I’d do next</h2>
-          <p>Add a simple packing check for the containers the model chooses, so a plan that fits on paper is also tested against box dimensions.</p>
+          <p>Add a simple packing check for the containers the model chooses, which would mean adding the item dimensions the model doesn’t have yet.</p>
         </section>
         <section id="technical" aria-labelledby="technical-title">
           <h2 id="technical-title">Technical notes</h2>
-          <ul class="tech-notes"><li>For every product, shipped units plus shortage equal demand, and shipments never exceed stock.</li><li>The objective is shortage penalties plus fixed container charges, all in fictional <code>toy_cost_units</code>.</li><li>A hand-checkable example in the README (five units, one container) has a unique optimum of 42, and the tests confirm it.</li><li>Early solver stops are reported as <code>FEASIBLE</code>, not <code>OPTIMAL</code>; tests force very short time limits to check this.</li><li>130 pytest tests; reruns write byte-identical text and JSON results.</li><li>PuLP is pinned to 3.3.2 because newer versions failed in the tested environment.</li></ul>
+          <ul class="tech-notes"><li>For every product, shipped units plus shortage equal demand, and shipments never exceed stock.</li><li>The objective is shortage penalties plus fixed container charges, all in fictional <code>toy_cost_units</code>.</li><li>A hand-checkable example in the README (five units, one container) has a unique optimum of 42, and the tests confirm it.</li><li>A solver stop that returns a valid but unproven plan is labelled <code>FEASIBLE</code>, not <code>OPTIMAL</code>; unit tests cover this status mapping, and an independent review checked real CBC time-limit stops.</li><li>130 pytest tests; reruns in the same environment write byte-identical JSON (tested) and text output.</li><li>PuLP is pinned to 3.3.2 because PuLP 4.2.0 failed in the tested environment.</li></ul>
           <div class="visual-gallery"><figure class="technical-figure">
         <p class="figure-title">A constrained allocation decision, checked independently</p>
         <picture><source media="(prefers-color-scheme: dark) and (max-width: 39.99rem)" srcset="../../assets/visuals/inventory-model-narrow-dark.svg" width="420" height="630"><source media="(max-width: 39.99rem)" srcset="../../assets/visuals/inventory-model-narrow.svg" width="420" height="630"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/inventory-model-dark.svg" width="760" height="330"><img src="../../assets/visuals/inventory-model.svg" alt="Diagram: product and container parameters feed an integer program that chooses units per container, shortages and opened containers; an independent checker re-verifies limits, integers and cost before a plan is labelled optimal." width="760" height="330" loading="lazy" decoding="async"></picture>

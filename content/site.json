@@ -251,7 +251,7 @@
           "title": "All 60 rows reconciled; duplicate IDs are the most common review reason",
           "src": "assets/visuals/data-quality-results.svg",
           "alt": "Synthetic sample chart: 60 rows, 37 accepted and 23 held for review. Review reasons, one per row: duplicate ID 4; ambiguous category, invalid date, invalid quantity and unknown category 3 each; missing ID and missing quantity 2 each; missing category, missing date and missing item name 1 each.",
-          "caption": "The 60-row generated sample reconciles completely. Counts come from the committed `outputs/summary.json`, not employer data.",
+          "caption": "The 60-row generated sample reconciles completely. Counts come from the committed `outputs/summary.json`.",
           "sizes": {
             "wide": [
               760,
@@ -511,21 +511,21 @@
         ],
         "result": {
           "text": [
-            "Across the five scenarios the model behaves as the trade-off predicts. With normal containers every unit ships; with small containers some demand goes unmet, and raising the shortage penalty ships more of it; with tiny penalties, shipping nothing is cheapest. Reruns produce byte-identical results."
+            "Across the five scenarios the model behaves as the trade-off predicts. With normal containers every unit ships; with small containers some demand goes unmet, and raising the shortage penalty ships more of it; with tiny penalties, shipping nothing is cheapest. Reruns in the same environment produce byte-identical output."
           ],
           "visuals": []
         },
         "next": [
-          "Add a simple packing check for the containers the model chooses, so a plan that fits on paper is also tested against box dimensions."
+          "Add a simple packing check for the containers the model chooses, which would mean adding the item dimensions the model doesn’t have yet."
         ],
         "technical": {
           "notes": [
             "For every product, shipped units plus shortage equal demand, and shipments never exceed stock.",
             "The objective is shortage penalties plus fixed container charges, all in fictional `toy_cost_units`.",
             "A hand-checkable example in the README (five units, one container) has a unique optimum of 42, and the tests confirm it.",
-            "Early solver stops are reported as `FEASIBLE`, not `OPTIMAL`; tests force very short time limits to check this.",
-            "130 pytest tests; reruns write byte-identical text and JSON results.",
-            "PuLP is pinned to 3.3.2 because newer versions failed in the tested environment."
+            "A solver stop that returns a valid but unproven plan is labelled `FEASIBLE`, not `OPTIMAL`; unit tests cover this status mapping, and an independent review checked real CBC time-limit stops.",
+            "130 pytest tests; reruns in the same environment write byte-identical JSON (tested) and text output.",
+            "PuLP is pinned to 3.3.2 because PuLP 4.2.0 failed in the tested environment."
           ],
           "visuals": [
             "assets/visuals/inventory-model.svg"
@@ -571,7 +571,7 @@
           "title": "Fewer than half of page-opening sessions reach a detail view",
           "src": "assets/visuals/analytics-funnel.svg",
           "alt": "Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view.",
-          "caption": "The funnel uses distinct `(user_id, session_id)` pairs and strictly increasing event timestamps. It is not a user-conversion or employer adoption metric.",
+          "caption": "The funnel uses distinct `(user_id, session_id)` pairs and strictly increasing event timestamps. It is not a user-level conversion rate.",
           "sizes": {
             "wide": [
               760,
@@ -603,14 +603,14 @@
           },
           {
             "label": "Data",
-            "value": "5,766 fictional events over 28 days"
+            "value": "5,766 fictional event rows over 28 days"
           }
         ],
         "banner": {
           "src": "assets/visuals/ba-usage.svg",
           "title": "Raw clicks in. Clear answers out.",
-          "alt": "Before and after. Before: rows from the fictional event log, with time, user, module and action, fading into “5,766 rows like these”. After: a dashboard showing 175 active users, 1,520 sessions and 619 full-funnel sessions, with a September daily active users chart where weekends are shaded.",
-          "caption": "Real rows and numbers from this project’s fictional event data.",
+          "alt": "Before and after. Before: rows from the fictional event log, with time, user, module and action, fading into “5,766 rows like these”. After: a dashboard showing 175 users in scope, 1,520 sessions and 619 full-funnel sessions, with a September daily active users chart where weekends are shaded.",
+          "caption": "Redrawn from this project’s fictional event data; the rows and numbers are real, the layout is simplified.",
           "narrowMax": "49.99rem",
           "eager": true,
           "sizes": {
@@ -632,7 +632,7 @@
         "decisions": [
           {
             "title": "Validate the whole file before any filter.",
-            "body": "Exact duplicate events collapse to one, conflicting copies are quarantined and rows with missing fields are rejected, all before any date or module filter is applied. Changing the view never changes what counts as valid data.",
+            "body": "Exact duplicate events collapse to one, conflicting copies are quarantined and rows with missing or invalid fields are rejected, all before any date or module filter is applied. Changing the view never changes what counts as valid data.",
             "term": "File-wide validation; every raw row gets exactly one outcome.",
             "visual": {
               "src": "assets/visuals/tile-filters.svg",
@@ -659,7 +659,7 @@
         ],
         "result": {
           "text": [
-            "Of 5,766 raw rows, 5,735 are valid and every other row has a recorded outcome. In September, 1,357 sessions opened a page, 844 then searched and 619 then viewed a detail: 46% of the sessions that started."
+            "Of 5,766 raw rows, 5,735 are valid and every other row is accounted for: 10 duplicate copies collapsed, 8 quarantined and 13 rejected. In September, 1,357 sessions opened a page, 844 then searched and 619 then viewed a detail: 46% of the sessions that opened a page."
           ],
           "visuals": [
             "assets/visuals/analytics-funnel.svg"
@@ -703,7 +703,7 @@
           "title": "Each business fact has one owning module",
           "src": "assets/visuals/b2b-lifecycle.svg",
           "alt": "Hypothetical B2B process diagram with owning modules: CRM opportunity, Quotation quote for four units, Orders sales order for two, Fulfillment shipment of one. Two quoted units are not converted and one ordered unit is still owed.",
-          "caption": "A quote is an offer, an order is a commitment, and a shipment is a physical event. The process is a fictional conceptual design, not the employer's architecture.",
+          "caption": "A quote is an offer, an order is a commitment, and a shipment is a physical event. The process is a fictional conceptual design.",
           "sizes": {
             "wide": [
               760,
@@ -719,6 +719,7 @@
           "kind": "result",
           "title": "Of 4 quoted units, 2 became demand and 1 has shipped",
           "src": "assets/visuals/b2b-quantities.svg",
+          "label": "WORKED EXAMPLE",
           "alt": "Unit chart for one fictional order: 4 units quoted; 2 ordered and 2 not converted; 1 shipped and 1 still owed.",
           "caption": "The unconverted quantity is not backlog: 4 quoted − 2 accepted = 2 unconverted; 2 ordered − 1 shipped = 1 remaining.",
           "sizes": {
@@ -757,9 +758,9 @@
         ],
         "banner": {
           "src": "assets/visuals/ba-orders.svg",
-          "title": "Conflicting numbers in. One clear story out.",
+          "title": "Same order, three numbers. One meaning each.",
           "alt": "Before and after. Before: three sticky notes read quote 4 units, order 2 units and shipped 1 unit, and a report adds them into “4 + 2 + 1 = 7 units” of demand, crossed out. After: the same order as countable squares, 4 quoted, 2 ordered and 1 shipped, giving demand 2, shipped 1 and owed 1.",
-          "caption": "Illustration: the “4 + 2 + 1” total is the kind of double counting this design prevents. The order itself comes from the case study’s fictional scenario.",
+          "caption": "Illustration: the “4 + 2 + 1” total is the kind of double counting this design is meant to rule out. The order itself comes from the case study’s fictional scenario.",
           "narrowMax": "49.99rem",
           "eager": true,
           "sizes": {
@@ -782,7 +783,7 @@
           {
             "title": "Give every fact one owner.",
             "body": "Quotes belong to Quotation, orders and their status to Orders, and stock and shipments to Inventory and Fulfillment. Other modules can read a fact but not edit it, so an order can’t be “closed” in one place and “partly shipped” in another.",
-            "term": "Modular monolith; Reporting reads everything and owns nothing.",
+            "term": "Modular monolith; Reporting reads everything and owns no source facts.",
             "visual": {
               "src": "assets/visuals/tile-decomposition.svg",
               "principle": "graph-decomposition",
@@ -797,7 +798,7 @@
           },
           {
             "title": "Count demand from accepted orders only.",
-            "body": "Committed demand is the 2 units on the accepted order. The 4 quoted units are reported separately as a signal, and shipping changes what’s still owed, not demand. Each record keeps the ID of the one it came from, so every number can be traced back.",
+            "body": "Committed demand is the 2 units on the accepted order. The 4 quoted units are reported separately as a signal, and shipping changes what’s still owed, not demand. Each record keeps the ID of the one it came from, so demand and conversion numbers can be traced back to the records they came from.",
             "term": "Identifier lineage: order line → quote line → opportunity."
           },
           {

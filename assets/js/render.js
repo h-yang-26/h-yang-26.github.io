@@ -265,7 +265,7 @@
     return `<figure class="technical-figure">
         ${visual.title ? `<p class="figure-title">${inline(visual.title)}</p>` : ""}
         ${image}
-        <figcaption><span class="figure-label">${visual.kind === "diagram" ? "SYSTEM / MODEL" : "SYNTHETIC RESULT"}</span> ${inline(visual.caption)}</figcaption>
+        <figcaption><span class="figure-label">${esc(visual.label || (visual.kind === "diagram" ? "SYSTEM / MODEL" : "SYNTHETIC RESULT"))}</span> ${inline(visual.caption)}</figcaption>
       </figure>`;
   }
 

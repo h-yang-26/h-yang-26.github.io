@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 862" width="420" height="862" role="img" aria-labelledby="t"><title id="t">Before: thousands of raw event rows. After: active users, sessions, full-funnel sessions and a daily activity chart.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker></defs><rect width="420" height="862" rx="20" fill="#111315"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="24" y="26" font-size="16" fill="#E6B15C" font-weight="800" letter-spacing="1.5">BEFORE</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 862" width="420" height="862" role="img" aria-labelledby="t"><title id="t">Before: thousands of raw event rows. After: users in scope, sessions, full-funnel sessions and a daily activity chart.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker></defs><rect width="420" height="862" rx="20" fill="#111315"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="24" y="26" font-size="16" fill="#E6B15C" font-weight="800" letter-spacing="1.5">BEFORE</text>
 <rect x="24" y="40" width="372" height="292" rx="14" fill="#191C1F" stroke="#E6B15C" stroke-width="2"/>
 <path d="M24 54 a14 14 0 0 1 14 -14 h344 a14 14 0 0 1 14 14 v22 h-372 z" fill="#2A3036"/>
 <circle cx="44" cy="58" r="5" fill="#848D98" opacity="0.7"/>
 <circle cx="60" cy="58" r="5" fill="#848D98" opacity="0.7"/>
 <circle cx="76" cy="58" r="5" fill="#848D98" opacity="0.7"/>
-<text x="100" y="64" font-size="16" fill="#A9AEB5" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">events.csv</text>
+<text x="100" y="64" font-size="16" fill="#A9AEB5" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">synthetic_events.csv</text>
 <text x="36" y="104" font-size="16" fill="#A9AEB5" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">TIME</text>
 <text x="120" y="104" font-size="16" fill="#A9AEB5" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">USER</text>
 <text x="184" y="104" font-size="16" fill="#A9AEB5" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">MODULE</text>
@@ -55,8 +55,8 @@
 <text x="100" y="494" font-size="16" fill="#A9AEB5" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">usage dashboard</text>
 <rect x="40.0" y="522" width="108.0" height="102" rx="10" fill="#1D2A36"/>
 <text x="52" y="562" font-size="28" fill="#8CC0EA" font-weight="800" data-box="40,522,108,102">175</text>
-<text x="52" y="588" font-size="16" fill="#A9AEB5" font-weight="600" data-box="40,522,108,102">active</text>
-<text x="52" y="609" font-size="16" fill="#A9AEB5" font-weight="600" data-box="40,522,108,102">users</text>
+<text x="52" y="588" font-size="16" fill="#A9AEB5" font-weight="600" data-box="40,522,108,102">users</text>
+<text x="52" y="609" font-size="16" fill="#A9AEB5" font-weight="600" data-box="40,522,108,102">in scope</text>
 <rect x="156.0" y="522" width="108.0" height="102" rx="10" fill="#1D2A36"/>
 <text x="168" y="562" font-size="28" fill="#8CC0EA" font-weight="800" data-box="156,522,108,102">1,520</text>
 <text x="168" y="588" font-size="16" fill="#A9AEB5" font-weight="600" data-box="156,522,108,102">sessions</text>
