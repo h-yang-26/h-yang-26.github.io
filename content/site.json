@@ -101,7 +101,8 @@
     "footer": "Professional experience and public demonstrations are distinct: real workplace responsibilities are described at a high level, while the linked examples use fictional data and independent reduced-scope implementations. Synthetic outputs do not measure employer or production performance.",
     "privacy": "This site sets no cookies and loads no analytics, tracking scripts or third-party content.",
     "headline": "Enterprise-motivated technical demonstrations",
-    "professionalDisclosure": "The professional work described here includes live, integrated or deployed capabilities, with project-specific status indicated below. The linked GitHub repositories are independent representations built from fictional inputs and general methods; their test results and example metrics are not employer results."
+    "professionalDisclosure": "The professional work described here includes live, integrated or deployed capabilities, with project-specific status indicated below. The linked GitHub repositories are independent representations built from fictional inputs and general methods; their test results and example metrics are not employer results.",
+    "projectsGuide": "Start with the purpose and recorded result; expand Problem & method for details. The public work is independently built and reproducible, not a hosted employer system."
   },
   "projects": [
     {
@@ -119,7 +120,9 @@
       "card": {
         "problem": "Inventory records mix missing identifiers, ambiguous categories and quantities that look alike but mean different things.",
         "method": "A seeded command-line pipeline normalizes and validates fictional records, maps categories by exact alias, and routes ambiguous or invalid rows to a traceable exceptions file instead of guessing.",
-        "evidence": "60 input rows = 37 accepted + 23 rejected; 21 tests passed (agent-run)."
+        "evidence": "60 input rows = 37 accepted + 23 rejected; 21 tests passed (agent-run).",
+        "value": "Turn inconsistent inventory records into auditable accept-or-review decisions without guessing at missing facts.",
+        "access": "Runnable locally · no hosted live demo"
       },
       "problem": [
         "Inconsistent inventory records can contain missing identifiers, ambiguous categories and quantities that look similar but mean different things. This fictional equipment-inventory demonstration separates safe formatting changes from decisions that require human review, while retaining a trace from each result to its source row."
@@ -235,7 +238,9 @@
       "card": {
         "problem": "Shipping every requested unit is not always worthwhile when opening a container incurs a fixed charge.",
         "method": "An integer program solved with PuLP and CBC allocates fictional stock under demand, mass and volume limits, trading shortage penalties against container charges. A separate checker revalidates every plan.",
-        "evidence": "Five scenarios reproduce byte-identical results; 130 tests passed (agent-run)."
+        "evidence": "Five scenarios reproduce byte-identical results; 130 tests passed (agent-run).",
+        "value": "Explore feasible container allocations while exposing the tradeoff between shortages and fixed shipping costs.",
+        "access": "Runnable locally · no hosted live demo"
       },
       "problem": [
         "Shipping every requested unit may not be worthwhile when opening a container incurs a fixed charge. This fictional laboratory models that tradeoff explicitly: allocate available stock under demand, mass and volume constraints while balancing shortage penalties against container charges."
@@ -353,7 +358,9 @@
       "card": {
         "problem": "Event volume, distinct users and progression through a workflow answer different product questions.",
         "method": "A seeded event generator feeds separate validation and metric modules and a local Streamlit dashboard with explicit filters, denominators and an ordered session funnel.",
-        "evidence": "5766 raw events reconcile to 5735 valid; 44 tests passed (agent-run)."
+        "evidence": "5766 raw events reconcile to 5735 valid; 44 tests passed (agent-run).",
+        "value": "Make adoption, retention, and funnel metrics interpretable by validating events and defining their denominators.",
+        "access": "Local Streamlit app · no hosted live demo"
       },
       "problem": [
         "Event volume, distinct users and progression through a workflow answer different product questions. This fictional dashboard demonstrates how event validation, filter scope and explicit denominators affect those answers, without using real telemetry or drawing conclusions about a real company's adoption."
@@ -471,7 +478,9 @@
       "card": {
         "problem": "A quotation, an accepted order, reserved stock and a shipment are different business facts; adding them together double counts demand.",
         "method": "A documented sales lifecycle, entity glossary, Mermaid diagrams, three architecture decision records and five metric definitions, checked by a small standard-library calculator. The architecture is a proposed design, not an implemented system.",
-        "evidence": "Consistency checks PASS; 30 unittest tests passed (agent-run)."
+        "evidence": "Consistency checks PASS; 30 unittest tests passed (agent-run).",
+        "value": "Separate quotations, orders, reservations, and shipments to prevent misleading inventory and demand calculations.",
+        "access": "Conceptual design + runnable checks · no live app"
       },
       "problem": [
         "A quotation, an accepted order, reserved stock and a physical shipment describe different business facts. This fictional distributor scenario illustrates why combining those quantities can double count demand, and how clear definitions and logical ownership keep the narrative and metrics consistent."

@@ -63,20 +63,28 @@
       <div class="wrap">
         <h2 id="projects-title">Featured projects</h2>
         <p class="section__lede">Each project pairs a documented professional workstream with a separate, simplified public implementation. The three Python demonstrations run locally; the B2B systems case study is a conceptual design with executable consistency checks. None of the public examples claims to be the deployed workplace system.</p>
+        <p class="projects__guide">Start with the purpose and recorded result; expand Problem &amp; method for details. The public work is independently built and reproducible, not a hosted employer system.</p>
         <ul class="cards"><li>
       <article class="card" aria-labelledby="card-synthetic-data-quality-pipeline">
         <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/data-quality-results-card-dark.svg" width="440" height="260"><img src="./assets/visuals/data-quality-results-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
         <p class="chip">Independent / Synthetic Demonstration</p>
         <h3 id="card-synthetic-data-quality-pipeline">Synthetic Data Quality Pipeline</h3>
+        <p class="card__value">Turn inconsistent inventory records into auditable accept-or-review decisions without guessing at missing facts.</p>
         <p class="card__connection"><strong>Related professional work:</strong> Inventory data migration and exception review</p>
-        <dl class="facts">
-          <dt>Problem</dt><dd>Inventory records mix missing identifiers, ambiguous categories and quantities that look alike but mean different things.</dd>
-          <dt>Method</dt><dd>A seeded command-line pipeline normalizes and validates fictional records, maps categories by exact alias, and routes ambiguous or invalid rows to a traceable exceptions file instead of guessing.</dd>
-          <dt>Recorded result</dt><dd>60 input rows = 37 accepted + 23 rejected; 21 tests passed (agent-run).</dd>
-        </dl>
+        <div class="card__evidence"><span class="card__eyebrow">Recorded public-demo result</span><p>60 input rows = 37 accepted + 23 rejected; 21 tests passed (agent-run).</p></div>
+        <details class="card__details">
+          <summary>Problem &amp; method</summary>
+          <div class="card__details-body">
+            <dl class="facts">
+              <dt>Problem</dt><dd>Inventory records mix missing identifiers, ambiguous categories and quantities that look alike but mean different things.</dd>
+              <dt>Method</dt><dd>A seeded command-line pipeline normalizes and validates fictional records, maps categories by exact alias, and routes ambiguous or invalid rows to a traceable exceptions file instead of guessing.</dd>
+            </dl>
+          </div>
+        </details>
         <ul class="tags"><li>Python</li><li>CSV ETL</li><li>Deterministic reference mapping</li><li>pytest</li></ul>
+        <p class="card__access">Runnable locally · no hosted live demo</p>
         <div class="actions">
-          <a class="btn btn--primary" href="./projects/synthetic-data-quality-pipeline/">Read case study<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
+          <a class="btn btn--primary" href="./projects/synthetic-data-quality-pipeline/">Explore case study<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
           <a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline">Source on GitHub<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
         </div>
       </article>
@@ -85,15 +93,22 @@
         <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/inventory-scenarios-card-dark.svg" width="440" height="260"><img src="./assets/visuals/inventory-scenarios-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
         <p class="chip">Independent / Synthetic Demonstration</p>
         <h3 id="card-inventory-shipping-optimization-lab">Inventory and Shipping Optimization Lab</h3>
+        <p class="card__value">Explore feasible container allocations while exposing the tradeoff between shortages and fixed shipping costs.</p>
         <p class="card__connection"><strong>Related professional work:</strong> Implemented inventory recommendation capability</p>
-        <dl class="facts">
-          <dt>Problem</dt><dd>Shipping every requested unit is not always worthwhile when opening a container incurs a fixed charge.</dd>
-          <dt>Method</dt><dd>An integer program solved with PuLP and CBC allocates fictional stock under demand, mass and volume limits, trading shortage penalties against container charges. A separate checker revalidates every plan.</dd>
-          <dt>Recorded result</dt><dd>Five scenarios reproduce byte-identical results; 130 tests passed (agent-run).</dd>
-        </dl>
+        <div class="card__evidence"><span class="card__eyebrow">Recorded public-demo result</span><p>Five scenarios reproduce byte-identical results; 130 tests passed (agent-run).</p></div>
+        <details class="card__details">
+          <summary>Problem &amp; method</summary>
+          <div class="card__details-body">
+            <dl class="facts">
+              <dt>Problem</dt><dd>Shipping every requested unit is not always worthwhile when opening a container incurs a fixed charge.</dd>
+              <dt>Method</dt><dd>An integer program solved with PuLP and CBC allocates fictional stock under demand, mass and volume limits, trading shortage penalties against container charges. A separate checker revalidates every plan.</dd>
+            </dl>
+          </div>
+        </details>
         <ul class="tags"><li>Python</li><li>PuLP/CBC</li><li>Integer optimization</li><li>Independent feasibility checks</li></ul>
+        <p class="card__access">Runnable locally · no hosted live demo</p>
         <div class="actions">
-          <a class="btn btn--primary" href="./projects/inventory-shipping-optimization-lab/">Read case study<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
+          <a class="btn btn--primary" href="./projects/inventory-shipping-optimization-lab/">Explore case study<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
           <a class="btn" href="https://github.com/h-yang-26/inventory-shipping-optimization-lab">Source on GitHub<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
         </div>
       </article>
@@ -102,15 +117,22 @@
         <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/analytics-funnel-card-dark.svg" width="440" height="260"><img src="./assets/visuals/analytics-funnel-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
         <p class="chip">Independent / Synthetic Demonstration</p>
         <h3 id="card-product-usage-analytics-demo">Product Usage Analytics Demo</h3>
+        <p class="card__value">Make adoption, retention, and funnel metrics interpretable by validating events and defining their denominators.</p>
         <p class="card__connection"><strong>Related professional work:</strong> Live administrative usage and storage reporting</p>
-        <dl class="facts">
-          <dt>Problem</dt><dd>Event volume, distinct users and progression through a workflow answer different product questions.</dd>
-          <dt>Method</dt><dd>A seeded event generator feeds separate validation and metric modules and a local Streamlit dashboard with explicit filters, denominators and an ordered session funnel.</dd>
-          <dt>Recorded result</dt><dd>5766 raw events reconcile to 5735 valid; 44 tests passed (agent-run).</dd>
-        </dl>
+        <div class="card__evidence"><span class="card__eyebrow">Recorded public-demo result</span><p>5766 raw events reconcile to 5735 valid; 44 tests passed (agent-run).</p></div>
+        <details class="card__details">
+          <summary>Problem &amp; method</summary>
+          <div class="card__details-body">
+            <dl class="facts">
+              <dt>Problem</dt><dd>Event volume, distinct users and progression through a workflow answer different product questions.</dd>
+              <dt>Method</dt><dd>A seeded event generator feeds separate validation and metric modules and a local Streamlit dashboard with explicit filters, denominators and an ordered session funnel.</dd>
+            </dl>
+          </div>
+        </details>
         <ul class="tags"><li>Python/pandas</li><li>Streamlit</li><li>Altair</li><li>Ordered session funnels</li></ul>
+        <p class="card__access">Local Streamlit app · no hosted live demo</p>
         <div class="actions">
-          <a class="btn btn--primary" href="./projects/product-usage-analytics-demo/">Read case study<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
+          <a class="btn btn--primary" href="./projects/product-usage-analytics-demo/">Explore case study<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
           <a class="btn" href="https://github.com/h-yang-26/product-usage-analytics-demo">Source on GitHub<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
         </div>
       </article>
@@ -119,15 +141,22 @@
         <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/b2b-quantities-card-dark.svg" width="440" height="260"><img src="./assets/visuals/b2b-quantities-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
         <p class="chip">Hypothetical Systems-Design Exercise</p>
         <h3 id="card-b2b-sales-systems-case-study">B2B Sales Systems Case Study</h3>
+        <p class="card__value">Separate quotations, orders, reservations, and shipments to prevent misleading inventory and demand calculations.</p>
         <p class="card__connection"><strong>Related professional work:</strong> Deployed industrial B2B platform development</p>
-        <dl class="facts">
-          <dt>Problem</dt><dd>A quotation, an accepted order, reserved stock and a shipment are different business facts; adding them together double counts demand.</dd>
-          <dt>Method</dt><dd>A documented sales lifecycle, entity glossary, Mermaid diagrams, three architecture decision records and five metric definitions, checked by a small standard-library calculator. The architecture is a proposed design, not an implemented system.</dd>
-          <dt>Recorded result</dt><dd>Consistency checks PASS; 30 unittest tests passed (agent-run).</dd>
-        </dl>
+        <div class="card__evidence"><span class="card__eyebrow">Recorded public-demo result</span><p>Consistency checks PASS; 30 unittest tests passed (agent-run).</p></div>
+        <details class="card__details">
+          <summary>Problem &amp; method</summary>
+          <div class="card__details-body">
+            <dl class="facts">
+              <dt>Problem</dt><dd>A quotation, an accepted order, reserved stock and a shipment are different business facts; adding them together double counts demand.</dd>
+              <dt>Method</dt><dd>A documented sales lifecycle, entity glossary, Mermaid diagrams, three architecture decision records and five metric definitions, checked by a small standard-library calculator. The architecture is a proposed design, not an implemented system.</dd>
+            </dl>
+          </div>
+        </details>
         <ul class="tags"><li>Domain modeling</li><li>Mermaid</li><li>Architecture decision records</li><li>Python standard-library checks</li></ul>
+        <p class="card__access">Conceptual design + runnable checks · no live app</p>
         <div class="actions">
-          <a class="btn btn--primary" href="./projects/b2b-sales-systems-case-study/">Read case study<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
+          <a class="btn btn--primary" href="./projects/b2b-sales-systems-case-study/">Explore case study<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
           <a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study">Source on GitHub<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
         </div>
       </article>

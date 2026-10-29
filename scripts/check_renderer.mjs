@@ -27,6 +27,14 @@ assert.match(projectHtml, /<source media="\(prefers-color-scheme: dark\) and \(m
 assert.match(projectHtml, /<source media="\(max-width: 39\.99rem\)" srcset="[^"]+-narrow\.svg"/);
 assert.match(projectHtml, /<p class="figure-title">/);
 assert.match(home, /<div class="card__visual"><picture><source media="\(prefers-color-scheme: dark\)" srcset="[^"]+-card-dark\.svg"/);
+// Engagement regression checks.
+for (const project of content.projects) assert.ok(project.card.value && project.card.access);
+assert.equal((home.match(/class="card__value"/g) || []).length, content.projects.length);
+assert.equal((home.match(/class="card__details"/g) || []).length, content.projects.length);
+assert.match(home, /no hosted live demo/);
+assert.match(projectHtml, /class="cs-overview"/);
+assert.match(projectHtml, /<details class="cs-expand"><summary><h2 id="approach-title">/);
+assert.match(projectHtml, /id="limitations-title"/);
 const hostile = structuredClone(content);
 hostile.projects[0].visuals[0].src = 'javascript:alert(1)';
 hostile.appliedThinking.hero.title = '<img src=x onerror="alert(1)">';

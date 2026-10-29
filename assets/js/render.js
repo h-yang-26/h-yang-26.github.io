@@ -262,15 +262,22 @@
         <div class="card__visual">${picture((project.visuals || []).find(v => v.src === project.thumbnail) || {src: project.thumbnail}, "", "card")}</div>
         <p class="chip">${esc(project.label)}</p>
         <h3 id="card-${esc(project.slug)}">${esc(project.title)}</h3>
+        <p class="card__value">${inline(c.value)}</p>
         <p class="card__connection"><strong>Related professional work:</strong> ${esc(project.professionalArea)}</p>
-        <dl class="facts">
-          <dt>Problem</dt><dd>${inline(c.problem)}</dd>
-          <dt>Method</dt><dd>${inline(c.method)}</dd>
-          <dt>Recorded result</dt><dd>${inline(c.evidence)}</dd>
-        </dl>
+        <div class="card__evidence"><span class="card__eyebrow">Recorded public-demo result</span><p>${inline(c.evidence)}</p></div>
+        <details class="card__details">
+          <summary>Problem &amp; method</summary>
+          <div class="card__details-body">
+            <dl class="facts">
+              <dt>Problem</dt><dd>${inline(c.problem)}</dd>
+              <dt>Method</dt><dd>${inline(c.method)}</dd>
+            </dl>
+          </div>
+        </details>
         ${tags(project.focus)}
+        <p class="card__access">${esc(c.access)}</p>
         <div class="actions">
-          <a class="btn btn--primary" href="${home}projects/${esc(project.slug)}/">Read case study<span class="visually-hidden">: ${esc(project.title)}</span></a>
+          <a class="btn btn--primary" href="${home}projects/${esc(project.slug)}/">Explore case study<span class="visually-hidden">: ${esc(project.title)}</span></a>
           ${repoLinks(project, false)}
         </div>
       </article>
@@ -353,6 +360,7 @@
       <div class="wrap">
         <h2 id="projects-title">Featured projects</h2>
         <p class="section__lede">${inline(content.site.projectsIntro)}</p>
+        <p class="projects__guide">${inline(content.site.projectsGuide)}</p>
         <ul class="cards">${content.projects.map(renderCard).join("")}</ul>
       </div>
     </section>
@@ -548,6 +556,13 @@
       <header class="cs-head">
         <p class="chip">${esc(p.label)}</p>
         <h1>${esc(p.title)}</h1>
+        <div class="cs-overview" aria-label="Project at a glance">
+          <p class="cs-overview__label">At a glance</p>
+          <p class="cs-overview__value">${inline(p.card.value)}</p>
+          <div class="cs-overview__evidence"><strong>Recorded public-demo result:</strong> ${inline(p.card.evidence)}</div>
+          <p class="cs-overview__access">${esc(p.card.access)}</p>
+          <a class="cs-overview__jump" href="#visuals">View diagrams and results</a>
+        </div>
         <p class="cs-type"><strong>Type:</strong> ${inline(p.type)}</p>
         <p class="cs-context"><strong>Related professional work:</strong> ${esc(p.professionalArea)}. <strong>Public artifact:</strong> independent fictional demonstration.</p>
         ${tags(p.focus)}
@@ -559,8 +574,15 @@
           <ol>${sections.map(([id, title]) => `<li><a href="#${id}">${title}</a></li>`).join("")}</ol>
         </nav>
         <article class="prose">
-          ${sections.map(([id, title, html]) => `<section id="${id}" aria-labelledby="${id}-title">
-            <h2 id="${id}-title">${title}</h2>${html}</section>`).join("")}
+          ${sections.map(([id, title, html]) => {
+             // Keep scope, visuals, contributions and limitations directly readable.
+             const fold = ["approach", "validation", "learned", "academic-connections", "reproduce"].includes(id);
+             return fold
+               ? `<section id="${id}" aria-labelledby="${id}-title" class="cs-section--folded">
+                   <details class="cs-expand"><summary><h2 id="${id}-title">${title}</h2><span class="cs-expand__hint" aria-hidden="true">Expand</span></summary>
+                   <div class="cs-expand__body">${html}</div></details></section>`
+               : `<section id="${id}" aria-labelledby="${id}-title"><h2 id="${id}-title">${title}</h2>${html}</section>`;
+           }).join("")}
           <p class="independence"><strong>Independence statement:</strong> ${inline(p.independence)}</p>
         </article>
       </div>
