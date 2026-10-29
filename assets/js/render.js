@@ -97,9 +97,26 @@
       const m = dark ? (queries.length ? queries.map(q => `${DARK} and ${q}`).join(", ") : DARK) : queries.join(", ");
       return `<source media="${m}" srcset="${variant(entry.src, layout, dark)}" width="${w}" height="${h}">`;
     };
-    const sources = layout === "wide" && sizes.narrow ? [source("narrow", true, NARROW), source("narrow", false, NARROW)] : [];
+    // An entry may switch to its narrow layout at a wider breakpoint (e.g. banners).
+    const narrow = /^\d+(\.\d+)?rem$/.test(entry.narrowMax || "") ? `(max-width: ${entry.narrowMax})` : NARROW;
+    const sources = layout === "wide" && sizes.narrow ? [source("narrow", true, narrow), source("narrow", false, narrow)] : [];
     sources.push(source(layout, true, ""));
-    return `<picture>${sources.join("")}<img src="${base}" alt="${esc(alt)}" width="${main[0]}" height="${main[1]}" loading="lazy" decoding="async"></picture>`;
+    const loading = entry.eager ? "" : ' loading="lazy"';
+    return `<picture>${sources.join("")}<img src="${base}" alt="${esc(alt)}" width="${main[0]}" height="${main[1]}"${loading} decoding="async"></picture>`;
+  }
+
+  // A headline figure: optional HTML title, the picture, a caption and an optional link.
+  function showcase(entry) {
+    if (!entry) return "";
+    const image = picture(entry, entry.alt, "figure");
+    if (!image) return "";
+    const href = entry.link ? url(entry.link.href) : null;
+    const link = href ? ` <a href="${href}">${esc(entry.link.label)}</a>` : "";
+    return `<figure class="showcase">
+      ${entry.title ? `<p class="showcase__title">${inline(entry.title)}</p>` : ""}
+      ${image}
+      ${entry.caption || link ? `<figcaption>${inline(entry.caption || "")}${link}</figcaption>` : ""}
+    </figure>`;
   }
 
   /* ---------- pending items ---------- */
@@ -242,17 +259,20 @@
   /* ---------- home page ---------- */
 
 
-  function renderVisuals(project) {
-    if (!Array.isArray(project.visuals) || !project.visuals.length) return "";
-    return `<div class="visual-gallery">${project.visuals.map((visual) => {
-      const image = picture(visual, visual.alt, "figure");
-      if (!image) return "";
-      return `<figure class="technical-figure">
+  function technicalFigure(visual) {
+    const image = visual && picture(visual, visual.alt, "figure");
+    if (!image) return "";
+    return `<figure class="technical-figure">
         ${visual.title ? `<p class="figure-title">${inline(visual.title)}</p>` : ""}
         ${image}
         <figcaption><span class="figure-label">${visual.kind === "diagram" ? "SYSTEM / MODEL" : "SYNTHETIC RESULT"}</span> ${inline(visual.caption)}</figcaption>
       </figure>`;
-    }).join("")}</div>`;
+  }
+
+  function renderVisuals(project, only) {
+    if (!Array.isArray(project.visuals) || !project.visuals.length) return "";
+    const list = only ? only.map(src => project.visuals.find(v => v.src === src)) : project.visuals;
+    return `<div class="visual-gallery">${list.map(technicalFigure).join("")}</div>`;
   }
 
   function renderCard(project) {
@@ -326,6 +346,33 @@
       </div>
     </section>`;
   }
+  // Positioning hero. Contact buttons appear only for owner fields that are set;
+  // pending (null) or omitted (false) fields add nothing here.
+  function renderHero(content) {
+    const o = content.owner;
+    const h = content.site.hero;
+    const kicker = typeof o.name === "string" && o.name ? esc(o.name) : inline(h.eyebrow);
+    const buttons = [];
+    const cta = h.primaryCta && url(h.primaryCta.href);
+    if (cta) buttons.push(`<a class="btn btn--primary" href="${cta}">${esc(h.primaryCta.label)}</a>`);
+    if (o.resume && o.resume.url && url(o.resume.url)) buttons.push(`<a class="btn" href="${url(o.resume.url)}">${esc(o.resume.label || "Résumé")}</a>`);
+    if (typeof o.email === "string" && o.email) buttons.push(`<a class="btn" href="mailto:${esc(o.email)}">Email</a>`);
+    for (const link of Array.isArray(o.otherLinks) ? o.otherLinks : []) {
+      const href = url(link.url);
+      if (href) buttons.push(`<a class="btn" href="${href}">${esc(link.label)}</a>`);
+    }
+    if (typeof o.githubUsername === "string" && o.githubUsername) {
+      buttons.push(`<a class="btn" href="https://github.com/${encodeURIComponent(o.githubUsername)}">GitHub</a>`);
+    }
+    return `<section class="hero hero--story wrap" aria-labelledby="intro-title">
+      <p class="eyebrow">${kicker}</p>
+      <h1 id="intro-title">${inline(h.title)}</h1>
+      <p class="hero__lede">${inline(h.lede)}</p>
+      <div class="actions hero__actions">${buttons.join("")}</div>
+      ${showcase(h.visual)}
+    </section>`;
+  }
+
   function renderHome(content) {
     const o = content.owner;
     const name = o.name === null ? ph(content, "owner.name") : esc(o.name || content.site.headline || "Portfolio");
@@ -337,13 +384,16 @@
 
     document.title = pageTitle(content, "");
 
-    return `
+    const hero = content.site.hero ? renderHero(content) : `
     <section class="hero wrap" aria-labelledby="intro-title">
       <p class="eyebrow">Independent portfolio · Enterprise-informed public examples</p>
       <h1 id="intro-title">${name}</h1>
       ${intro ? `<div class="hero__intro">${intro}</div>` : ""}
       <p class="hero__summary">${inline(content.site.summary)}</p>
-    </section>
+    </section>`;
+
+    return `
+    ${hero}
 
     ${renderExperience(content)}
 
@@ -503,6 +553,88 @@
     </nav>`;
   }
 
+  // Decision-led case study: situation, a few decisions with their trade-offs,
+  // the result, what comes next, then technical notes and the owner's own words.
+  function renderStory(content, index) {
+    const p = content.projects[index];
+    const st = p.story;
+    const s = statementsFor(content, p.slug);
+    const base = `owner.projectStatements.${p.slug}`;
+    document.title = pageTitle(content, p.title);
+
+    const professional = ownerText(content, s.professionalContext, `${base}.professionalContext`);
+    const contribution = ownerText(content, s.contribution, `${base}.contribution`);
+    const learned = ownerText(content, s.learned, `${base}.learned`);
+    const repo = p.repoUrl ? url(p.repoUrl) : null;
+    const decisions = st.decisions.map((d, i) => {
+      const visual = d.visual ? picture(d.visual, d.visual.alt, "figure") : "";
+      return `<li class="decision${visual ? " decision--visual" : ""}">
+          <div class="decision__text">
+            <p class="decision__num" aria-hidden="true">${String(i + 1).padStart(2, "0")}</p>
+            <h3>${inline(d.title)}</h3>
+            ${paras(d.body)}
+            ${d.term ? `<p class="decision__term">${inline(d.term)}</p>` : ""}
+          </div>
+          ${visual ? `<div class="decision__visual">${visual}</div>` : ""}
+        </li>`;
+    }).join("");
+    const backlinks = renderAcademicBacklinks(content, p.slug);
+
+    return `
+    <div class="wrap story">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="${home}">Home</a></li>
+          <li><a href="${home}#projects">Projects</a></li>
+          <li><span aria-current="page">${esc(p.title)}</span></li>
+        </ol>
+      </nav>
+      <header class="story-head">
+        <p class="eyebrow">${esc(p.title)}</p>
+        <h1>${inline(st.headline)}</h1>
+        <p class="story-head__lede">${inline(st.lede)}</p>
+        <dl class="story-facts">${st.facts.map(f => `<div><dt>${esc(f.label)}</dt><dd>${inline(f.value)}</dd></div>`).join("")}</dl>
+        <div class="actions">${repoLinks(p, false)}</div>
+      </header>
+      ${showcase(st.banner)}
+      <article class="story-body">
+        <section id="situation" aria-labelledby="situation-title">
+          <h2 id="situation-title">The situation</h2>
+          ${paras(st.situation)}
+          ${professional ? `<div class="story-origin"><p class="story-origin__label">Where this comes from</p>${professional}</div>` : ""}
+        </section>
+        <section id="decisions" aria-labelledby="decisions-title">
+          <h2 id="decisions-title">${esc(st.decisionsTitle)}</h2>
+          <ol class="decisions">${decisions}</ol>
+        </section>
+        <section id="result" aria-labelledby="result-title">
+          <h2 id="result-title">The result</h2>
+          ${paras(st.result.text)}
+          ${renderVisuals(p, st.result.visuals)}
+        </section>
+        <section id="next" aria-labelledby="next-title">
+          <h2 id="next-title">What I’d do next</h2>
+          ${paras(st.next)}
+        </section>
+        <section id="technical" aria-labelledby="technical-title">
+          <h2 id="technical-title">Technical notes</h2>
+          <ul class="tech-notes">${st.technical.notes.map(n => `<li>${inline(n)}</li>`).join("")}</ul>
+          ${st.technical.visuals ? renderVisuals(p, st.technical.visuals) : ""}
+          ${repo ? `<p><a class="btn" href="${repo}#readme">${esc(st.technical.linkLabel)}</a></p>` : ""}
+        </section>
+        <section id="role" aria-labelledby="role-title">
+          <h2 id="role-title">My role</h2>
+          ${contribution || ""}
+          ${learned ? `<h3>What I learned</h3>${learned}` : ""}
+        </section>
+        ${backlinks ? `<section id="academic-connections" aria-labelledby="academic-connections-title">
+          <h2 id="academic-connections-title">${esc(content.appliedThinking.labels.backlinks)}</h2>${backlinks}</section>` : ""}
+        <p class="story-disclosure">${inline(content.site.disclosure)}</p>
+      </article>
+    </div>
+    ${renderPager(content, index)}`;
+  }
+
   function renderProject(content, slug) {
     const index = content.projects.findIndex((p) => p.slug === slug);
     if (index < 0) {
@@ -513,6 +645,7 @@
     }
 
     const p = content.projects[index];
+    if (p.story) return renderStory(content, index);
     const s = statementsFor(content, p.slug);
     const base = `owner.projectStatements.${p.slug}`;
     document.title = pageTitle(content, p.title);

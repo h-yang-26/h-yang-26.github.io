@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 872" width="420" height="872" role="img" aria-labelledby="t"><title id="t">Before: an inventory export with a blank ID, an impossible date and ambiguous categories. After: clean records plus a review queue with reasons.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker></defs><rect width="420" height="872" rx="20" fill="#111315"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="24" y="26" font-size="16" fill="#E6B15C" font-weight="800" letter-spacing="1.5">BEFORE</text>
+<rect x="24" y="40" width="372" height="308" rx="14" fill="#191C1F" stroke="#E6B15C" stroke-width="2"/>
+<path d="M24 54 a14 14 0 0 1 14 -14 h344 a14 14 0 0 1 14 14 v22 h-372 z" fill="#2A3036"/>
+<circle cx="44" cy="58" r="5" fill="#848D98" opacity="0.7"/>
+<circle cx="60" cy="58" r="5" fill="#848D98" opacity="0.7"/>
+<circle cx="76" cy="58" r="5" fill="#848D98" opacity="0.7"/>
+<text x="100" y="64" font-size="16" fill="#A9AEB5" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">inventory_export.csv</text>
+<text x="36" y="104" font-size="16" fill="#A9AEB5" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">ID</text>
+<text x="116" y="104" font-size="16" fill="#A9AEB5" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">CATEGORY</text>
+<text x="256" y="104" font-size="16" fill="#A9AEB5" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">RECEIVED</text>
+<rect x="32" y="118" width="356" height="34" rx="4" fill="#1E2328"/>
+<rect x="31" y="122" width="74" height="26" rx="5" fill="#33290F" stroke="#E6B15C" stroke-width="1.8"/>
+<rect x="111" y="122" width="136" height="26" rx="5" fill="#33290F" stroke="#E6B15C" stroke-width="1.8"/>
+<text x="116" y="141" font-size="16" fill="#E9E7E2" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">mtr</text>
+<text x="256" y="141" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">2024-05-24</text>
+<rect x="251" y="156" width="108" height="26" rx="5" fill="#33290F" stroke="#E6B15C" stroke-width="1.8"/>
+<text x="36" y="175" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">EQ-0003</text>
+<text x="116" y="175" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">VALVE</text>
+<text x="256" y="175" font-size="16" fill="#E9E7E2" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">2024-02-30</text>
+<rect x="32" y="186" width="356" height="34" rx="4" fill="#1E2328"/>
+<rect x="111" y="190" width="136" height="26" rx="5" fill="#33290F" stroke="#E6B15C" stroke-width="1.8"/>
+<text x="36" y="209" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">EQ-0008</text>
+<text x="116" y="209" font-size="16" fill="#E9E7E2" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">Pressure Unit</text>
+<text x="256" y="209" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">2024-07-12</text>
+<rect x="31" y="224" width="74" height="26" rx="5" fill="#33290F" stroke="#E6B15C" stroke-width="1.8"/>
+<text x="36" y="243" font-size="16" fill="#E9E7E2" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">EQ-0005</text>
+<text x="116" y="243" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">VALVE</text>
+<text x="256" y="243" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">2024-02-16</text>
+<rect x="40" y="266" width="97" height="30" rx="15" fill="#33290F" stroke="#E6B15C" stroke-width="1.5"/>
+<text x="53" y="287" font-size="16" fill="#E6B15C" font-weight="700" data-box="40,266,97,30">blank ID</text>
+<rect x="145" y="266" width="106" height="30" rx="15" fill="#33290F" stroke="#E6B15C" stroke-width="1.5"/>
+<text x="158" y="287" font-size="16" fill="#E6B15C" font-weight="700" data-box="145,266,106,30">Feb 30th?</text>
+<rect x="40" y="304" width="160" height="30" rx="15" fill="#33290F" stroke="#E6B15C" stroke-width="1.5"/>
+<text x="53" y="325" font-size="16" fill="#E6B15C" font-weight="700" data-box="40,304,160,30">pump or sensor?</text>
+<rect x="208" y="304" width="133" height="30" rx="15" fill="#33290F" stroke="#E6B15C" stroke-width="1.5"/>
+<text x="221" y="325" font-size="16" fill="#E6B15C" font-weight="700" data-box="208,304,133,30">duplicate ID</text>
+<text x="24" y="378" font-size="18" fill="#A9AEB5" font-weight="600">Errors hiding in plain sight.</text>
+<circle cx="210" cy="420" r="22" fill="#8CC0EA"/>
+<path d="M210 411 v16 M202 421 l8 8 l8 -8" fill="none" stroke="#101418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="24" y="472" font-size="16" fill="#6FCDC2" font-weight="800" letter-spacing="1.5">AFTER</text>
+<rect x="24" y="486" width="372" height="334" rx="14" fill="#191C1F" stroke="#6FCDC2" stroke-width="2"/>
+<path d="M24 500 a14 14 0 0 1 14 -14 h344 a14 14 0 0 1 14 14 v22 h-372 z" fill="#2A3036"/>
+<circle cx="44" cy="504" r="5" fill="#848D98" opacity="0.7"/>
+<circle cx="60" cy="504" r="5" fill="#848D98" opacity="0.7"/>
+<circle cx="76" cy="504" r="5" fill="#848D98" opacity="0.7"/>
+<text x="100" y="510" font-size="16" fill="#A9AEB5" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">trusted_records.csv</text>
+<text x="70" y="550" font-size="16" fill="#A9AEB5" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">ID</text>
+<text x="156" y="550" font-size="16" fill="#A9AEB5" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">CATEGORY</text>
+<text x="270" y="550" font-size="16" fill="#A9AEB5" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">QTY</text>
+<rect x="32" y="564" width="356" height="34" rx="4" fill="#1E2328"/>
+<path d="M42 581 l4.8 4.8 l9.6 -10.4" fill="none" stroke="#6FCDC2" stroke-width="2.56" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="70" y="587" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">EQ-0006</text>
+<text x="156" y="587" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">FILTER</text>
+<text x="270" y="587" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">23</text>
+<path d="M42 615 l4.8 4.8 l9.6 -10.4" fill="none" stroke="#6FCDC2" stroke-width="2.56" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="70" y="621" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">EQ-0007</text>
+<text x="156" y="621" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">PUMP</text>
+<text x="270" y="621" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">183</text>
+<rect x="32" y="632" width="356" height="34" rx="4" fill="#1E2328"/>
+<path d="M42 649 l4.8 4.8 l9.6 -10.4" fill="none" stroke="#6FCDC2" stroke-width="2.56" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="70" y="655" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">EQ-0009</text>
+<text x="156" y="655" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">FILTER</text>
+<text x="270" y="655" font-size="16" fill="#E9E7E2" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">62</text>
+<rect x="40" y="684" width="340" height="118" rx="12" fill="#33290F" stroke="#E6B15C" stroke-width="1.8"/>
+<circle cx="70" cy="710" r="8" fill="#E6B15C"/><path d="M56 734 a14 12 0 0 1 28 0 z" fill="#E6B15C"/>
+<text x="96" y="714" font-size="19" fill="#E9E7E2" font-weight="800" data-box="40,684,340,118">Held for a person</text>
+<text x="96" y="737" font-size="16" fill="#A9AEB5" data-box="40,684,340,118">with the reason attached</text>
+<text x="96" y="764" font-size="16" fill="#E6B15C" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace" data-box="40,684,340,118">row 3</text>
+<text x="166" y="764" font-size="16" fill="#E9E7E2" data-box="40,684,340,118">Feb 30th is not a date</text>
+<text x="96" y="786" font-size="16" fill="#E6B15C" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace" data-box="40,684,340,118">row 8</text>
+<text x="166" y="786" font-size="16" fill="#E9E7E2" data-box="40,684,340,118">pump or sensor?</text>
+<text x="24" y="850" font-size="18" fill="#E9E7E2" font-weight="700">Clean data, and nothing guessed.</text></g></svg>

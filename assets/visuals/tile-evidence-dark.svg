@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520" width="440" height="520" role="img" aria-labelledby="t"><title id="t">03/04/2024 could be March 4 or April 3, so it is rejected rather than guessed.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker></defs><rect width="440" height="520" rx="18" fill="#191C1F"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="28" y="46" font-size="17" fill="#8CC0EA" font-weight="800" letter-spacing="1.2">EXAMINING EVIDENCE</text>
+<text x="28" y="92" font-size="29" fill="#E9E7E2" font-weight="800" data-box="24,60,392,80">Is 03/04/2024 in</text>
+<text x="28" y="128" font-size="29" fill="#E9E7E2" font-weight="800" data-box="24,60,392,80">March or April?</text>
+<text x="28" y="446" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">Read the wrong way, a date moves by</text>
+<text x="28" y="471" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">about a month and nobody notices. Only</text>
+<text x="28" y="496" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">YYYY-MM-DD dates are accepted.</text>
+<rect x="142" y="146" width="156" height="44" rx="22" fill="#33290F" stroke="#E6B15C" stroke-width="2"/>
+<text x="220" y="175" font-size="19" fill="#E9E7E2" font-weight="800" text-anchor="middle" data-box="142,146,156,44">03/04/2024</text>
+<path d="M180 192 C160 200 136 204 122 212" fill="none" stroke="#848D98" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<path d="M260 192 C280 200 304 204 318 212" fill="none" stroke="#848D98" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<rect x="56" y="216" width="112" height="94" rx="12" fill="#22272C" stroke="#8CC0EA" stroke-width="2.5"/>
+<path d="M56 228 a12 12 0 0 1 12 -12 h88 a12 12 0 0 1 12 12 v22 h-112 z" fill="#8CC0EA"/>
+<text x="112" y="241" font-size="17" fill="#101418" font-weight="800" text-anchor="middle" letter-spacing="1.5">MAR</text>
+<text x="112" y="292" font-size="40" fill="#E9E7E2" font-weight="800" text-anchor="middle">4</text>
+<rect x="272" y="216" width="112" height="94" rx="12" fill="#22272C" stroke="#8CC0EA" stroke-width="2.5"/>
+<path d="M272 228 a12 12 0 0 1 12 -12 h88 a12 12 0 0 1 12 12 v22 h-112 z" fill="#8CC0EA"/>
+<text x="328" y="241" font-size="17" fill="#101418" font-weight="800" text-anchor="middle" letter-spacing="1.5">APR</text>
+<text x="328" y="292" font-size="40" fill="#E9E7E2" font-weight="800" text-anchor="middle">3</text>
+<text x="220" y="278" font-size="44" fill="#E6B15C" font-weight="800" text-anchor="middle">≠</text>
+<text x="112" y="334" font-size="17" fill="#A9AEB5" font-weight="700" text-anchor="middle">US reading</text>
+<text x="328" y="334" font-size="17" fill="#A9AEB5" font-weight="700" text-anchor="middle">UK reading</text>
+<rect x="70" y="352" width="300" height="52" rx="26" fill="#E6B15C"/>
+<path d="M90 370L106 386M106 370L90 386" stroke="#101418" stroke-width="3.2" stroke-linecap="round"/>
+<text x="122" y="385" font-size="18" fill="#101418" font-weight="800" data-box="70,352,300,52">Rejected, not guessed</text></g></svg>

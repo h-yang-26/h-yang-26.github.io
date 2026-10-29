@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520" width="440" height="520" role="img" aria-labelledby="t"><title id="t">Which containers to open is a known fixed-charge allocation problem, solved with a proven method.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker></defs><rect width="440" height="520" rx="18" fill="#191C1F"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="28" y="46" font-size="17" fill="#8CC0EA" font-weight="800" letter-spacing="1.2">RECOGNIZING FRAMEWORKS</text>
+<text x="28" y="92" font-size="29" fill="#E9E7E2" font-weight="800" data-box="24,60,392,80">“Which containers</text>
+<text x="28" y="128" font-size="29" fill="#E9E7E2" font-weight="800" data-box="24,60,392,80">should we open?”</text>
+<text x="28" y="446" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">Before building anything new, I check</text>
+<text x="28" y="471" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">whether the problem already has a</text>
+<text x="28" y="496" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">trusted method. This one does.</text>
+<rect x="28" y="150" width="172" height="176" rx="14" fill="#22272C" stroke="#848D98" stroke-width="2"/>
+<rect x="42" y="168" width="20" height="20" rx="4" fill="#8CC0EA"/>
+<rect x="70" y="160" width="20" height="20" rx="4" fill="#6FCDC2"/>
+<rect x="100" y="172" width="20" height="20" rx="4" fill="#E6B15C"/>
+<rect x="130" y="158" width="20" height="20" rx="4" fill="#8CC0EA"/>
+<rect x="158" y="170" width="20" height="20" rx="4" fill="#6FCDC2"/>
+<rect x="40" y="238" width="66" height="62" rx="6" fill="none" stroke="#8CC0EA" stroke-width="2.5"/>
+<rect x="114" y="214" width="74" height="86" rx="6" fill="none" stroke="#8CC0EA" stroke-width="2.5"/>
+<text x="73" y="276" font-size="17" fill="#A9AEB5" font-weight="800" text-anchor="middle" data-box="40,238,66,62">400</text>
+<text x="151" y="264" font-size="17" fill="#A9AEB5" font-weight="800" text-anchor="middle" data-box="114,214,74,86">900</text>
+<text x="114" y="318" font-size="17" fill="#A9AEB5" text-anchor="middle" data-box="28,150,172,176">opening charges</text>
+<path d="M204 238 L236 238" stroke="#848D98" stroke-width="2.5" marker-end="url(#ah)"/>
+<rect x="240" y="150" width="172" height="176" rx="14" fill="#1D2A36" stroke="#8CC0EA" stroke-width="2"/>
+<path d="M262 176 q20 -10 38 0 v32 q-18 -10 -38 0 z M300 176 q18 -10 38 0 v32 q-20 -10 -38 0 z" fill="#191C1F" stroke="#8CC0EA" stroke-width="2.2" stroke-linejoin="round"/>
+<text x="254" y="238" font-size="17" fill="#8CC0EA" font-weight="800" data-box="240,150,172,176">Known problem</text>
+<text x="254" y="266" font-size="20" fill="#E9E7E2" font-weight="800" data-box="240,150,172,176">Fixed-charge</text>
+<text x="254" y="290" font-size="20" fill="#E9E7E2" font-weight="800" data-box="240,150,172,176">allocation</text>
+<text x="254" y="314" font-size="17" fill="#A9AEB5" data-box="240,150,172,176">PuLP + CBC</text>
+<rect x="80" y="350" width="280" height="52" rx="26" fill="#6FCDC2"/>
+<path d="M106 376 l6.6 6.6 l13.2 -14.3" fill="none" stroke="#101418" stroke-width="3.52" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="136" y="383" font-size="18" fill="#101418" font-weight="800" data-box="80,350,280,52">Use a proven method</text></g></svg>

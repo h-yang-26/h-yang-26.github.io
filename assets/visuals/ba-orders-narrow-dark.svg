@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 900" width="420" height="900" role="img" aria-labelledby="t"><title id="t">Before: a report adds quote, order and shipment into one wrong total. After: one order with demand 2, shipped 1, owed 1.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker></defs><rect width="420" height="900" rx="20" fill="#111315"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="24" y="26" font-size="16" fill="#E6B15C" font-weight="800" letter-spacing="1.5">BEFORE</text>
+<rect x="24" y="40" width="372" height="308" rx="14" fill="#191C1F" stroke="#E6B15C" stroke-width="2"/>
+<path d="M24 54 a14 14 0 0 1 14 -14 h344 a14 14 0 0 1 14 14 v22 h-372 z" fill="#2A3036"/>
+<circle cx="44" cy="58" r="5" fill="#848D98" opacity="0.7"/>
+<circle cx="60" cy="58" r="5" fill="#848D98" opacity="0.7"/>
+<circle cx="76" cy="58" r="5" fill="#848D98" opacity="0.7"/>
+<text x="100" y="64" font-size="16" fill="#A9AEB5" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">monthly_report.xlsx</text>
+<g transform="rotate(-4 90 152)"><rect x="38" y="100" width="104" height="104" rx="4" fill="#3A3216" stroke="#8A7834" stroke-width="1.5"/><rect x="70" y="92" width="40" height="16" rx="2" fill="#848D98" opacity="0.35"/>
+<text x="52" y="138" font-size="18" fill="#E9E7E2" font-weight="800" data-box="38,100,104,104">Quote</text>
+<text x="52" y="172" font-size="20" fill="#E9E7E2" font-weight="800" data-box="38,100,104,104">4 units</text>
+</g>
+<g transform="rotate(3 206 164)"><rect x="154" y="112" width="104" height="104" rx="4" fill="#3A3216" stroke="#8A7834" stroke-width="1.5"/><rect x="186" y="104" width="40" height="16" rx="2" fill="#848D98" opacity="0.35"/>
+<text x="168" y="150" font-size="18" fill="#E9E7E2" font-weight="800" data-box="154,112,104,104">Order</text>
+<text x="168" y="184" font-size="20" fill="#E9E7E2" font-weight="800" data-box="154,112,104,104">2 units</text>
+</g>
+<g transform="rotate(-2 322 152)"><rect x="270" y="100" width="104" height="104" rx="4" fill="#3A3216" stroke="#8A7834" stroke-width="1.5"/><rect x="302" y="92" width="40" height="16" rx="2" fill="#848D98" opacity="0.35"/>
+<text x="284" y="138" font-size="18" fill="#E9E7E2" font-weight="800" data-box="270,100,104,104">Shipped</text>
+<text x="284" y="172" font-size="20" fill="#E9E7E2" font-weight="800" data-box="270,100,104,104">1 unit</text>
+</g>
+<rect x="38" y="230" width="344" height="100" rx="12" fill="#33290F" stroke="#E6B15C" stroke-width="2"/>
+<text x="58" y="264" font-size="18" fill="#A9AEB5" font-weight="600" data-box="38,230,344,100">“Total demand this month”</text>
+<text x="58" y="306" font-size="24" fill="#E9E7E2" font-weight="800" data-box="38,230,344,100">4 + 2 + 1 = 7 units</text>
+<path d="M54 298.08 h236" stroke="#E6B15C" stroke-width="4" stroke-linecap="round"/>
+<circle cx="348" cy="262" r="18" fill="#E6B15C"/><path d="M341 255L355 269M355 255L341 269" stroke="#101418" stroke-width="3.2" stroke-linecap="round"/>
+<text x="24" y="378" font-size="18" fill="#A9AEB5" font-weight="600">Same order, three numbers.</text>
+<circle cx="210" cy="420" r="22" fill="#8CC0EA"/>
+<path d="M210 411 v16 M202 421 l8 8 l8 -8" fill="none" stroke="#101418" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="24" y="472" font-size="16" fill="#6FCDC2" font-weight="800" letter-spacing="1.5">AFTER</text>
+<rect x="24" y="486" width="372" height="362" rx="14" fill="#191C1F" stroke="#6FCDC2" stroke-width="2"/>
+<path d="M24 500 a14 14 0 0 1 14 -14 h344 a14 14 0 0 1 14 14 v22 h-372 z" fill="#2A3036"/>
+<circle cx="44" cy="504" r="5" fill="#848D98" opacity="0.7"/>
+<circle cx="60" cy="504" r="5" fill="#848D98" opacity="0.7"/>
+<circle cx="76" cy="504" r="5" fill="#848D98" opacity="0.7"/>
+<text x="100" y="510" font-size="16" fill="#A9AEB5" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">order timeline</text>
+<text x="44" y="568" font-size="19" fill="#E9E7E2" font-weight="800">Quoted</text>
+<text x="44" y="589" font-size="16" fill="#A9AEB5">offer</text>
+<rect x="174" y="546" width="36" height="36" rx="7" fill="#8CC0EA"/>
+<rect x="220" y="546" width="36" height="36" rx="7" fill="#8CC0EA"/>
+<rect x="266" y="546" width="36" height="36" rx="7" fill="#8CC0EA"/>
+<rect x="312" y="546" width="36" height="36" rx="7" fill="#8CC0EA"/>
+<text x="44" y="632" font-size="19" fill="#E9E7E2" font-weight="800">Ordered</text>
+<text x="44" y="653" font-size="16" fill="#A9AEB5">commitment</text>
+<rect x="174" y="610" width="36" height="36" rx="7" fill="#8CC0EA"/>
+<rect x="220" y="610" width="36" height="36" rx="7" fill="#8CC0EA"/>
+<rect x="266" y="610" width="36" height="36" rx="7" fill="none" stroke="#848D98" stroke-width="2" stroke-dasharray="5 4"/>
+<rect x="312" y="610" width="36" height="36" rx="7" fill="none" stroke="#848D98" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="44" y="696" font-size="19" fill="#E9E7E2" font-weight="800">Shipped</text>
+<text x="44" y="717" font-size="16" fill="#A9AEB5">delivered</text>
+<rect x="174" y="674" width="36" height="36" rx="7" fill="#6FCDC2"/>
+<rect x="220" y="674" width="36" height="36" rx="7" fill="none" stroke="#E6B15C" stroke-width="2" stroke-dasharray="5 4"/>
+<rect x="44" y="742" width="122" height="40" rx="20" fill="#1D2A36" stroke="#8CC0EA" stroke-width="1.8"/>
+<text x="59" y="769" font-size="18" fill="#8CC0EA" font-weight="800" data-box="44,742,122,40">Demand 2</text>
+<rect x="176" y="742" width="133" height="40" rx="20" fill="#16302D" stroke="#6FCDC2" stroke-width="1.8"/>
+<text x="191" y="769" font-size="18" fill="#6FCDC2" font-weight="800" data-box="176,742,133,40">Shipped 1</text>
+<rect x="44" y="792" width="100" height="40" rx="20" fill="#33290F" stroke="#E6B15C" stroke-width="1.8"/>
+<text x="59" y="819" font-size="18" fill="#E6B15C" font-weight="800" data-box="44,792,100,40">Owed 1</text>
+<text x="24" y="878" font-size="18" fill="#E9E7E2" font-weight="700">Every number means one thing.</text></g></svg>

@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Generate every SVG in assets/visuals/ from the data and layouts below.
 
-Each figure is drawn in up to three layouts and two colour schemes:
+Each figure is drawn in up to three layouts and two colour schemes (homepage
+tiles and before/after banners live in marketing_visuals.py, shared colours in
+visual_kit.py):
 
   wide    760 px viewBox, used at 40rem and wider (project pages, tablets)
   narrow  420 px viewBox, a stacked layout used below 40rem (phones)
@@ -27,60 +29,14 @@ import json
 import sys
 from pathlib import Path
 
+from marketing_visuals import MARKETING
+from visual_kit import FONT, THEMES, check_contrast, esc
+
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "visuals"
 CONTENT = ROOT / "content" / "site.json"
 
-FONT = "system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
 MIN_FONT = {"wide": 15, "narrow": 16, "card": 17}
-
-# Light values match the site's light tokens; dark values match its dark surface.
-THEMES = {
-    "light": {
-        "bg": "#FFFFFF", "text": "#1A1D21", "muted": "#4F5660", "line": "#7D8691",
-        "boxFill": "#F4F6F8", "accent": "#1C5785", "accentFill": "#EAF1F7",
-        "ok": "#146C67", "okFill": "#E3F2F0", "warn": "#8A5A0C", "warnFill": "#FBF1DE",
-        "track": "#E5EAEF", "onMark": "#FFFFFF",
-    },
-    "dark": {
-        "bg": "#191C1F", "text": "#E9E7E2", "muted": "#A9AEB5", "line": "#848D98",
-        "boxFill": "#22272C", "accent": "#8CC0EA", "accentFill": "#1D2A36",
-        "ok": "#6FCDC2", "okFill": "#16302D", "warn": "#E6B15C", "warnFill": "#33290F",
-        "track": "#2B3137", "onMark": "#101418",
-    },
-}
-# (foreground, background, minimum ratio): text 4.5:1, meaningful marks 3:1.
-CONTRAST_PAIRS = [
-    (fg, bg, 4.5) for fg in ("text", "muted", "accent", "ok", "warn")
-    for bg in ("bg", "boxFill", "accentFill", "okFill", "warnFill")
-] + [("onMark", mark, 4.5) for mark in ("accent", "ok", "warn")] + [
-    (mark, "bg", 3.0) for mark in ("line", "accent", "ok", "warn")
-]
-
-
-def luminance(hex_colour):
-    channels = [int(hex_colour[i:i + 2], 16) / 255 for i in (1, 3, 5)]
-    lin = [c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4 for c in channels]
-    return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2]
-
-
-def contrast(a, b):
-    hi, lo = sorted((luminance(a), luminance(b)), reverse=True)
-    return (hi + 0.05) / (lo + 0.05)
-
-
-def check_contrast():
-    problems = []
-    for name, theme in THEMES.items():
-        for fg, bg, minimum in CONTRAST_PAIRS:
-            ratio = contrast(theme[fg], theme[bg])
-            if ratio < minimum:
-                problems.append(f"{name}: {fg} on {bg} is {ratio:.2f}:1 (needs {minimum}:1)")
-    return problems
-
-
-def esc(text):
-    return str(text).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
 
 class Fig:
@@ -560,6 +516,7 @@ FIGURES = {
     "b2b-quantities": (b2b_quantities, ("wide", "narrow", "card"), "Quoted, ordered and shipped units for one fictional order"),
     "thinking-foundations": (thinking_foundations, ("wide", "narrow"), "Structure and justification inform one decision"),
     "thinking-cycle": (thinking_cycle, ("wide", "narrow"), "Six reusable reasoning operations"),
+    **MARKETING,
 }
 
 
@@ -580,14 +537,26 @@ def build():
     return files, sizes
 
 
+def figure_entries(node):
+    """Every content object that places a generated figure: {"src": "assets/visuals/<name>.svg", ...}."""
+    if isinstance(node, dict):
+        if str(node.get("src", "")).startswith("assets/visuals/"):
+            yield node
+        for value in node.values():
+            yield from figure_entries(value)
+    elif isinstance(node, list):
+        for value in node:
+            yield from figure_entries(value)
+
+
 def updated_content(sizes):
     raw = CONTENT.read_text(encoding="utf-8")
     content = json.loads(raw)
-    for project in content["projects"]:
-        for visual in project["visuals"]:
-            visual["sizes"] = sizes[Path(visual["src"]).stem]
-    for diagram in content["appliedThinking"]["diagrams"]:
-        diagram["sizes"] = sizes[Path(diagram["src"]).stem]
+    for entry in figure_entries(content):
+        stem = Path(entry["src"]).stem
+        if stem not in sizes:
+            sys.exit(f"content/site.json places {entry['src']}, which this script does not generate")
+        entry["sizes"] = sizes[stem]
     return raw, json.dumps(content, indent=2, ensure_ascii=False) + "\n"
 
 

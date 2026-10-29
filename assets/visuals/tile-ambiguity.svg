@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520" width="440" height="520" role="img" aria-labelledby="t"><title id="t">Is a pressure unit a pump or a sensor? Ambiguous rows go to human review.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7D8691"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8A5A0C"/></marker></defs><rect width="440" height="520" rx="18" fill="#FFFFFF"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="28" y="46" font-size="17" fill="#1C5785" font-weight="800" letter-spacing="1.2">NARROWING AMBIGUITY</text>
+<text x="28" y="92" font-size="29" fill="#1A1D21" font-weight="800" data-box="24,60,392,80">Is a “pressure unit”</text>
+<text x="28" y="128" font-size="29" fill="#1A1D21" font-weight="800" data-box="24,60,392,80">a pump or a sensor?</text>
+<text x="28" y="446" font-size="18" fill="#4F5660" data-box="24,424,392,86">The data can’t decide, so I don’t guess.</text>
+<text x="28" y="471" font-size="18" fill="#4F5660" data-box="24,424,392,86">Ambiguous rows go to a person, never</text>
+<text x="28" y="496" font-size="18" fill="#4F5660" data-box="24,424,392,86">silently into the system.</text>
+<path d="M146 150 h144 a10 10 0 0 1 10 10 v24 a10 10 0 0 1 -10 10 h-144 l-22 -22 z" fill="#FBF1DE" stroke="#8A5A0C" stroke-width="2"/>
+<circle cx="142" cy="172" r="4.5" fill="#FFFFFF" stroke="#8A5A0C" stroke-width="2"/>
+<text x="225" y="179" font-size="18" fill="#1A1D21" font-weight="700" text-anchor="middle" data-box="146,150,154,44">pressure unit</text>
+<path d="M176 196 C150 214 120 222 104 238" fill="none" stroke="#7D8691" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<path d="M252 196 C278 214 308 222 326 238" fill="none" stroke="#7D8691" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<rect x="40" y="262" width="22" height="16" rx="3" fill="#EAF1F7" stroke="#1C5785" stroke-width="2"/>
+<circle cx="88" cy="270" r="26" fill="#EAF1F7" stroke="#1C5785" stroke-width="2.5"/>
+<rect x="80" y="234" width="16" height="12" rx="2" fill="#EAF1F7" stroke="#1C5785" stroke-width="2"/>
+<g stroke="#1C5785" stroke-width="3" stroke-linecap="round"><path d="M88 270 q-4 -14 6 -18"/><path d="M88 270 q14 -2 16 8"/><path d="M88 270 q-10 10 -20 4"/></g>
+<circle cx="88" cy="270" r="4" fill="#1C5785"/>
+<text x="88" y="326" font-size="18" fill="#1A1D21" font-weight="700" text-anchor="middle">Pump?</text>
+<circle cx="344" cy="270" r="28" fill="#EAF1F7" stroke="#1C5785" stroke-width="2.5"/>
+<path d="M324 282 A22 22 0 1 1 364 282" fill="none" stroke="#7D8691" stroke-width="2" stroke-dasharray="2 5"/>
+<path d="M344 272 L358 254" stroke="#1C5785" stroke-width="3" stroke-linecap="round"/><circle cx="344" cy="272" r="4" fill="#1C5785"/>
+<text x="344" y="326" font-size="18" fill="#1A1D21" font-weight="700" text-anchor="middle">Sensor?</text>
+<text x="216" y="284" font-size="50" fill="#8A5A0C" font-weight="800" text-anchor="middle">?</text>
+<path d="M216 304 L216 344" stroke="#8A5A0C" stroke-width="2.5" marker-end="url(#aw)"/>
+<rect x="76" y="350" width="280" height="52" rx="26" fill="#8A5A0C"/>
+<circle cx="106" cy="368" r="7" fill="#FFFFFF"/><path d="M94 390 a12 10 0 0 1 24 0 z" fill="#FFFFFF"/>
+<text x="130" y="383" font-size="18" fill="#FFFFFF" font-weight="800" data-box="76,350,280,52">Sent to human review</text></g></svg>

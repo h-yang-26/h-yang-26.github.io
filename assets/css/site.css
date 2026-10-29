@@ -789,3 +789,48 @@ h1 .ph { font-size: 0.5em; vertical-align: middle; }
   .thinking-capabilities, .thinking-workflow { grid-template-columns: minmax(0, 1fr); }
   .thinking-table th, .thinking-table td { padding: 0.65rem 0.35rem; }
 }
+
+/* Redesign phase 1: positioning hero, headline figures and decision-led stories. */
+.hero--story h1 { max-width: 22ch; font-size: clamp(2.1rem, 1.5rem + 2.8vw, 3.5rem); text-wrap: balance; }
+.hero__lede { max-width: 42rem; margin: 0 0 1.5rem; color: var(--muted); font-size: clamp(1.08rem, 1rem + 0.35vw, 1.25rem); line-height: 1.55; }
+.hero__actions { margin-bottom: clamp(1.75rem, 4vw, 2.5rem); }
+.showcase { margin: 0 0 1rem; }
+.showcase__title { margin: 0 0 0.75rem; font: 600 clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem)/1.25 var(--serif); text-wrap: balance; }
+.showcase img { display: block; width: 100%; height: auto; border-radius: var(--radius); }
+.showcase figcaption { margin-top: 0.65rem; color: var(--muted); font-size: 0.92rem; }
+.showcase figcaption a { font-weight: 650; white-space: nowrap; }
+@media (max-width: 49.99rem) { .showcase img { max-width: 30rem; margin-inline: auto; } .showcase figcaption, .showcase__title { max-width: 30rem; margin-inline: auto; } }
+
+.story-head { max-width: 50rem; padding-block: 1.75rem 1.5rem; }
+.story-head h1 { margin: 0.4rem 0 0.75rem; max-width: 20ch; text-wrap: balance; }
+.story-head__lede { margin: 0 0 1.25rem; color: var(--muted); font-size: clamp(1.08rem, 1rem + 0.35vw, 1.25rem); line-height: 1.55; }
+.story-facts { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; margin: 0 0 1.25rem; }
+.story-facts dt { color: var(--muted); font-size: 0.75rem; font-weight: 750; letter-spacing: 0.07em; text-transform: uppercase; }
+.story-facts dd { margin: 0.15rem 0 0; font-weight: 600; }
+.story .showcase { margin-block: 0.5rem 2.5rem; }
+.story-body { max-width: 47rem; }
+.story-body > section { margin-bottom: 2.75rem; scroll-margin-top: 1rem; }
+.story-body h2 { font-size: 1.6rem; }
+.story-origin { margin-top: 1.25rem; padding: 1rem 1.15rem; border-left: 3px solid var(--accent); background: var(--surface-sunk); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.story-origin__label { margin: 0 0 0.35rem; color: var(--muted); font-size: 0.75rem; font-weight: 750; letter-spacing: 0.07em; text-transform: uppercase; }
+.story-origin p:last-child { margin-bottom: 0; }
+.decisions { display: grid; gap: 1.25rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+.decision { display: grid; gap: 1.25rem; padding: 1.35rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.decision__num { margin: 0 0 0.35rem; color: var(--accent); font: 700 0.85rem/1 var(--mono); letter-spacing: 0.05em; }
+.decision h3 { margin-bottom: 0.5rem; }
+.decision p { margin-bottom: 0.75rem; }
+.decision__term { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.decision__visual img { display: block; width: 100%; max-width: 22rem; height: auto; margin-inline: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+@media (min-width: 52rem) {
+  .story-body { max-width: 56rem; }
+  .decision--visual { grid-template-columns: minmax(0, 1fr) 22rem; align-items: start; }
+}
+@media (max-width: 39.99rem) {
+  .decision { padding: 1rem; }
+  /* Tiles span the card edge to edge on phones so their labels stay legible. */
+  .decision__visual { margin: 0 -1rem -1rem; }
+  .decision__visual img { max-width: none; border: 0; border-top: 1px solid var(--border); border-radius: 0 0 var(--radius) var(--radius); }
+}
+.tech-notes { margin: 0 0 1.25rem; padding-left: 1.2rem; }
+.tech-notes li { margin-bottom: 0.45rem; }
+.story-disclosure { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }

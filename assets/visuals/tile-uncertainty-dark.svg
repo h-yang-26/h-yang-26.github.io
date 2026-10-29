@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520" width="440" height="520" role="img" aria-labelledby="t"><title id="t">An expected arrival of March 27 was an estimate; the observed date, March 30, replaces it.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker></defs><rect width="440" height="520" rx="18" fill="#191C1F"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="28" y="46" font-size="17" fill="#8CC0EA" font-weight="800" letter-spacing="1.2">CHOOSING UNDER UNCERTAINTY</text>
+<text x="28" y="92" font-size="29" fill="#E9E7E2" font-weight="800" data-box="24,60,392,80">“Arrives March 27.”</text>
+<text x="28" y="128" font-size="29" fill="#E9E7E2" font-weight="800" data-box="24,60,392,80">Fact or forecast?</text>
+<text x="28" y="446" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">I plan with the best estimate but keep</text>
+<text x="28" y="471" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">it labelled. Estimates, facts and</text>
+<text x="28" y="496" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">unknowns are never mixed.</text>
+<rect x="40" y="156" width="124" height="112" rx="12" fill="#191C1F" stroke="#8CC0EA" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="102" y="181" font-size="17" fill="#8CC0EA" font-weight="800" text-anchor="middle" letter-spacing="1.5">MAR</text>
+<text x="102" y="250" font-size="40" fill="#E9E7E2" font-weight="800" text-anchor="middle">27</text>
+<rect x="276" y="156" width="124" height="112" rx="12" fill="#22272C" stroke="#6FCDC2" stroke-width="2.5"/>
+<path d="M276 168 a12 12 0 0 1 12 -12 h100 a12 12 0 0 1 12 12 v22 h-124 z" fill="#6FCDC2"/>
+<text x="338" y="181" font-size="17" fill="#101418" font-weight="800" text-anchor="middle" letter-spacing="1.5">MAR</text>
+<text x="338" y="250" font-size="40" fill="#E9E7E2" font-weight="800" text-anchor="middle">30</text>
+<path d="M168 212 L270 212" stroke="#848D98" stroke-width="2.5" marker-end="url(#ah)"/>
+<text x="219" y="202" font-size="17" fill="#A9AEB5" font-weight="800" text-anchor="middle">+3 days</text>
+<text x="102" y="296" font-size="18" fill="#E9E7E2" font-weight="800" text-anchor="middle">Expected</text>
+<text x="102" y="320" font-size="17" fill="#A9AEB5" text-anchor="middle">an estimate</text>
+<text x="338" y="296" font-size="18" fill="#E9E7E2" font-weight="800" text-anchor="middle">Received</text>
+<text x="338" y="320" font-size="17" fill="#A9AEB5" text-anchor="middle">an observed fact</text>
+<rect x="70" y="352" width="300" height="52" rx="26" fill="#6FCDC2"/>
+<path d="M96 378 l6.6 6.6 l13.2 -14.3" fill="none" stroke="#101418" stroke-width="3.52" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="126" y="385" font-size="18" fill="#101418" font-weight="800" data-box="70,352,300,52">Fact replaces estimate</text></g></svg>

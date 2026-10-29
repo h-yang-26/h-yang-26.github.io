@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520" width="440" height="520" role="img" aria-labelledby="t"><title id="t">A quote for 4 is not a sale of 4: committed demand is 2.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker></defs><rect width="440" height="520" rx="18" fill="#191C1F"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="28" y="46" font-size="17" fill="#8CC0EA" font-weight="800" letter-spacing="1.2">DECOMPOSING SYSTEMS</text>
+<text x="28" y="92" font-size="29" fill="#E9E7E2" font-weight="800" data-box="24,60,392,80">A quote for 4 is</text>
+<text x="28" y="128" font-size="29" fill="#E9E7E2" font-weight="800" data-box="24,60,392,80">not a sale of 4.</text>
+<text x="28" y="446" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">Offers, commitments and shipments are</text>
+<text x="28" y="471" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">different facts. Adding them counts the</text>
+<text x="28" y="496" font-size="18" fill="#A9AEB5" data-box="24,424,392,86">same customer twice.</text>
+<path d="M28 150 h172 l16 16 v62 a8 8 0 0 1 -8 8 h-180 a8 8 0 0 1 -8 -8 v-70 a8 8 0 0 1 8 -8 z" fill="#22272C" stroke="#8CC0EA" stroke-width="2"/>
+<path d="M200 150 v16 h16" fill="none" stroke="#8CC0EA" stroke-width="2"/>
+<text x="40" y="176" font-size="18" fill="#E9E7E2" font-weight="800">Quote</text>
+<text x="40" y="200" font-size="17" fill="#A9AEB5">4 offered</text>
+<rect x="140" y="206" width="13" height="13" rx="3" fill="#8CC0EA"/>
+<rect x="157" y="206" width="13" height="13" rx="3" fill="#8CC0EA"/>
+<rect x="174" y="206" width="13" height="13" rx="3" fill="#8CC0EA"/>
+<rect x="191" y="206" width="13" height="13" rx="3" fill="#8CC0EA"/>
+<path d="M28 242 h172 l16 16 v62 a8 8 0 0 1 -8 8 h-180 a8 8 0 0 1 -8 -8 v-70 a8 8 0 0 1 8 -8 z" fill="#22272C" stroke="#8CC0EA" stroke-width="2"/>
+<path d="M200 242 v16 h16" fill="none" stroke="#8CC0EA" stroke-width="2"/>
+<text x="40" y="268" font-size="18" fill="#E9E7E2" font-weight="800">Order</text>
+<text x="40" y="292" font-size="17" fill="#A9AEB5">2 committed</text>
+<rect x="140" y="298" width="13" height="13" rx="3" fill="#8CC0EA"/>
+<rect x="157" y="298" width="13" height="13" rx="3" fill="#8CC0EA"/>
+<rect x="174" y="298" width="13" height="13" rx="3" fill="none" stroke="#848D98" stroke-width="1.5" stroke-dasharray="3 2"/>
+<rect x="191" y="298" width="13" height="13" rx="3" fill="none" stroke="#848D98" stroke-width="1.5" stroke-dasharray="3 2"/>
+<path d="M28 334 h172 l16 16 v62 a8 8 0 0 1 -8 8 h-180 a8 8 0 0 1 -8 -8 v-70 a8 8 0 0 1 8 -8 z" fill="#22272C" stroke="#6FCDC2" stroke-width="2"/>
+<path d="M200 334 v16 h16" fill="none" stroke="#6FCDC2" stroke-width="2"/>
+<text x="40" y="360" font-size="18" fill="#E9E7E2" font-weight="800">Shipment</text>
+<text x="40" y="384" font-size="17" fill="#A9AEB5">1 sent</text>
+<rect x="140" y="390" width="13" height="13" rx="3" fill="#6FCDC2"/>
+<rect x="157" y="390" width="13" height="13" rx="3" fill="none" stroke="#848D98" stroke-width="1.5" stroke-dasharray="3 2"/>
+<rect x="174" y="390" width="13" height="13" rx="3" fill="none" stroke="#848D98" stroke-width="1.5" stroke-dasharray="3 2"/>
+<rect x="191" y="390" width="13" height="13" rx="3" fill="none" stroke="#848D98" stroke-width="1.5" stroke-dasharray="3 2"/>
+<rect x="238" y="168" width="176" height="96" rx="14" fill="#33290F" stroke="#E6B15C" stroke-width="2"/>
+<text x="326" y="204" font-size="26" fill="#E9E7E2" font-weight="800" text-anchor="middle" data-box="238,168,176,96">4 + 2 = 6</text>
+<path d="M262 196 L392 196" stroke="#E6B15C" stroke-width="3.5" stroke-linecap="round"/>
+<text x="326" y="240" font-size="17" fill="#E6B15C" font-weight="700" text-anchor="middle" data-box="238,168,176,96">units of demand?</text>
+<path d="M391 175L405 189M405 175L391 189" stroke="#E6B15C" stroke-width="3.2" stroke-linecap="round"/>
+<rect x="238" y="290" width="176" height="96" rx="14" fill="#16302D" stroke="#6FCDC2" stroke-width="2"/>
+<text x="326" y="330" font-size="26" fill="#E9E7E2" font-weight="800" text-anchor="middle" data-box="238,290,176,96">Demand = 2</text>
+<text x="326" y="362" font-size="17" fill="#6FCDC2" font-weight="700" text-anchor="middle" data-box="238,290,176,96">only orders count</text></g></svg>
