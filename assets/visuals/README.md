@@ -58,12 +58,12 @@ They still follow the accuracy rule: every row and number is copied from a publi
 
 | SVGs | Source |
 |---|---|
-| ba-data | Rows 2, 3, 4, 7, 8 and 11 of `synthetic-data-quality-pipeline/data/sample_input.csv` (blank ID with alias `mtr`, `2024-02-30`, `N/A`, `pump`, `Pressure Unit`, repeated `EQ-0005`); clean rows 6, 7, 9 and 12 from `outputs/cleaned_records.csv`; row numbers in the review card are `source_row_number` values. |
-| ba-usage | Rows `E000195`–`E000201` of `product-usage-analytics-demo/data/synthetic_events.csv` (time of day shown, date omitted); 5,766 raw rows; 175 users, 1,520 sessions and the daily active user series for Sep 1–28 2026, all modules; 46% = 619 / 1,357 funnel sessions. |
+| ba-data | Data rows 2, 3, 4, 7, 8 and 10 (`source_row_number`) of `synthetic-data-quality-pipeline/data/sample_input.csv`: blank ID, `2024-02-30`, `N/A`, `Pressure Unit`, and `EQ-0005` repeated (shown trimmed, as the duplicate check compares it). `mtr` and `pump` are valid aliases and are not flagged. Clean rows 6, 7, 9 and 12 from `outputs/cleaned_records.csv`; the review card stands for `outputs/exceptions.csv`, and its row numbers are `source_row_number` values. |
+| ba-usage | Rows `E000195`–`E000201` of `product-usage-analytics-demo/data/synthetic_events.csv` (time of day shown, date omitted); 5,766 raw rows; 175 users, 1,520 sessions, 619 sessions completing page_view → search → detail_view in order, and the daily active user series, all for Sep 1–28 2026, all modules. |
 | ba-orders | `b2b-sales-systems-case-study/examples/fictional-order-scenario.json`: 4 quoted, 2 ordered, 1 shipped, 1 owed. The "4 + 2 + 1 = 7" report is a deliberate illustration of the double counting the case study warns against, not a figure from the repo. |
 | tile-ambiguity, tile-evidence | Data quality README: `pressure unit` maps to both PUMP and SENSOR and goes to review; only `YYYY-MM-DD` is accepted, so `03/04/2024` is rejected. |
-| tile-frameworks, tile-abstraction, tile-opacity | Inventory lab: fixed container charges 400 and 900 (fictional `toy_cost_units`, shown without a currency), PuLP + CBC, `CNT-L` 100% volume / 82% mass in the normal scenario, mass/volume-only limitation, independent `check_plan`. |
-| tile-invariance | Analytics demo: 31 excluded rows file-wide; 5,735 valid events Sep 1–28 all modules; 480 for catalog, Sep 7–13. |
+| tile-frameworks, tile-abstraction, tile-opacity | Inventory lab: fixed container charges 400 and 900 (fictional `toy_cost_units`, shown without a currency), PuLP + CBC, `CNT-L` 100% volume / 82% mass in the normal scenario, mass/volume-only limitation printed in every text and JSON output, independent `check_plan`. |
+| tile-invariance | Analytics demo: 31 raw rows not counted as valid events, file-wide (10 identical copies collapsed, 8 quarantined, 13 rejected); 5,735 valid events Sep 1–28 all modules; 480 for catalog, Sep 7–13. |
 | tile-decomposition, tile-uncertainty | B2B case study: 4 quoted, 2 ordered, 1 shipped; `PO-5001` expected 2026-03-27, received three days late in the walkthrough. |
 
 ## Applied Thinking diagrams

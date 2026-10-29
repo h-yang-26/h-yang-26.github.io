@@ -4,14 +4,13 @@
 <circle cx="44" cy="58" r="5" fill="#7D8691" opacity="0.7"/>
 <circle cx="60" cy="58" r="5" fill="#7D8691" opacity="0.7"/>
 <circle cx="76" cy="58" r="5" fill="#7D8691" opacity="0.7"/>
-<text x="100" y="64" font-size="16" fill="#4F5660" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">inventory_export.csv</text>
+<text x="100" y="64" font-size="16" fill="#4F5660" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">sample_input.csv</text>
 <text x="36" y="104" font-size="16" fill="#4F5660" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">ID</text>
 <text x="116" y="104" font-size="16" fill="#4F5660" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">CATEGORY</text>
 <text x="256" y="104" font-size="16" fill="#4F5660" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">RECEIVED</text>
 <rect x="32" y="118" width="356" height="34" rx="4" fill="#F4F6F8"/>
 <rect x="31" y="122" width="74" height="26" rx="5" fill="#FBF1DE" stroke="#8A5A0C" stroke-width="1.8"/>
-<rect x="111" y="122" width="136" height="26" rx="5" fill="#FBF1DE" stroke="#8A5A0C" stroke-width="1.8"/>
-<text x="116" y="141" font-size="16" fill="#1A1D21" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">mtr</text>
+<text x="116" y="141" font-size="16" fill="#1A1D21" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">mtr</text>
 <text x="256" y="141" font-size="16" fill="#1A1D21" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">2024-05-24</text>
 <rect x="251" y="156" width="108" height="26" rx="5" fill="#FBF1DE" stroke="#8A5A0C" stroke-width="1.8"/>
 <text x="36" y="175" font-size="16" fill="#1A1D21" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">EQ-0003</text>
@@ -43,7 +42,7 @@
 <circle cx="44" cy="504" r="5" fill="#7D8691" opacity="0.7"/>
 <circle cx="60" cy="504" r="5" fill="#7D8691" opacity="0.7"/>
 <circle cx="76" cy="504" r="5" fill="#7D8691" opacity="0.7"/>
-<text x="100" y="510" font-size="16" fill="#4F5660" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">trusted_records.csv</text>
+<text x="100" y="510" font-size="16" fill="#4F5660" font-weight="600" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">outputs/</text>
 <text x="70" y="550" font-size="16" fill="#4F5660" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">ID</text>
 <text x="156" y="550" font-size="16" fill="#4F5660" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">CATEGORY</text>
 <text x="270" y="550" font-size="16" fill="#4F5660" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace">QTY</text>
@@ -64,7 +63,7 @@
 <rect x="40" y="684" width="340" height="118" rx="12" fill="#FBF1DE" stroke="#8A5A0C" stroke-width="1.8"/>
 <circle cx="70" cy="710" r="8" fill="#8A5A0C"/><path d="M56 734 a14 12 0 0 1 28 0 z" fill="#8A5A0C"/>
 <text x="96" y="714" font-size="19" fill="#1A1D21" font-weight="800" data-box="40,684,340,118">Held for a person</text>
-<text x="96" y="737" font-size="16" fill="#4F5660" data-box="40,684,340,118">with the reason attached</text>
+<text x="96" y="737" font-size="16" fill="#4F5660" data-box="40,684,340,118">exceptions.csv, with reasons</text>
 <text x="96" y="764" font-size="16" fill="#8A5A0C" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace" data-box="40,684,340,118">row 3</text>
 <text x="166" y="764" font-size="16" fill="#1A1D21" data-box="40,684,340,118">Feb 30th is not a date</text>
 <text x="96" y="786" font-size="16" fill="#8A5A0C" font-weight="700" font-family="ui-monospace,'SF Mono','Cascadia Mono',Menlo,Consolas,monospace" data-box="40,684,340,118">row 8</text>

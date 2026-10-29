@@ -107,7 +107,7 @@
       "visual": {
         "src": "assets/visuals/ba-data.svg",
         "title": "Messy records in. Data you can trust out.",
-        "alt": "Before and after. Before: an inventory export where one row has a blank ID and the category alias “mtr”, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and a review card holding rows for a person with their reasons.",
+        "alt": "Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons.",
         "caption": "Real rows from the Data Quality Pipeline’s fictional sample.",
         "link": {
           "label": "See how it works →",
@@ -133,7 +133,7 @@
     "privacy": "This site sets no cookies and loads no analytics, tracking scripts or third-party content.",
     "headline": "Enterprise-motivated technical demonstrations",
     "professionalDisclosure": "The professional work described here includes live, integrated or deployed capabilities, with project-specific status indicated below. The linked GitHub repositories are independent representations built from fictional inputs and general methods; their test results and example metrics are not employer results.",
-    "disclosure": "All data in these projects is fictional. I built them independently of my employer, directing an AI-assisted build and reviewing the results."
+    "disclosure": "All data in these projects is fictional. They were built independently of my employer: AI tools did the implementation under my direction, and I approved the results."
   },
   "projects": [
     {
@@ -257,7 +257,7 @@
         "facts": [
           {
             "label": "My role",
-            "value": "Requirements, edge cases and approvals; AI-assisted build"
+            "value": "Requirements, edge cases and approvals; AI tools did the implementation"
           },
           {
             "label": "Built with",
@@ -271,7 +271,7 @@
         "banner": {
           "src": "assets/visuals/ba-data.svg",
           "title": "Messy records in. Data you can trust out.",
-          "alt": "Before and after. Before: an inventory export where one row has a blank ID and the category alias “mtr”, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and a review card holding rows for a person with their reasons.",
+          "alt": "Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons.",
           "caption": "Real rows from this project’s fictional sample data.",
           "narrowMax": "49.99rem",
           "eager": true,
@@ -294,7 +294,7 @@
         "decisions": [
           {
             "title": "Flag, don’t fix.",
-            "body": "A category like “pressure unit” could mean a pump or a sensor. Instead of picking one, the row goes to a person with the reason attached. It’s slower, but nothing goes wrong silently.",
+            "body": "A category like “pressure unit” could mean a pump or a sensor. Instead of picking one, the row goes to a person with the reason attached. It’s slower, but an ambiguous category is never resolved silently.",
             "term": "Exact alias matching; no fuzzy matching.",
             "visual": {
               "src": "assets/visuals/tile-ambiguity.svg",
@@ -341,7 +341,7 @@
         ],
         "technical": {
           "notes": [
-            "Input and mapping files are fully validated before anything is written; a bad file stops the run with exit code 2.",
+            "Input and mapping files are checked for structural problems before anything is written; a malformed file stops the run with exit code 2, while bad rows become reviewable exceptions.",
             "Every input row gets exactly one outcome, and `summary.json` reconciles input = accepted + rejected.",
             "A blank quantity is missing, while an explicit `0` is a valid count; neither is defaulted.",
             "Exceptions keep the source row number, the raw values and every error code, so a reviewer sees exactly what arrived.",

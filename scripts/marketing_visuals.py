@@ -179,7 +179,7 @@ def tile_invariance():
         t.raw(f'<rect x="{x+8}" y="266" width="168" height="62" rx="10" fill="{{warnFill}}"/>')
         t.text(x + 14, 296, "31", 26, "warn", 800, box=inner)
         t.text(x + 50, 296, "rows", TILE_MIN, "text", 700, box=inner)
-        t.text(x + 14, 318, "excluded", TILE_MIN, "text", 700, box=inner)
+        t.text(x + 14, 318, "not counted", TILE_MIN, "text", 700, box=inner)
         t.raw(check(x + 140, 296, "ok", 1.0))
     t.raw('<path d="M212 241 L224 241" stroke="{line}" stroke-width="2" marker-end="url(#ah)"/>')
     badge(t, 70, 300, "Same 31, any filter", "ok", y=352)
@@ -225,7 +225,7 @@ def tile_abstraction():
     t.text(372, 204, "?", 26, "warn", 800, "middle")
     t.raw('<rect x="40" y="352" width="360" height="52" rx="26" fill="{accent}"/>')
     t.raw('<path d="M64 366 h18 l6 6 v20 h-24 z" fill="none" stroke="{onMark}" stroke-width="2.4" stroke-linejoin="round"/><path d="M69 378 h12 M69 385 h12" stroke="{onMark}" stroke-width="2.2"/>')
-    t.text(98, 385, "Limit stated on every result", 18, "onMark", 800, box=(40, 352, 360, 52))
+    t.text(98, 385, "Limit stated in every output", 18, "onMark", 800, box=(40, 352, 360, 52))
     return t
 
 
@@ -353,12 +353,12 @@ def dq_before(b, x, y, w, narrow):
     head = y + 64
     if narrow:
         cols, widths, heads = [x + 12, x + 92, x + 232], [74, 136, 108], ["ID", "CATEGORY", "RECEIVED"]
-        rows = [("", "mtr", "2024-05-24", {0, 1}), ("EQ-0003", "VALVE", "2024-02-30", {2}),
+        rows = [("", "mtr", "2024-05-24", {0}), ("EQ-0003", "VALVE", "2024-02-30", {2}),
                 ("EQ-0008", "Pressure Unit", "2024-07-12", {1}), ("EQ-0005", "VALVE", "2024-02-16", {0})]
         chips = [("blank ID", "Feb 30th?"), ("pump or sensor?", "duplicate ID")]
     else:
         cols, widths, heads = [x + 16, x + 100, x + 252, x + 304], [74, 146, 44, 108], ["ID", "CATEGORY", "QTY", "RECEIVED"]
-        rows = [("", "mtr", "132", "2024-05-24", {0, 1}), ("EQ-0003", "VALVE", "117", "2024-02-30", {3}),
+        rows = [("", "mtr", "132", "2024-05-24", {0}), ("EQ-0003", "VALVE", "117", "2024-02-30", {3}),
                 ("EQ-0004", "electric motor", "N/A", "2024-08-17", {2}), ("EQ-0007", "pump", "183", "2024-11-13", set()),
                 ("EQ-0008", "Pressure Unit", "156", "2024-07-12", {1}), ("EQ-0005", "VALVE", "154", "2024-02-16", {0})]
         chips = [("blank ID", "Feb 30th?", "N/A"), ("pump or sensor?", "duplicate ID")]
@@ -402,14 +402,14 @@ def dq_after(b, x, y, w, narrow):
     b.raw('<rect x="{:g}" y="{:g}" width="{:g}" height="{:g}" rx="12" fill="{{warnFill}}" stroke="{{warn}}" stroke-width="1.8"/>'.format(*card))
     b.raw(f'<circle cx="{x+46}" cy="{qy+26}" r="8" fill="{{warn}}"/><path d="M{x+32} {qy+50} a14 12 0 0 1 28 0 z" fill="{{warn}}"/>')
     b.text(x + 72, qy + 30, "Held for a person" if narrow else "Held for a person to decide", 19, "text", 800, box=card)
-    b.text(x + 72, qy + 53, "with the reason attached", BA_MIN, "muted", 400, box=card)
+    b.text(x + 72, qy + 53, "exceptions.csv, with reasons", BA_MIN, "muted", 400, box=card)
     for k, (row, why) in enumerate((("row 3", "Feb 30th is not a date"), ("row 8", "pump or sensor?"))):
         b.text(x + 72, qy + 80 + k * 22, row, BA_MIN, "warn", 700, mono=True, box=card)
         b.text(x + 142, qy + 80 + k * 22, why, BA_MIN, "text", 400, box=card)
 
 
 def ba_data(layout):
-    return compose(layout, ("inventory_export.csv", "trusted_records.csv"),
+    return compose(layout, ("sample_input.csv", "outputs/"),
                    ("Errors hiding in plain sight.", "Clean data, and nothing guessed."), dq_before, dq_after, (308, 334))
 
 
@@ -442,7 +442,7 @@ def usage_before(b, x, y, w, narrow):
 
 def usage_after(b, x, y, w, narrow):
     tiles = [("175", ["active", "users"] if narrow else ["active users"]), ("1,520", ["sessions"]),
-             ("46%", ["reach a", "detail view"])]
+             ("619", ["full-funnel", "sessions"])]
     tw = (w - 48) / 3
     for i, (num, lines) in enumerate(tiles):
         tx = x + 16 + i * (tw + 8)
@@ -527,12 +527,12 @@ MARKETING = {
     "tile-frameworks": (lambda layout: tile_frameworks(), ("wide",), "Which containers to open is a known fixed-charge allocation problem, solved with a proven method."),
     "tile-ambiguity": (lambda layout: tile_ambiguity(), ("wide",), "Is a pressure unit a pump or a sensor? Ambiguous rows go to human review."),
     "tile-decomposition": (lambda layout: tile_decomposition(), ("wide",), "A quote for 4 is not a sale of 4: committed demand is 2."),
-    "tile-invariance": (lambda layout: tile_invariance(), ("wide",), "Filters change the events in view, but the 31 excluded rows stay the same."),
+    "tile-invariance": (lambda layout: tile_invariance(), ("wide",), "Filters change the events in view, but the 31 rows not counted stay the same."),
     "tile-evidence": (lambda layout: tile_evidence(), ("wide",), "03/04/2024 could be March 4 or April 3, so it is rejected rather than guessed."),
     "tile-abstraction": (lambda layout: tile_abstraction(), ("wide",), "A container 100% full by volume may still not pack in 3D; the model states that limit."),
     "tile-uncertainty": (lambda layout: tile_uncertainty(), ("wide",), "An expected arrival of March 27 was an estimate; the observed date, March 30, replaces it."),
     "tile-opacity": (lambda layout: tile_opacity(), ("wide",), "The solver's optimal plan is re-checked independently before it is trusted."),
     "ba-data": (ba_data, ("wide", "narrow"), "Before: an inventory export with a blank ID, an impossible date and ambiguous categories. After: clean records plus a review queue with reasons."),
-    "ba-usage": (ba_usage, ("wide", "narrow"), "Before: thousands of raw event rows. After: active users, sessions and a daily activity chart."),
+    "ba-usage": (ba_usage, ("wide", "narrow"), "Before: thousands of raw event rows. After: active users, sessions, full-funnel sessions and a daily activity chart."),
     "ba-orders": (ba_orders, ("wide", "narrow"), "Before: a report adds quote, order and shipment into one wrong total. After: one order with demand 2, shipped 1, owed 1."),
 }

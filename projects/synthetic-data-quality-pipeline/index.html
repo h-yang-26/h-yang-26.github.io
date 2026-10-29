@@ -39,12 +39,12 @@
         <p class="eyebrow">Synthetic Data Quality Pipeline</p>
         <h1>Moving messy records without guessing</h1>
         <p class="story-head__lede">A small Python pipeline that cleans what it safely can and hands everything else to a person, with the reason attached.</p>
-        <dl class="story-facts"><div><dt>My role</dt><dd>Requirements, edge cases and approvals; AI-assisted build</dd></div><div><dt>Built with</dt><dd>Python, pytest</dd></div><div><dt>Data</dt><dd>60 fictional equipment records</dd></div></dl>
+        <dl class="story-facts"><div><dt>My role</dt><dd>Requirements, edge cases and approvals; AI tools did the implementation</dd></div><div><dt>Built with</dt><dd>Python, pytest</dd></div><div><dt>Data</dt><dd>60 fictional equipment records</dd></div></dl>
         <div class="actions"><a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline">Source on GitHub<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a></div>
       </header>
       <figure class="showcase">
       <p class="showcase__title">Messy records in. Data you can trust out.</p>
-      <picture><source media="(prefers-color-scheme: dark) and (max-width: 49.99rem)" srcset="../../assets/visuals/ba-data-narrow-dark.svg" width="420" height="872"><source media="(max-width: 49.99rem)" srcset="../../assets/visuals/ba-data-narrow.svg" width="420" height="872"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/ba-data-dark.svg" width="1000" height="470"><img src="../../assets/visuals/ba-data.svg" alt="Before and after. Before: an inventory export where one row has a blank ID and the category alias “mtr”, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and a review card holding rows for a person with their reasons." width="1000" height="470" decoding="async"></picture>
+      <picture><source media="(prefers-color-scheme: dark) and (max-width: 49.99rem)" srcset="../../assets/visuals/ba-data-narrow-dark.svg" width="420" height="872"><source media="(max-width: 49.99rem)" srcset="../../assets/visuals/ba-data-narrow.svg" width="420" height="872"><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/ba-data-dark.svg" width="1000" height="470"><img src="../../assets/visuals/ba-data.svg" alt="Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons." width="1000" height="470" decoding="async"></picture>
       <figcaption>Real rows from this project’s fictional sample data.</figcaption>
     </figure>
       <article class="story-body">
@@ -59,7 +59,7 @@
           <div class="decision__text">
             <p class="decision__num" aria-hidden="true">01</p>
             <h3>Flag, don’t fix.</h3>
-            <p>A category like “pressure unit” could mean a pump or a sensor. Instead of picking one, the row goes to a person with the reason attached. It’s slower, but nothing goes wrong silently.</p>
+            <p>A category like “pressure unit” could mean a pump or a sensor. Instead of picking one, the row goes to a person with the reason attached. It’s slower, but an ambiguous category is never resolved silently.</p>
             <p class="decision__term">Exact alias matching; no fuzzy matching.</p>
           </div>
           <div class="decision__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/visuals/tile-ambiguity-dark.svg" width="440" height="520"><img src="../../assets/visuals/tile-ambiguity.svg" alt="Illustration: the label “pressure unit” could point to a pump or a sensor, so the row is sent to human review." width="440" height="520" loading="lazy" decoding="async"></picture></div>
@@ -96,7 +96,7 @@
         </section>
         <section id="technical" aria-labelledby="technical-title">
           <h2 id="technical-title">Technical notes</h2>
-          <ul class="tech-notes"><li>Input and mapping files are fully validated before anything is written; a bad file stops the run with exit code 2.</li><li>Every input row gets exactly one outcome, and <code>summary.json</code> reconciles input = accepted + rejected.</li><li>A blank quantity is missing, while an explicit <code>0</code> is a valid count; neither is defaulted.</li><li>Exceptions keep the source row number, the raw values and every error code, so a reviewer sees exactly what arrived.</li><li>Outputs carry no timestamps, so a rerun is byte-for-byte identical.</li><li>Standard-library Python at runtime; 21 pytest tests, including a small fixture whose expected output was worked out by hand.</li></ul>
+          <ul class="tech-notes"><li>Input and mapping files are checked for structural problems before anything is written; a malformed file stops the run with exit code 2, while bad rows become reviewable exceptions.</li><li>Every input row gets exactly one outcome, and <code>summary.json</code> reconciles input = accepted + rejected.</li><li>A blank quantity is missing, while an explicit <code>0</code> is a valid count; neither is defaulted.</li><li>Exceptions keep the source row number, the raw values and every error code, so a reviewer sees exactly what arrived.</li><li>Outputs carry no timestamps, so a rerun is byte-for-byte identical.</li><li>Standard-library Python at runtime; 21 pytest tests, including a small fixture whose expected output was worked out by hand.</li></ul>
 
           <p><a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline#readme">Full method, tests and run instructions on GitHub</a></p>
         </section>
@@ -107,7 +107,7 @@
         </section>
         <section id="academic-connections" aria-labelledby="academic-connections-title">
           <h2 id="academic-connections-title">Academic connections</h2><p>These are conceptual connections to the reasoning described in Applied Thinking. They do not claim formal implementation of every theory.</p><ul class="thinking-links"><li><a href="../../applied-thinking/#boundary-refinement">A2 · Narrowing Ambiguity</a></li><li><a href="../../applied-thinking/#inference-evidence">P1 · Examining the Reasoning Behind Evidence</a></li></ul></section>
-        <p class="story-disclosure">All data in these projects is fictional. I built them independently of my employer, directing an AI-assisted build and reviewing the results.</p>
+        <p class="story-disclosure">All data in these projects is fictional. They were built independently of my employer: AI tools did the implementation under my direction, and I approved the results.</p>
       </article>
     </div>
     <nav class="pager wrap" aria-label="Other projects">
