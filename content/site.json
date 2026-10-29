@@ -1402,7 +1402,7 @@
         },
         {
           "title": "High Performance Computing",
-          "translation": "Like running a restaurant kitchen at the dinner rush: the recipe matters, but so do how the work is split between cooks, where the ingredients sit and how often cooks wait on each other. In computing terms: dividing work across processors, keeping data close to where it’s computed and limiting communication overhead, so you know when a correct method will be too slow or costly at scale."
+          "translation": "How to make computers solve large problems faster by splitting the work across many processors at once. Much of the difficulty isn’t the arithmetic but moving data: keeping it close to the processor that needs it and limiting how often processors wait on each other. It’s about knowing when a correct method will be too slow or costly at scale."
         }
       ],
       "unpublishedAcademicProjects": [
