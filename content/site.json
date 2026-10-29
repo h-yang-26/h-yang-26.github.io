@@ -1349,47 +1349,51 @@
       "rows": [
         {
           "title": "Operations Research",
-          "translation": "Choose among feasible alternatives subject to constraints."
+          "translation": "Like packing a moving truck on a budget: finding the best plan among the ones that actually fit. It’s the method behind the shipping project’s choice of which containers to open."
         },
         {
           "title": "Mathematical Modeling",
-          "translation": "Formalize interacting variables, relationships and assumptions so they can be tested."
+          "translation": "Like drawing a map before a trip: decide what goes on it, what to leave off, then check the map against the road. Every project here starts by writing down what its model assumes."
         },
         {
           "title": "Network Models",
-          "translation": "Represent dependencies as connections, so an effect can be traced through a system."
+          "translation": "Like a subway map: it shows what connects to what, so you can see where a delay spreads. The B2B case study uses this to trace how a quote, an order and a shipment depend on each other."
         },
         {
           "title": "Probability",
-          "translation": "Represent uncertainty and update expectations."
+          "translation": "Like a weather forecast: a calibrated guess you update as conditions change. In practice, it means keeping estimates labelled as estimates and revising them when facts arrive."
         },
         {
           "title": "Ordinary Differential Equations",
-          "translation": "Model how a system changes over time, not just where it ends up."
+          "translation": "Like a bathtub filling and draining at the same time: the level depends on both rates over time, not just where it started. Useful for anything that accumulates, like stock, users or backlogs."
         },
         {
           "title": "Real Analysis",
-          "translation": "Examine the assumptions behind limits, continuity and convergence."
+          "translation": "If calculus is learning to drive, real analysis is learning how the engine works, and when it won’t start. In practice, it means checking a method’s conditions before trusting its answer."
+        },
+        {
+          "title": "Multivariable Analysis (Spivak, Calculus on Manifolds)",
+          "translation": "Real analysis explains the engine; this explains how the whole vehicle handles when steering, throttle and brakes change at once, and proves when a small adjustment has a predictable effect. In practice: judging when a simple estimate of how a result responds to many inputs can be trusted, and which conclusions don’t depend on how the problem is set up (A4)."
         },
         {
           "title": "Topology",
-          "translation": "Ask which properties survive when a problem is stretched or reshaped."
+          "translation": "Why a coffee mug and a donut count as the same shape: it studies what stays true when you bend and stretch something without tearing it. Behind it is a habit of asking which conclusions survive when the inputs change (A4)."
         },
         {
           "title": "Numerical Linear Algebra",
-          "translation": "Represent and transform structured data, including matrix computation."
+          "translation": "The engine room of spreadsheets, search and machine learning: how computers work with huge tables of numbers fast, without rounding errors piling up. It explains why two correct-looking calculations can disagree."
         },
         {
           "title": "Symbolic Logic",
-          "translation": "Check whether a conclusion actually follows from its premises."
+          "translation": "Grammar for arguments: it checks whether a conclusion really follows, however convincing it sounds. It helps spot a requirement or claim that doesn’t follow from its evidence."
         },
         {
           "title": "Philosophy of Science",
-          "translation": "Ask what counts as evidence and how a method could mislead."
+          "translation": "How to tell a good test from a lucky one: what counts as evidence, and how a method can fool you. It’s why every result on this site says how it was checked."
         },
         {
           "title": "High Performance Computing",
-          "translation": "Understand computational constraints on numerical approaches."
+          "translation": "Like running a restaurant kitchen at the dinner rush: the recipe matters, but so do the number of cooks and ovens and how they share the counter. It’s about knowing when a correct method is too slow or costly at scale."
         }
       ],
       "unpublishedAcademicProjects": [
@@ -1429,9 +1433,9 @@
       "backlinksIntro": "These are conceptual connections to the reasoning described in Applied Thinking. They do not claim formal implementation of every theory.",
       "draftTitle": "Applied Thinking · Draft for owner review",
       "draftBody": "First-person methodology, academic titles and professional boundaries require owner review before publication.",
-      "academicIntro": "Courses I completed in applied mathematics and philosophy, and the practical question each one sharpens.",
+      "academicIntro": "Courses I completed in applied mathematics and philosophy, each explained in plain terms with where it shows up in practice.",
       "academicArea": "Course",
-      "academicUse": "Connection to practical reasoning",
+      "academicUse": "In plain terms",
       "academicDeferred": "Detailed academic projects are deferred until reviewed artifacts are available.",
       "evidenceBoundary": "Evidence boundary",
       "connectionsIntro": "These pairings are conceptual interpretations. The same problem can require both kinds of reasoning.",
