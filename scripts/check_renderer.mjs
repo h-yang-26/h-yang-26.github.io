@@ -29,7 +29,7 @@ assert.match(projectHtml, /<p class="figure-title">/);
 assert.equal((home.match(/class="transformation transformation--card"/g) || []).length, 4);
 assert.match(home, /class="transformation__panel transformation__panel--before"/);
 assert.match(home, /class="transformation__panel transformation__panel--after"/);
-assert.match(home, /<picture><source media="\\(prefers-color-scheme: dark\\)" srcset="[^"]+-card-dark\\.svg"/);
+assert.match(home, /<picture><source media="\(prefers-color-scheme: dark\)" srcset="[^"]+-card-dark\.svg"/);
 assert.match(projectHtml, /id="transformation"/);
 assert.match(projectHtml, /class="transformation transformation--feature"/);
 assert.match(projectHtml, /class="transformation__disclosure"/);
