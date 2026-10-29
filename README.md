@@ -8,8 +8,9 @@ Name, public email, résumé and LinkedIn are pending placeholders (`null` in `c
 
 - `content/site.json` contains text and project descriptions. Personal fields are explicitly omitted (`false`) and can be added later.
 - `assets/` contains plain CSS/JavaScript; no analytics or third-party scripts.
-- `applied-thinking/index.html` explains eight reasoning principles, with static diagrams and case-study connections.
-- `index.html`, `applied-thinking/index.html` and `projects/*/index.html` include generated HTML for visitors without JavaScript.
+- `applied-thinking/index.html` presents the eight reasoning principles as tile cards, grouped by discipline, with the workflow diagram and case-study connections.
+- `how-these-were-built/index.html` explains who decided what, what AI tools implemented, how results were checked and the boundaries kept.
+- `index.html`, `applied-thinking/index.html`, `how-these-were-built/index.html` and `projects/*/index.html` include generated HTML for visitors without JavaScript.
 - `scripts/render_static.mjs` generates these snapshots with the shared renderer; run it after editing JSON or layout code (Node 18+).
 - `scripts/build_visuals.py` generates every figure in `assets/visuals/` (wide, narrow and card layouts, light and dark), including the tiles and before/after banners in `scripts/marketing_visuals.py`, and records sizes on every figure entry in `content/site.json`; run it before `render_static.mjs` after changing figure data or layout (Python 3.9+, no dependencies).
 
@@ -21,7 +22,9 @@ Name, public email, résumé and LinkedIn are pending placeholders (`null` in `c
 - `site.work`, `site.experience`, `site.about`: homepage section headings and copy. The experience section reuses `owner.professionalExperience` (role line and summary, verbatim) with a résumé button; an owner `bio`, once set, replaces the About paragraphs.
 - `projects[].card`: the homepage card's `kicker` and one-line `outcome`.
 - `projects[].story`: a decision-led case study (headline, lede, facts, banner, situation, 2–4 decisions, result, what's next, technical notes). Every project needs a `story` (the checker fails without one); the old status/validation/reproduce template and its fields have been removed. A decision can carry a `visual` tile, and its `principle` must be one the Applied Thinking page approves for that project. Owner statements (`professionalContext`, `contribution`, `learned`) are reused verbatim.
-- `check_site.py` enforces the story and card fields and a voice check: the homepage copy, the disclosure, every card and story, the rendered homepage, story pages and Applied Thinking page must not use retired labels such as "agent-run" or "unverified".
+- `appliedThinking.principles[].visual`: each principle's tile (`src`, `alt`) and `project`, the demo the tile's scene comes from. That project must be approved for the principle (its `projectSlugs` or the project's bridge); a conceptual-only principle (P3) has no `project` and its tile uses no project data.
+- `site.process`: the "How these were built" page (who did what, steps, boundaries, this site, reading the work). It is linked from the footer and from each case study's "My role" section.
+- `check_site.py` enforces the story and card fields and a voice check: the homepage copy, the disclosure, every card and story, the rendered homepage, story pages, Applied Thinking and How these were built pages must not use retired labels such as "agent-run" or "unverified".
 - `scripts/check_site.py --release` verifies the static structure and placeholder state.
 
 ## Local preview

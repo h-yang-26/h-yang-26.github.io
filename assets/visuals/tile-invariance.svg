@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520" width="440" height="520" role="img" aria-labelledby="t"><title id="t">Changing one input at a time: normal ships 309, smaller containers 112, smaller with penalties times 4 ships 130, tiny penalties ship 0.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7D8691"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8A5A0C"/></marker></defs><rect width="440" height="520" rx="18" fill="#FFFFFF"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="28" y="46" font-size="17" fill="#1C5785" font-weight="800" letter-spacing="1.2">TESTING WHAT REMAINS TRUE</text>
+<text x="28" y="92" font-size="29" fill="#1A1D21" font-weight="800" data-box="24,60,392,80">Change one input.</text>
+<text x="28" y="128" font-size="29" fill="#1A1D21" font-weight="800" data-box="24,60,392,80">Does the answer hold?</text>
+<text x="28" y="446" font-size="18" fill="#4F5660" data-box="24,424,392,86">I change one assumption at a time and</text>
+<text x="28" y="471" font-size="18" fill="#4F5660" data-box="24,424,392,86">note where the answer stops holding:</text>
+<text x="28" y="496" font-size="18" fill="#4F5660" data-box="24,424,392,86">here, when all shortages cost under 400.</text>
+<text x="28" y="162" font-size="17" fill="#4F5660" font-weight="700">Scenario</text>
+<text x="262" y="162" font-size="17" fill="#4F5660" font-weight="700" text-anchor="middle">Opened</text>
+<text x="412" y="162" font-size="17" fill="#4F5660" font-weight="700" text-anchor="end">Shipped</text>
+<rect x="20" y="176" width="400" height="38" rx="8" fill="#F4F6F8"/>
+<text x="30" y="201" font-size="18" fill="#1A1D21" font-weight="700" data-box="20,176,400,38">Normal</text>
+<rect x="226" y="186" width="24" height="18" rx="3" fill="#1C5785"/>
+<rect x="258" y="182" width="32" height="26" rx="3" fill="#1C5785"/>
+<text x="404" y="202" font-size="20" fill="#146C67" font-weight="800" text-anchor="end" data-box="20,176,400,38">309</text>
+<rect x="20" y="218" width="400" height="38" rx="8" fill="#F4F6F8"/>
+<text x="30" y="243" font-size="18" fill="#1A1D21" font-weight="700" data-box="20,218,400,38">Smaller containers</text>
+<rect x="226" y="228" width="24" height="18" rx="3" fill="none" stroke="#7D8691" stroke-width="1.6" stroke-dasharray="4 3"/>
+<rect x="258" y="224" width="32" height="26" rx="3" fill="#1C5785"/>
+<text x="404" y="244" font-size="20" fill="#8A5A0C" font-weight="800" text-anchor="end" data-box="20,218,400,38">112</text>
+<rect x="20" y="260" width="400" height="38" rx="8" fill="#F4F6F8"/>
+<text x="30" y="285" font-size="18" fill="#1A1D21" font-weight="700" data-box="20,260,400,38">… and penalties ×4</text>
+<rect x="226" y="270" width="24" height="18" rx="3" fill="#1C5785"/>
+<rect x="258" y="266" width="32" height="26" rx="3" fill="#1C5785"/>
+<text x="404" y="286" font-size="20" fill="#8A5A0C" font-weight="800" text-anchor="end" data-box="20,260,400,38">130</text>
+<rect x="20" y="302" width="400" height="38" rx="8" fill="#F4F6F8"/>
+<text x="30" y="327" font-size="18" fill="#1A1D21" font-weight="700" data-box="20,302,400,38">Tiny penalties</text>
+<rect x="226" y="312" width="24" height="18" rx="3" fill="none" stroke="#7D8691" stroke-width="1.6" stroke-dasharray="4 3"/>
+<rect x="258" y="308" width="32" height="26" rx="3" fill="none" stroke="#7D8691" stroke-width="1.6" stroke-dasharray="4 3"/>
+<text x="404" y="328" font-size="20" fill="#8A5A0C" font-weight="800" text-anchor="end" data-box="20,302,400,38">0</text>
+<rect x="70" y="352" width="300" height="52" rx="26" fill="#1C5785"/>
+<path d="M96 378 l6.6 6.6 l13.2 -14.3" fill="none" stroke="#FFFFFF" stroke-width="3.52" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="126" y="385" font-size="18" fill="#FFFFFF" font-weight="800" data-box="70,352,300,52">Breaking point found</text></g></svg>

@@ -19,7 +19,7 @@ Each figure exists in up to three layouts, each in a light and a dark colour sch
 | wide (760 viewBox) | `name.svg`, `name-dark.svg` | project and Applied Thinking pages at 40rem and wider |
 | narrow (420 viewBox) | `name-narrow.svg`, `name-narrow-dark.svg` | the same pages below 40rem (phones) |
 | card (440 viewBox) | `name-card.svg`, `name-card-dark.svg` | homepage project cards, result figures only |
-| tile (440 × 520 viewBox, one layout) | `tile-*.svg`, `tile-*-dark.svg` | "How I work" tiles; project links are HTML beside the tile |
+| tile (440 × 520 viewBox, one layout) | `tile-*.svg`, `tile-*-dark.svg` | "How I work" tiles, case-study decisions and the eight Applied Thinking principle cards; project links are HTML beside the tile |
 | banner wide (1000) / narrow (420) | `ba-*.svg`, `ba-*-narrow.svg` (+ `-dark`) | before/after banners; the stacked narrow layout is used below 50rem (`narrowMax` in site.json) |
 
 The site picks a variant with `<picture>` media queries for viewport width and
@@ -62,13 +62,16 @@ They still follow the accuracy rule: every row and number is copied from a publi
 | ba-usage | Rows `E000195`–`E000201` of `product-usage-analytics-demo/data/synthetic_events.csv` (time of day shown, date omitted); 5,766 raw rows; 175 users, 1,520 sessions, 619 sessions completing page_view → search → detail_view in order, and the daily active user series, all for Sep 1–28 2026, all modules. |
 | ba-orders | `b2b-sales-systems-case-study/examples/fictional-order-scenario.json`: 4 quoted, 2 ordered, 1 shipped, 1 owed. The "4 + 2 + 1 = 7" report is a deliberate illustration of the double counting the case study warns against, not a figure from the repo. |
 | tile-ambiguity, tile-evidence | Data quality README: `pressure unit` maps to both PUMP and SENSOR and goes to review; only `YYYY-MM-DD` is accepted, so `03/04/2024` is rejected. |
-| tile-frameworks, tile-abstraction, tile-opacity | Inventory lab: fixed container charges 400 and 900 (fictional `toy_cost_units`, shown without a currency), PuLP + CBC, `CNT-L` 100% volume / 82% mass in the normal scenario, mass/volume-only limitation printed in every text and JSON output, independent `check_plan`. |
+| tile-frameworks, tile-abstraction | Inventory lab: fixed container charges 400 and 900 (fictional `toy_cost_units`, shown without a currency), PuLP + CBC, `CNT-L` 100% volume (99.96%, printed as 100.0%) / 82% mass in the normal scenario, mass/volume-only limitation printed in every text and JSON output. |
+| tile-invariance | Inventory lab `data/scenarios.json` and `results/example_results.json`: normal (both containers, 309 shipped); tight_capacity, smaller containers (CNT-L only, 112); high_shortage_penalty, the same containers with every penalty ×4 (both, 130); low_shortage_penalty (none, 0: total shortage cost 288.5 is below the cheapest fixed charge, 400). `no_inventory` is not shown. |
+| tile-opacity | Analytics demo `tests/test_app.py`: headless `AppTest` runs on `tests/fixtures/tiny_events.csv` assert the displayed metrics, including 17 valid events, 6 rejected and 2 quarantined rows. Labels are shortened from the app's ("Valid events in scope", "Rejected rows", "Quarantined rows"). |
 | tile-filters | Analytics demo (illustrates P1, Examining Evidence, as approved for this project): 31 raw rows not counted as valid events, file-wide (10 identical copies collapsed, 8 quarantined, 13 rejected); 5,735 valid events Sep 1–28 all modules; 480 for catalog, Sep 7–13. |
-| tile-decomposition, tile-uncertainty | B2B case study: 4 quoted, 2 ordered, 1 shipped; `PO-5001` expected 2026-03-27, received three days late in the walkthrough. |
+| tile-decomposition | B2B case study: 4 quoted, 2 ordered, 1 shipped. |
+| tile-uncertainty | Conceptual illustration for P3, which has no published demonstration: the late shipment, causes and tests are generic and use no project data. |
 
 ## Applied Thinking diagrams
 
-`thinking-foundations` and `thinking-cycle` are original explanatory diagrams. They
-contain no measured data, employer architecture or numerical results. The cycle
+`thinking-cycle` is an original explanatory diagram. It
+contains no measured data, employer architecture or numerical results. The cycle
 illustrates reusable operations and revision, not a convergence guarantee. Alt text
 and adjacent explanations are maintained in `content/site.json`.

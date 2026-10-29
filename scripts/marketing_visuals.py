@@ -229,46 +229,75 @@ def tile_abstraction():
     return t
 
 
-def tile_uncertainty():
+def tile_invariance():
     t = Tile()
-    t.frame("CHOOSING UNDER UNCERTAINTY", ["“Arrives March 27.”", "Fact or forecast?"],
-            ["I plan with the best estimate but keep", "it labelled. Estimates, facts and", "unknowns are never mixed."])
-    calendar(t, 40, 156, 124, 112, "MAR", "27", "accent", dashed=True)
-    calendar(t, 276, 156, 124, 112, "MAR", "30", "ok")
-    t.raw('<path d="M168 212 L270 212" stroke="{line}" stroke-width="2.5" marker-end="url(#ah)"/>')
-    t.text(219, 202, "+3 days", TILE_MIN, "muted", 800, "middle")
-    t.text(102, 296, "Expected", 18, "text", 800, "middle")
-    t.text(102, 320, "an estimate", TILE_MIN, "muted", 400, "middle")
-    t.text(338, 296, "Received", 18, "text", 800, "middle")
-    t.text(338, 320, "an observed fact", TILE_MIN, "muted", 400, "middle")
-    badge(t, 70, 300, "Fact replaces estimate", "ok", y=352)
+    t.frame("TESTING WHAT REMAINS TRUE", ["Change one input.", "Does the answer hold?"],
+            ["I change one assumption at a time and", "note where the answer stops holding:", "here, when all shortages cost under 400."])
+    t.text(28, 162, "Scenario", TILE_MIN, "muted", 700)
+    t.text(262, 162, "Opened", TILE_MIN, "muted", 700, "middle")
+    t.text(412, 162, "Shipped", TILE_MIN, "muted", 700, "end")
+    rows = [("Normal", (True, True), "309", "ok"), ("Smaller containers", (False, True), "112", "warn"),
+            ("… and penalties ×4", (True, True), "130", "warn"), ("Tiny penalties", (False, False), "0", "warn")]
+    y = 176
+    for label, (small, large), shipped, tone in rows:
+        t.raw(f'<rect x="20" y="{y}" width="400" height="38" rx="8" fill="{{row}}"/>')
+        t.text(30, y + 25, label, 18, "text", 700, box=(20, y, 400, 38))
+        for x, w, h, used in ((226, 24, 18, small), (258, 32, 26, large)):
+            top = y + 19 - h / 2
+            if used:
+                t.raw(f'<rect x="{x}" y="{top:g}" width="{w}" height="{h}" rx="3" fill="{{accent}}"/>')
+            else:
+                t.raw(f'<rect x="{x}" y="{top:g}" width="{w}" height="{h}" rx="3" fill="none" stroke="{{line}}" stroke-width="1.6" stroke-dasharray="4 3"/>')
+        t.text(404, y + 26, shipped, 20, tone, 800, "end", box=(20, y, 400, 38))
+        y += 42
+    badge(t, 70, 300, "Breaking point found", "accent", y=352)
+    return t
+
+
+def tile_uncertainty():
+    """Conceptual: no project data (P3 has no published demonstration)."""
+    t = Tile()
+    t.frame("CHOOSING UNDER UNCERTAINTY", ["A shipment is late.", "Three causes fit."],
+            ["The likeliest cause guides the next check,", "but it stays a hypothesis until the", "evidence settles it."])
+    t.text(28, 164, "Possible cause", TILE_MIN, "muted", 700)
+    t.text(262, 164, "Test that decides", TILE_MIN, "muted", 700)
+    rows = [("Supplier shipped late", "ship date"), ("Carrier was slow", "transit time"), ("Wrong date on file", "order history")]
+    y = 178
+    for cause, test in rows:
+        t.raw(f'<rect x="20" y="{y}" width="226" height="44" rx="10" fill="{{warnFill}}" stroke="{{warn}}" stroke-width="1.6" stroke-dasharray="5 3"/>')
+        t.text(34, y + 28, cause, TILE_MIN, "text", 700, box=(20, y, 226, 44))
+        t.raw(f'<path d="M250 {y+22} L262 {y+22}" stroke="{{line}}" stroke-width="2" marker-end="url(#ah)"/>')
+        t.raw(f'<rect x="268" y="{y}" width="152" height="44" rx="10" fill="{{accentFill}}"/>')
+        t.text(282, y + 28, test, TILE_MIN, "accent", 700, box=(268, y, 152, 44))
+        y += 54
+    badge(t, 64, 312, "Run the deciding test", "accent", y=352)
     return t
 
 
 def tile_opacity():
     t = Tile()
-    t.frame("MANAGING OPAQUE SYSTEMS", ["The solver says", "“optimal.” Prove it."],
-            ["Separate code re-checks every plan", "without trusting the solver, the same", "habit I bring to AI-assisted work."])
-    t.raw('<rect x="28" y="156" width="130" height="118" rx="14" fill="{opaque}" stroke="{opaqueLine}" stroke-width="1.5"/>')
-    t.raw('<circle cx="74" cy="198" r="16" fill="none" stroke="{onOpaque}" stroke-width="8" stroke-dasharray="5 4.4"/><circle cx="74" cy="198" r="6" fill="{onOpaque}"/>')
-    t.raw('<circle cx="114" cy="218" r="11" fill="none" stroke="{onOpaque}" stroke-width="7" stroke-dasharray="4 3.6"/><circle cx="114" cy="218" r="4" fill="{onOpaque}"/>')
-    t.text(93, 262, "SOLVER", TILE_MIN, "onOpaque", 800, "middle", box=(28, 156, 130, 118), spacing=1)
-    t.raw('<path d="M158 214 L192 214" stroke="{line}" stroke-width="2.5" marker-end="url(#ah)"/>')
-    t.raw('<rect x="198" y="150" width="104" height="132" rx="10" fill="{boxFill}" stroke="{line}" stroke-width="2"/>')
-    t.text(250, 176, "PLAN", TILE_MIN, "muted", 800, "middle", spacing=1)
-    for i in range(4):
-        t.raw(f'<rect x="214" y="{190 + i*20}" width="{70 - (i % 2) * 20}" height="8" rx="4" fill="{{line}}" opacity="0.55"/>')
-    t.raw('<circle cx="318" cy="234" r="34" fill="{okFill}" fill-opacity="0.9" stroke="{ok}" stroke-width="4"/>')
-    t.raw('<path d="M343 259 L372 288" stroke="{ok}" stroke-width="9" stroke-linecap="round"/>')
-    t.raw(check(304, 234, "ok", 1.15))
-    x = 34
-    for r in ["weight", "volume", "cost"]:
-        t.raw(check(x, 312, "ok", 0.85))
-        t.text(x + 22, 318, r, TILE_MIN, "text", 700)
-        x += 128
-    t.raw('<rect x="86" y="348" width="268" height="52" rx="26" fill="{ok}"/>')
-    t.raw(check(112, 374, "onMark", 1.1))
-    t.text(142, 381, "Verified OPTIMAL", 19, "onMark", 800, box=(86, 348, 268, 52))
+    t.frame("MANAGING OPAQUE SYSTEMS", ["Can’t see every layer?", "Test what it shows."],
+            ["Headless tests give the dashboard data", "with known answers and check the", "numbers it shows, not how it draws them."])
+    t.raw('<path d="M28 150 h136 l18 18 v40 h-154 z" fill="{boxFill}" stroke="{line}" stroke-width="2" stroke-linejoin="round"/>')
+    t.text(40, 178, "Test file", TILE_MIN, "text", 800, box=(28, 150, 154, 58))
+    t.text(40, 200, "answers known", TILE_MIN, "muted", 400, box=(28, 150, 154, 58))
+    t.raw('<path d="M102 210 L102 226" stroke="{line}" stroke-width="2.5" marker-end="url(#ah)"/>')
+    t.raw('<rect x="28" y="232" width="148" height="96" rx="12" fill="{opaque}" stroke="{opaqueLine}" stroke-width="1.5"/>')
+    t.raw('<circle cx="78" cy="268" r="14" fill="none" stroke="{onOpaque}" stroke-width="7" stroke-dasharray="4.4 3.9"/><circle cx="78" cy="268" r="5" fill="{onOpaque}"/>')
+    t.raw('<circle cx="114" cy="284" r="9" fill="none" stroke="{onOpaque}" stroke-width="6" stroke-dasharray="3.5 3"/><circle cx="114" cy="284" r="3.5" fill="{onOpaque}"/>')
+    t.text(102, 318, "DASHBOARD", TILE_MIN, "onOpaque", 800, "middle", box=(28, 232, 148, 96), spacing=1)
+    t.raw('<path d="M178 280 L198 280" stroke="{line}" stroke-width="2.5" marker-end="url(#ah)"/>')
+    t.raw('<rect x="204" y="150" width="216" height="178" rx="12" fill="{bg}" stroke="{accent}" stroke-width="2"/>')
+    t.text(216, 178, "On the screen", TILE_MIN, "muted", 700, box=(204, 150, 216, 178))
+    y = 214
+    for label, value in [("Valid events", "17"), ("Rejected", "6"), ("Quarantined", "2")]:
+        t.text(216, y, label, TILE_MIN, "text", 700, box=(204, 150, 216, 178))
+        t.text(376, y, value, 20, "accent", 800, "end", box=(204, 150, 216, 178))
+        t.raw(check(388, y - 8, "ok", 0.85))
+        if label != "Quarantined":
+            t.raw(f'<path d="M216 {y+15} H408" stroke="{{track}}" stroke-width="1.5"/>')
+        y += 42
+    badge(t, 56, 328, "Checked at the interface", "ok", y=352)
     return t
 
 
@@ -530,8 +559,9 @@ MARKETING = {
     "tile-filters": (lambda layout: tile_filters(), ("wide",), "Filters change the events in view, but the 31 rows not counted stay the same."),
     "tile-evidence": (lambda layout: tile_evidence(), ("wide",), "03/04/2024 could be March 4 or April 3, so it is rejected rather than guessed."),
     "tile-abstraction": (lambda layout: tile_abstraction(), ("wide",), "A container 100% full by volume may still not pack in 3D; the model states that limit."),
-    "tile-uncertainty": (lambda layout: tile_uncertainty(), ("wide",), "An expected arrival of March 27 was an estimate; the observed date, March 30, replaces it."),
-    "tile-opacity": (lambda layout: tile_opacity(), ("wide",), "The solver's optimal plan is re-checked independently before it is trusted."),
+    "tile-invariance": (lambda layout: tile_invariance(), ("wide",), "Changing one input at a time: normal ships 309, smaller containers 112, smaller with penalties times 4 ships 130, tiny penalties ship 0."),
+    "tile-uncertainty": (lambda layout: tile_uncertainty(), ("wide",), "A late shipment has three possible causes; each has a test that would decide it."),
+    "tile-opacity": (lambda layout: tile_opacity(), ("wide",), "Headless tests feed the dashboard a file with known answers and check the numbers it displays."),
     "ba-data": (ba_data, ("wide", "narrow"), "Before: an inventory export with a blank ID, an impossible date and ambiguous categories. After: clean records plus a review queue with reasons."),
     "ba-usage": (ba_usage, ("wide", "narrow"), "Before: thousands of raw event rows. After: users in scope, sessions, full-funnel sessions and a daily activity chart."),
     "ba-orders": (ba_orders, ("wide", "narrow"), "Before: a report adds quote, order and shipment into one wrong total. After: one order with demand 2, shipped 1, owed 1."),

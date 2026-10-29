@@ -240,8 +240,10 @@
   }
 
   function renderFooter(content) {
+    const pr = content.site.process;
+    const processLink = pr && body.dataset.page !== "process" ? ` <a href="${url(pr.route)}">${esc(pr.linkLabel)}</a>` : "";
     return `<div class="wrap footer__inner">
-      <p>${inline(content.site.disclosure || content.site.footer)}</p>
+      <p>${inline(content.site.disclosure || content.site.footer)}${processLink}</p>
       <p>${inline(content.site.privacy)}</p>
     </div>`;
   }
@@ -473,38 +475,81 @@
     return `<p>${inline(a.labels.backlinksIntro)}</p>${principleLinks(a, bridge.principleIds, true)}`;
   }
 
-  function renderThinkingFigure(a, index) {
-    const d = a.diagrams[index];
-    const image = picture(d, d.alt, "figure");
+  function renderThinkingFigure(a, name) {
+    const d = (a.diagrams || []).find(item => String(item.src).includes(name));
+    const image = d && picture(d, d.alt, "figure");
     return image ? `<figure class="technical-figure thinking-figure">${image}<figcaption>${inline(d.caption)}</figcaption></figure>` : "";
   }
 
+  // Applied Thinking: the eight principles lead as tile cards, grouped by
+  // discipline; the longer explanation, method and coursework sit in <details>.
   function renderAppliedThinking(content) {
     const a = content.appliedThinking;
     if (!a) throw new Error("Applied Thinking content is missing");
     const l = a.labels;
-    const section = (id, html) => `<section id="${id}" aria-labelledby="${id}-title"><h2 id="${id}-title">${esc(l[id])}</h2>${html}</section>`;
-    const principle = p => `<article class="thinking-principle" id="${esc(p.id)}" aria-labelledby="${esc(p.id)}-title">
-      <span class="thinking-number">${esc(p.code)}</span><h4 id="${esc(p.id)}-title">${esc(p.title)}</h4>
-      <p class="thinking-question">${inline(p.question)}</p><p>${inline(p.explanation)}</p>
-      <p class="thinking-caveat"><strong>${esc(l.caveat)}:</strong> ${inline(p.limitation)}</p>
-      <details><summary>${esc(l.approach)}</summary><div class="thinking-detail"><p><strong>${esc(l.method)}:</strong> ${inline(p.method)}</p><p><strong>${esc(l.concepts)}:</strong> ${inline(p.academicConnections)}</p>${p.technicalNote ? paras(p.technicalNote) : ""}</div></details>
-      ${p.projectSlugs.length ? `<ul class="thinking-links">${p.projectSlugs.map(slug => { const project = content.projects.find(item => item.slug === slug); return project ? `<li><a href="${home}projects/${esc(slug)}/">${esc(l.relatedProject)}: ${esc(project.title)}</a></li>` : ""; }).join("")}</ul>` : `<p class="note">${esc(l.conceptual)}</p>`}
-    </article>`;
+    const section = (id, html) => `<section id="${id}" class="thinking-section" aria-labelledby="${id}-title"><h2 id="${id}-title">${esc(l[id])}</h2>${html}</section>`;
+    const projectLinks = p => p.projectSlugs.length
+      ? `<ul class="thinking-links">${p.projectSlugs.map(slug => { const project = content.projects.find(item => item.slug === slug); return project ? `<li><a href="${home}projects/${esc(slug)}/">${esc(project.title)}<span aria-hidden="true">&nbsp;→</span></a></li>` : ""; }).join("")}</ul>`
+      : `<p class="note">${esc(l.conceptual)}</p>`;
+    const principle = p => `<li class="principle-card" id="${esc(p.id)}">
+      <article aria-labelledby="${esc(p.id)}-title">
+        ${p.visual ? `<div class="principle-card__visual">${picture(p.visual, p.visual.alt, "figure")}</div>` : ""}
+        <div class="principle-card__body">
+          <p class="thinking-number">${esc(p.code)}</p>
+          <h4 id="${esc(p.id)}-title">${esc(p.title)}</h4>
+          <p class="thinking-question">${inline(p.question)}</p>
+          <p class="thinking-caveat"><strong>${esc(l.caveat)}:</strong> ${inline(p.limitation)}</p>
+          <details><summary>${esc(l.approach)}</summary><div class="thinking-detail">${paras(p.explanation)}<p><strong>${esc(l.method)}:</strong> ${inline(p.method)}</p><p><strong>${esc(l.concepts)}:</strong> ${inline(p.academicConnections)}</p>${p.technicalNote ? paras(p.technicalNote) : ""}</div></details>
+          ${projectLinks(p)}
+        </div>
+      </article>
+    </li>`;
     document.title = pageTitle(content, a.navLabel);
-    const sections = [
-      section("capabilities", `<ul class="thinking-capabilities">${a.capabilities.map(c => `<li><h3>${esc(c.title)}</h3><p>${inline(c.description)}</p></li>`).join("")}</ul>`),
-      section("foundations", `<div class="thinking-foundations">${a.foundations.map(f => `<div><p class="eyebrow">${esc(f.discipline)}</p><h3>${esc(f.title)}</h3>${paras(f.body)}</div>`).join("")}</div>${renderThinkingFigure(a, 0)}<p>${inline(a.sharedConcern)}</p>`),
-      section("principles", a.foundations.map(f => `<div class="thinking-group"><h3>${esc(f.discipline)} · ${esc(f.title)}</h3><div class="thinking-principles">${a.principles.filter(p => p.discipline === f.id).map(principle).join("")}</div></div>`).join("")),
-      section("connections", `<p>${inline(l.connectionsIntro)}</p><div class="thinking-connections">${a.connections.map(c => `<article id="${esc(c.id)}"><h3>${esc(c.title)}</h3><p>${inline(c.body)}</p>${principleLinks(a, c.principleIds, false)}</article>`).join("")}</div>`),
-      section("workflow", `<p>${inline(a.workflow.intro)}</p>${renderThinkingFigure(a, 1)}<ol class="thinking-workflow">${a.workflow.steps.map(s => `<li id="step-${esc(s.id)}"><h3>${esc(s.title)}</h3><p>${inline(s.body)}</p></li>`).join("")}</ol><p>${inline(a.workflow.closing)}</p>`),
-      section("in-practice", `<p class="thinking-boundary">${inline(a.disclosure)}</p><div class="thinking-bridges">${a.caseStudyBridges.map(b => `<article><p class="eyebrow">${esc(l.relatedProject)}</p><h3><a href="${home}projects/${esc(b.slug)}/">${esc(b.label)}</a></h3><p>${inline(b.body)}</p>${principleLinks(a, b.principleIds, false)}</article>`).join("")}</div>`),
-      section("academic", `<p>${inline(l.academicIntro)}</p><table class="thinking-table"><thead><tr><th scope="col">${esc(l.academicArea)}</th><th scope="col">${esc(l.academicUse)}</th></tr></thead><tbody>${a.academicFoundations.rows.map(r => `<tr><th scope="row">${esc(r.title)}</th><td>${inline(r.translation)}</td></tr>`).join("")}</tbody></table><p class="note">${inline(l.academicDeferred)}</p>`),
-      section("limitations", `${paras(a.closing)}<p class="thinking-boundary"><strong>${esc(l.evidenceBoundary)}:</strong> ${inline(a.disclosure)}</p><div class="actions"><a class="btn btn--primary" href="${home}#projects">${esc(a.projectsCtaLabel)}</a></div>`)
-    ];
+    const groups = a.foundations.map(f => `<div class="thinking-group" id="group-${esc(f.id)}">
+        <div class="thinking-group__intro"><p class="eyebrow">${esc(f.discipline)}</p><h3>${esc(f.title)}</h3>${paras(f.body)}</div>
+        <ul class="principle-cards">${a.principles.filter(p => p.discipline === f.id).map(principle).join("")}</ul>
+      </div>`).join("");
+    const sections = {
+      principles: `${l.principlesIntro ? `<p class="section__lede">${inline(l.principlesIntro)}</p>` : ""}${groups}<p class="thinking-shared">${inline(a.sharedConcern)}</p>`,
+      "in-practice": `<ul class="thinking-cards">${a.caseStudyBridges.map(b => `<li><article><p class="eyebrow">${esc(l.relatedProject)}</p><h3><a href="${home}projects/${esc(b.slug)}/">${esc(b.label)}</a></h3><p>${inline(b.body)}</p>${principleLinks(a, b.principleIds, false)}</article></li>`).join("")}</ul>`,
+      workflow: `<p>${inline(a.workflow.intro)}</p>${renderThinkingFigure(a, "thinking-cycle")}<ol class="thinking-workflow">${a.workflow.steps.map(s => `<li id="step-${esc(s.id)}"><h3>${esc(s.title)}</h3><p>${inline(s.body)}</p></li>`).join("")}</ol><p>${inline(a.workflow.closing)}</p>`,
+      connections: `<p>${inline(l.connectionsIntro)}</p><ul class="thinking-cards">${a.connections.map(c => `<li><article id="${esc(c.id)}"><h3>${esc(c.title)}</h3><p>${inline(c.body)}</p>${principleLinks(a, c.principleIds, false)}</article></li>`).join("")}</ul>`,
+      academic: `<p>${inline(l.academicIntro)}</p><table class="thinking-table"><thead><tr><th scope="col">${esc(l.academicArea)}</th><th scope="col">${esc(l.academicUse)}</th></tr></thead><tbody>${a.academicFoundations.rows.map(r => `<tr><th scope="row">${esc(r.title)}</th><td>${inline(r.translation)}</td></tr>`).join("")}</tbody></table><p class="note">${inline(l.academicDeferred)}</p>`,
+      limitations: `${paras(a.closing)}<p class="thinking-boundary"><strong>${esc(l.evidenceBoundary)}:</strong> ${inline(a.disclosure)}</p><div class="actions"><a class="btn btn--primary" href="${home}#projects">${esc(a.projectsCtaLabel)}</a></div>`
+    };
+    const order = a.proposedPageSections.filter(id => sections[id]);
     return `<div class="wrap thinking-page"><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="${home}">${esc(l.home)}</a></li><li><span aria-current="page">${esc(a.navLabel)}</span></li></ol></nav>
-      <header class="cs-head thinking-hero" id="intro"><p class="eyebrow">${esc(a.hero.eyebrow)}</p><h1>${esc(a.hero.title)}</h1><p class="thinking-tagline">${inline(a.hero.tagline)}</p>${paras(a.hero.paragraphs)}</header>
-      <div class="cs-layout"><nav class="toc" aria-label="${esc(l.onThisPage)}"><p class="toc__title">${esc(l.onThisPage)}</p><ol>${a.proposedPageSections.map(id => `<li><a href="#${esc(id)}">${esc(l[id])}</a></li>`).join("")}</ol></nav><div class="prose thinking-content">${sections.join("")}</div></div></div>`;
+      <header class="thinking-hero" id="intro"><p class="eyebrow">${esc(a.hero.eyebrow)}</p><h1>${esc(a.hero.title)}</h1><p class="thinking-tagline">${inline(a.hero.tagline)}</p>${paras(a.hero.paragraphs)}
+        <nav class="jump-links" aria-label="${esc(l.onThisPage)}"><ul>${order.map(id => `<li><a href="#${esc(id)}">${esc(l[id])}</a></li>`).join("")}</ul></nav>
+      </header>
+      <div class="thinking-content">${order.map(id => section(id, sections[id])).join("")}</div></div>`;
+  }
+
+  // "How these were built": who decided what, the workflow, checks and boundaries.
+  function renderProcess(content) {
+    const pr = content.site.process;
+    if (!pr) throw new Error("Process content is missing");
+    document.title = pageTitle(content, pr.navLabel);
+    const list = items => `<ul>${items.map(i => `<li>${inline(i)}</li>`).join("")}</ul>`;
+    const cta = pr.cta.href.startsWith("#") ? esc(home + pr.cta.href) : url(pr.cta.href);
+    return `<div class="wrap process">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="${home}">Home</a></li><li><span aria-current="page">${esc(pr.navLabel)}</span></li></ol></nav>
+      <header class="story-head"><p class="eyebrow">${esc(pr.eyebrow)}</p><h1>${esc(pr.title)}</h1><p class="story-head__lede">${inline(pr.lede)}</p></header>
+      <section id="who" aria-labelledby="who-title"><h2 id="who-title">${esc(pr.split.title)}</h2>
+        <div class="process-split">
+          <div class="process-split__col process-split__col--owner"><h3>${esc(pr.split.owner.label)}</h3>${list(pr.split.owner.items)}</div>
+          <div class="process-split__col process-split__col--ai"><h3>${esc(pr.split.ai.label)}</h3>${list(pr.split.ai.items)}</div>
+        </div>
+      </section>
+      <section id="workflow" aria-labelledby="workflow-title"><h2 id="workflow-title">${esc(pr.steps.title)}</h2>
+        <ol class="process-steps">${pr.steps.items.map(s => `<li><h3>${esc(s.title)}</h3><p>${inline(s.body)}</p></li>`).join("")}</ol>
+      </section>
+      <section id="boundaries" aria-labelledby="boundaries-title"><h2 id="boundaries-title">${esc(pr.boundaries.title)}</h2>${list(pr.boundaries.items)}</section>
+      <section id="this-site" aria-labelledby="this-site-title"><h2 id="this-site-title">${esc(pr.site.title)}</h2>${paras(pr.site.paragraphs)}</section>
+      <section id="reading" aria-labelledby="reading-title"><h2 id="reading-title">${esc(pr.reading.title)}</h2>${list(pr.reading.items)}
+        ${cta ? `<div class="actions"><a class="btn btn--primary" href="${cta}">${esc(pr.cta.label)}</a></div>` : ""}
+      </section>
+    </div>`;
   }
 
   function renderPager(content, index) {
@@ -591,6 +636,7 @@
           <h2 id="role-title">My role</h2>
           ${contribution || ""}
           ${learned ? `<h3>What I learned</h3>${learned}` : ""}
+          ${content.site.process ? `<p><a href="${url(content.site.process.route)}">${esc(content.site.process.linkLabel)}<span aria-hidden="true">&nbsp;→</span></a></p>` : ""}
         </section>
         ${backlinks ? `<section id="academic-connections" aria-labelledby="academic-connections-title">
           <h2 id="academic-connections-title">${esc(content.appliedThinking.labels.backlinks)}</h2>${backlinks}</section>` : ""}
@@ -644,7 +690,8 @@
     const page = body.dataset.page;
     document.getElementById("main").innerHTML = page === "project"
       ? renderProject(content, body.dataset.project)
-      : page === "applied-thinking" ? renderAppliedThinking(content) : renderHome(content);
+      : page === "applied-thinking" ? renderAppliedThinking(content)
+      : page === "process" ? renderProcess(content) : renderHome(content);
     document.getElementById("site-footer").innerHTML = renderFooter(content);
 
     // Content arrives after load, so jump to a #fragment once it exists.

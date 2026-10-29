@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const content = JSON.parse(await fs.readFile(path.join(root, "content/site.json"), "utf8"));
 const renderer = await fs.readFile(path.join(root, "assets/js/render.js"), "utf8");
-const pages = ["index.html", "applied-thinking/index.html", ...content.projects.map(p => `projects/${p.slug}/index.html`)];
+const pages = ["index.html", "applied-thinking/index.html", "how-these-were-built/index.html", ...content.projects.map(p => `projects/${p.slug}/index.html`)];
 const escape = value => String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"})[ch]);
 let stale = false;
 for (const filename of pages) {
