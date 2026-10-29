@@ -287,9 +287,18 @@ def main():
         if len(card.get("outcome", "")) > 140:
             problems.append(f"{project['slug']}: card outcome should be one line (140 characters or fewer)")
     slugs_set = set(slugs)
+    # A tile pairs a principle with a project; the pairing must match the approved
+    # Applied Thinking mapping (the principle's projectSlugs or the project's bridge).
+    principles = {p["id"]: p for p in a.get("principles", [])}
+    bridges = {b["slug"]: b.get("principleIds", []) for b in a.get("caseStudyBridges", [])}
     for tile in (content["site"].get("howIWork") or {}).get("tiles", []):
-        if tile.get("project") not in slugs_set:
-            problems.append(f"How I work tile {tile.get('src')} links to unknown project {tile.get('project')!r}")
+        project, principle = tile.get("project"), tile.get("principle")
+        if project not in slugs_set:
+            problems.append(f"How I work tile {tile.get('src')} links to unknown project {project!r}")
+        if principle not in principles:
+            problems.append(f"How I work tile {tile.get('src')} names unknown principle {principle!r}")
+        elif project not in principles[principle].get("projectSlugs", []) and principle not in bridges.get(project, []):
+            problems.append(f"How I work tile {tile.get('src')}: principle {principle} is not approved for {project}")
     if content["site"].get("hero") and not content["site"].get("disclosure"):
         problems.append("site.disclosure is required once the new hero is used")
     for project in content["projects"]:
