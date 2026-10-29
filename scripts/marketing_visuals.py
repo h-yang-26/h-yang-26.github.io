@@ -441,7 +441,7 @@ def usage_before(b, x, y, w, narrow):
 
 
 def usage_after(b, x, y, w, narrow):
-    tiles = [("175", ["active", "users"] if narrow else ["active users"]), ("1,520", ["sessions"]),
+    tiles = [("175", ["users", "in scope"]), ("1,520", ["sessions"]),
              ("619", ["full-funnel", "sessions"])]
     tw = (w - 48) / 3
     for i, (num, lines) in enumerate(tiles):
@@ -465,7 +465,7 @@ def usage_after(b, x, y, w, narrow):
 
 
 def ba_usage(layout):
-    return compose(layout, ("events.csv", "usage dashboard"),
+    return compose(layout, ("synthetic_events.csv", "usage dashboard"),
                    ("Thousands of rows, no answers.", "The questions a manager asks."), usage_before, usage_after, (292, 340))
 
 
@@ -533,6 +533,6 @@ MARKETING = {
     "tile-uncertainty": (lambda layout: tile_uncertainty(), ("wide",), "An expected arrival of March 27 was an estimate; the observed date, March 30, replaces it."),
     "tile-opacity": (lambda layout: tile_opacity(), ("wide",), "The solver's optimal plan is re-checked independently before it is trusted."),
     "ba-data": (ba_data, ("wide", "narrow"), "Before: an inventory export with a blank ID, an impossible date and ambiguous categories. After: clean records plus a review queue with reasons."),
-    "ba-usage": (ba_usage, ("wide", "narrow"), "Before: thousands of raw event rows. After: active users, sessions, full-funnel sessions and a daily activity chart."),
+    "ba-usage": (ba_usage, ("wide", "narrow"), "Before: thousands of raw event rows. After: users in scope, sessions, full-funnel sessions and a daily activity chart."),
     "ba-orders": (ba_orders, ("wide", "narrow"), "Before: a report adds quote, order and shipment into one wrong total. After: one order with demand 2, shipped 1, owed 1."),
 }

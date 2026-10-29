@@ -8,9 +8,9 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const source = await fs.readFile(path.join(root, "assets/js/render.js"), "utf8");
 const content = JSON.parse(await fs.readFile(path.join(root, "content/site.json"), "utf8"));
-async function render(page, input = content, failFetch = false) {
+async function render(page, input = content, failFetch = false, slug = content.projects[0].slug) {
   const nodes = Object.fromEntries(["main", "site-header", "draft-banner", "site-footer"].map(id => [id, {innerHTML:id === "main" ? "STATIC FALLBACK" : "", dataset:{prerendered:"true"}}]));
-  const document = {body:{dataset:{page, root:page === "home" ? "." : page === "project" ? "../.." : "..", project:content.projects[0].slug}}, getElementById:id => nodes[id]};
+  const document = {body:{dataset:{page, root:page === "home" ? "." : page === "project" ? "../.." : "..", project:slug}}, getElementById:id => nodes[id]};
   const context = vm.createContext({document, location:{protocol:"https:", hash:""}, fetch:async () => {if (failFetch) throw Error("offline");return {ok:true,json:async () => input};}});
   vm.runInContext(source, context, {timeout:5000});
   await new Promise(resolve => setImmediate(resolve));
@@ -52,6 +52,15 @@ for (const id of ["situation", "decisions", "result", "next", "technical", "role
 }
 assert.ok(!projectHtml.includes('class="toc"') && !projectHtml.includes("Independence statement"));
 assert.match(projectHtml, /class="decision decision--visual"[\s\S]*tile-ambiguity/);
+// Every project renders the story template, with its banner, decisions and owner statements.
+for (const p of content.projects) {
+  const html = (await render("project", content, false, p.slug)).main.innerHTML;
+  assert.match(html, /<header class="story-head">/, p.slug);
+  assert.match(html, /<figure class="showcase">/, p.slug);
+  assert.equal((html.match(/<li class="decision/g) || []).length, p.story.decisions.length, p.slug);
+  assert.ok(html.includes(content.owner.projectStatements[p.slug].contribution[0].slice(0, 60)), `${p.slug}: contribution must be verbatim`);
+  assert.ok(!/Independence statement|class="toc"|Validation and results/.test(html), `${p.slug}: legacy sections`);
+}
 const hostile = structuredClone(content);
 hostile.site.hero.visual.src = 'javascript:alert(1)';
 hostile.site.hero.visual.link.href = 'javascript:alert(1)';
