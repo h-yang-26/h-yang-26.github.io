@@ -99,15 +99,15 @@
     "hero": {
       "eyebrow": "Business analysis · Applied mathematics & philosophy",
       "title": "I turn ambiguous business problems into requirements and decisions people can check.",
-      "lede": "I’m an IT business analyst intern on an industrial B2B platform used by staff and dealers. Drawing on applied mathematics and philosophy, I clarify ambiguous workflows, model operational trade-offs and translate technical complexity into plain choices with their reasons. The case studies below are simplified, independent versions of problems related to that work, built with fictional data.",
+      "lede": "I’m an IT business analyst intern on an industrial B2B platform used by staff and dealers. Drawing on applied mathematics and philosophy, I translate business processes into requirements, frame the trade-offs a decision depends on and check results against operational needs. The case studies below are simplified, independent versions of problems related to that work, built with fictional data.",
       "primaryCta": {
         "label": "See the work",
         "href": "#projects"
       },
       "visual": {
         "src": "assets/visuals/hero-decision.svg",
-        "title": "A recommendation, with its reasoning.",
-        "alt": "A decision sheet for the question “What should ship now?”, using the same tight containers and stock with only the shortage cost changed. Plan A opens one container: lower container cost, 112 of 309 units ship and 197 are short; optimal at the original shortage cost. Plan B opens both containers: less unmet demand, 130 of 309 units ship and 179 are short; optimal when shortages cost four times more. Three lenses on the same decision: business context asks what a unit of unmet demand is worth; the model treats capacity as a hard limit; the assumption is that the shortage cost is a judgment, not a fact. Conclusion: the preferred plan depends on the shortage cost.",
+        "title": "A decision, with its reasoning.",
+        "alt": "A decision sheet for the question “What should ship now?”, using the same tight containers and stock with only the shortage cost changed. Plan A opens only the large container, which is full by volume with 112 units: lower container cost, 112 of 309 units ship and 197 are short; optimal at the original shortage cost. Plan B opens both containers, both full by volume, with 117 and 13 units: less unmet demand, 130 of 309 units ship and 179 are short; optimal when shortages cost four times more. Three lenses on the same decision: business context asks what a unit of unmet demand is worth; the model treats capacity as a hard limit; the assumption is that the shortage cost is a judgment, not a fact. Conclusion: the preferred plan depends on the shortage cost.",
         "caption": "From the shipping case study’s fictional scenarios: the same containers and stock, with only the shortage cost changed.",
         "link": {
           "label": "See the case study →",
@@ -133,11 +133,11 @@
       "lede": "Each card pairs a reasoning habit with an example from one of the case studies. The other four habits are on the How I Think page.",
       "tiles": [
         {
-          "src": "assets/visuals/tile-ambiguity.svg",
-          "project": "synthetic-data-quality-pipeline",
-          "principle": "boundary-refinement",
-          "linkLabel": "See it in the Data Quality Pipeline",
-          "alt": "Narrowing ambiguity: is a “pressure unit” a pump or a sensor? The data can’t decide, so the row is sent to human review instead of guessed.",
+          "src": "assets/visuals/tile-abstraction.svg",
+          "project": "inventory-shipping-optimization-lab",
+          "principle": "responsible-abstraction",
+          "linkLabel": "See it in the Optimization Lab",
+          "alt": "Simplifying responsibly: a container can be 100% full by volume and 82% by weight on paper and still not pack in 3D. The model keeps weight and volume, leaves out 3D packing and says so in every output.",
           "sizes": {
             "wide": [
               440,
@@ -146,11 +146,11 @@
           }
         },
         {
-          "src": "assets/visuals/tile-abstraction.svg",
-          "project": "inventory-shipping-optimization-lab",
-          "principle": "responsible-abstraction",
-          "linkLabel": "See it in the Optimization Lab",
-          "alt": "Simplifying responsibly: a container can be 100% full by volume and 82% by weight on paper and still not pack in 3D. The model keeps weight and volume, leaves out 3D packing and says so in every output.",
+          "src": "assets/visuals/tile-decomposition.svg",
+          "project": "b2b-sales-systems-case-study",
+          "principle": "graph-decomposition",
+          "linkLabel": "See it in the B2B Sales Systems study",
+          "alt": "Decomposing systems: a quote for 4 units, an order for 2 and a shipment of 1 are different facts. Adding 4 + 2 gives a wrong 6 units of demand; committed demand is 2.",
           "sizes": {
             "wide": [
               440,
@@ -172,11 +172,11 @@
           }
         },
         {
-          "src": "assets/visuals/tile-decomposition.svg",
-          "project": "b2b-sales-systems-case-study",
-          "principle": "graph-decomposition",
-          "linkLabel": "See it in the B2B Sales Systems study",
-          "alt": "Decomposing systems: a quote for 4 units, an order for 2 and a shipment of 1 are different facts. Adding 4 + 2 gives a wrong 6 units of demand; committed demand is 2.",
+          "src": "assets/visuals/tile-ambiguity.svg",
+          "project": "synthetic-data-quality-pipeline",
+          "principle": "boundary-refinement",
+          "linkLabel": "See it in the Data Quality Pipeline",
+          "alt": "Narrowing ambiguity: is a “pressure unit” a pump or a sensor? The data can’t decide, so the row is sent to human review instead of guessed.",
           "sizes": {
             "wide": [
               440,
@@ -478,7 +478,7 @@
         "Python standard-library checks"
       ],
       "card": {
-        "title": "B2B Sales Workflows and Demand Definitions",
+        "title": "A Proposed Design for Counting B2B Demand Once",
         "kicker": "Systems design",
         "outcome": "A proposed design that keeps quotes, orders and shipments separate, so the same demand isn’t counted twice."
       },
@@ -780,7 +780,7 @@
         "pytest"
       ],
       "card": {
-        "title": "Deciding What Not to Automate",
+        "title": "Data Cleanup: Deciding What Not to Auto-Fix",
         "kicker": "Data quality",
         "outcome": "Cleans what it safely can and hands everything else to a person, with the reason attached."
       },

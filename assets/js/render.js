@@ -573,7 +573,7 @@
       <nav class="crumbs" aria-label="Breadcrumb">
         <ol>
           <li><a href="${home}">Home</a></li>
-          <li><a href="${home}#projects">Projects</a></li>
+          <li><a href="${home}#projects">Case Studies</a></li>
           <li><span aria-current="page">${esc(p.title)}</span></li>
         </ol>
       </nav>

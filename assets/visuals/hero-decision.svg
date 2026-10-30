@@ -6,29 +6,9 @@
 <text x="52" y="138" font-size="16" fill="#1C5785" font-weight="800" letter-spacing="1.5">PLAN A</text>
 <text x="52" y="168" font-size="21" fill="#1A1D21" font-weight="800" data-box="32,104,454,330">Open one container</text>
 <text x="52" y="194" font-size="17" fill="#4F5660" font-weight="600" data-box="32,104,454,330">Lower container cost</text>
-<rect x="52" y="216" width="170" height="92" rx="6" fill="#EAF1F7" stroke="#1C5785" stroke-width="2.5"/>
-<rect x="62" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="84" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="106" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="128" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="150" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="172" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="194" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="62" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="84" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="106" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="128" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="150" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="172" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="194" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="62" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="84" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="106" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="128" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="150" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="172" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="194" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<text x="52" y="330" font-size="16" fill="#4F5660" font-weight="600">large · opened</text>
+<rect x="52" y="216" width="170" height="92" rx="6" fill="#146C67" stroke="#146C67" stroke-width="2.5"/>
+<text x="137" y="268" font-size="16" fill="#FFFFFF" font-weight="800" text-anchor="middle">full</text>
+<text x="52" y="330" font-size="16" fill="#4F5660" font-weight="600">large · 112 units</text>
 <rect x="242" y="236" width="110" height="72" rx="6" fill="none" stroke="#7D8691" stroke-width="2" stroke-dasharray="6 4"/>
 <text x="242" y="330" font-size="16" fill="#4F5660" font-weight="600">small · not opened</text>
 <rect x="52" y="350" width="414" height="16" rx="8" fill="#8A5A0C"/>
@@ -41,39 +21,12 @@
 <text x="534" y="138" font-size="16" fill="#1C5785" font-weight="800" letter-spacing="1.5">PLAN B</text>
 <text x="534" y="168" font-size="21" fill="#1A1D21" font-weight="800" data-box="514,104,454,330">Open both containers</text>
 <text x="534" y="194" font-size="17" fill="#4F5660" font-weight="600" data-box="514,104,454,330">Less unmet demand</text>
-<rect x="534" y="216" width="170" height="92" rx="6" fill="#EAF1F7" stroke="#1C5785" stroke-width="2.5"/>
-<rect x="544" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="566" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="588" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="610" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="632" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="654" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="676" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="544" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="566" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="588" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="610" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="632" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="654" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="676" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="544" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="566" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="588" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="610" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="632" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="654" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="676" y="236" width="16" height="16" rx="3" fill="#146C67"/>
-<text x="534" y="330" font-size="16" fill="#4F5660" font-weight="600">large · opened</text>
-<rect x="724" y="236" width="110" height="72" rx="6" fill="#EAF1F7" stroke="#1C5785" stroke-width="2.5"/>
-<rect x="734" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="756" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="778" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="800" y="280" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="734" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="756" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="778" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<rect x="800" y="258" width="16" height="16" rx="3" fill="#146C67"/>
-<text x="724" y="330" font-size="16" fill="#4F5660" font-weight="600">small · opened</text>
+<rect x="534" y="216" width="170" height="92" rx="6" fill="#146C67" stroke="#146C67" stroke-width="2.5"/>
+<text x="619" y="268" font-size="16" fill="#FFFFFF" font-weight="800" text-anchor="middle">full</text>
+<text x="534" y="330" font-size="16" fill="#4F5660" font-weight="600">large · 117 units</text>
+<rect x="724" y="236" width="110" height="72" rx="6" fill="#146C67" stroke="#146C67" stroke-width="2.5"/>
+<text x="779" y="278" font-size="16" fill="#FFFFFF" font-weight="800" text-anchor="middle">full</text>
+<text x="724" y="330" font-size="16" fill="#4F5660" font-weight="600">small · 13 units</text>
 <rect x="534" y="350" width="414" height="16" rx="8" fill="#8A5A0C"/>
 <rect x="534" y="350" width="174" height="16" rx="8" fill="#146C67"/>
 <rect x="700" y="350" width="8" height="16" fill="#146C67"/>

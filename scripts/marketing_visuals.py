@@ -555,7 +555,8 @@ def ba_orders(layout):
 # Inventory lab, results/example_results.json: with the tight containers,
 # tight_capacity opens only CNT-L and ships 112 of 309 (197 short);
 # high_shortage_penalty (same containers and stock, every penalty x4) opens both
-# and ships 130 (179 short).
+# and ships 130 (179 short): 117 in CNT-L and 13 in CNT-S. Every opened container
+# is full by volume (volume_utilization 1.0) in both plans.
 TOTAL_UNITS = 309
 
 
@@ -565,12 +566,11 @@ class Sheet(Canvas):
 
 
 def container(c, x, y, w, h, opened, label):
+    """An opened container is drawn full (every opened container is full by volume
+    in both plans); the label carries the real unit count."""
     if opened:
-        c.raw(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="{{accentFill}}" stroke="{{accent}}" stroke-width="2.5"/>')
-        cols, rows = max(2, int((w - 16) // 22)), max(2, int((h - 16) // 22))
-        for r in range(rows):
-            for k in range(cols):
-                c.raw(f'<rect x="{x + 10 + k * 22}" y="{y + h - 28 - r * 22}" width="16" height="16" rx="3" fill="{{ok}}"/>')
+        c.raw(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="{{ok}}" stroke="{{ok}}" stroke-width="2.5"/>')
+        c.text(x + w / 2, y + h / 2 + 6, "full", BA_MIN, "onMark", 800, "middle")
     else:
         c.raw(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="none" stroke="{{line}}" stroke-width="2" stroke-dasharray="6 4"/>')
     c.text(x, y + h + 22, label, BA_MIN, "muted", 600)
@@ -585,7 +585,7 @@ def ship_bar(c, x, y, w, shipped):
     c.text(x + w, y + 42, f"{TOTAL_UNITS - shipped} short", 17, "warn", 700, "end")
 
 
-def plan_panel(c, x, y, w, name, title, trait, both, shipped, when):
+def plan_panel(c, x, y, w, name, title, trait, both, shipped, when, loads):
     h = 330
     box = (x, y, w, h)
     c.raw(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="14" fill="{{bg}}" stroke="{{line}}" stroke-width="1.5"/>')
@@ -593,8 +593,8 @@ def plan_panel(c, x, y, w, name, title, trait, both, shipped, when):
     c.text(x + 20, y + 64, title, 21, "text", 800, box=box)
     c.text(x + 20, y + 90, trait, 17, "muted", 600, box=box)
     big_w, small_w = (170, 110) if w > 400 else (150, 100)
-    container(c, x + 20, y + 112, big_w, 92, True, "large · opened")
-    container(c, x + 40 + big_w, y + 132, small_w, 72, both, "small · opened" if both else "small · not opened")
+    container(c, x + 20, y + 112, big_w, 92, True, f"large · {loads[0]} units")
+    container(c, x + 40 + big_w, y + 132, small_w, 72, both, f"small · {loads[1]} units" if both else "small · not opened")
     ship_bar(c, x + 20, y + 246, w - 40, shipped)
     c.text(x + 20, y + 316, when, 17, "muted", 600, box=box)
     return h
@@ -621,8 +621,8 @@ def hero_decision(layout):
     x0, W = (20, 380) if narrow else (32, 936)
     c.text(x0, 44, "THE QUESTION", BA_MIN, "accent", 800, spacing=1.5)
     c.text(x0, 78, "What should ship now?", 26 if narrow else 28, "text", 800)
-    plans = [("PLAN A", "Open one container", "Lower container cost", False, 112, "Optimal at the original shortage cost"),
-             ("PLAN B", "Open both containers", "Less unmet demand", True, 130, "Optimal when shortages cost 4× more")]
+    plans = [("PLAN A", "Open one container", "Lower container cost", False, 112, "Optimal at the original shortage cost", (112, 0)),
+             ("PLAN B", "Open both containers", "Less unmet demand", True, 130, "Optimal when shortages cost 4× more", (117, 13))]
     if narrow:
         c.text(x0, 106, "Same tight containers and stock.", BA_MIN, "muted", 600)
         c.text(x0, 128, "Only the shortage cost changes.", BA_MIN, "muted", 600)
