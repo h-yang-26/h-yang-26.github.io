@@ -2,14 +2,14 @@
   "_help": "All site text lives here; layout lives in index.html, projects/*/index.html and assets/. Convention: a field that is null (not set yet) or false is hidden; any other value is shown. The site never displays placeholders. Every personal field is in the 'owner' block. Inline text supports `code` and **bold** only. See README.md.",
   "owner": {
     "_help": "Contact fields (name, email, résumé, LinkedIn and other links) appear on the site when set to a value and are hidden when null or false; see _formats. Only add approved facts.",
-    "name": "HY",
+    "name": "Horsland Yang",
     "githubUsername": "h-yang-26",
     "intro": false,
     "bio": false,
     "skills": false,
     "email": "hyang26@alumni.wfu.edu",
     "resume": false,
-    "otherLinks": false,
+    "otherLinks": "https://www.linkedin.com/in/horsland-yang-45ba77326/",
     "_formats": "intro: one short paragraph (string). bio: list of paragraphs. skills: list of strings. resume: {\"label\": \"Resume (PDF)\", \"url\": \"assets/resume.pdf\"}. otherLinks: list of {\"label\": \"LinkedIn\", \"url\": \"https://...\"}. professionalContext: list of paragraphs, exact owner-approved wording only.",
     "projectStatements": {
       "synthetic-data-quality-pipeline": {
