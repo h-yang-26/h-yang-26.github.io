@@ -44,13 +44,14 @@ After editing, run `node scripts/render_static.mjs` and the checks below.
 
 ## Content model
 
-- `site.hero`: the homepage hero (eyebrow, title, lede, primary button, before/after banner). Résumé, email, LinkedIn and GitHub buttons come from the `owner` fields.
+- `site.hero`: the homepage hero (eyebrow, title, lede, primary button and the decision-sheet figure). Résumé, email, LinkedIn and GitHub buttons come from the `owner` fields.
 - `site.howIWork`: the homepage tiles, each naming the project it links to and the principle it illustrates.
 - `site.work`, `site.experience`, `site.about`: homepage sections. Experience reuses `owner.professionalExperience` verbatim; `site.about.aiTools` lists the AI tools used.
 - `site.process`: the "How these were built" page, linked from the footer and from each case study's "My role" section.
 - `site.disclosure`: the one-line disclosure in every page's footer.
-- `projects[].card`: the homepage card's kicker and one-line outcome.
+- `projects[].card`: the homepage card's display `title` (the repository name stays the page title), kicker and one-line outcome. The order of `projects` is the order of the cards and of the previous/next links.
 - `projects[].story`: each case study (headline, lede, facts, banner, situation, 2–4 decisions, result, next steps, technical notes). A decision can carry a tile whose principle must be approved for that project.
+- `appliedThinking.hero.visual`: the three-lenses figure at the top of the How I Think page (`navLabel` sets the navigation name).
 - `appliedThinking.principles[]`: the eight principles. Each has a tile (`visual`) and the project its scene comes from, which must be approved for that principle; P3 is conceptual and uses no project data.
 - `appliedThinking.academicFoundations.rows[]`: the coursework table. A row can set `principle` and use `{principle}` in its text to link to that principle's card.
 - `owner.projectStatements` and `owner.professionalExperience`: the owner's own words, reused verbatim.

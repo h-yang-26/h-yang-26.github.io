@@ -69,6 +69,13 @@ They still follow the accuracy rule: every row and number is copied from a publi
 | tile-decomposition | B2B case study: 4 quoted, 2 ordered, 1 shipped. |
 | tile-uncertainty | Conceptual illustration for P3, which has no published demonstration: the late shipment, causes and tests are generic and use no project data. |
 
+## Hero decision sheet and three lenses
+
+| SVGs | Source |
+|---|---|
+| hero-decision | Inventory lab `data/scenarios.json` and `results/example_results.json`: with the tight containers, `tight_capacity` opens only `CNT-L` and ships 112 of 309 (197 short); `high_shortage_penalty` (same containers and stock, every penalty ×4) opens both and ships 130 (179 short). Opened containers are drawn full because every opened container is full by volume (`volume_utilization` 1.0); their labels give the real loads (Plan A: 112 in CNT-L; Plan B: 117 in CNT-L, 13 in CNT-S), and the bars use the real shipped and short totals. The three lens notes are interpretation, not repo output. |
+| thinking-lenses | B2B case study `examples/fictional-order-scenario.json`: 4 quoted, 2 ordered, 1 shipped; committed demand is the 2 ordered units. "4 + 2 + 1 = 7" is the site’s illustrative wrong total (also used in `ba-orders`); the case study itself warns against 4 + 2 = 6. |
+
 ## Applied Thinking diagrams
 
 `thinking-cycle` is an original explanatory diagram. It

@@ -551,6 +551,194 @@ def ba_orders(layout):
                    ("Same order, three numbers.", "Every number means one thing."), orders_before, orders_after, (308, 362))
 
 
+# =============================================================== hero decision sheet
+# Inventory lab, results/example_results.json: with the tight containers,
+# tight_capacity opens only CNT-L and ships 112 of 309 (197 short);
+# high_shortage_penalty (same containers and stock, every penalty x4) opens both
+# and ships 130 (179 short): 117 in CNT-L and 13 in CNT-S. Every opened container
+# is full by volume (volume_utilization 1.0) in both plans.
+TOTAL_UNITS = 309
+
+
+class Sheet(Canvas):
+    def __init__(self, layout):
+        super().__init__(1000 if layout == "wide" else 420, 0, layout, BA_MIN, background="page", radius=20)
+
+
+def container(c, x, y, w, h, opened, label):
+    """An opened container is drawn full (every opened container is full by volume
+    in both plans); the label carries the real unit count."""
+    if opened:
+        c.raw(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="{{ok}}" stroke="{{ok}}" stroke-width="2.5"/>')
+        c.text(x + w / 2, y + h / 2 + 6, "full", BA_MIN, "onMark", 800, "middle")
+    else:
+        c.raw(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" fill="none" stroke="{{line}}" stroke-width="2" stroke-dasharray="6 4"/>')
+    c.text(x, y + h + 22, label, BA_MIN, "muted", 600)
+
+
+def ship_bar(c, x, y, w, shipped):
+    sw = round(w * shipped / TOTAL_UNITS)
+    c.raw(f'<rect x="{x}" y="{y}" width="{w}" height="16" rx="8" fill="{{warn}}"/>')
+    c.raw(f'<rect x="{x}" y="{y}" width="{sw}" height="16" rx="8" fill="{{ok}}"/>')
+    c.raw(f'<rect x="{x + sw - 8}" y="{y}" width="8" height="16" fill="{{ok}}"/>')
+    c.text(x, y + 42, f"{shipped} of {TOTAL_UNITS} units ship", 17, "text", 700)
+    c.text(x + w, y + 42, f"{TOTAL_UNITS - shipped} short", 17, "warn", 700, "end")
+
+
+def plan_panel(c, x, y, w, name, title, trait, both, shipped, when, loads):
+    h = 330
+    box = (x, y, w, h)
+    c.raw(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="14" fill="{{bg}}" stroke="{{line}}" stroke-width="1.5"/>')
+    c.text(x + 20, y + 34, name, BA_MIN, "accent", 800, spacing=1.5)
+    c.text(x + 20, y + 64, title, 21, "text", 800, box=box)
+    c.text(x + 20, y + 90, trait, 17, "muted", 600, box=box)
+    big_w, small_w = (170, 110) if w > 400 else (150, 100)
+    container(c, x + 20, y + 112, big_w, 92, True, f"large · {loads[0]} units")
+    container(c, x + 40 + big_w, y + 132, small_w, 72, both, f"small · {loads[1]} units" if both else "small · not opened")
+    ship_bar(c, x + 20, y + 246, w - 40, shipped)
+    c.text(x + 20, y + 316, when, 17, "muted", 600, box=box)
+    return h
+
+
+LENSES = [("BUSINESS CONTEXT", "accent", ["What is a unit of", "unmet demand worth?"]),
+          ("MODEL", "ok", ["Capacity is a hard", "limit in both plans."]),
+          ("ASSUMPTION", "warn", ["The shortage cost is a", "judgment, not a fact."])]
+
+
+def lens_chip(c, x, y, w, label, tone, lines):
+    h = 98
+    c.raw(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="{{boxFill}}"/>')
+    c.raw(f'<rect x="{x}" y="{y}" width="6" height="{h}" rx="3" fill="{{{tone}}}"/>')
+    c.text(x + 22, y + 30, label, BA_MIN, tone, 800, box=(x, y, w, h), spacing=1.2)
+    for i, line in enumerate(lines):
+        c.text(x + 22, y + 58 + i * 24, line, 18, "text", 600, box=(x, y, w, h))
+    return h
+
+
+def hero_decision(layout):
+    c = Sheet(layout)
+    narrow = layout == "narrow"
+    x0, W = (20, 380) if narrow else (32, 936)
+    c.text(x0, 44, "THE QUESTION", BA_MIN, "accent", 800, spacing=1.5)
+    c.text(x0, 78, "What should ship now?", 26 if narrow else 28, "text", 800)
+    plans = [("PLAN A", "Open one container", "Lower container cost", False, 112, "Optimal at the original shortage cost", (112, 0)),
+             ("PLAN B", "Open both containers", "Less unmet demand", True, 130, "Optimal when shortages cost 4× more", (117, 13))]
+    if narrow:
+        c.text(x0, 106, "Same tight containers and stock.", BA_MIN, "muted", 600)
+        c.text(x0, 128, "Only the shortage cost changes.", BA_MIN, "muted", 600)
+        y = 148
+        for plan in plans:
+            y += plan_panel(c, x0, y, W, *plan) + 16
+    else:
+        c.text(x0 + W, 56, "Same tight containers and stock.", 17, "muted", 600, "end")
+        c.text(x0 + W, 80, "Only the shortage cost changes.", 17, "muted", 600, "end")
+        pw = (W - 28) / 2
+        for i, plan in enumerate(plans):
+            plan_panel(c, round(x0 + i * (pw + 28)), 104, round(pw), *plan)
+        y = 104 + 330 + 18
+    c.text(x0, y + 22, "THREE LENSES ON THE SAME DECISION", BA_MIN, "muted", 800, spacing=1.2)
+    y += 36
+    if narrow:
+        for label, tone, lines in LENSES:
+            y += lens_chip(c, x0, y, W, label, tone, lines) + 12
+    else:
+        cw = (W - 2 * 16) / 3
+        for i, (label, tone, lines) in enumerate(LENSES):
+            lens_chip(c, round(x0 + i * (cw + 16)), y, round(cw), label, tone, lines)
+        y += 98 + 16
+    lines = ["Preferred plan depends", "on the shortage cost."] if narrow else ["Preferred plan depends on the shortage cost."]
+    h = 44 + 30 * len(lines)
+    c.raw(f'<rect x="{x0}" y="{y}" width="{W}" height="{h}" rx="12" fill="{{accentFill}}" stroke="{{accent}}" stroke-width="2"/>')
+    for i, line in enumerate(lines):
+        c.text(x0 + 22, y + 34 + i * 30, line, 23, "text", 800, box=(x0, y, W, h))
+    note = "Fictional scenarios · not a loading plan" if narrow else "Fictional scenarios from the shipping case study · an allocation is not a loading plan"
+    c.text(x0 + 22, y + h - 14, note, BA_MIN, "muted", 600, box=(x0, y, W, h))
+    c.h = y + h + 24
+    return c
+
+
+# =============================================================== Applied Thinking: three lenses
+# B2B case study, examples/fictional-order-scenario.json: 4 quoted, 2 ordered,
+# 1 shipped; committed demand is the 2 ordered units.
+def lens(c, cx, cy, r, tone):
+    c.raw(f'<path d="M{cx + r * 0.71:.1f} {cy + r * 0.71:.1f} L{cx + r * 0.71 + 30:.1f} {cy + r * 0.71 + 30:.1f}" stroke="{{{tone}}}" stroke-width="10" stroke-linecap="round"/>')
+    c.raw(f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{{bg}}" stroke="{{{tone}}}" stroke-width="4"/>')
+
+
+def lens_business(c, cx, cy, s):
+    w = 176 * s
+    for i, (name, n, tone) in enumerate([("Quote", "4 units", "accent"), ("Order", "2 units", "accent"), ("Shipped", "1 unit", "ok")]):
+        y = cy - 78 * s + i * 54 * s
+        box = (cx - w / 2, y, w, 42 * s)
+        c.raw(f'<rect x="{cx - w / 2:.1f}" y="{y:.1f}" width="{w:.1f}" height="{42 * s:.1f}" rx="8" fill="{{boxFill}}" stroke="{{{tone}}}" stroke-width="2"/>')
+        c.text(round(cx - w / 2 + 12), round(y + 28 * s), name, BA_MIN, "text", 800, box=box)
+        c.text(round(cx + w / 2 - 12), round(y + 28 * s), n, BA_MIN, tone, 700, "end", box=box)
+
+
+def lens_math(c, cx, cy, s):
+    w, h = 132 * s, 36 * s
+    names = ["Quote", "Order", "Shipment"]
+    for i, name in enumerate(names):
+        y = cy - 84 * s + i * 66 * s
+        c.raw(f'<rect x="{cx - w / 2:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="18" fill="{{okFill}}" stroke="{{ok}}" stroke-width="2"/>')
+        c.text(round(cx), round(y + 24 * s), name, BA_MIN, "text", 800, "middle", box=(cx - w / 2, y, w, h))
+        if i < 2:
+            c.raw(f'<path d="M{cx} {y + h + 3:.1f} L{cx} {y + 66 * s - 5:.1f}" stroke="{{line}}" stroke-width="2.5" marker-end="url(#ah)"/>')
+
+
+def lens_philosophy(c, cx, cy, s):
+    c.text(round(cx), round(cy - 44 * s), "4 + 2 + 1 = 7", 24, "warn", 800, "middle")
+    c.raw(f'<path d="M{cx - 80 * s:.1f} {cy - 52 * s:.1f} L{cx + 80 * s:.1f} {cy - 52 * s:.1f}" stroke="{{warn}}" stroke-width="3.5" stroke-linecap="round"/>')
+    c.text(round(cx), round(cy + 4 * s), "What does", 18, "text", 700, "middle")
+    c.text(round(cx), round(cy + 28 * s), "“demand” mean?", 18, "text", 700, "middle")
+    c.text(round(cx), round(cy + 70 * s), "Count it once.", BA_MIN, "ok", 800, "middle")
+
+
+LENS_PARTS = [("Business context", "What each record is", "accent", lens_business),
+              ("Mathematics", "How the parts connect", "ok", lens_math),
+              ("Philosophy", "What the number means", "warn", lens_philosophy)]
+
+
+def thinking_lenses(layout):
+    c = Sheet(layout)
+    narrow = layout == "narrow"
+    x0, W = (20, 380) if narrow else (32, 936)
+    c.text(x0, 44, "ONE PROBLEM", BA_MIN, "accent", 800, spacing=1.5)
+    c.text(x0, 78, "How much demand is there?", 26 if narrow else 28, "text", 800)
+    if narrow:
+        c.text(x0, 106, "A fictional order: 4 quoted,", BA_MIN, "muted", 600)
+        c.text(x0, 128, "2 ordered, 1 shipped.", BA_MIN, "muted", 600)
+        y = 150
+        for name, sub, tone, draw in LENS_PARTS:
+            cx, cy, r = 190, y + 128, 118
+            lens(c, cx, cy, r, tone)
+            draw(c, cx, cy, 0.95)
+            c.text(x0, cy + r + 40, name, 20, "text", 800)
+            c.text(x0, cy + r + 64, sub, BA_MIN, "muted", 600)
+            y = cy + r + 84
+    else:
+        c.text(x0 + W, 70, "A fictional order: 4 quoted, 2 ordered, 1 shipped.", 17, "muted", 600, "end")
+        cy, r = 244, 128
+        for i, (name, sub, tone, draw) in enumerate(LENS_PARTS):
+            cx = 180 + i * 320
+            lens(c, cx, cy, r, tone)
+            draw(c, cx, cy, 1.0)
+            c.text(cx, cy + r + 52, name, 21, "text", 800, "middle")
+            c.text(cx, cy + r + 78, sub, BA_MIN, "muted", 600, "middle")
+            c.raw(f'<path d="M{cx} {cy + r + 92} C{cx} {cy + r + 112} 500 {cy + r + 104} 500 {cy + r + 124}" fill="none" stroke="{{line}}" stroke-width="1.8"/>')
+        c.raw(f'<path d="M500 {cy + r + 124} L500 {cy + r + 132}" stroke="{{line}}" stroke-width="1.8" marker-end="url(#ah)"/>')
+        y = cy + r + 140
+    lines = ["Committed demand: 2 units.", "One number people can check."] if narrow else ["Committed demand: 2 units. One number people can check."]
+    h = 44 + 30 * len(lines)
+    c.raw(f'<rect x="{x0}" y="{y}" width="{W}" height="{h}" rx="12" fill="{{okFill}}" stroke="{{ok}}" stroke-width="2"/>')
+    for i, line in enumerate(lines):
+        c.text(x0 + 22, y + 34 + i * 30, line, 20 if narrow else 22, "text", 800, box=(x0, y, W, h))
+    note = "From the B2B case study · fictional data" if narrow else "Illustration built on the B2B case study’s fictional order · not a real company’s data"
+    c.text(x0 + 22, y + h - 14, note, BA_MIN, "muted", 600, box=(x0, y, W, h))
+    c.h = y + h + 24
+    return c
+
+
 # name: (draw(layout), layouts, accessible title)
 MARKETING = {
     "tile-frameworks": (lambda layout: tile_frameworks(), ("wide",), "Which containers to open is a known fixed-charge allocation problem, solved with a proven method."),
@@ -564,5 +752,7 @@ MARKETING = {
     "tile-opacity": (lambda layout: tile_opacity(), ("wide",), "Headless tests feed the dashboard a file with known answers and check the numbers it displays."),
     "ba-data": (ba_data, ("wide", "narrow"), "Before: an inventory export with a blank ID, an impossible date and ambiguous categories. After: clean records plus a review queue with reasons."),
     "ba-usage": (ba_usage, ("wide", "narrow"), "Before: thousands of raw event rows. After: users in scope, sessions, full-funnel sessions and a daily activity chart."),
+    "hero-decision": (hero_decision, ("wide", "narrow"), "Plan A opens one container and ships 112 of 309 units; Plan B opens both and ships 130. The preferred plan depends on the shortage cost."),
+    "thinking-lenses": (thinking_lenses, ("wide", "narrow"), "One problem, how much demand is there, seen through business context, mathematics and philosophy: committed demand is 2 units."),
     "ba-orders": (ba_orders, ("wide", "narrow"), "Before: a report adds quote, order and shipment into one wrong total. After: one order with demand 2, shipped 1, owed 1."),
 }

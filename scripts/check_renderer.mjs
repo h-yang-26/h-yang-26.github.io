@@ -17,8 +17,8 @@ async function render(page, input = content, failFetch = false, slug = content.p
   return nodes;
 }
 const home = (await render("home")).main.innerHTML;
-// Homepage order: hero, How I work, selected work, experience, about, contact.
-const order = ['class="hero hero--story', 'id="how-i-work"', 'id="projects"', 'id="experience"', 'id="about"', 'id="contact"'].map(m => home.indexOf(m));
+// Homepage order: hero, experience, case studies, How I think, about, contact.
+const order = ['class="hero hero--story', 'id="experience"', 'id="projects"', 'id="how-i-work"', 'id="about"', 'id="contact"'].map(m => home.indexOf(m));
 assert.ok(order.every((v, i) => v >= 0 && (i === 0 || v > order[i - 1])), `homepage sections out of order: ${order}`);
 // Each tile links to its project page with real HTML; cards carry one outcome line and no legacy fields.
 assert.equal((home.match(/class="how-tile"/g) || []).length, content.site.howIWork.tiles.length);
@@ -37,14 +37,14 @@ assert.match((await render("home"))["site-footer"].innerHTML, /href="\.\/how-the
 assert.doesNotMatch((await render("process"))["site-footer"].innerHTML, /how-these-were-built/, "process page does not link to itself");
 assert.match((await render("project")).main.innerHTML, /href="\.\.\/\.\.\/how-these-were-built\/"/, "case study role links to the process page");
 // Figures: narrow and dark variants on project pages, card layout on the homepage.
-const projectHtml = (await render("project")).main.innerHTML;
+const projectHtml = (await render("project", content, false, "synthetic-data-quality-pipeline")).main.innerHTML;
 assert.match(projectHtml, /<source media="\(prefers-color-scheme: dark\) and \(max-width: 39\.99rem\)" srcset="[^"]+-narrow-dark\.svg"/);
 assert.match(projectHtml, /<source media="\(max-width: 39\.99rem\)" srcset="[^"]+-narrow\.svg"/);
 assert.match(projectHtml, /<p class="figure-title">/);
 assert.match(home, /<div class="card__visual"><picture><source media="\(prefers-color-scheme: dark\)" srcset="[^"]+-card-dark\.svg"/);
 // Phase 1 redesign: positioning hero and decision-led story template.
 assert.match(home, /<section class="hero hero--story wrap"/);
-assert.match(home, /<source media="\(prefers-color-scheme: dark\) and \(max-width: 49\.99rem\)" srcset="[^"]+ba-data-narrow-dark\.svg"/);
+assert.match(home, /<source media="\(prefers-color-scheme: dark\) and \(max-width: 49\.99rem\)" srcset="[^"]+hero-decision-narrow-dark\.svg"/);
 // Unset owner fields (null) are hidden exactly like omitted ones (false): no
 // placeholders, disabled buttons or draft banner anywhere on any page.
 // Tested on a copy with every field unset, independent of what the live content sets.

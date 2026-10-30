@@ -190,8 +190,8 @@
       <a class="brand" href="${home}">${brand}</a>
       <nav aria-label="Primary">
         <ul class="nav">
-          <li><a href="${home}#projects">Projects</a></li>
           <li><a href="${home}#experience">Experience</a></li>
+          <li><a href="${home}#projects">Case Studies</a></li>
           ${content.appliedThinking ? `<li><a href="${url(content.appliedThinking.route)}"${body.dataset.page === "applied-thinking" ? ' aria-current="page"' : ""}>${esc(content.appliedThinking.navLabel)}</a></li>` : ""}
           <li><a href="${home}#about">About</a></li>
           <li><a href="${home}#contact">Contact</a></li>
@@ -254,7 +254,7 @@
       <article class="card card--work" aria-labelledby="card-${esc(project.slug)}">
         <div class="card__visual">${picture((project.visuals || []).find(v => v.src === project.thumbnail) || {src: project.thumbnail}, "", "card")}</div>
         <p class="card__kicker">${esc(c.kicker)}</p>
-        <h3 id="card-${esc(project.slug)}">${esc(project.title)}</h3>
+        <h3 id="card-${esc(project.slug)}">${esc(c.title || project.title)}</h3>
         <p class="card__outcome">${inline(c.outcome)}</p>
         <div class="actions">
           <a class="btn btn--primary" href="${home}projects/${esc(project.slug)}/">Read the case study<span class="visually-hidden">: ${esc(project.title)}</span></a>
@@ -398,7 +398,7 @@
     return `
     ${hero}
 
-    ${renderHowIWork(content)}
+    ${renderExperience(content)}
 
     <section class="section" id="projects" aria-labelledby="projects-title">
       <div class="wrap">
@@ -409,7 +409,7 @@
       </div>
     </section>
 
-    ${renderExperience(content)}
+    ${renderHowIWork(content)}
 
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="wrap about-compact">
@@ -497,7 +497,7 @@
     };
     const order = a.proposedPageSections.filter(id => sections[id]);
     return `<div class="wrap thinking-page"><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="${home}">${esc(l.home)}</a></li><li><span aria-current="page">${esc(a.navLabel)}</span></li></ol></nav>
-      <header class="thinking-hero" id="intro"><p class="eyebrow">${esc(a.hero.eyebrow)}</p><h1>${esc(a.hero.title)}</h1><p class="thinking-tagline">${inline(a.hero.tagline)}</p>${paras(a.hero.paragraphs)}
+      <header class="thinking-hero" id="intro"><p class="eyebrow">${esc(a.hero.eyebrow)}</p><h1>${esc(a.hero.title)}</h1><p class="thinking-tagline">${inline(a.hero.tagline)}</p>${paras(a.hero.paragraphs)}${showcase(a.hero.visual)}
         <nav class="jump-links" aria-label="${esc(l.onThisPage)}"><ul>${order.map(id => `<li><a href="#${esc(id)}">${esc(l[id])}</a></li>`).join("")}</ul></nav>
       </header>
       <div class="thinking-content">${order.map(id => section(id, sections[id])).join("")}</div></div>`;
@@ -573,7 +573,7 @@
       <nav class="crumbs" aria-label="Breadcrumb">
         <ol>
           <li><a href="${home}">Home</a></li>
-          <li><a href="${home}#projects">Projects</a></li>
+          <li><a href="${home}#projects">Case Studies</a></li>
           <li><span aria-current="page">${esc(p.title)}</span></li>
         </ol>
       </nav>
