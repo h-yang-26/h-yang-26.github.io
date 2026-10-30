@@ -46,7 +46,11 @@ assert.match(home, /<div class="card__visual"><picture><source media="\(prefers-
 assert.match(home, /<section class="hero hero--story wrap"/);
 assert.match(home, /<source media="\(prefers-color-scheme: dark\) and \(max-width: 49\.99rem\)" srcset="[^"]+ba-data-narrow-dark\.svg"/);
 // Pending owner fields show marked placeholders in the hero; omitted ones show nothing.
-const heroHtml = home.slice(0, home.indexOf("</section>"));
+// Tested on a copy with every field pending, independent of what the live content sets.
+const pending = structuredClone(content);
+Object.assign(pending.owner, {name: null, email: null, resume: null, otherLinks: null});
+const pendingHome = (await render("home", pending)).main.innerHTML;
+const heroHtml = pendingHome.slice(0, pendingHome.indexOf("</section>"));
 for (const label of ["Résumé", "Email", "LinkedIn"]) assert.match(heroHtml, new RegExp(`btn--off[^>]*>[\\s\\S]*?<span>${label}</span>`));
 const omitted = structuredClone(content);
 Object.assign(omitted.owner, {name: false, email: false, resume: false, otherLinks: false});

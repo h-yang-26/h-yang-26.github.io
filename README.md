@@ -26,6 +26,7 @@ Name, public email, résumé and LinkedIn are pending placeholders (`null` in `c
 - `site.process`: the "How these were built" page (who did what, steps, boundaries, this site, reading the work). It is linked from the footer and from each case study's "My role" section.
 - `check_site.py` enforces the story and card fields and a voice check: the homepage copy, the disclosure, every card and story, the rendered homepage, story pages, Applied Thinking and How these were built pages must not use retired labels such as "agent-run" or "unverified".
 - `scripts/check_site.py --release` verifies the static structure and placeholder state.
+- `site.searchIndexing`: `false` adds a robots `noindex, nofollow` tag to every page, asking search engines not to list the site; set it to `true` (or remove it) to be findable by search, then regenerate the snapshots. `check_site.py` fails if any page is missing the tag while indexing is off.
 
 ## Local preview
 
