@@ -10,7 +10,7 @@ How this site is built, edited, checked and published. The visitor-facing overvi
 
 ## Personal details
 
-Contact details live in the `owner` section of `content/site.json`. Each field takes one of three values: `null` shows a marked placeholder, a value shows the item, and `false` leaves it out entirely (no button, no placeholder).
+Contact details live in the `owner` section of `content/site.json`. A field with a value is shown; a field that is `null` or `false` is hidden. The site never shows placeholders, so you can fill fields in one at a time.
 
 To leave them out:
 
@@ -34,7 +34,7 @@ To show them:
 - `resume.url` can be a file in this repo (upload it to `assets/`) or a full `https://` link. A file committed here stays in the repository history even after it is deleted; an external link can be withdrawn.
 - `otherLinks` is a list; each entry becomes a hero button and a Contact link.
 - Optional: `intro` (one paragraph), `bio` (a list of paragraphs, which replaces the About text) and `skills` (a list of strings). They are currently `false`.
-- The release check (`python scripts/check_site.py --release`) fails while any field is still `null`; `false` counts as a deliberate omission.
+- `python scripts/check_site.py` lists fields that are still `null` as a reminder, without failing, and fails if any page shows a placeholder.
 
 After editing, run `node scripts/render_static.mjs` and the checks below.
 
@@ -62,7 +62,7 @@ python scripts/build_visuals.py --check   # figures match their generator
 node scripts/render_static.mjs --check    # snapshots are current
 node scripts/check_renderer.mjs           # rendering, escaping and page structure
 python scripts/check_site.py              # links, content rules and voice check
-python scripts/check_site.py --release    # also fails on any remaining placeholder
+python scripts/check_site.py --release    # also checks publication approvals and search settings
 ```
 
 `check_site.py` checks local links and fragments, required case-study fields, that each tile's principle is approved for its project, and that retired labels such as "agent-run" or "unverified" don't return.

@@ -406,9 +406,16 @@ def main():
     links = [p for p in pending if p.endswith(".repoUrl")]
     print(f"Pages checked: {len(pages)}; projects: {len(slugs)}")
     print(f"Local references and fragments checked: {link_count}")
-    print(f"Open items: {len(pending) - len(links)} placeholders, {len(links)} unpublished links")
+    # Unset fields (null) are hidden on the site, exactly like false; they are listed
+    # here as a reminder, not as failures.
+    print(f"Not set, hidden on the site: {len(pending) - len(links)} fields, {len(links)} repository links")
     for path in pending:
         print(f"  - {path}")
+    # No page may show a placeholder, disabled button or draft-preview banner.
+    for page in pages:
+        html = page.read_text(encoding="utf-8")
+        if re.search(r'class="ph[ "]|class="btn btn--off"|Draft preview\.', html):
+            problems.append(f"{page.relative_to(ROOT)}: shows a placeholder (unset fields must be hidden)")
     unlisted = content["site"].get("searchIndexing") is False
     if unlisted:
         missing = sorted(set(p.relative_to(ROOT).as_posix() for p in pages) - set(noindex_pages))
@@ -418,7 +425,6 @@ def main():
         print(f"Draft robots noindex tag on {len(noindex_pages)} pages")
 
     if release:
-        problems += [f"open item: {p}" for p in pending]
         if not unlisted:
             problems += [f"{p}: draft robots noindex tag still present" for p in noindex_pages]
 

@@ -45,13 +45,18 @@ assert.match(home, /<div class="card__visual"><picture><source media="\(prefers-
 // Phase 1 redesign: positioning hero and decision-led story template.
 assert.match(home, /<section class="hero hero--story wrap"/);
 assert.match(home, /<source media="\(prefers-color-scheme: dark\) and \(max-width: 49\.99rem\)" srcset="[^"]+ba-data-narrow-dark\.svg"/);
-// Pending owner fields show marked placeholders in the hero; omitted ones show nothing.
-// Tested on a copy with every field pending, independent of what the live content sets.
-const pending = structuredClone(content);
-Object.assign(pending.owner, {name: null, email: null, resume: null, otherLinks: null});
-const pendingHome = (await render("home", pending)).main.innerHTML;
-const heroHtml = pendingHome.slice(0, pendingHome.indexOf("</section>"));
-for (const label of ["Résumé", "Email", "LinkedIn"]) assert.match(heroHtml, new RegExp(`btn--off[^>]*>[\\s\\S]*?<span>${label}</span>`));
+// Unset owner fields (null) are hidden exactly like omitted ones (false): no
+// placeholders, disabled buttons or draft banner anywhere on any page.
+// Tested on a copy with every field unset, independent of what the live content sets.
+const unset = structuredClone(content);
+Object.assign(unset.owner, {name: null, email: null, resume: null, otherLinks: null});
+unset.projects[0].repoUrl = null;
+delete unset.owner.projectStatements[unset.projects[0].slug].learned;
+for (const [page, slug] of [["home"], ["project", unset.projects[0].slug], ["applied-thinking"], ["process"]]) {
+  const nodes = await render(page, unset, false, slug);
+  const all = nodes.main.innerHTML + nodes["site-header"].innerHTML + nodes["draft-banner"].innerHTML;
+  assert.ok(!/class="ph|btn--off|Placeholder|Draft preview/.test(all), `${page}: unset fields must show no placeholder`);
+}
 const omitted = structuredClone(content);
 Object.assign(omitted.owner, {name: false, email: false, resume: false, otherLinks: false});
 const omittedHero = (await render("home", omitted)).main.innerHTML;
@@ -59,7 +64,11 @@ assert.ok(!/class="ph|btn--off/.test(omittedHero.slice(0, omittedHero.indexOf("<
 const filled = structuredClone(content);
 Object.assign(filled.owner, {name: "A. Person", email: "a@example.com", resume: {label: "Résumé (PDF)", url: "https://example.com/r.pdf"}, otherLinks: [{label: "LinkedIn", url: "https://www.linkedin.com/in/example"}]});
 const filledHero = (await render("home", filled)).main.innerHTML;
-assert.ok(filledHero.includes('href="mailto:a@example.com"') && filledHero.includes('href="https://www.linkedin.com/in/example"') && filledHero.includes("A. Person"));
+assert.ok(filledHero.includes('href="mailto:a@example.com"') && filledHero.includes('href="https://www.linkedin.com/in/example"'));
+// The name appears once, in the header, not again in the hero eyebrow.
+const filledNodes = await render("home", filled);
+assert.match(filledNodes["site-header"].innerHTML, /class="brand"[^>]*>A\. Person</);
+assert.ok(!filledNodes.main.innerHTML.includes("A. Person"), "name must not repeat in the hero");
 for (const id of ["situation", "decisions", "result", "next", "technical", "role", "academic-connections"]) {
   assert.match(projectHtml, new RegExp(`<section id="${id}"`));
 }

@@ -1,7 +1,7 @@
 {
-  "_help": "All site text lives here; layout lives in index.html, projects/*/index.html and assets/. Convention: null = pending owner input (shown as a visible placeholder and counted in the draft banner); false = intentionally omitted (nothing shown). Every personal field is in the 'owner' block. Inline text supports `code` and **bold** only. See README.md.",
+  "_help": "All site text lives here; layout lives in index.html, projects/*/index.html and assets/. Convention: a field that is null (not set yet) or false is hidden; any other value is shown. The site never displays placeholders. Every personal field is in the 'owner' block. Inline text supports `code` and **bold** only. See README.md.",
   "owner": {
-    "_help": "Name, public email, résumé and LinkedIn are pending (null) and show as placeholders until filled in; see _formats. Only add approved facts.",
+    "_help": "Contact fields (name, email, résumé, LinkedIn and other links) appear on the site when set to a value and are hidden when null or false; see _formats. Only add approved facts.",
     "name": "HY",
     "githubUsername": "h-yang-26",
     "intro": false,
