@@ -2,14 +2,14 @@
   "_help": "All site text lives here; layout lives in index.html, projects/*/index.html and assets/. Convention: null = pending owner input (shown as a visible placeholder and counted in the draft banner); false = intentionally omitted (nothing shown). Every personal field is in the 'owner' block. Inline text supports `code` and **bold** only. See README.md.",
   "owner": {
     "_help": "Name, public email, résumé and LinkedIn are pending (null) and show as placeholders until filled in; see _formats. Only add approved facts.",
-    "name": null,
+    "name": "Horsland Yang",
     "githubUsername": "h-yang-26",
     "intro": false,
     "bio": false,
     "skills": false,
-    "email": null,
-    "resume": null,
-    "otherLinks": null,
+    "email": "hyang26@alumni.wfu.edu",
+    "resume": false,
+    "otherLinks": "www.linkedin.com/in/horsland-yang-45ba77326",
     "_formats": "intro: one short paragraph (string). bio: list of paragraphs. skills: list of strings. resume: {\"label\": \"Resume (PDF)\", \"url\": \"assets/resume.pdf\"}. otherLinks: list of {\"label\": \"LinkedIn\", \"url\": \"https://...\"}. professionalContext: list of paragraphs, exact owner-approved wording only.",
     "projectStatements": {
       "synthetic-data-quality-pipeline": {
