@@ -40,8 +40,6 @@
     professionalContext: "Exact owner-approved wording only. Set this field to false to omit the section."
   };
 
-  const STATEMENT_KEYS = ["ownerVerification", "contribution", "learned", "professionalContext"];
-
   /* ---------- text helpers ---------- */
 
   function esc(value) {
@@ -119,40 +117,24 @@
     </figure>`;
   }
 
-  /* ---------- pending items ---------- */
+  /* ---------- unset fields ---------- */
 
-  function walkPending(node, path, out) {
-    if (node === null) {
-      out.push(path);
-    } else if (Array.isArray(node)) {
-      node.forEach((item, i) => walkPending(item, `${path}[${item && item.slug ? item.slug : i}]`, out));
-    } else if (typeof node === "object") {
-      Object.keys(node).forEach((key) => {
-        if (!key.startsWith("_")) walkPending(node[key], path ? `${path}.${key}` : key, out);
-      });
+  // The public site never shows placeholders: a field that is null (not set
+  // yet) is hidden exactly like false. Any other value is shown.
+  function hideUnset(node) {
+    if (node === null) return false;
+    if (Array.isArray(node)) return node.map(hideUnset);
+    if (node && typeof node === "object") {
+      return Object.fromEntries(Object.entries(node).map(([key, value]) => [key, hideUnset(value)]));
     }
+    return node;
   }
 
   function statementsFor(content, slug) {
     return (content.owner.projectStatements || {})[slug] || {};
   }
 
-  function pendingItems(content) {
-    const paths = [];
-    walkPending(content, "", paths);
-    // A project without a statements entry is pending too, not silently empty.
-    content.projects.forEach((p) => {
-      const s = statementsFor(content, p.slug);
-      STATEMENT_KEYS.forEach((key) => {
-        if (s[key] === undefined) paths.push(`owner.projectStatements.${p.slug}.${key}`);
-      });
-    });
-    return paths.map((path) => ({
-      path,
-      label: describe(content, path),
-      kind: path.endsWith(".repoUrl") ? "link" : "placeholder"
-    }));
-  }
+  /* ---------- placeholder labels (unreachable once unset fields are hidden) ---------- */
 
   function describe(content, path) {
     if (LABELS[path]) return LABELS[path];
@@ -179,10 +161,9 @@
     </div>`;
   }
 
-  // null -> block placeholder, false -> omitted (returns null), otherwise paragraphs.
+  // Not set (null, false or missing) -> omitted (returns null), otherwise paragraphs.
   function ownerText(content, value, path) {
-    if (value === false) return null;
-    if (value === null || value === undefined) return phBlock(content, path);
+    if (value === false || value === null || value === undefined) return null;
     return paras(value);
   }
 
@@ -194,7 +175,7 @@
 
   function repoLinks(project, withReadme) {
     const href = project.repoUrl ? url(project.repoUrl) : null;
-    if (!href) return disabledLink("Source repository", "Not yet published");
+    if (!href) return "";
     let html = `<a class="btn" href="${href}">Source on GitHub<span class="visually-hidden">: ${esc(project.title)}</span></a>`;
     if (withReadme) html += `<a class="btn" href="${href}#readme">README and run instructions</a>`;
     return html;
@@ -219,25 +200,14 @@
     </div>`;
   }
 
+  // The only banner left is for Applied Thinking copy that still awaits approval;
+  // unset owner fields are simply hidden, so they no longer raise a banner.
   function renderBanner(content) {
-    const items = pendingItems(content);
     const a = content.appliedThinking;
     const review = a && (a.draftStatus !== "approved" || Object.values(a.review || {}).some(value => value !== "approved"));
-    const reviewHtml = review ? `<div class="wrap"><p><strong>${esc(a.labels.draftTitle)}.</strong> ${esc(a.labels.draftBody)}</p></div>` : "";
-    if (!items.length) return reviewHtml;
-    const links = items.filter((i) => i.kind === "link").length;
-    const fields = items.length - links;
-    const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
-    return `${reviewHtml}<div class="wrap">
-      <p><strong>Draft preview.</strong> ${plural(fields, "placeholder")} and ${plural(links, "unpublished link")} still need owner input. Resolve or omit them before publishing.</p>
-      <details>
-        <summary>Show open items</summary>
-        <ul class="pending-list">
-          ${items.map((i) => `<li>${esc(i.label)} <code>${esc(i.path)}</code></li>`).join("")}
-        </ul>
-      </details>
-    </div>`;
+    return review ? `<div class="wrap"><p><strong>${esc(a.labels.draftTitle)}.</strong> ${esc(a.labels.draftBody)}</p></div>` : "";
   }
+
 
   function renderFooter(content) {
     const pr = content.site.process;
@@ -685,7 +655,7 @@
     try {
       const response = await fetch(`${home}content/site.json`, { cache: "no-cache" });
       if (!response.ok) throw new Error(`HTTP ${response.status} for content/site.json`);
-      content = await response.json();
+      content = hideUnset(await response.json());
     } catch (error) {
       renderError(error);
       return;
