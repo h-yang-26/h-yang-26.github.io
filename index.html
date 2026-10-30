@@ -16,9 +16,9 @@
       <a class="brand" href="./">HY</a>
       <nav aria-label="Primary">
         <ul class="nav">
-          <li><a href="./#projects">Projects</a></li>
           <li><a href="./#experience">Experience</a></li>
-          <li><a href="./applied-thinking/">Applied Thinking</a></li>
+          <li><a href="./#projects">Case Studies</a></li>
+          <li><a href="./applied-thinking/">How I Think</a></li>
           <li><a href="./#about">About</a></li>
           <li><a href="./#contact">Contact</a></li>
         </ul>
@@ -29,22 +29,85 @@
 <!-- /draft-banner --></div>
   <main id="main" tabindex="-1" data-prerendered="true">
     <section class="hero hero--story wrap" aria-labelledby="intro-title">
-      <p class="eyebrow">Business analysis · Applied mathematics</p>
-      <h1 id="intro-title">I turn messy business data into decisions people can check.</h1>
-      <p class="hero__lede">I’m an IT business analyst intern on an industrial B2B platform, with a background in applied mathematics and philosophy. The four projects below are simplified, independent versions of problems related to that work, built with fictional data, so you can see how I reason, not just what I did.</p>
+      <p class="eyebrow">Business analysis · Applied mathematics &amp; philosophy</p>
+      <h1 id="intro-title">I turn ambiguous business problems into requirements and decisions people can check.</h1>
+      <p class="hero__lede">I’m an IT business analyst intern on an industrial B2B platform used by staff and dealers. Drawing on applied mathematics and philosophy, I clarify ambiguous workflows, model operational trade-offs and translate technical complexity into plain choices with their reasons. The case studies below are simplified, independent versions of problems related to that work, built with fictional data.</p>
       <div class="actions hero__actions"><a class="btn btn--primary" href="#projects">See the work</a><a class="btn" href="mailto:hyang26@alumni.wfu.edu">Email</a><a class="btn" href="https://github.com/h-yang-26">GitHub</a></div>
       <figure class="showcase">
-      <p class="showcase__title">Messy records in. Traceable data out.</p>
-      <picture><source media="(prefers-color-scheme: dark) and (max-width: 49.99rem)" srcset="./assets/visuals/ba-data-narrow-dark.svg" width="420" height="872"><source media="(max-width: 49.99rem)" srcset="./assets/visuals/ba-data-narrow.svg" width="420" height="872"><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/ba-data-dark.svg" width="1000" height="470"><img src="./assets/visuals/ba-data.svg" alt="Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons." width="1000" height="470" decoding="async"></picture>
-      <figcaption>Real rows from the Data Quality Pipeline’s fictional sample. <a href="./projects/synthetic-data-quality-pipeline/">See how it works →</a></figcaption>
+      <p class="showcase__title">A recommendation, with its reasoning.</p>
+      <picture><source media="(prefers-color-scheme: dark) and (max-width: 49.99rem)" srcset="./assets/visuals/hero-decision-narrow-dark.svg" width="420" height="1334"><source media="(max-width: 49.99rem)" srcset="./assets/visuals/hero-decision-narrow.svg" width="420" height="1334"><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/hero-decision-dark.svg" width="1000" height="700"><img src="./assets/visuals/hero-decision.svg" alt="A decision sheet for the question “What should ship now?”, using the same tight containers and stock with only the shortage cost changed. Plan A opens one container: lower container cost, 112 of 309 units ship and 197 are short; optimal at the original shortage cost. Plan B opens both containers: less unmet demand, 130 of 309 units ship and 179 are short; optimal when shortages cost four times more. Three lenses on the same decision: business context asks what a unit of unmet demand is worth; the model treats capacity as a hard limit; the assumption is that the shortage cost is a judgment, not a fact. Conclusion: the preferred plan depends on the shortage cost." width="1000" height="700" decoding="async"></picture>
+      <figcaption>From the shipping case study’s fictional scenarios: the same containers and stock, with only the shortage cost changed. <a href="./projects/inventory-shipping-optimization-lab/">See the case study →</a></figcaption>
     </figure>
+    </section>
+
+    <section class="section section--experience" id="experience" aria-labelledby="experience-title">
+      <div class="wrap experience-compact">
+        <p class="eyebrow">Experience</p>
+        <h2 id="experience-title">Where these problems come from</h2>
+        <p class="experience-role"><strong>IT Business Analyst Intern</strong> · Heli America Inc. · August 2026–present</p>
+        <p class="section__lede">I work with a software lead on an industrial B2B business platform used by staff and dealers. My responsibilities include translating business processes into requirements, coordinating data-quality reviews, directing AI-assisted implementation work and checking results against operational needs.</p>
+        <div class="actions"></div>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <p class="eyebrow">Selected case studies</p>
+        <h2 id="projects-title">Four problems. A consistent way of reasoning.</h2>
+        <p class="section__lede">Each case study is a simplified, independent version of a problem related to my work, built with fictional data or a hypothetical scenario, so the requirements, assumptions and reasoning are visible. Each comes with a short write-up and code you can run on a laptop.</p>
+        <ul class="cards"><li>
+      <article class="card card--work" aria-labelledby="card-inventory-shipping-optimization-lab">
+        <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/inventory-scenarios-card-dark.svg" width="440" height="260"><img src="./assets/visuals/inventory-scenarios-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
+        <p class="card__kicker">Optimization</p>
+        <h3 id="card-inventory-shipping-optimization-lab">Shipping Allocation Under Cost and Capacity Constraints</h3>
+        <p class="card__outcome">Decides which containers are worth opening when shipping every unit isn’t, and re-checks every plan independently.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="./projects/inventory-shipping-optimization-lab/">Read the case study<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
+          <a class="btn" href="https://github.com/h-yang-26/inventory-shipping-optimization-lab">Source on GitHub<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
+        </div>
+      </article>
+    </li><li>
+      <article class="card card--work" aria-labelledby="card-b2b-sales-systems-case-study">
+        <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/b2b-quantities-card-dark.svg" width="440" height="260"><img src="./assets/visuals/b2b-quantities-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
+        <p class="card__kicker">Systems design</p>
+        <h3 id="card-b2b-sales-systems-case-study">B2B Sales Workflows and Demand Definitions</h3>
+        <p class="card__outcome">A proposed design that keeps quotes, orders and shipments separate, so the same demand isn’t counted twice.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="./projects/b2b-sales-systems-case-study/">Read the case study<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
+          <a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study">Source on GitHub<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
+        </div>
+      </article>
+    </li><li>
+      <article class="card card--work" aria-labelledby="card-product-usage-analytics-demo">
+        <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/analytics-funnel-card-dark.svg" width="440" height="260"><img src="./assets/visuals/analytics-funnel-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
+        <p class="card__kicker">Product analytics</p>
+        <h3 id="card-product-usage-analytics-demo">Usage Metrics with Clear Definitions</h3>
+        <p class="card__outcome">Turns a raw event log into daily activity, module usage and an ordered funnel, with every excluded row accounted for.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="./projects/product-usage-analytics-demo/">Read the case study<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
+          <a class="btn" href="https://github.com/h-yang-26/product-usage-analytics-demo">Source on GitHub<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
+        </div>
+      </article>
+    </li><li>
+      <article class="card card--work" aria-labelledby="card-synthetic-data-quality-pipeline">
+        <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/data-quality-results-card-dark.svg" width="440" height="260"><img src="./assets/visuals/data-quality-results-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
+        <p class="card__kicker">Data quality</p>
+        <h3 id="card-synthetic-data-quality-pipeline">Deciding What Not to Automate</h3>
+        <p class="card__outcome">Cleans what it safely can and hands everything else to a person, with the reason attached.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="./projects/synthetic-data-quality-pipeline/">Read the case study<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
+          <a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline">Source on GitHub<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
+        </div>
+      </article>
+    </li></ul>
+      </div>
     </section>
 
     <section class="section how-i-work" id="how-i-work" aria-labelledby="how-title">
       <div class="wrap">
-        <p class="eyebrow">How I work</p>
-        <h2 id="how-title">Four habits, each shown in one of the projects</h2>
-        <p class="section__lede">Each card pairs a reasoning habit with an example from one of the projects. The other four habits are on the Applied Thinking page.</p>
+        <p class="eyebrow">How I think</p>
+        <h2 id="how-title">Structure the problem. Examine the assumptions. Explain the decision.</h2>
+        <p class="section__lede">Each card pairs a reasoning habit with an example from one of the case studies. The other four habits are on the How I Think page.</p>
         <ul class="how-tiles"><li class="how-tile"><figure>
           <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/tile-ambiguity-dark.svg" width="440" height="520"><img src="./assets/visuals/tile-ambiguity.svg" alt="Narrowing ambiguity: is a “pressure unit” a pump or a sensor? The data can’t decide, so the row is sent to human review instead of guessed." width="440" height="520" loading="lazy" decoding="async"></picture>
           <figcaption><a href="./projects/synthetic-data-quality-pipeline/">See it in the Data Quality Pipeline<span aria-hidden="true">&nbsp;→</span></a></figcaption>
@@ -58,70 +121,7 @@
           <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/tile-decomposition-dark.svg" width="440" height="520"><img src="./assets/visuals/tile-decomposition.svg" alt="Decomposing systems: a quote for 4 units, an order for 2 and a shipment of 1 are different facts. Adding 4 + 2 gives a wrong 6 units of demand; committed demand is 2." width="440" height="520" loading="lazy" decoding="async"></picture>
           <figcaption><a href="./projects/b2b-sales-systems-case-study/">See it in the B2B Sales Systems study<span aria-hidden="true">&nbsp;→</span></a></figcaption>
         </figure></li></ul>
-        <p class="how-more"><a class="btn" href="./applied-thinking/">All eight principles in Applied Thinking</a></p>
-      </div>
-    </section>
-
-    <section class="section" id="projects" aria-labelledby="projects-title">
-      <div class="wrap">
-        <p class="eyebrow">Selected work</p>
-        <h2 id="projects-title">Four projects, one way of working</h2>
-        <p class="section__lede">Each project is a simplified, independent version of a problem related to my work, built with fictional data, with a short write-up and code you can run on a laptop.</p>
-        <ul class="cards"><li>
-      <article class="card card--work" aria-labelledby="card-synthetic-data-quality-pipeline">
-        <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/data-quality-results-card-dark.svg" width="440" height="260"><img src="./assets/visuals/data-quality-results-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
-        <p class="card__kicker">Data quality</p>
-        <h3 id="card-synthetic-data-quality-pipeline">Synthetic Data Quality Pipeline</h3>
-        <p class="card__outcome">Cleans what it safely can and hands everything else to a person, with the reason attached.</p>
-        <div class="actions">
-          <a class="btn btn--primary" href="./projects/synthetic-data-quality-pipeline/">Read the case study<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
-          <a class="btn" href="https://github.com/h-yang-26/synthetic-data-quality-pipeline">Source on GitHub<span class="visually-hidden">: Synthetic Data Quality Pipeline</span></a>
-        </div>
-      </article>
-    </li><li>
-      <article class="card card--work" aria-labelledby="card-inventory-shipping-optimization-lab">
-        <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/inventory-scenarios-card-dark.svg" width="440" height="260"><img src="./assets/visuals/inventory-scenarios-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
-        <p class="card__kicker">Optimization</p>
-        <h3 id="card-inventory-shipping-optimization-lab">Inventory and Shipping Optimization Lab</h3>
-        <p class="card__outcome">Decides which containers are worth opening when shipping every unit isn’t, and re-checks every plan independently.</p>
-        <div class="actions">
-          <a class="btn btn--primary" href="./projects/inventory-shipping-optimization-lab/">Read the case study<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
-          <a class="btn" href="https://github.com/h-yang-26/inventory-shipping-optimization-lab">Source on GitHub<span class="visually-hidden">: Inventory and Shipping Optimization Lab</span></a>
-        </div>
-      </article>
-    </li><li>
-      <article class="card card--work" aria-labelledby="card-product-usage-analytics-demo">
-        <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/analytics-funnel-card-dark.svg" width="440" height="260"><img src="./assets/visuals/analytics-funnel-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
-        <p class="card__kicker">Product analytics</p>
-        <h3 id="card-product-usage-analytics-demo">Product Usage Analytics Demo</h3>
-        <p class="card__outcome">Turns a raw event log into daily activity, module usage and an ordered funnel, with every excluded row accounted for.</p>
-        <div class="actions">
-          <a class="btn btn--primary" href="./projects/product-usage-analytics-demo/">Read the case study<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
-          <a class="btn" href="https://github.com/h-yang-26/product-usage-analytics-demo">Source on GitHub<span class="visually-hidden">: Product Usage Analytics Demo</span></a>
-        </div>
-      </article>
-    </li><li>
-      <article class="card card--work" aria-labelledby="card-b2b-sales-systems-case-study">
-        <div class="card__visual"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/visuals/b2b-quantities-card-dark.svg" width="440" height="260"><img src="./assets/visuals/b2b-quantities-card.svg" alt="" width="440" height="260" loading="lazy" decoding="async"></picture></div>
-        <p class="card__kicker">Systems design</p>
-        <h3 id="card-b2b-sales-systems-case-study">B2B Sales Systems Case Study</h3>
-        <p class="card__outcome">A proposed design that keeps quotes, orders and shipments separate, so the same demand isn’t counted twice.</p>
-        <div class="actions">
-          <a class="btn btn--primary" href="./projects/b2b-sales-systems-case-study/">Read the case study<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
-          <a class="btn" href="https://github.com/h-yang-26/b2b-sales-systems-case-study">Source on GitHub<span class="visually-hidden">: B2B Sales Systems Case Study</span></a>
-        </div>
-      </article>
-    </li></ul>
-      </div>
-    </section>
-
-    <section class="section section--experience" id="experience" aria-labelledby="experience-title">
-      <div class="wrap experience-compact">
-        <p class="eyebrow">Experience</p>
-        <h2 id="experience-title">Where these problems come from</h2>
-        <p class="experience-role"><strong>IT Business Analyst Intern</strong> · Heli America Inc. · August 2026–present</p>
-        <p class="section__lede">I work with a software lead on an industrial B2B business platform used by staff and dealers. My responsibilities include translating business processes into requirements, coordinating data-quality reviews, directing AI-assisted implementation work and checking results against operational needs.</p>
-        <div class="actions"></div>
+        <p class="how-more"><a class="btn" href="./applied-thinking/">All eight principles in How I Think</a></p>
       </div>
     </section>
 
@@ -131,7 +131,7 @@
         <p>I translate how a business runs into requirements, coordinate data-quality reviews and check results against what the business actually needs.</p><p>My background is in applied mathematics and philosophy. Mathematics gives me ways to model a problem; philosophy makes me ask what would justify the answer.</p>
 
         <h3>Tools and methods in these projects</h3>
-        <ul class="tags"><li>Python</li><li>CSV ETL</li><li>Deterministic reference mapping</li><li>pytest</li><li>PuLP/CBC</li><li>Integer optimization</li><li>Independent feasibility checks</li><li>Python/pandas</li><li>Streamlit</li><li>Altair</li><li>Ordered session funnels</li><li>Domain modeling</li><li>Mermaid</li><li>Architecture decision records</li><li>Python standard-library checks</li></ul>
+        <ul class="tags"><li>Python</li><li>PuLP/CBC</li><li>Integer optimization</li><li>Independent feasibility checks</li><li>Domain modeling</li><li>Mermaid</li><li>Architecture decision records</li><li>Python standard-library checks</li><li>Python/pandas</li><li>Streamlit</li><li>Altair</li><li>Ordered session funnels</li><li>CSV ETL</li><li>Deterministic reference mapping</li><li>pytest</li></ul>
         <h3>AI tools used to build them</h3><ul class="tags"><li>ChatGPT</li><li>Claude</li><li>Codex</li><li>Claude Code</li></ul>
       </div>
     </section>

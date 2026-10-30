@@ -97,40 +97,40 @@
   "site": {
     "summary": "Four independently developed, testable public demonstrations informed by professional work on industrial B2B systems. Each deliberately narrows a real-world problem into a fictional, reproducible example—not an export of employer code, data or architecture.",
     "hero": {
-      "eyebrow": "Business analysis · Applied mathematics",
-      "title": "I turn messy business data into decisions people can check.",
-      "lede": "I’m an IT business analyst intern on an industrial B2B platform, with a background in applied mathematics and philosophy. The four projects below are simplified, independent versions of problems related to that work, built with fictional data, so you can see how I reason, not just what I did.",
+      "eyebrow": "Business analysis · Applied mathematics & philosophy",
+      "title": "I turn ambiguous business problems into requirements and decisions people can check.",
+      "lede": "I’m an IT business analyst intern on an industrial B2B platform used by staff and dealers. Drawing on applied mathematics and philosophy, I clarify ambiguous workflows, model operational trade-offs and translate technical complexity into plain choices with their reasons. The case studies below are simplified, independent versions of problems related to that work, built with fictional data.",
       "primaryCta": {
         "label": "See the work",
         "href": "#projects"
       },
       "visual": {
-        "src": "assets/visuals/ba-data.svg",
-        "title": "Messy records in. Traceable data out.",
-        "alt": "Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons.",
-        "caption": "Real rows from the Data Quality Pipeline’s fictional sample.",
+        "src": "assets/visuals/hero-decision.svg",
+        "title": "A recommendation, with its reasoning.",
+        "alt": "A decision sheet for the question “What should ship now?”, using the same tight containers and stock with only the shortage cost changed. Plan A opens one container: lower container cost, 112 of 309 units ship and 197 are short; optimal at the original shortage cost. Plan B opens both containers: less unmet demand, 130 of 309 units ship and 179 are short; optimal when shortages cost four times more. Three lenses on the same decision: business context asks what a unit of unmet demand is worth; the model treats capacity as a hard limit; the assumption is that the shortage cost is a judgment, not a fact. Conclusion: the preferred plan depends on the shortage cost.",
+        "caption": "From the shipping case study’s fictional scenarios: the same containers and stock, with only the shortage cost changed.",
         "link": {
-          "label": "See how it works →",
-          "href": "projects/synthetic-data-quality-pipeline/"
+          "label": "See the case study →",
+          "href": "projects/inventory-shipping-optimization-lab/"
         },
         "narrowMax": "49.99rem",
         "eager": true,
         "sizes": {
           "wide": [
             1000,
-            470
+            700
           ],
           "narrow": [
             420,
-            872
+            1334
           ]
         }
       }
     },
     "howIWork": {
-      "eyebrow": "How I work",
-      "title": "Four habits, each shown in one of the projects",
-      "lede": "Each card pairs a reasoning habit with an example from one of the projects. The other four habits are on the Applied Thinking page.",
+      "eyebrow": "How I think",
+      "title": "Structure the problem. Examine the assumptions. Explain the decision.",
+      "lede": "Each card pairs a reasoning habit with an example from one of the case studies. The other four habits are on the How I Think page.",
       "tiles": [
         {
           "src": "assets/visuals/tile-ambiguity.svg",
@@ -186,14 +186,14 @@
         }
       ],
       "moreLink": {
-        "label": "All eight principles in Applied Thinking",
+        "label": "All eight principles in How I Think",
         "href": "applied-thinking/"
       }
     },
     "work": {
-      "eyebrow": "Selected work",
-      "title": "Four projects, one way of working",
-      "lede": "Each project is a simplified, independent version of a problem related to my work, built with fictional data, with a short write-up and code you can run on a laptop."
+      "eyebrow": "Selected case studies",
+      "title": "Four problems. A consistent way of reasoning.",
+      "lede": "Each case study is a simplified, independent version of a problem related to my work, built with fictional data or a hypothetical scenario, so the requirements, assumptions and reasoning are visible. Each comes with a short write-up and code you can run on a laptop."
     },
     "experience": {
       "eyebrow": "Experience",
@@ -305,164 +305,6 @@
   },
   "projects": [
     {
-      "slug": "synthetic-data-quality-pipeline",
-      "repoUrl": "https://github.com/h-yang-26/synthetic-data-quality-pipeline",
-      "title": "Synthetic Data Quality Pipeline",
-      "focus": [
-        "Python",
-        "CSV ETL",
-        "Deterministic reference mapping",
-        "pytest"
-      ],
-      "card": {
-        "kicker": "Data quality",
-        "outcome": "Cleans what it safely can and hands everything else to a person, with the reason attached."
-      },
-      "visuals": [
-        {
-          "kind": "diagram",
-          "title": "Traceable decisions, not guessed repairs",
-          "src": "assets/visuals/data-quality-flow.svg",
-          "alt": "Fictional validation diagram: 60 source rows go through row checks; the 37 that pass become accepted records and the 23 that fail any check go to an exceptions file for human review.",
-          "caption": "A record's path depends on deterministic checks. Ambiguous categories and invalid fields are retained for review, not silently repaired.",
-          "sizes": {
-            "wide": [
-              760,
-              300
-            ],
-            "narrow": [
-              420,
-              556
-            ]
-          }
-        },
-        {
-          "kind": "result",
-          "title": "All 60 rows reconciled; duplicate IDs are the most common review reason",
-          "src": "assets/visuals/data-quality-results.svg",
-          "alt": "Synthetic sample chart: 60 rows, 37 accepted and 23 held for review. Review reasons, one per row: duplicate ID 4; ambiguous category, invalid date, invalid quantity and unknown category 3 each; missing ID and missing quantity 2 each; missing category, missing date and missing item name 1 each.",
-          "caption": "The 60-row generated sample reconciles completely. Counts come from the committed `outputs/summary.json`.",
-          "sizes": {
-            "wide": [
-              760,
-              514
-            ],
-            "narrow": [
-              420,
-              535
-            ],
-            "card": [
-              440,
-              260
-            ]
-          }
-        }
-      ],
-      "thumbnail": "assets/visuals/data-quality-results.svg",
-      "story": {
-        "headline": "Moving messy records without guessing",
-        "lede": "A small Python pipeline that cleans what it safely can and hands everything else to a person, with the reason attached.",
-        "facts": [
-          {
-            "label": "My role",
-            "value": "Requirements, edge cases and approvals; AI tools did the implementation"
-          },
-          {
-            "label": "Built with",
-            "value": "Python, pytest"
-          },
-          {
-            "label": "Data",
-            "value": "60 fictional equipment records"
-          }
-        ],
-        "banner": {
-          "src": "assets/visuals/ba-data.svg",
-          "title": "Messy records in. Traceable data out.",
-          "alt": "Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons.",
-          "caption": "Real rows from this project’s fictional sample data.",
-          "narrowMax": "49.99rem",
-          "eager": true,
-          "sizes": {
-            "wide": [
-              1000,
-              470
-            ],
-            "narrow": [
-              420,
-              872
-            ]
-          }
-        },
-        "situation": [
-          "Before inventory moves into a new system, someone has to decide what every messy record means. Guess wrong and a pump gets quoted as a sensor, or a quantity nobody entered quietly becomes zero.",
-          "This project rebuilds that problem with 60 fictional equipment records and one rule: when the data can’t decide, a person does."
-        ],
-        "decisionsTitle": "Three decisions that shape it",
-        "decisions": [
-          {
-            "title": "Flag, don’t fix.",
-            "body": "A category like “pressure unit” could mean a pump or a sensor. Instead of picking one, the row goes to a person with the reason attached. It’s slower, but an ambiguous category is never resolved silently.",
-            "term": "Exact alias matching; no fuzzy matching.",
-            "visual": {
-              "src": "assets/visuals/tile-ambiguity.svg",
-              "alt": "Illustration: the label “pressure unit” could point to a pump or a sensor, so the row is sent to human review.",
-              "sizes": {
-                "wide": [
-                  440,
-                  520
-                ]
-              },
-              "principle": "boundary-refinement"
-            }
-          },
-          {
-            "title": "Accept one date format.",
-            "body": "03/04/2024 is March 4 to one reader and April 3 to another, and an impossible date like February 30th looks normal at a glance. Only real calendar dates written as YYYY-MM-DD get through.",
-            "term": "Strict `YYYY-MM-DD` with ASCII digits; impossible dates rejected.",
-            "visual": {
-              "src": "assets/visuals/tile-evidence.svg",
-              "alt": "Illustration: 03/04/2024 reads as March 4 in the US and April 3 in the UK, so the date is rejected rather than guessed.",
-              "sizes": {
-                "wide": [
-                  440,
-                  520
-                ]
-              },
-              "principle": "inference-evidence"
-            }
-          },
-          {
-            "title": "Reject every copy of a duplicated ID.",
-            "body": "When two rows claim the same ID, nothing in the data says which one is real, so neither is kept. Rejecting only the second copy would quietly trust whichever happened to come first.",
-            "term": "IDs compared after trimming; case-sensitive."
-          }
-        ],
-        "result": {
-          "text": [
-            "All 60 rows are accounted for: 37 clean records and 23 held for review, each with its reason. Run it twice and you get the same files."
-          ],
-          "visuals": [
-            "assets/visuals/data-quality-results.svg"
-          ]
-        },
-        "next": [
-          "A simple review screen: each held row with its reason and the closest likely match shown, with the final call left to the reviewer."
-        ],
-        "technical": {
-          "notes": [
-            "Input and mapping files are checked for structural problems before anything is written; a malformed file stops the run with exit code 2, while bad rows become reviewable exceptions.",
-            "Every input row gets exactly one outcome, and `summary.json` reconciles input = accepted + rejected.",
-            "A blank quantity is missing, while an explicit `0` is a valid count; neither is defaulted.",
-            "Exceptions keep the source row number, the raw values and every error code, so a reviewer sees exactly what arrived.",
-            "Outputs carry no timestamps, so a rerun is byte-for-byte identical.",
-            "Standard-library Python at runtime; 21 pytest tests, including a small fixture whose expected output was worked out by hand."
-          ],
-          "linkLabel": "Full method, tests and run instructions on GitHub"
-        }
-      }
-    },
-    {
       "slug": "inventory-shipping-optimization-lab",
       "repoUrl": "https://github.com/h-yang-26/inventory-shipping-optimization-lab",
       "title": "Inventory and Shipping Optimization Lab",
@@ -473,6 +315,7 @@
         "Independent feasibility checks"
       ],
       "card": {
+        "title": "Shipping Allocation Under Cost and Capacity Constraints",
         "kicker": "Optimization",
         "outcome": "Decides which containers are worth opening when shipping every unit isn’t, and re-checks every plan independently."
       },
@@ -625,155 +468,6 @@
       }
     },
     {
-      "slug": "product-usage-analytics-demo",
-      "repoUrl": "https://github.com/h-yang-26/product-usage-analytics-demo",
-      "title": "Product Usage Analytics Demo",
-      "focus": [
-        "Python/pandas",
-        "Streamlit",
-        "Altair",
-        "Ordered session funnels"
-      ],
-      "card": {
-        "kicker": "Product analytics",
-        "outcome": "Turns a raw event log into daily activity, module usage and an ordered funnel, with every excluded row accounted for."
-      },
-      "visuals": [
-        {
-          "kind": "diagram",
-          "title": "From raw events to defensible metrics",
-          "src": "assets/visuals/analytics-pipeline.svg",
-          "alt": "Synthetic telemetry pipeline diagram: 5,766 raw rows are validated file-wide; 5,735 valid events feed the usage metrics and 31 are excluded (10 identical copies collapsed, 8 conflicting, 13 invalid).",
-          "caption": "File-wide validation precedes date and module filters; invalid or conflicting events do not enter the usage metrics.",
-          "sizes": {
-            "wide": [
-              760,
-              330
-            ],
-            "narrow": [
-              420,
-              600
-            ]
-          }
-        },
-        {
-          "kind": "result",
-          "title": "Fewer than half of page-opening sessions reach a detail view",
-          "src": "assets/visuals/analytics-funnel.svg",
-          "alt": "Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view.",
-          "caption": "The funnel uses distinct `(user_id, session_id)` pairs and strictly increasing event timestamps. It is not a user-level conversion rate.",
-          "sizes": {
-            "wide": [
-              760,
-              266
-            ],
-            "narrow": [
-              420,
-              324
-            ],
-            "card": [
-              440,
-              260
-            ]
-          }
-        }
-      ],
-      "thumbnail": "assets/visuals/analytics-funnel.svg",
-      "story": {
-        "headline": "Usage metrics that mean one thing",
-        "lede": "A small dashboard that validates raw event logs first, then turns them into daily activity, module usage and an ordered funnel, each with its definition written down.",
-        "facts": [
-          {
-            "label": "My role",
-            "value": "Requirements, edge cases and approvals; AI tools did the implementation"
-          },
-          {
-            "label": "Built with",
-            "value": "Python, pandas, Streamlit, Altair"
-          },
-          {
-            "label": "Data",
-            "value": "5,766 fictional event rows over 28 days"
-          }
-        ],
-        "banner": {
-          "src": "assets/visuals/ba-usage.svg",
-          "title": "Raw clicks in. Clear answers out.",
-          "alt": "Before and after. Before: rows from the fictional event log, with time, user, module and action, fading into “5,766 rows like these”. After: a dashboard showing 175 users in scope, 1,520 sessions and 619 full-funnel sessions, with a September daily active users chart where weekends are shaded.",
-          "caption": "Redrawn from this project’s fictional event data; the rows and numbers are real, the layout is simplified.",
-          "narrowMax": "49.99rem",
-          "eager": true,
-          "sizes": {
-            "wide": [
-              1000,
-              470
-            ],
-            "narrow": [
-              420,
-              862
-            ]
-          }
-        },
-        "situation": [
-          "“How many people use the product?” sounds like one question. Daily users, total events and funnel progress give three different answers, and a duplicated or malformed event can quietly change all of them.",
-          "This project explores that problem with 28 days of fictional events from an invented B2B web app."
-        ],
-        "decisionsTitle": "Three decisions that shape it",
-        "decisions": [
-          {
-            "title": "Validate the whole file before any filter.",
-            "body": "Exact duplicate events collapse to one, conflicting copies are quarantined and rows with missing or invalid fields are rejected, all before any date or module filter is applied. Changing the view never changes what counts as valid data.",
-            "term": "File-wide validation; every raw row gets exactly one outcome.",
-            "visual": {
-              "src": "assets/visuals/tile-filters.svg",
-              "principle": "inference-evidence",
-              "alt": "Illustration: all modules for September 1–28 show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
-              "sizes": {
-                "wide": [
-                  440,
-                  520
-                ]
-              }
-            }
-          },
-          {
-            "title": "Write down every denominator.",
-            "body": "Daily active users are distinct people per day, not the sum of each module’s users, and module share is a share of events, not of people. Each chart states what it counts, and a rate shows N/A instead of a misleading zero when there is nothing to divide by.",
-            "term": "Distinct users, events and sessions kept separate; N/A for empty denominators."
-          },
-          {
-            "title": "Count a funnel step only if it happens later.",
-            "body": "A session reaches the next step only when that action happens strictly after the previous one. Repeated clicks don’t count twice, and two actions in the same second don’t prove an order.",
-            "term": "Session = a (user, session) pair; strictly increasing timestamps."
-          }
-        ],
-        "result": {
-          "text": [
-            "Of 5,766 raw rows, 5,735 are valid and every other row is accounted for: 10 duplicate copies collapsed, 8 quarantined and 13 rejected. In September, 1,357 sessions opened a page, 844 then searched and 619 then viewed a detail: 46% of the sessions that opened a page."
-          ],
-          "visuals": [
-            "assets/visuals/analytics-funnel.svg"
-          ]
-        },
-        "next": [
-          "Let users choose the funnel steps and add sessions based on inactivity, so the same definitions can answer more questions."
-        ],
-        "technical": {
-          "notes": [
-            "Every raw row has exactly one outcome: 5,766 raw = 5,735 valid + 10 collapsed + 8 quarantined + 13 rejected.",
-            "Timestamps must be `YYYY-MM-DDTHH:MM:SSZ` in UTC with ASCII digits; other offsets are rejected, not converted.",
-            "Date filters include the start date from midnight UTC and stop at midnight after the end date.",
-            "The metric code has no Streamlit dependency, so another interface could reuse the same definitions.",
-            "A seeded generator produces byte-identical data on every run; 44 pytest tests, including headless dashboard runs."
-          ],
-          "visuals": [
-            "assets/visuals/analytics-pipeline.svg"
-          ],
-          "linkLabel": "Full definitions, tests and run instructions on GitHub"
-        }
-      }
-    },
-    {
       "slug": "b2b-sales-systems-case-study",
       "repoUrl": "https://github.com/h-yang-26/b2b-sales-systems-case-study",
       "title": "B2B Sales Systems Case Study",
@@ -784,6 +478,7 @@
         "Python standard-library checks"
       ],
       "card": {
+        "title": "B2B Sales Workflows and Demand Definitions",
         "kicker": "Systems design",
         "outcome": "A proposed design that keeps quotes, orders and shipments separate, so the same demand isn’t counted twice."
       },
@@ -923,6 +618,315 @@
           "linkLabel": "Full design documents and checks on GitHub"
         }
       }
+    },
+    {
+      "slug": "product-usage-analytics-demo",
+      "repoUrl": "https://github.com/h-yang-26/product-usage-analytics-demo",
+      "title": "Product Usage Analytics Demo",
+      "focus": [
+        "Python/pandas",
+        "Streamlit",
+        "Altair",
+        "Ordered session funnels"
+      ],
+      "card": {
+        "title": "Usage Metrics with Clear Definitions",
+        "kicker": "Product analytics",
+        "outcome": "Turns a raw event log into daily activity, module usage and an ordered funnel, with every excluded row accounted for."
+      },
+      "visuals": [
+        {
+          "kind": "diagram",
+          "title": "From raw events to defensible metrics",
+          "src": "assets/visuals/analytics-pipeline.svg",
+          "alt": "Synthetic telemetry pipeline diagram: 5,766 raw rows are validated file-wide; 5,735 valid events feed the usage metrics and 31 are excluded (10 identical copies collapsed, 8 conflicting, 13 invalid).",
+          "caption": "File-wide validation precedes date and module filters; invalid or conflicting events do not enter the usage metrics.",
+          "sizes": {
+            "wide": [
+              760,
+              330
+            ],
+            "narrow": [
+              420,
+              600
+            ]
+          }
+        },
+        {
+          "kind": "result",
+          "title": "Fewer than half of page-opening sessions reach a detail view",
+          "src": "assets/visuals/analytics-funnel.svg",
+          "alt": "Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view.",
+          "caption": "The funnel uses distinct `(user_id, session_id)` pairs and strictly increasing event timestamps. It is not a user-level conversion rate.",
+          "sizes": {
+            "wide": [
+              760,
+              266
+            ],
+            "narrow": [
+              420,
+              324
+            ],
+            "card": [
+              440,
+              260
+            ]
+          }
+        }
+      ],
+      "thumbnail": "assets/visuals/analytics-funnel.svg",
+      "story": {
+        "headline": "Usage metrics that mean one thing",
+        "lede": "A small dashboard that validates raw event logs first, then turns them into daily activity, module usage and an ordered funnel, each with its definition written down.",
+        "facts": [
+          {
+            "label": "My role",
+            "value": "Requirements, edge cases and approvals; AI tools did the implementation"
+          },
+          {
+            "label": "Built with",
+            "value": "Python, pandas, Streamlit, Altair"
+          },
+          {
+            "label": "Data",
+            "value": "5,766 fictional event rows over 28 days"
+          }
+        ],
+        "banner": {
+          "src": "assets/visuals/ba-usage.svg",
+          "title": "Raw clicks in. Clear answers out.",
+          "alt": "Before and after. Before: rows from the fictional event log, with time, user, module and action, fading into “5,766 rows like these”. After: a dashboard showing 175 users in scope, 1,520 sessions and 619 full-funnel sessions, with a September daily active users chart where weekends are shaded.",
+          "caption": "Redrawn from this project’s fictional event data; the rows and numbers are real, the layout is simplified.",
+          "narrowMax": "49.99rem",
+          "eager": true,
+          "sizes": {
+            "wide": [
+              1000,
+              470
+            ],
+            "narrow": [
+              420,
+              862
+            ]
+          }
+        },
+        "situation": [
+          "“How many people use the product?” sounds like one question. Daily users, total events and funnel progress give three different answers, and a duplicated or malformed event can quietly change all of them.",
+          "This project explores that problem with 28 days of fictional events from an invented B2B web app."
+        ],
+        "decisionsTitle": "Three decisions that shape it",
+        "decisions": [
+          {
+            "title": "Validate the whole file before any filter.",
+            "body": "Exact duplicate events collapse to one, conflicting copies are quarantined and rows with missing or invalid fields are rejected, all before any date or module filter is applied. Changing the view never changes what counts as valid data.",
+            "term": "File-wide validation; every raw row gets exactly one outcome.",
+            "visual": {
+              "src": "assets/visuals/tile-filters.svg",
+              "principle": "inference-evidence",
+              "alt": "Illustration: all modules for September 1–28 show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
+              "sizes": {
+                "wide": [
+                  440,
+                  520
+                ]
+              }
+            }
+          },
+          {
+            "title": "Write down every denominator.",
+            "body": "Daily active users are distinct people per day, not the sum of each module’s users, and module share is a share of events, not of people. Each chart states what it counts, and a rate shows N/A instead of a misleading zero when there is nothing to divide by.",
+            "term": "Distinct users, events and sessions kept separate; N/A for empty denominators."
+          },
+          {
+            "title": "Count a funnel step only if it happens later.",
+            "body": "A session reaches the next step only when that action happens strictly after the previous one. Repeated clicks don’t count twice, and two actions in the same second don’t prove an order.",
+            "term": "Session = a (user, session) pair; strictly increasing timestamps."
+          }
+        ],
+        "result": {
+          "text": [
+            "Of 5,766 raw rows, 5,735 are valid and every other row is accounted for: 10 duplicate copies collapsed, 8 quarantined and 13 rejected. In September, 1,357 sessions opened a page, 844 then searched and 619 then viewed a detail: 46% of the sessions that opened a page."
+          ],
+          "visuals": [
+            "assets/visuals/analytics-funnel.svg"
+          ]
+        },
+        "next": [
+          "Let users choose the funnel steps and add sessions based on inactivity, so the same definitions can answer more questions."
+        ],
+        "technical": {
+          "notes": [
+            "Every raw row has exactly one outcome: 5,766 raw = 5,735 valid + 10 collapsed + 8 quarantined + 13 rejected.",
+            "Timestamps must be `YYYY-MM-DDTHH:MM:SSZ` in UTC with ASCII digits; other offsets are rejected, not converted.",
+            "Date filters include the start date from midnight UTC and stop at midnight after the end date.",
+            "The metric code has no Streamlit dependency, so another interface could reuse the same definitions.",
+            "A seeded generator produces byte-identical data on every run; 44 pytest tests, including headless dashboard runs."
+          ],
+          "visuals": [
+            "assets/visuals/analytics-pipeline.svg"
+          ],
+          "linkLabel": "Full definitions, tests and run instructions on GitHub"
+        }
+      }
+    },
+    {
+      "slug": "synthetic-data-quality-pipeline",
+      "repoUrl": "https://github.com/h-yang-26/synthetic-data-quality-pipeline",
+      "title": "Synthetic Data Quality Pipeline",
+      "focus": [
+        "Python",
+        "CSV ETL",
+        "Deterministic reference mapping",
+        "pytest"
+      ],
+      "card": {
+        "title": "Deciding What Not to Automate",
+        "kicker": "Data quality",
+        "outcome": "Cleans what it safely can and hands everything else to a person, with the reason attached."
+      },
+      "visuals": [
+        {
+          "kind": "diagram",
+          "title": "Traceable decisions, not guessed repairs",
+          "src": "assets/visuals/data-quality-flow.svg",
+          "alt": "Fictional validation diagram: 60 source rows go through row checks; the 37 that pass become accepted records and the 23 that fail any check go to an exceptions file for human review.",
+          "caption": "A record's path depends on deterministic checks. Ambiguous categories and invalid fields are retained for review, not silently repaired.",
+          "sizes": {
+            "wide": [
+              760,
+              300
+            ],
+            "narrow": [
+              420,
+              556
+            ]
+          }
+        },
+        {
+          "kind": "result",
+          "title": "All 60 rows reconciled; duplicate IDs are the most common review reason",
+          "src": "assets/visuals/data-quality-results.svg",
+          "alt": "Synthetic sample chart: 60 rows, 37 accepted and 23 held for review. Review reasons, one per row: duplicate ID 4; ambiguous category, invalid date, invalid quantity and unknown category 3 each; missing ID and missing quantity 2 each; missing category, missing date and missing item name 1 each.",
+          "caption": "The 60-row generated sample reconciles completely. Counts come from the committed `outputs/summary.json`.",
+          "sizes": {
+            "wide": [
+              760,
+              514
+            ],
+            "narrow": [
+              420,
+              535
+            ],
+            "card": [
+              440,
+              260
+            ]
+          }
+        }
+      ],
+      "thumbnail": "assets/visuals/data-quality-results.svg",
+      "story": {
+        "headline": "Moving messy records without guessing",
+        "lede": "A small Python pipeline that cleans what it safely can and hands everything else to a person, with the reason attached.",
+        "facts": [
+          {
+            "label": "My role",
+            "value": "Requirements, edge cases and approvals; AI tools did the implementation"
+          },
+          {
+            "label": "Built with",
+            "value": "Python, pytest"
+          },
+          {
+            "label": "Data",
+            "value": "60 fictional equipment records"
+          }
+        ],
+        "banner": {
+          "src": "assets/visuals/ba-data.svg",
+          "title": "Messy records in. Traceable data out.",
+          "alt": "Before and after. Before: rows from the fictional sample input, where one has a blank ID, one has the date 2024-02-30, one says N/A for quantity, one has the category “Pressure Unit” and one repeats another row’s ID. After: clean records with standard categories, and an exceptions file holding rows for a person with their reasons.",
+          "caption": "Real rows from this project’s fictional sample data.",
+          "narrowMax": "49.99rem",
+          "eager": true,
+          "sizes": {
+            "wide": [
+              1000,
+              470
+            ],
+            "narrow": [
+              420,
+              872
+            ]
+          }
+        },
+        "situation": [
+          "Before inventory moves into a new system, someone has to decide what every messy record means. Guess wrong and a pump gets quoted as a sensor, or a quantity nobody entered quietly becomes zero.",
+          "This project rebuilds that problem with 60 fictional equipment records and one rule: when the data can’t decide, a person does."
+        ],
+        "decisionsTitle": "Three decisions that shape it",
+        "decisions": [
+          {
+            "title": "Flag, don’t fix.",
+            "body": "A category like “pressure unit” could mean a pump or a sensor. Instead of picking one, the row goes to a person with the reason attached. It’s slower, but an ambiguous category is never resolved silently.",
+            "term": "Exact alias matching; no fuzzy matching.",
+            "visual": {
+              "src": "assets/visuals/tile-ambiguity.svg",
+              "alt": "Illustration: the label “pressure unit” could point to a pump or a sensor, so the row is sent to human review.",
+              "sizes": {
+                "wide": [
+                  440,
+                  520
+                ]
+              },
+              "principle": "boundary-refinement"
+            }
+          },
+          {
+            "title": "Accept one date format.",
+            "body": "03/04/2024 is March 4 to one reader and April 3 to another, and an impossible date like February 30th looks normal at a glance. Only real calendar dates written as YYYY-MM-DD get through.",
+            "term": "Strict `YYYY-MM-DD` with ASCII digits; impossible dates rejected.",
+            "visual": {
+              "src": "assets/visuals/tile-evidence.svg",
+              "alt": "Illustration: 03/04/2024 reads as March 4 in the US and April 3 in the UK, so the date is rejected rather than guessed.",
+              "sizes": {
+                "wide": [
+                  440,
+                  520
+                ]
+              },
+              "principle": "inference-evidence"
+            }
+          },
+          {
+            "title": "Reject every copy of a duplicated ID.",
+            "body": "When two rows claim the same ID, nothing in the data says which one is real, so neither is kept. Rejecting only the second copy would quietly trust whichever happened to come first.",
+            "term": "IDs compared after trimming; case-sensitive."
+          }
+        ],
+        "result": {
+          "text": [
+            "All 60 rows are accounted for: 37 clean records and 23 held for review, each with its reason. Run it twice and you get the same files."
+          ],
+          "visuals": [
+            "assets/visuals/data-quality-results.svg"
+          ]
+        },
+        "next": [
+          "A simple review screen: each held row with its reason and the closest likely match shown, with the final call left to the reviewer."
+        ],
+        "technical": {
+          "notes": [
+            "Input and mapping files are checked for structural problems before anything is written; a malformed file stops the run with exit code 2, while bad rows become reviewable exceptions.",
+            "Every input row gets exactly one outcome, and `summary.json` reconciles input = accepted + rejected.",
+            "A blank quantity is missing, while an explicit `0` is a valid count; neither is defaulted.",
+            "Exceptions keep the source row number, the raw values and every error code, so a reviewer sees exactly what arrived.",
+            "Outputs carry no timestamps, so a rerun is byte-for-byte identical.",
+            "Standard-library Python at runtime; 21 pytest tests, including a small fixture whose expected output was worked out by hand."
+          ],
+          "linkLabel": "Full method, tests and run instructions on GitHub"
+        }
+      }
     }
   ],
   "appliedThinking": {
@@ -930,7 +934,7 @@
     "moduleId": "applied-thinking",
     "draftStatus": "approved",
     "route": "applied-thinking/",
-    "navLabel": "Applied Thinking",
+    "navLabel": "How I Think",
     "homePreview": {
       "eyebrow": "Academic foundations · Applied mathematics and philosophy",
       "title": "Applied Thinking: The reasoning behind the work",
@@ -946,7 +950,28 @@
       "paragraphs": [
         "A mathematical method can be correct for the problem it was given while the problem itself is poorly specified. A plausible explanation can fit the observed evidence without being established fact. And a simplified model can be useful while still concealing an important dependency.",
         "My academic background gives me complementary tools for these situations: applied mathematics for identifying structure and constructing models, and philosophy for examining assumptions, justification, uncertainty and the limits of those models."
-      ]
+      ],
+      "visual": {
+        "src": "assets/visuals/thinking-lenses.svg",
+        "title": "One problem, three lenses.",
+        "alt": "One problem, how much demand is there, for a fictional order of 4 quoted, 2 ordered and 1 shipped units, seen through three lenses. Business context: what each record is, a quote for 4 units, an order for 2 and a shipment of 1. Mathematics: how the parts connect, quote to order to shipment. Philosophy: what the number means; 4 + 2 + 1 = 7 is crossed out, asking what demand means, and the answer is to count it once. Conclusion: committed demand is 2 units, one number people can check.",
+        "caption": "Business context says what each record is, mathematics how the records connect, and philosophy what the number should mean. Built on the B2B case study’s fictional order.",
+        "link": {
+          "label": "Read the case study →",
+          "href": "projects/b2b-sales-systems-case-study/"
+        },
+        "narrowMax": "49.99rem",
+        "sizes": {
+          "wide": [
+            1000,
+            610
+          ],
+          "narrow": [
+            420,
+            1268
+          ]
+        }
+      }
     },
     "foundations": [
       {

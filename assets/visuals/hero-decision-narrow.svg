@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 1334" width="420" height="1334" role="img" aria-labelledby="t"><title id="t">Plan A opens one container and ships 112 of 309 units; Plan B opens both and ships 130. The preferred plan depends on the shortage cost.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#7D8691"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8A5A0C"/></marker></defs><rect width="420" height="1334" rx="20" fill="#F8F7F3"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="20" y="44" font-size="16" fill="#1C5785" font-weight="800" letter-spacing="1.5">THE QUESTION</text>
+<text x="20" y="78" font-size="26" fill="#1A1D21" font-weight="800">What should ship now?</text>
+<text x="20" y="106" font-size="16" fill="#4F5660" font-weight="600">Same tight containers and stock.</text>
+<text x="20" y="128" font-size="16" fill="#4F5660" font-weight="600">Only the shortage cost changes.</text>
+<rect x="20" y="148" width="380" height="330" rx="14" fill="#FFFFFF" stroke="#7D8691" stroke-width="1.5"/>
+<text x="40" y="182" font-size="16" fill="#1C5785" font-weight="800" letter-spacing="1.5">PLAN A</text>
+<text x="40" y="212" font-size="21" fill="#1A1D21" font-weight="800" data-box="20,148,380,330">Open one container</text>
+<text x="40" y="238" font-size="17" fill="#4F5660" font-weight="600" data-box="20,148,380,330">Lower container cost</text>
+<rect x="40" y="260" width="150" height="92" rx="6" fill="#EAF1F7" stroke="#1C5785" stroke-width="2.5"/>
+<rect x="50" y="324" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="72" y="324" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="94" y="324" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="116" y="324" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="138" y="324" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="160" y="324" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="50" y="302" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="72" y="302" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="94" y="302" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="116" y="302" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="138" y="302" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="160" y="302" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="50" y="280" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="72" y="280" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="94" y="280" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="116" y="280" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="138" y="280" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="160" y="280" width="16" height="16" rx="3" fill="#146C67"/>
+<text x="40" y="374" font-size="16" fill="#4F5660" font-weight="600">large · opened</text>
+<rect x="210" y="280" width="100" height="72" rx="6" fill="none" stroke="#7D8691" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="210" y="374" font-size="16" fill="#4F5660" font-weight="600">small · not opened</text>
+<rect x="40" y="394" width="340" height="16" rx="8" fill="#8A5A0C"/>
+<rect x="40" y="394" width="123" height="16" rx="8" fill="#146C67"/>
+<rect x="155" y="394" width="8" height="16" fill="#146C67"/>
+<text x="40" y="436" font-size="17" fill="#1A1D21" font-weight="700">112 of 309 units ship</text>
+<text x="380" y="436" font-size="17" fill="#8A5A0C" font-weight="700" text-anchor="end">197 short</text>
+<text x="40" y="464" font-size="17" fill="#4F5660" font-weight="600" data-box="20,148,380,330">Optimal at the original shortage cost</text>
+<rect x="20" y="494" width="380" height="330" rx="14" fill="#FFFFFF" stroke="#7D8691" stroke-width="1.5"/>
+<text x="40" y="528" font-size="16" fill="#1C5785" font-weight="800" letter-spacing="1.5">PLAN B</text>
+<text x="40" y="558" font-size="21" fill="#1A1D21" font-weight="800" data-box="20,494,380,330">Open both containers</text>
+<text x="40" y="584" font-size="17" fill="#4F5660" font-weight="600" data-box="20,494,380,330">Less unmet demand</text>
+<rect x="40" y="606" width="150" height="92" rx="6" fill="#EAF1F7" stroke="#1C5785" stroke-width="2.5"/>
+<rect x="50" y="670" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="72" y="670" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="94" y="670" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="116" y="670" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="138" y="670" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="160" y="670" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="50" y="648" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="72" y="648" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="94" y="648" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="116" y="648" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="138" y="648" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="160" y="648" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="50" y="626" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="72" y="626" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="94" y="626" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="116" y="626" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="138" y="626" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="160" y="626" width="16" height="16" rx="3" fill="#146C67"/>
+<text x="40" y="720" font-size="16" fill="#4F5660" font-weight="600">large · opened</text>
+<rect x="210" y="626" width="100" height="72" rx="6" fill="#EAF1F7" stroke="#1C5785" stroke-width="2.5"/>
+<rect x="220" y="670" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="242" y="670" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="264" y="670" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="220" y="648" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="242" y="648" width="16" height="16" rx="3" fill="#146C67"/>
+<rect x="264" y="648" width="16" height="16" rx="3" fill="#146C67"/>
+<text x="210" y="720" font-size="16" fill="#4F5660" font-weight="600">small · opened</text>
+<rect x="40" y="740" width="340" height="16" rx="8" fill="#8A5A0C"/>
+<rect x="40" y="740" width="143" height="16" rx="8" fill="#146C67"/>
+<rect x="175" y="740" width="8" height="16" fill="#146C67"/>
+<text x="40" y="782" font-size="17" fill="#1A1D21" font-weight="700">130 of 309 units ship</text>
+<text x="380" y="782" font-size="17" fill="#8A5A0C" font-weight="700" text-anchor="end">179 short</text>
+<text x="40" y="810" font-size="17" fill="#4F5660" font-weight="600" data-box="20,494,380,330">Optimal when shortages cost 4× more</text>
+<text x="20" y="862" font-size="16" fill="#4F5660" font-weight="800" letter-spacing="1.2">THREE LENSES ON THE SAME DECISION</text>
+<rect x="20" y="876" width="380" height="98" rx="12" fill="#F4F6F8"/>
+<rect x="20" y="876" width="6" height="98" rx="3" fill="#1C5785"/>
+<text x="42" y="906" font-size="16" fill="#1C5785" font-weight="800" letter-spacing="1.2" data-box="20,876,380,98">BUSINESS CONTEXT</text>
+<text x="42" y="934" font-size="18" fill="#1A1D21" font-weight="600" data-box="20,876,380,98">What is a unit of</text>
+<text x="42" y="958" font-size="18" fill="#1A1D21" font-weight="600" data-box="20,876,380,98">unmet demand worth?</text>
+<rect x="20" y="986" width="380" height="98" rx="12" fill="#F4F6F8"/>
+<rect x="20" y="986" width="6" height="98" rx="3" fill="#146C67"/>
+<text x="42" y="1016" font-size="16" fill="#146C67" font-weight="800" letter-spacing="1.2" data-box="20,986,380,98">MODEL</text>
+<text x="42" y="1044" font-size="18" fill="#1A1D21" font-weight="600" data-box="20,986,380,98">Capacity is a hard</text>
+<text x="42" y="1068" font-size="18" fill="#1A1D21" font-weight="600" data-box="20,986,380,98">limit in both plans.</text>
+<rect x="20" y="1096" width="380" height="98" rx="12" fill="#F4F6F8"/>
+<rect x="20" y="1096" width="6" height="98" rx="3" fill="#8A5A0C"/>
+<text x="42" y="1126" font-size="16" fill="#8A5A0C" font-weight="800" letter-spacing="1.2" data-box="20,1096,380,98">ASSUMPTION</text>
+<text x="42" y="1154" font-size="18" fill="#1A1D21" font-weight="600" data-box="20,1096,380,98">The shortage cost is a</text>
+<text x="42" y="1178" font-size="18" fill="#1A1D21" font-weight="600" data-box="20,1096,380,98">judgment, not a fact.</text>
+<rect x="20" y="1206" width="380" height="104" rx="12" fill="#EAF1F7" stroke="#1C5785" stroke-width="2"/>
+<text x="42" y="1240" font-size="23" fill="#1A1D21" font-weight="800" data-box="20,1206,380,104">Preferred plan depends</text>
+<text x="42" y="1270" font-size="23" fill="#1A1D21" font-weight="800" data-box="20,1206,380,104">on the shortage cost.</text>
+<text x="42" y="1296" font-size="16" fill="#4F5660" font-weight="600" data-box="20,1206,380,104">Fictional scenarios · not a loading plan</text></g></svg>

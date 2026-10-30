@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 1268" width="420" height="1268" role="img" aria-labelledby="t"><title id="t">One problem, how much demand is there, seen through business context, mathematics and philosophy: committed demand is 2 units.</title><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#848D98"/></marker><marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E6B15C"/></marker></defs><rect width="420" height="1268" rx="20" fill="#111315"/><g font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"><text x="20" y="44" font-size="16" fill="#8CC0EA" font-weight="800" letter-spacing="1.5">ONE PROBLEM</text>
+<text x="20" y="78" font-size="26" fill="#E9E7E2" font-weight="800">How much demand is there?</text>
+<text x="20" y="106" font-size="16" fill="#A9AEB5" font-weight="600">A fictional order: 4 quoted,</text>
+<text x="20" y="128" font-size="16" fill="#A9AEB5" font-weight="600">2 ordered, 1 shipped.</text>
+<path d="M273.8 361.8 L303.8 391.8" stroke="#8CC0EA" stroke-width="10" stroke-linecap="round"/>
+<circle cx="190" cy="278" r="118" fill="#191C1F" stroke="#8CC0EA" stroke-width="4"/>
+<rect x="106.4" y="203.9" width="167.2" height="39.9" rx="8" fill="#22272C" stroke="#8CC0EA" stroke-width="2"/>
+<text x="118" y="230" font-size="16" fill="#E9E7E2" font-weight="800" data-box="106.4,203.9,167.2,39.9">Quote</text>
+<text x="262" y="230" font-size="16" fill="#8CC0EA" font-weight="700" text-anchor="end" data-box="106.4,203.9,167.2,39.9">4 units</text>
+<rect x="106.4" y="255.2" width="167.2" height="39.9" rx="8" fill="#22272C" stroke="#8CC0EA" stroke-width="2"/>
+<text x="118" y="282" font-size="16" fill="#E9E7E2" font-weight="800" data-box="106.4,255.2,167.2,39.9">Order</text>
+<text x="262" y="282" font-size="16" fill="#8CC0EA" font-weight="700" text-anchor="end" data-box="106.4,255.2,167.2,39.9">2 units</text>
+<rect x="106.4" y="306.5" width="167.2" height="39.9" rx="8" fill="#22272C" stroke="#6FCDC2" stroke-width="2"/>
+<text x="118" y="333" font-size="16" fill="#E9E7E2" font-weight="800" data-box="106.4,306.5,167.2,39.9">Shipped</text>
+<text x="262" y="333" font-size="16" fill="#6FCDC2" font-weight="700" text-anchor="end" data-box="106.4,306.5,167.2,39.9">1 unit</text>
+<text x="20" y="436" font-size="20" fill="#E9E7E2" font-weight="800">Business context</text>
+<text x="20" y="460" font-size="16" fill="#A9AEB5" font-weight="600">What each record is</text>
+<path d="M273.8 691.8 L303.8 721.8" stroke="#6FCDC2" stroke-width="10" stroke-linecap="round"/>
+<circle cx="190" cy="608" r="118" fill="#191C1F" stroke="#6FCDC2" stroke-width="4"/>
+<rect x="127.3" y="528.2" width="125.4" height="34.2" rx="18" fill="#16302D" stroke="#6FCDC2" stroke-width="2"/>
+<text x="190" y="551" font-size="16" fill="#E9E7E2" font-weight="800" text-anchor="middle" data-box="127.3,528.2,125.4,34.2">Quote</text>
+<path d="M190 565.4 L190 585.9" stroke="#848D98" stroke-width="2.5" marker-end="url(#ah)"/>
+<rect x="127.3" y="590.9" width="125.4" height="34.2" rx="18" fill="#16302D" stroke="#6FCDC2" stroke-width="2"/>
+<text x="190" y="614" font-size="16" fill="#E9E7E2" font-weight="800" text-anchor="middle" data-box="127.3,590.9,125.4,34.2">Order</text>
+<path d="M190 628.1 L190 648.6" stroke="#848D98" stroke-width="2.5" marker-end="url(#ah)"/>
+<rect x="127.3" y="653.6" width="125.4" height="34.2" rx="18" fill="#16302D" stroke="#6FCDC2" stroke-width="2"/>
+<text x="190" y="676" font-size="16" fill="#E9E7E2" font-weight="800" text-anchor="middle" data-box="127.3,653.6,125.4,34.2">Shipment</text>
+<text x="20" y="766" font-size="20" fill="#E9E7E2" font-weight="800">Mathematics</text>
+<text x="20" y="790" font-size="16" fill="#A9AEB5" font-weight="600">How the parts connect</text>
+<path d="M273.8 1021.8 L303.8 1051.8" stroke="#E6B15C" stroke-width="10" stroke-linecap="round"/>
+<circle cx="190" cy="938" r="118" fill="#191C1F" stroke="#E6B15C" stroke-width="4"/>
+<text x="190" y="896" font-size="24" fill="#E6B15C" font-weight="800" text-anchor="middle">4 + 2 + 1 = 7</text>
+<path d="M114.0 888.6 L266.0 888.6" stroke="#E6B15C" stroke-width="3.5" stroke-linecap="round"/>
+<text x="190" y="942" font-size="18" fill="#E9E7E2" font-weight="700" text-anchor="middle">What does</text>
+<text x="190" y="965" font-size="18" fill="#E9E7E2" font-weight="700" text-anchor="middle">“demand” mean?</text>
+<text x="190" y="1004" font-size="16" fill="#6FCDC2" font-weight="800" text-anchor="middle">Count it once.</text>
+<text x="20" y="1096" font-size="20" fill="#E9E7E2" font-weight="800">Philosophy</text>
+<text x="20" y="1120" font-size="16" fill="#A9AEB5" font-weight="600">What the number means</text>
+<rect x="20" y="1140" width="380" height="104" rx="12" fill="#16302D" stroke="#6FCDC2" stroke-width="2"/>
+<text x="42" y="1174" font-size="20" fill="#E9E7E2" font-weight="800" data-box="20,1140,380,104">Committed demand: 2 units.</text>
+<text x="42" y="1204" font-size="20" fill="#E9E7E2" font-weight="800" data-box="20,1140,380,104">One number people can check.</text>
+<text x="42" y="1230" font-size="16" fill="#A9AEB5" font-weight="600" data-box="20,1140,380,104">From the B2B case study · fictional data</text></g></svg>
