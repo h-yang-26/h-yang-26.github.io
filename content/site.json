@@ -9,7 +9,7 @@
     "skills": false,
     "email": "hyang26@alumni.wfu.edu",
     "resume": false,
-    "otherLinks": "www.linkedin.com/in/horsland-yang-45ba77326",
+    "otherLinks": false,
     "_formats": "intro: one short paragraph (string). bio: list of paragraphs. skills: list of strings. resume: {\"label\": \"Resume (PDF)\", \"url\": \"assets/resume.pdf\"}. otherLinks: list of {\"label\": \"LinkedIn\", \"url\": \"https://...\"}. professionalContext: list of paragraphs, exact owner-approved wording only.",
     "projectStatements": {
       "synthetic-data-quality-pipeline": {
