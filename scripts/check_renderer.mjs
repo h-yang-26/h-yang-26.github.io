@@ -64,7 +64,11 @@ assert.ok(!/class="ph|btn--off/.test(omittedHero.slice(0, omittedHero.indexOf("<
 const filled = structuredClone(content);
 Object.assign(filled.owner, {name: "A. Person", email: "a@example.com", resume: {label: "Résumé (PDF)", url: "https://example.com/r.pdf"}, otherLinks: [{label: "LinkedIn", url: "https://www.linkedin.com/in/example"}]});
 const filledHero = (await render("home", filled)).main.innerHTML;
-assert.ok(filledHero.includes('href="mailto:a@example.com"') && filledHero.includes('href="https://www.linkedin.com/in/example"') && filledHero.includes("A. Person"));
+assert.ok(filledHero.includes('href="mailto:a@example.com"') && filledHero.includes('href="https://www.linkedin.com/in/example"'));
+// The name appears once, in the header, not again in the hero eyebrow.
+const filledNodes = await render("home", filled);
+assert.match(filledNodes["site-header"].innerHTML, /class="brand"[^>]*>A\. Person</);
+assert.ok(!filledNodes.main.innerHTML.includes("A. Person"), "name must not repeat in the hero");
 for (const id of ["situation", "decisions", "result", "next", "technical", "role", "academic-connections"]) {
   assert.match(projectHtml, new RegExp(`<section id="${id}"`));
 }

@@ -345,8 +345,8 @@
   function renderHero(content) {
     const o = content.owner;
     const h = content.site.hero;
-    const kicker = typeof o.name === "string" && o.name ? esc(o.name)
-      : o.name === null ? `${ph(content, "owner.name")} · ${inline(h.eyebrow)}` : inline(h.eyebrow);
+    // The name appears once, in the header; the hero keeps its own eyebrow line.
+    const kicker = inline(h.eyebrow);
     const buttons = [];
     const pending = (label) => disabledLink(label, "Placeholder");
     const cta = h.primaryCta && url(h.primaryCta.href);
