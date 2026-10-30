@@ -2,7 +2,7 @@
   "_help": "All site text lives here; layout lives in index.html, projects/*/index.html and assets/. Convention: null = pending owner input (shown as a visible placeholder and counted in the draft banner); false = intentionally omitted (nothing shown). Every personal field is in the 'owner' block. Inline text supports `code` and **bold** only. See README.md.",
   "owner": {
     "_help": "Name, public email, résumé and LinkedIn are pending (null) and show as placeholders until filled in; see _formats. Only add approved facts.",
-    "name": "Horsland Yang",
+    "name": "HY",
     "githubUsername": "h-yang-26",
     "intro": false,
     "bio": false,
