@@ -299,7 +299,9 @@
         "href": "#projects"
       },
       "linkLabel": "How these were built"
-    }
+    },
+    "searchIndexing": false,
+    "_searchIndexingHelp": "false adds a robots noindex tag to every page, so search engines are asked not to list the site; set to true to be findable by search. Regenerate snapshots after changing it."
   },
   "projects": [
     {

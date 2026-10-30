@@ -36,7 +36,8 @@ for (const filename of pages) {
   }
   next = next.replace(/<title>[\s\S]*?<\/title>/, `<title>${escape(document.title)}</title>`);
   next = next.replace(/\s*<meta name="robots" content="noindex, nofollow">/g, "");
-  if (content.appliedThinking.draftStatus !== "approved" || Object.values(content.appliedThinking.review).some(v => v !== "approved")) {
+  // noindex when the owner opts out of search (site.searchIndexing === false) or Applied Thinking is still a draft.
+  if (content.site.searchIndexing === false || content.appliedThinking.draftStatus !== "approved" || Object.values(content.appliedThinking.review).some(v => v !== "approved")) {
     next = next.replace('<meta name="viewport"', '<meta name="robots" content="noindex, nofollow">\n  <meta name="viewport"');
   }
   next = next.replace(/[\t ]+\n/g, "\n");

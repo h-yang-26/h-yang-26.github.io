@@ -409,12 +409,18 @@ def main():
     print(f"Open items: {len(pending) - len(links)} placeholders, {len(links)} unpublished links")
     for path in pending:
         print(f"  - {path}")
-    if noindex_pages:
+    unlisted = content["site"].get("searchIndexing") is False
+    if unlisted:
+        missing = sorted(set(p.relative_to(ROOT).as_posix() for p in pages) - set(noindex_pages))
+        problems += [f"{p}: missing robots noindex tag (site.searchIndexing is false)" for p in missing]
+        print(f"Search indexing off: robots noindex tag on {len(noindex_pages)} of {len(pages)} pages")
+    elif noindex_pages:
         print(f"Draft robots noindex tag on {len(noindex_pages)} pages")
 
     if release:
         problems += [f"open item: {p}" for p in pending]
-        problems += [f"{p}: draft robots noindex tag still present" for p in noindex_pages]
+        if not unlisted:
+            problems += [f"{p}: draft robots noindex tag still present" for p in noindex_pages]
 
     for problem in problems:
         print(f"FAIL  {problem}")
