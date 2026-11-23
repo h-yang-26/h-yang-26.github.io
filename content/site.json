@@ -76,16 +76,24 @@
       "summary": "I work with a software lead on an industrial B2B business platform used by staff and dealers. My responsibilities include translating business processes into requirements, coordinating data-quality reviews, directing AI-assisted implementation work and checking results against operational needs.",
       "workstreams": [
         {
-          "title": "Inventory migration",
-          "detail": "Led an accuracy-focused migration of approximately 2,500 inventory records into an in-house quoting module, including five stakeholder review rounds to resolve ambiguous legacy data."
+          "title": "Supply planning",
+          "detail": "Designing a supply planning module that brings live demand, supply and priorities together with dealer requests, for restocking decisions made by sales and admins. Refocused it on sales reps’ dealer-level demand assessments; live with select admins and managers.",
+          "project": "b2b-sales-systems-case-study"
         },
         {
           "title": "Inventory decision support",
-          "detail": "Designed and directed AI-assisted development of a replenishment recommendation capability using demand forecasting, live demand and container utilization; integrated into the platform and still under development."
+          "detail": "Designed and directed AI-assisted development of a replenishment recommendation capability using demand forecasting, live demand and container utilization; integrated into the platform and still under development.",
+          "project": "inventory-shipping-optimization-lab"
+        },
+        {
+          "title": "Inventory migration",
+          "detail": "Led an accuracy-focused migration of approximately 2,500 inventory records into an in-house quoting module, including five stakeholder review rounds to resolve ambiguous legacy data.",
+          "project": "synthetic-data-quality-pipeline"
         },
         {
           "title": "Product analytics",
-          "detail": "Expanded live administrator reporting for adoption, retention and storage trends."
+          "detail": "Expanded live administrator reporting for adoption, retention and storage trends.",
+          "project": "product-usage-analytics-demo"
         },
         {
           "title": "B2B platform development",
@@ -97,16 +105,16 @@
   "site": {
     "summary": "Four independently developed, testable public demonstrations informed by professional work on industrial B2B systems. Each deliberately narrows a real-world problem into a fictional, reproducible example—not an export of employer code, data or architecture.",
     "hero": {
-      "eyebrow": "Business analysis · Applied mathematics & philosophy",
-      "title": "I turn ambiguous business problems into requirements and decisions people can check.",
-      "lede": "I’m an IT business analyst intern on an industrial B2B platform used by staff and dealers. Drawing on applied mathematics and philosophy, I translate business processes into requirements, frame the trade-offs a decision depends on and check results against operational needs. The case studies below are simplified, independent versions of problems related to that work, built with fictional data.",
+      "eyebrow": "Supply and inventory planning · Decision support",
+      "title": "I design planning tools that lay out the trade-offs, so the people who restock can make the call.",
+      "lede": "I’m an IT business analyst intern on an industrial B2B platform used by staff and dealers, where I’m designing a supply planning module for restocking decisions made by sales and admins. The tools bring demand, supply and dealer requests together and explain the options; people decide. The case studies below are simplified, independent versions of problems related to that work, built with fictional data.",
       "primaryCta": {
         "label": "See the work",
         "href": "#projects"
       },
       "visual": {
         "src": "assets/visuals/hero-decision.svg",
-        "title": "A decision, with its reasoning.",
+        "title": "The model compares. A person decides.",
         "alt": "A decision sheet for the question “What should ship now?”, using the same tight containers and stock with only the shortage cost changed. Plan A opens only the large container, which is full by volume with 112 units: lower container cost, 112 of 309 units ship and 197 are short; optimal at the original shortage cost. Plan B opens both containers, both full by volume, with 117 and 13 units: less unmet demand, 130 of 309 units ship and 179 are short; optimal when shortages cost four times more. Three lenses on the same decision: business context asks what a unit of unmet demand is worth; the model treats capacity as a hard limit; the assumption is that the shortage cost is a judgment, not a fact. Conclusion: the preferred plan depends on the shortage cost.",
         "caption": "From the shipping case study’s fictional scenarios: the same containers and stock, with only the shortage cost changed.",
         "link": {
@@ -127,9 +135,9 @@
         }
       },
       "decisionLab": {
-        "kicker": "Try it",
+        "kicker": "You set the assumption",
         "question": "What should ship now?",
-        "lede": "Same tight containers and stock. Change only what each unshipped unit costs.",
+        "lede": "Same tight containers and stock. The model can say which plan costs less only once someone says what an unshipped unit costs. That’s a business call, so it’s yours.",
         "sliderLabel": "Cost of each unshipped unit",
         "valueText": "{x}× the original",
         "min": 1,
@@ -234,6 +242,26 @@
           }
         ],
         "source": "Fictional scenario from the shipping case study, in the lab’s toy cost units. The 1× and 4× settings are the lab’s published scenarios; Plan B at 1× and Plan A at 4× come from re-solving the lab’s model with that container choice fixed, at every step of this slider. An allocation is not a loading plan."
+      },
+      "startHere": {
+        "label": "Start here",
+        "steps": [
+          {
+            "title": "Set the assumption",
+            "text": "Change what a shortage costs and watch the better plan change.",
+            "href": "#decision"
+          },
+          {
+            "title": "Match a résumé line",
+            "text": "Each part of my work links to a public, fictional version of it.",
+            "href": "#experience"
+          },
+          {
+            "title": "See who did what",
+            "text": "How AI tools built these under my direction, and how I checked them.",
+            "href": "how-these-were-built/"
+          }
+        ]
       }
     },
     "howIWork": {
@@ -301,18 +329,24 @@
     },
     "work": {
       "eyebrow": "Selected case studies",
-      "title": "Four problems. A consistent way of reasoning.",
-      "lede": "Each case study is a simplified, independent version of a problem related to my work, built with fictional data or a hypothetical scenario, so the requirements, assumptions and reasoning are visible. Each comes with a short write-up and code you can run on a laptop."
+      "title": "From demand signal to restocking decision.",
+      "lede": "Four simplified, independent case studies, read as the stages of one planning system: what counts as demand, which inputs can be trusted, what each plan trades away and whether people use the tool. Each says what the system does and what a person decides. All use fictional data or a hypothetical scenario and come with code you can run on a laptop.",
+      "stageLabel": "Stage {n}",
+      "systemLabel": "The system",
+      "personLabel": "A person",
+      "decidesLabel": "Who decides"
     },
     "experience": {
       "eyebrow": "Experience",
       "title": "Where these problems come from",
-      "resumeLabel": "Full résumé"
+      "resumeLabel": "Full résumé",
+      "workstreamsTitle": "What I work on",
+      "relatedLabel": "Related case study"
     },
     "about": {
       "title": "About",
       "paragraphs": [
-        "I translate how a business runs into requirements, coordinate data-quality reviews and check results against what the business actually needs.",
+        "I design systems that inform decisions rather than make them: they gather the facts, show the trade-offs and leave the call to the people accountable for it. Day to day, that means translating how a business runs into requirements, coordinating data-quality reviews and checking results against what the business actually needs.",
         "My background is in applied mathematics and philosophy. Mathematics gives me ways to model a problem; philosophy makes me ask what would justify the answer."
       ],
       "toolsLabel": "Tools and methods in these projects",
@@ -451,169 +485,6 @@
   },
   "projects": [
     {
-      "slug": "inventory-shipping-optimization-lab",
-      "repoUrl": "https://github.com/h-yang-26/inventory-shipping-optimization-lab",
-      "title": "Inventory and Shipping Optimization Lab",
-      "focus": [
-        "Python",
-        "PuLP/CBC",
-        "Integer optimization",
-        "Independent feasibility checks"
-      ],
-      "card": {
-        "title": "Shipping Allocation Under Cost and Capacity Constraints",
-        "kicker": "Optimization",
-        "outcome": "Decides which containers are worth opening when shipping every unit isn’t, and re-checks every plan independently."
-      },
-      "visuals": [
-        {
-          "kind": "diagram",
-          "title": "A constrained allocation decision, checked independently",
-          "src": "assets/visuals/inventory-model.svg",
-          "alt": "Diagram: product and container parameters feed an integer program that chooses units per container, shortages and opened containers; an independent checker re-verifies limits, integers and cost before a plan is labelled optimal.",
-          "caption": "The model minimizes fictional shortage penalties and fixed container-opening costs subject to mass, volume and demand constraints. It is not a 3D packing plan.",
-          "sizes": {
-            "wide": [
-              760,
-              330
-            ],
-            "narrow": [
-              420,
-              630
-            ]
-          }
-        },
-        {
-          "kind": "result",
-          "title": "Only the normal scenario ships every requested unit",
-          "src": "assets/visuals/inventory-scenarios.svg",
-          "alt": "Stacked bars of units shipped and short out of 309 requested: normal 309 shipped; high shortage penalty 130 shipped and 179 short; tight capacity 112 shipped and 197 short; low shortage penalty and no inventory 0 shipped and 309 short.",
-          "caption": "Published solver outputs for five synthetic scenarios, each requesting 309 units. Penalties and container charges are fictional, so the results are not operational savings.",
-          "sizes": {
-            "wide": [
-              760,
-              400
-            ],
-            "narrow": [
-              420,
-              461
-            ],
-            "card": [
-              440,
-              260
-            ]
-          }
-        }
-      ],
-      "thumbnail": "assets/visuals/inventory-scenarios.svg",
-      "story": {
-        "headline": "When shipping everything isn’t worth it",
-        "lede": "A small optimization model that weighs the cost of a shortage against the cost of opening another container, and checks every plan it produces.",
-        "facts": [
-          {
-            "label": "My role",
-            "value": "Requirements, edge cases and approvals; AI tools did the implementation"
-          },
-          {
-            "label": "Built with",
-            "value": "Python, PuLP with the CBC solver, pytest"
-          },
-          {
-            "label": "Data",
-            "value": "5 fictional scenarios, 4 products, 2 containers"
-          }
-        ],
-        "banner": {
-          "src": "assets/visuals/inventory-scenarios.svg",
-          "title": "Only the normal scenario ships every requested unit",
-          "alt": "Stacked bars of units shipped and short out of 309 requested: normal 309 shipped; high shortage penalty 130 shipped and 179 short; tight capacity 112 shipped and 197 short; low shortage penalty and no inventory 0 shipped and 309 short.",
-          "caption": "Results from the five fictional scenarios in the repo. Costs are in made-up units, not real freight rates.",
-          "narrowMax": "49.99rem",
-          "sizes": {
-            "wide": [
-              760,
-              400
-            ],
-            "narrow": [
-              420,
-              461
-            ],
-            "card": [
-              440,
-              260
-            ]
-          }
-        },
-        "situation": [
-          "Opening a shipping container has a fixed cost. Sometimes leaving a few units behind is cheaper than paying for another container, and sometimes it isn’t, so the right answer depends on the numbers.",
-          "This project models that trade-off with four fictional products and two containers, and tests it under five scenarios, from normal capacity to no stock at all."
-        ],
-        "decisionsTitle": "Three decisions that shape it",
-        "decisions": [
-          {
-            "title": "Use a proven method, not a rule of thumb.",
-            "body": "Which containers to open, and what to put in them, is a known kind of problem: a fixed-charge allocation. Writing it as an integer program states the trade-off exactly and lets an established solver find the answer, instead of a hand-tuned rule.",
-            "term": "Integer program; PuLP with the CBC solver; yes-or-no container decisions.",
-            "visual": {
-              "src": "assets/visuals/tile-frameworks.svg",
-              "principle": "framework-recognition",
-              "alt": "Illustration: “Which containers should we open?” is recognized as a known fixed-charge allocation problem, so a proven method is used.",
-              "sizes": {
-                "wide": [
-                  440,
-                  520
-                ]
-              }
-            }
-          },
-          {
-            "title": "Say what the model leaves out.",
-            "body": "The model checks weight and volume, not how boxes actually stack. A container can be 100% full by volume on paper and still not pack, so every output states that it is not a loading plan.",
-            "term": "Mass and volume limits only; no 3D packing, stacking or load restraint.",
-            "visual": {
-              "src": "assets/visuals/tile-abstraction.svg",
-              "principle": "responsible-abstraction",
-              "alt": "Illustration: a container 100% full by volume and 82% by weight may still not pack in 3D; the model keeps weight and volume and states that limit in every output.",
-              "sizes": {
-                "wide": [
-                  440,
-                  520
-                ]
-              }
-            }
-          },
-          {
-            "title": "Check the solver’s answer.",
-            "body": "A solver can stop early or return values with tiny numerical errors. Separate code re-checks every plan against stock, demand, weight and volume and recomputes its cost. A plan is reported as OPTIMAL only when the solver reports an optimum and that check passes.",
-            "term": "Independent `check_plan`; `FEASIBLE` when there is no optimality proof."
-          }
-        ],
-        "result": {
-          "text": [
-            "Across the five scenarios the model behaves as the trade-off predicts. With normal containers every unit ships; with small containers some demand goes unmet, and raising the shortage penalty ships more of it; with tiny penalties, shipping nothing is cheapest. Reruns in the same environment produce byte-identical output."
-          ],
-          "visuals": []
-        },
-        "next": [
-          "Add a simple packing check for the containers the model chooses, which would mean adding the item dimensions the model doesn’t have yet."
-        ],
-        "technical": {
-          "notes": [
-            "For every product, shipped units plus shortage equal demand, and shipments never exceed stock.",
-            "The objective is shortage penalties plus fixed container charges, all in fictional `toy_cost_units`.",
-            "A hand-checkable example in the README (five units, one container) has a unique optimum of 42, and the tests confirm it.",
-            "A solver stop that returns a valid but unproven plan is labelled `FEASIBLE`, not `OPTIMAL`; unit tests cover this status mapping, and an independent review checked real CBC time-limit stops.",
-            "130 pytest tests; reruns in the same environment write byte-identical JSON (tested) and text output.",
-            "PuLP is pinned to 3.3.2 because PuLP 4.2.0 failed in the tested environment."
-          ],
-          "visuals": [
-            "assets/visuals/inventory-model.svg"
-          ],
-          "linkLabel": "Full model, tests and run instructions on GitHub"
-        }
-      }
-    },
-    {
       "slug": "b2b-sales-systems-case-study",
       "repoUrl": "https://github.com/h-yang-26/b2b-sales-systems-case-study",
       "title": "B2B Sales Systems Case Study",
@@ -625,8 +496,10 @@
       ],
       "card": {
         "title": "A Proposed Design for Counting B2B Demand Once",
-        "kicker": "Systems design",
-        "outcome": "A proposed design that keeps quotes, orders and shipments separate, so the same demand isn’t counted twice."
+        "kicker": "Demand signal",
+        "outcome": "A proposed design that keeps quotes, orders and shipments separate, so the same demand isn’t counted twice.",
+        "system": "Keeps quotes, orders and shipments apart and counts committed demand once.",
+        "person": "Sales and planning judge what that demand means for restocking."
       },
       "visuals": [
         {
@@ -962,156 +835,6 @@
       }
     },
     {
-      "slug": "product-usage-analytics-demo",
-      "repoUrl": "https://github.com/h-yang-26/product-usage-analytics-demo",
-      "title": "Product Usage Analytics Demo",
-      "focus": [
-        "Python/pandas",
-        "Streamlit",
-        "Altair",
-        "Ordered session funnels"
-      ],
-      "card": {
-        "title": "Usage Metrics with Clear Definitions",
-        "kicker": "Product analytics",
-        "outcome": "Turns a raw event log into daily activity, module usage and an ordered funnel, with every excluded row accounted for."
-      },
-      "visuals": [
-        {
-          "kind": "diagram",
-          "title": "From raw events to defensible metrics",
-          "src": "assets/visuals/analytics-pipeline.svg",
-          "alt": "Synthetic telemetry pipeline diagram: 5,766 raw rows are validated file-wide; 5,735 valid events feed the usage metrics and 31 are excluded (10 identical copies collapsed, 8 conflicting, 13 invalid).",
-          "caption": "File-wide validation precedes date and module filters; invalid or conflicting events do not enter the usage metrics.",
-          "sizes": {
-            "wide": [
-              760,
-              330
-            ],
-            "narrow": [
-              420,
-              600
-            ]
-          }
-        },
-        {
-          "kind": "result",
-          "title": "Fewer than half of page-opening sessions reach a detail view",
-          "src": "assets/visuals/analytics-funnel.svg",
-          "alt": "Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view.",
-          "caption": "The funnel uses distinct `(user_id, session_id)` pairs and strictly increasing event timestamps. It is not a user-level conversion rate.",
-          "sizes": {
-            "wide": [
-              760,
-              266
-            ],
-            "narrow": [
-              420,
-              324
-            ],
-            "card": [
-              440,
-              260
-            ]
-          }
-        }
-      ],
-      "thumbnail": "assets/visuals/analytics-funnel.svg",
-      "story": {
-        "headline": "Usage metrics that mean one thing",
-        "lede": "A small dashboard that validates raw event logs first, then turns them into daily activity, module usage and an ordered funnel, each with its definition written down.",
-        "facts": [
-          {
-            "label": "My role",
-            "value": "Requirements, edge cases and approvals; AI tools did the implementation"
-          },
-          {
-            "label": "Built with",
-            "value": "Python, pandas, Streamlit, Altair"
-          },
-          {
-            "label": "Data",
-            "value": "5,766 fictional event rows over 28 days"
-          }
-        ],
-        "banner": {
-          "src": "assets/visuals/ba-usage.svg",
-          "title": "Raw clicks in. Clear answers out.",
-          "alt": "Before and after. Before: rows from the fictional event log, with time, user, module and action, fading into “5,766 rows like these”. After: a dashboard showing 175 users in scope, 1,520 sessions and 619 full-funnel sessions, with a September daily active users chart where weekends are shaded.",
-          "caption": "Redrawn from this project’s fictional event data; the rows and numbers are real, the layout is simplified.",
-          "narrowMax": "49.99rem",
-          "eager": true,
-          "sizes": {
-            "wide": [
-              1000,
-              470
-            ],
-            "narrow": [
-              420,
-              862
-            ]
-          }
-        },
-        "situation": [
-          "“How many people use the product?” sounds like one question. Daily users, total events and funnel progress give three different answers, and a duplicated or malformed event can quietly change all of them.",
-          "This project explores that problem with 28 days of fictional events from an invented B2B web app."
-        ],
-        "decisionsTitle": "Three decisions that shape it",
-        "decisions": [
-          {
-            "title": "Validate the whole file before any filter.",
-            "body": "Exact duplicate events collapse to one, conflicting copies are quarantined and rows with missing or invalid fields are rejected, all before any date or module filter is applied. Changing the view never changes what counts as valid data.",
-            "term": "File-wide validation; every raw row gets exactly one outcome.",
-            "visual": {
-              "src": "assets/visuals/tile-filters.svg",
-              "principle": "inference-evidence",
-              "alt": "Illustration: all modules for September 1–28 show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
-              "sizes": {
-                "wide": [
-                  440,
-                  520
-                ]
-              }
-            }
-          },
-          {
-            "title": "Write down every denominator.",
-            "body": "Daily active users are distinct people per day, not the sum of each module’s users, and module share is a share of events, not of people. Each chart states what it counts, and a rate shows N/A instead of a misleading zero when there is nothing to divide by.",
-            "term": "Distinct users, events and sessions kept separate; N/A for empty denominators."
-          },
-          {
-            "title": "Count a funnel step only if it happens later.",
-            "body": "A session reaches the next step only when that action happens strictly after the previous one. Repeated clicks don’t count twice, and two actions in the same second don’t prove an order.",
-            "term": "Session = a (user, session) pair; strictly increasing timestamps."
-          }
-        ],
-        "result": {
-          "text": [
-            "Of 5,766 raw rows, 5,735 are valid and every other row is accounted for: 10 duplicate copies collapsed, 8 quarantined and 13 rejected. In September, 1,357 sessions opened a page, 844 then searched and 619 then viewed a detail: 46% of the sessions that opened a page."
-          ],
-          "visuals": [
-            "assets/visuals/analytics-funnel.svg"
-          ]
-        },
-        "next": [
-          "Let users choose the funnel steps and add sessions based on inactivity, so the same definitions can answer more questions."
-        ],
-        "technical": {
-          "notes": [
-            "Every raw row has exactly one outcome: 5,766 raw = 5,735 valid + 10 collapsed + 8 quarantined + 13 rejected.",
-            "Timestamps must be `YYYY-MM-DDTHH:MM:SSZ` in UTC with ASCII digits; other offsets are rejected, not converted.",
-            "Date filters include the start date from midnight UTC and stop at midnight after the end date.",
-            "The metric code has no Streamlit dependency, so another interface could reuse the same definitions.",
-            "A seeded generator produces byte-identical data on every run; 44 pytest tests, including headless dashboard runs."
-          ],
-          "visuals": [
-            "assets/visuals/analytics-pipeline.svg"
-          ],
-          "linkLabel": "Full definitions, tests and run instructions on GitHub"
-        }
-      }
-    },
-    {
       "slug": "synthetic-data-quality-pipeline",
       "repoUrl": "https://github.com/h-yang-26/synthetic-data-quality-pipeline",
       "title": "Synthetic Data Quality Pipeline",
@@ -1123,8 +846,10 @@
       ],
       "card": {
         "title": "Data Cleanup: Deciding What Not to Auto-Fix",
-        "kicker": "Data quality",
-        "outcome": "Cleans what it safely can and hands everything else to a person, with the reason attached."
+        "kicker": "Clean inputs",
+        "outcome": "Cleans what it safely can and hands everything else to a person, with the reason attached.",
+        "system": "Fixes only what has one right answer and sends every other row to review, with its reason.",
+        "person": "A reviewer makes every ambiguous call."
       },
       "visuals": [
         {
@@ -1267,6 +992,323 @@
             "Standard-library Python at runtime; 21 pytest tests, including a small fixture whose expected output was worked out by hand."
           ],
           "linkLabel": "Full method, tests and run instructions on GitHub"
+        }
+      }
+    },
+    {
+      "slug": "inventory-shipping-optimization-lab",
+      "repoUrl": "https://github.com/h-yang-26/inventory-shipping-optimization-lab",
+      "title": "Inventory and Shipping Optimization Lab",
+      "focus": [
+        "Python",
+        "PuLP/CBC",
+        "Integer optimization",
+        "Independent feasibility checks"
+      ],
+      "card": {
+        "title": "Restock Shipping Trade-offs Under Container Limits",
+        "kicker": "Trade-offs",
+        "outcome": "Shows which containers are worth opening at a given shortage cost, and re-checks every plan independently.",
+        "system": "Compares shipping plans and what each one leaves short.",
+        "person": "A planner sets what a shortage costs and picks the plan."
+      },
+      "visuals": [
+        {
+          "kind": "diagram",
+          "title": "A constrained allocation decision, checked independently",
+          "src": "assets/visuals/inventory-model.svg",
+          "alt": "Diagram: product and container parameters feed an integer program that chooses units per container, shortages and opened containers; an independent checker re-verifies limits, integers and cost before a plan is labelled optimal.",
+          "caption": "The model minimizes fictional shortage penalties and fixed container-opening costs subject to mass, volume and demand constraints. It is not a 3D packing plan.",
+          "sizes": {
+            "wide": [
+              760,
+              330
+            ],
+            "narrow": [
+              420,
+              630
+            ]
+          }
+        },
+        {
+          "kind": "result",
+          "title": "Only the normal scenario ships every requested unit",
+          "src": "assets/visuals/inventory-scenarios.svg",
+          "alt": "Stacked bars of units shipped and short out of 309 requested: normal 309 shipped; high shortage penalty 130 shipped and 179 short; tight capacity 112 shipped and 197 short; low shortage penalty and no inventory 0 shipped and 309 short.",
+          "caption": "Published solver outputs for five synthetic scenarios, each requesting 309 units. Penalties and container charges are fictional, so the results are not operational savings.",
+          "sizes": {
+            "wide": [
+              760,
+              400
+            ],
+            "narrow": [
+              420,
+              461
+            ],
+            "card": [
+              440,
+              260
+            ]
+          }
+        }
+      ],
+      "thumbnail": "assets/visuals/inventory-scenarios.svg",
+      "story": {
+        "headline": "When shipping everything isn’t worth it",
+        "lede": "A small optimization model that weighs the cost of a shortage against the cost of opening another container, and checks every plan it produces.",
+        "facts": [
+          {
+            "label": "My role",
+            "value": "Requirements, edge cases and approvals; AI tools did the implementation"
+          },
+          {
+            "label": "Built with",
+            "value": "Python, PuLP with the CBC solver, pytest"
+          },
+          {
+            "label": "Data",
+            "value": "5 fictional scenarios, 4 products, 2 containers"
+          }
+        ],
+        "banner": {
+          "src": "assets/visuals/inventory-scenarios.svg",
+          "title": "Only the normal scenario ships every requested unit",
+          "alt": "Stacked bars of units shipped and short out of 309 requested: normal 309 shipped; high shortage penalty 130 shipped and 179 short; tight capacity 112 shipped and 197 short; low shortage penalty and no inventory 0 shipped and 309 short.",
+          "caption": "Results from the five fictional scenarios in the repo. Costs are in made-up units, not real freight rates.",
+          "narrowMax": "49.99rem",
+          "sizes": {
+            "wide": [
+              760,
+              400
+            ],
+            "narrow": [
+              420,
+              461
+            ],
+            "card": [
+              440,
+              260
+            ]
+          }
+        },
+        "situation": [
+          "Opening a shipping container has a fixed cost. Sometimes leaving a few units behind is cheaper than paying for another container, and sometimes it isn’t, so the right answer depends on the numbers.",
+          "This project models that trade-off with four fictional products and two containers, and tests it under five scenarios, from normal capacity to no stock at all."
+        ],
+        "decisionsTitle": "Three decisions that shape it",
+        "decisions": [
+          {
+            "title": "Use a proven method, not a rule of thumb.",
+            "body": "Which containers to open, and what to put in them, is a known kind of problem: a fixed-charge allocation. Writing it as an integer program states the trade-off exactly and lets an established solver find the answer, instead of a hand-tuned rule.",
+            "term": "Integer program; PuLP with the CBC solver; yes-or-no container decisions.",
+            "visual": {
+              "src": "assets/visuals/tile-frameworks.svg",
+              "principle": "framework-recognition",
+              "alt": "Illustration: “Which containers should we open?” is recognized as a known fixed-charge allocation problem, so a proven method is used.",
+              "sizes": {
+                "wide": [
+                  440,
+                  520
+                ]
+              }
+            }
+          },
+          {
+            "title": "Say what the model leaves out.",
+            "body": "The model checks weight and volume, not how boxes actually stack. A container can be 100% full by volume on paper and still not pack, so every output states that it is not a loading plan.",
+            "term": "Mass and volume limits only; no 3D packing, stacking or load restraint.",
+            "visual": {
+              "src": "assets/visuals/tile-abstraction.svg",
+              "principle": "responsible-abstraction",
+              "alt": "Illustration: a container 100% full by volume and 82% by weight may still not pack in 3D; the model keeps weight and volume and states that limit in every output.",
+              "sizes": {
+                "wide": [
+                  440,
+                  520
+                ]
+              }
+            }
+          },
+          {
+            "title": "Check the solver’s answer.",
+            "body": "A solver can stop early or return values with tiny numerical errors. Separate code re-checks every plan against stock, demand, weight and volume and recomputes its cost. A plan is reported as OPTIMAL only when the solver reports an optimum and that check passes.",
+            "term": "Independent `check_plan`; `FEASIBLE` when there is no optimality proof."
+          }
+        ],
+        "result": {
+          "text": [
+            "Across the five scenarios the model behaves as the trade-off predicts. With normal containers every unit ships; with small containers some demand goes unmet, and raising the shortage penalty ships more of it; with tiny penalties, shipping nothing is cheapest. Reruns in the same environment produce byte-identical output."
+          ],
+          "visuals": []
+        },
+        "next": [
+          "Add a simple packing check for the containers the model chooses, which would mean adding the item dimensions the model doesn’t have yet."
+        ],
+        "technical": {
+          "notes": [
+            "For every product, shipped units plus shortage equal demand, and shipments never exceed stock.",
+            "The objective is shortage penalties plus fixed container charges, all in fictional `toy_cost_units`.",
+            "A hand-checkable example in the README (five units, one container) has a unique optimum of 42, and the tests confirm it.",
+            "A solver stop that returns a valid but unproven plan is labelled `FEASIBLE`, not `OPTIMAL`; unit tests cover this status mapping, and an independent review checked real CBC time-limit stops.",
+            "130 pytest tests; reruns in the same environment write byte-identical JSON (tested) and text output.",
+            "PuLP is pinned to 3.3.2 because PuLP 4.2.0 failed in the tested environment."
+          ],
+          "visuals": [
+            "assets/visuals/inventory-model.svg"
+          ],
+          "linkLabel": "Full model, tests and run instructions on GitHub"
+        }
+      }
+    },
+    {
+      "slug": "product-usage-analytics-demo",
+      "repoUrl": "https://github.com/h-yang-26/product-usage-analytics-demo",
+      "title": "Product Usage Analytics Demo",
+      "focus": [
+        "Python/pandas",
+        "Streamlit",
+        "Altair",
+        "Ordered session funnels"
+      ],
+      "card": {
+        "title": "Usage Metrics with Clear Definitions",
+        "kicker": "Adoption",
+        "outcome": "Turns a raw event log into daily activity, module usage and an ordered funnel, with every excluded row accounted for.",
+        "system": "Validates the log first, then writes down how each number is counted.",
+        "person": "Admins decide what to look into next."
+      },
+      "visuals": [
+        {
+          "kind": "diagram",
+          "title": "From raw events to defensible metrics",
+          "src": "assets/visuals/analytics-pipeline.svg",
+          "alt": "Synthetic telemetry pipeline diagram: 5,766 raw rows are validated file-wide; 5,735 valid events feed the usage metrics and 31 are excluded (10 identical copies collapsed, 8 conflicting, 13 invalid).",
+          "caption": "File-wide validation precedes date and module filters; invalid or conflicting events do not enter the usage metrics.",
+          "sizes": {
+            "wide": [
+              760,
+              330
+            ],
+            "narrow": [
+              420,
+              600
+            ]
+          }
+        },
+        {
+          "kind": "result",
+          "title": "Fewer than half of page-opening sessions reach a detail view",
+          "src": "assets/visuals/analytics-funnel.svg",
+          "alt": "Ordered session funnel for synthetic events: 1,357 page-view sessions, 844 sessions with a later search and 619 with a later detail view.",
+          "caption": "The funnel uses distinct `(user_id, session_id)` pairs and strictly increasing event timestamps. It is not a user-level conversion rate.",
+          "sizes": {
+            "wide": [
+              760,
+              266
+            ],
+            "narrow": [
+              420,
+              324
+            ],
+            "card": [
+              440,
+              260
+            ]
+          }
+        }
+      ],
+      "thumbnail": "assets/visuals/analytics-funnel.svg",
+      "story": {
+        "headline": "Usage metrics that mean one thing",
+        "lede": "A small dashboard that validates raw event logs first, then turns them into daily activity, module usage and an ordered funnel, each with its definition written down.",
+        "facts": [
+          {
+            "label": "My role",
+            "value": "Requirements, edge cases and approvals; AI tools did the implementation"
+          },
+          {
+            "label": "Built with",
+            "value": "Python, pandas, Streamlit, Altair"
+          },
+          {
+            "label": "Data",
+            "value": "5,766 fictional event rows over 28 days"
+          }
+        ],
+        "banner": {
+          "src": "assets/visuals/ba-usage.svg",
+          "title": "Raw clicks in. Clear answers out.",
+          "alt": "Before and after. Before: rows from the fictional event log, with time, user, module and action, fading into “5,766 rows like these”. After: a dashboard showing 175 users in scope, 1,520 sessions and 619 full-funnel sessions, with a September daily active users chart where weekends are shaded.",
+          "caption": "Redrawn from this project’s fictional event data; the rows and numbers are real, the layout is simplified.",
+          "narrowMax": "49.99rem",
+          "eager": true,
+          "sizes": {
+            "wide": [
+              1000,
+              470
+            ],
+            "narrow": [
+              420,
+              862
+            ]
+          }
+        },
+        "situation": [
+          "“How many people use the product?” sounds like one question. Daily users, total events and funnel progress give three different answers, and a duplicated or malformed event can quietly change all of them.",
+          "This project explores that problem with 28 days of fictional events from an invented B2B web app."
+        ],
+        "decisionsTitle": "Three decisions that shape it",
+        "decisions": [
+          {
+            "title": "Validate the whole file before any filter.",
+            "body": "Exact duplicate events collapse to one, conflicting copies are quarantined and rows with missing or invalid fields are rejected, all before any date or module filter is applied. Changing the view never changes what counts as valid data.",
+            "term": "File-wide validation; every raw row gets exactly one outcome.",
+            "visual": {
+              "src": "assets/visuals/tile-filters.svg",
+              "principle": "inference-evidence",
+              "alt": "Illustration: all modules for September 1–28 show 5,735 events and catalog for one week shows 480, but the 31 rows not counted stay the same under any filter, because validation runs on the whole file first.",
+              "sizes": {
+                "wide": [
+                  440,
+                  520
+                ]
+              }
+            }
+          },
+          {
+            "title": "Write down every denominator.",
+            "body": "Daily active users are distinct people per day, not the sum of each module’s users, and module share is a share of events, not of people. Each chart states what it counts, and a rate shows N/A instead of a misleading zero when there is nothing to divide by.",
+            "term": "Distinct users, events and sessions kept separate; N/A for empty denominators."
+          },
+          {
+            "title": "Count a funnel step only if it happens later.",
+            "body": "A session reaches the next step only when that action happens strictly after the previous one. Repeated clicks don’t count twice, and two actions in the same second don’t prove an order.",
+            "term": "Session = a (user, session) pair; strictly increasing timestamps."
+          }
+        ],
+        "result": {
+          "text": [
+            "Of 5,766 raw rows, 5,735 are valid and every other row is accounted for: 10 duplicate copies collapsed, 8 quarantined and 13 rejected. In September, 1,357 sessions opened a page, 844 then searched and 619 then viewed a detail: 46% of the sessions that opened a page."
+          ],
+          "visuals": [
+            "assets/visuals/analytics-funnel.svg"
+          ]
+        },
+        "next": [
+          "Let users choose the funnel steps and add sessions based on inactivity, so the same definitions can answer more questions."
+        ],
+        "technical": {
+          "notes": [
+            "Every raw row has exactly one outcome: 5,766 raw = 5,735 valid + 10 collapsed + 8 quarantined + 13 rejected.",
+            "Timestamps must be `YYYY-MM-DDTHH:MM:SSZ` in UTC with ASCII digits; other offsets are rejected, not converted.",
+            "Date filters include the start date from midnight UTC and stop at midnight after the end date.",
+            "The metric code has no Streamlit dependency, so another interface could reuse the same definitions.",
+            "A seeded generator produces byte-identical data on every run; 44 pytest tests, including headless dashboard runs."
+          ],
+          "visuals": [
+            "assets/visuals/analytics-pipeline.svg"
+          ],
+          "linkLabel": "Full definitions, tests and run instructions on GitHub"
         }
       }
     }
