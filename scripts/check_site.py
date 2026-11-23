@@ -164,6 +164,32 @@ def decision_lab_problems(content):
     return out
 
 
+def walkthrough_problems(content):
+    """Each order walk-through step must obey the case study's own arithmetic."""
+    out = []
+    for project in content["projects"]:
+        w = (project.get("story") or {}).get("walkthrough")
+        if not w:
+            continue
+        row_ids = [r["id"] for r in w["rows"]]
+        if len({"quoted", "ordered", "shipped", "owed", "committed", "naive"} - set(row_ids)):
+            out.append(f"{project['slug']}: walk-through is missing a ledger row")
+        for i, step in enumerate(w["steps"], 1):
+            v = step["values"]
+            if set(v) != set(row_ids):
+                out.append(f"{project['slug']} step {i}: values must cover exactly the ledger rows")
+                continue
+            if v["owed"] != v["ordered"] - v["shipped"]:
+                out.append(f"{project['slug']} step {i}: still owed must be ordered minus shipped")
+            if v["committed"] != v["ordered"]:
+                out.append(f"{project['slug']} step {i}: committed demand must equal the accepted order quantity")
+            if v["naive"] != v["quoted"] + v["ordered"] + v["shipped"]:
+                out.append(f"{project['slug']} step {i}: the added-up row must be quoted + ordered + shipped")
+        if any(w["steps"][i]["values"]["committed"] != w["steps"][1]["values"]["committed"] for i in range(1, len(w["steps"]))):
+            out.append(f"{project['slug']}: committed demand must not change after the order is accepted")
+    return out
+
+
 def main():
     release = "--release" in sys.argv[1:]
     problems = []
@@ -337,11 +363,12 @@ def main():
     if content["site"].get("hero") and not content["site"].get("disclosure"):
         problems.append("site.disclosure is required once the new hero is used")
     problems += decision_lab_problems(content)
+    problems += walkthrough_problems(content)
     # "On this page" row: every entry must point at a section the case-study pages render.
     nav_ids = [item["id"] for item in (content["site"].get("storyNav") or {}).get("items", [])]
     for page, parser in parsed.items():
         if parser.body.get("data-page") == "project" and nav_ids:
-            missing = [i for i in nav_ids if i not in parser.ids and i != "academic-connections"]
+            missing = [i for i in nav_ids if i not in parser.ids and i not in ("academic-connections", "walkthrough")]
             if missing:
                 problems.append(f"{page.relative_to(ROOT).as_posix()}: story navigation points at missing sections {missing}")
     for project in content["projects"]:

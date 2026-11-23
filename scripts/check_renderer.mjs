@@ -114,7 +114,8 @@ for (const p of content.projects) {
   const nav = html.match(/<nav class="story-nav"[^>]*>[\s\S]*?<\/nav>/);
   assert.ok(nav, `${p.slug}: story navigation`);
   const targets = [...nav[0].matchAll(/href="#([^"]+)"/g)].map(m => m[1]);
-  assert.equal(targets.length, content.site.storyNav.items.length, `${p.slug}: every entry listed (all studies have Academic connections)`);
+  const expected = content.site.storyNav.items.filter(item => item.id !== "walkthrough" || p.story.walkthrough);
+  assert.equal(targets.length, expected.length, `${p.slug}: one entry per section the page has`);
   for (const id of targets) assert.match(html, new RegExp(`<section id="${id}"`), `${p.slug}: #${id} exists`);
 }
 // Homepage decision sheet: the static page keeps the figure; the browser swaps in the interactive sheet.
@@ -174,4 +175,82 @@ async function enhanceHome(input = content) {
   delete none.site.hero.decisionLab;
   assert.equal((await enhanceHome(none)).picture.replaced, null);
 }
-console.log("PASS: four routes, Applied Thinking tile cards, process page, homepage order, hero and story templates, case-study navigation, interactive decision sheet, escaped copy, rejected active URL schemes and offline fallback.");
+// Order walk-through (B2B case study): every step is in the static page with its full ledger.
+{
+  const b2b = content.projects.find(p => p.story.walkthrough);
+  const w = b2b.story.walkthrough;
+  const html = (await render("project", content, false, b2b.slug)).main.innerHTML;
+  assert.match(html, /<section id="walkthrough" class="walk" data-walkthrough/);
+  assert.equal((html.match(/<li class="walk__step"/g) || []).length, w.steps.length);
+  assert.equal((html.match(/<div class="walk__row/g) || []).length, w.steps.length * w.rows.length, "every step carries the full ledger");
+  assert.ok(html.indexOf('id="decisions"') < html.indexOf('id="walkthrough"') && html.indexOf('id="walkthrough"') < html.indexOf('id="result"'), "walk-through sits between decisions and result");
+  // Committed demand never moves after the order is accepted; the added-up row is flagged as not a real quantity.
+  assert.match(html, /walk__row--key[^>]*>\s*<dt>Committed demand/);
+  assert.match(html, /walk__row--mistake/);
+  // Changed rows show what they changed from: the first step moves quoted 0 -> 4.
+  const first = html.match(/<li class="walk__step" id="walk-step-1">[\s\S]*?<\/li>/)[0];
+  assert.match(first, /is-changed"><dt>Quoted[\s\S]*?<b>4<\/b><small>was 0<\/small>/);
+  assert.match(html, /walk__badge walk__badge--hypothetical">Hypothetical/);
+  for (const other of content.projects.filter(p => !p.story.walkthrough)) {
+    assert.doesNotMatch((await render("project", content, false, other.slug)).main.innerHTML, /data-walkthrough/);
+  }
+  const hostileWalk = structuredClone(content);
+  hostileWalk.projects.find(p => p.story.walkthrough).story.walkthrough.steps[0].title = '<img src=x onerror="alert(1)">';
+  assert.ok(!(await render("project", hostileWalk, false, b2b.slug)).main.innerHTML.includes("<img src=x"));
+  // The browser turns it into a stepper: one step visible, previous/next and numbered buttons.
+  const handlers = [];
+  const mk = (extra = {}) => ({classList: {toggled: {}, toggle(c, on) { this.toggled[c] = on; }, add() {}}, setAttribute() {}, removeAttribute() {}, addEventListener(t, f) { handlers.push(f); }, dataset: {}, ...extra});
+  const stepEls = w.steps.map(() => mk());
+  const prev = mk(), next = mk(), dots = w.steps.map((_, i) => mk({dataset: {walkTo: String(i)}}));
+  const bar = {className: "", html: "", set innerHTML(v) { this.html = v; }, querySelectorAll: () => dots, querySelector: sel => (sel === '[data-walk="-1"]' ? prev : next)};
+  const rootEl = {classList: {added: [], add(c) { this.added.push(c); }}, querySelectorAll: () => stepEls, querySelector: () => ({}), insertBefore() {}};
+  const nodes = Object.fromEntries(["main", "site-header", "draft-banner", "site-footer"].map(id => [id, {innerHTML: "", dataset: {prerendered: "true"}}]));
+  const document = {body: {dataset: {page: "project", root: "../..", project: b2b.slug}}, getElementById: id => nodes[id], createElement: () => bar,
+    querySelector: sel => (sel === "[data-walkthrough]" ? rootEl : null)};
+  const context = vm.createContext({document, location: {protocol: "https:", hash: ""}, fetch: async () => ({ok: true, json: async () => content})});
+  vm.runInContext(source, context, {timeout: 5000});
+  await new Promise(resolve => setImmediate(resolve));
+  assert.deepEqual(rootEl.classList.added, ["is-stepper"]);
+  assert.equal(stepEls[0].classList.toggled["is-current"], true);
+  assert.equal(stepEls[1].classList.toggled["is-current"], false);
+  assert.equal(prev.disabled, true); assert.equal(next.disabled, false);
+  // handlers are registered in order: previous, next, then the numbered buttons
+  const [onPrev, onNext] = handlers;
+  onNext(); onNext();
+  assert.equal(stepEls[2].classList.toggled["is-current"], true);
+  assert.equal(stepEls[0].classList.toggled["is-current"], false);
+  for (let i = 0; i < 10; i++) onNext();
+  assert.equal(next.disabled, true, "stops at the last step");
+  assert.equal(stepEls[w.steps.length - 1].classList.toggled["is-current"], true);
+  onPrev();
+  assert.equal(stepEls[w.steps.length - 2].classList.toggled["is-current"], true);
+}
+// Project x principle overview on the How I Think page, built from the approved mappings.
+{
+  const a = content.appliedThinking;
+  const html = (await render("applied-thinking")).main.innerHTML;
+  assert.match(html, /<table class="matrix">/);
+  const rows = [...html.match(/<table class="matrix">[\s\S]*?<\/table>/)[0].matchAll(/<tr><th scope="row">[\s\S]*?<\/tr>/g)].map(m => m[0]);
+  assert.equal(rows.length, a.principles.length, "one row per principle");
+  let examples = 0, connects = 0;
+  for (const pr of a.principles) {
+    const row = rows.find(r => r.includes(`href="#${pr.id}"`));
+    assert.ok(row, `${pr.id}: has a row`);
+    const cells = [...row.matchAll(/matrix__cell--(example|connects|none)/g)].map(m => m[1]);
+    assert.equal(cells.length, content.projects.length, `${pr.id}: one cell per project`);
+    content.projects.forEach((p, i) => {
+      const bridged = a.caseStudyBridges.find(b => b.slug === p.slug).principleIds.includes(pr.id);
+      const want = pr.projectSlugs.includes(p.slug) ? "example" : bridged ? "connects" : "none";
+      assert.equal(cells[i], want, `${pr.id} x ${p.slug}`);
+    });
+    examples += cells.filter(c => c === "example").length; connects += cells.filter(c => c === "connects").length;
+  }
+  assert.equal(examples, a.principles.reduce((n, pr) => n + pr.projectSlugs.length, 0));
+  assert.ok(connects > 0);
+  for (const p of content.projects) assert.ok(html.includes(`href="../projects/${p.slug}/">${p.card.kicker}</a></th>`), `${p.slug}: column links to its case study`);
+  assert.ok(html.indexOf("thinking-boundary") < html.indexOf('class="matrix-block"') && html.indexOf('class="matrix-block"') < html.indexOf('class="thinking-cards"'));
+  const noLabels = structuredClone(content);
+  delete noLabels.appliedThinking.labels.matrixTitle;
+  assert.doesNotMatch((await render("applied-thinking", noLabels)).main.innerHTML, /matrix/);
+}
+console.log("PASS: four routes, Applied Thinking tile cards, process page, homepage order, hero and story templates, case-study navigation, interactive decision sheet, order walk-through, principle matrix, escaped copy, rejected active URL schemes and offline fallback.");

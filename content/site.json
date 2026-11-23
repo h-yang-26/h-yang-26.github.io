@@ -423,6 +423,10 @@
           "label": "Decisions"
         },
         {
+          "id": "walkthrough",
+          "label": "Walk-through"
+        },
+        {
           "id": "result",
           "label": "Result"
         },
@@ -734,6 +738,202 @@
             "term": "Architecture decision record ADR-001; worth revisiting for scarce or made-to-order items."
           }
         ],
+        "walkthrough": {
+          "title": "Follow one order",
+          "lede": "One fictional order, from quote to fulfilled. Step through it and watch which numbers move, and which one stays put.",
+          "labels": {
+            "step": "Step {n} of {total}",
+            "was": "was {n}",
+            "prev": "Previous",
+            "next": "Next",
+            "hypothetical": "Hypothetical",
+            "stepsLabel": "Steps",
+            "mistake": "Not a real quantity"
+          },
+          "start": {
+            "quoted": 0,
+            "ordered": 0,
+            "reserved": 0,
+            "shipped": 0,
+            "owed": 0,
+            "onHand": 1,
+            "committed": 0,
+            "naive": 0
+          },
+          "rows": [
+            {
+              "id": "quoted",
+              "label": "Quoted",
+              "owner": "Quotation"
+            },
+            {
+              "id": "ordered",
+              "label": "Ordered",
+              "owner": "Orders"
+            },
+            {
+              "id": "reserved",
+              "label": "Reserved",
+              "owner": "Inventory and Fulfillment"
+            },
+            {
+              "id": "shipped",
+              "label": "Shipped",
+              "owner": "Inventory and Fulfillment"
+            },
+            {
+              "id": "owed",
+              "label": "Still owed",
+              "owner": "Orders (derived)"
+            },
+            {
+              "id": "onHand",
+              "label": "On hand",
+              "owner": "Inventory and Fulfillment"
+            },
+            {
+              "id": "committed",
+              "label": "Committed demand",
+              "owner": "Reporting, from accepted orders",
+              "kind": "key"
+            },
+            {
+              "id": "naive",
+              "label": "Quote + order + shipment added up",
+              "owner": "the mistake this design rules out",
+              "kind": "mistake"
+            }
+          ],
+          "steps": [
+            {
+              "date": "2026-03-04",
+              "dateLabel": "March 4",
+              "owner": "Quotation",
+              "title": "A quote is an offer",
+              "body": "QUO-2001 offers 4 units. It holds no stock and it isn’t demand: one unit is on hand and none is reserved.",
+              "records": [
+                "QUO-2001"
+              ],
+              "values": {
+                "quoted": 4,
+                "ordered": 0,
+                "reserved": 0,
+                "shipped": 0,
+                "owed": 0,
+                "onHand": 1,
+                "committed": 0,
+                "naive": 4
+              }
+            },
+            {
+              "date": "2026-03-10",
+              "dateLabel": "March 10",
+              "owner": "Orders",
+              "title": "The customer accepts 2 of the 4",
+              "body": "SO-3001 commits to 2 units. Only now does demand exist, and it is 2, not 4. The other 2 quoted units stay a signal.",
+              "records": [
+                "SO-3001",
+                "OL-3001-1"
+              ],
+              "values": {
+                "quoted": 4,
+                "ordered": 2,
+                "reserved": 0,
+                "shipped": 0,
+                "owed": 2,
+                "onHand": 1,
+                "committed": 2,
+                "naive": 6
+              }
+            },
+            {
+              "date": "2026-03-10",
+              "dateLabel": "March 10",
+              "owner": "Inventory and Fulfillment",
+              "title": "Stock is held for the order, not the quote",
+              "body": "Only 1 unit is on hand, so RSV-6001 reserves 1. The order is still owed 2.",
+              "records": [
+                "RSV-6001"
+              ],
+              "values": {
+                "quoted": 4,
+                "ordered": 2,
+                "reserved": 1,
+                "shipped": 0,
+                "owed": 2,
+                "onHand": 1,
+                "committed": 2,
+                "naive": 6
+              }
+            },
+            {
+              "date": "2026-03-13",
+              "dateLabel": "March 13",
+              "owner": "Inventory and Fulfillment",
+              "title": "One unit ships",
+              "badge": "Scenario snapshot: March 20",
+              "body": "SHP-4001 uses up the reservation, and Orders recomputes what is still owed: 2 − 1 = 1. Committed demand stays 2, because shipping changes what is owed, not what was committed.",
+              "records": [
+                "SHP-4001"
+              ],
+              "values": {
+                "quoted": 4,
+                "ordered": 2,
+                "reserved": 0,
+                "shipped": 1,
+                "owed": 1,
+                "onHand": 0,
+                "committed": 2,
+                "naive": 7
+              }
+            },
+            {
+              "date": "2026-03-30",
+              "dateLabel": "March 30",
+              "owner": "Inventory and Fulfillment",
+              "title": "Restock arrives and is reserved",
+              "hypothetical": true,
+              "body": "Suppose PO-5001 arrives three days after its estimate and RSV-6002 reserves 1 of its 2 units for the open order. Demand doesn’t change.",
+              "records": [
+                "PO-5001",
+                "RSV-6002"
+              ],
+              "values": {
+                "quoted": 4,
+                "ordered": 2,
+                "reserved": 1,
+                "shipped": 1,
+                "owed": 1,
+                "onHand": 2,
+                "committed": 2,
+                "naive": 7
+              }
+            },
+            {
+              "date": "2026-03-31",
+              "dateLabel": "March 31",
+              "owner": "Inventory and Fulfillment",
+              "title": "The last unit ships",
+              "hypothetical": true,
+              "body": "SHP-4002 ships it, the order is fulfilled and nothing is owed. Committed demand is still 2, the number it has been since the order was accepted.",
+              "records": [
+                "SHP-4002"
+              ],
+              "values": {
+                "quoted": 4,
+                "ordered": 2,
+                "reserved": 0,
+                "shipped": 2,
+                "owed": 0,
+                "onHand": 1,
+                "committed": 2,
+                "naive": 8
+              }
+            }
+          ],
+          "takeaway": "Committed demand moved once, from 0 to 2, when the order was accepted. Everything after that changed what is owed or on hand. Adding up quote, order and shipment would have reported 8.",
+          "source": "Every value comes from the case study’s fictional order scenario. Steps 5 and 6 are its hypothetical “remaining unit ships” walkthrough."
+        },
         "result": {
           "text": [
             "The scenario’s numbers reconcile: 4 quoted, 2 ordered, 1 shipped and 1 still owed, and committed demand stays at 2 even after the second unit ships in the walkthrough. A small calculator and a document checker confirm the arithmetic and that every identifier in the documents exists in the data."
@@ -1619,7 +1819,13 @@
       "connectionsIntro": "These pairings are conceptual interpretations. The same problem can require both kinds of reasoning.",
       "reviewDetails": "Publication review items",
       "workflowDiagramCaption": "The loop is illustrative: new evidence can return the process to any earlier operation. The six operations are described below.",
-      "principlesIntro": "Each principle pairs a question I ask with a scene, taken from one of the projects where one exists (P3’s is a conceptual illustration). Open a card for the method and the coursework behind it."
+      "principlesIntro": "Each principle pairs a question I ask with a scene, taken from one of the projects where one exists (P3’s is a conceptual illustration). Open a card for the method and the coursework behind it.",
+      "matrixTitle": "Where each principle shows up",
+      "matrixIntro": "A filled mark means the principle’s example is drawn from that project. An outlined mark means the project connects to the principle conceptually. A principle with no filled mark is conceptual and has no project scene of its own.",
+      "matrixPrinciple": "Principle",
+      "matrixExample": "Example drawn from this project",
+      "matrixConnects": "Conceptual connection",
+      "matrixNone": "Not linked"
     },
     "review": {
       "personalVoice": "approved",

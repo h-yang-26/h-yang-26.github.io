@@ -980,3 +980,86 @@ h1 .ph { font-size: 0.5em; vertical-align: middle; }
   .dlab__shipped { background: Highlight; }
   .dlab__short { background: GrayText; }
 }
+
+/* ---------- case study: follow one order ---------- */
+.walk__steps { display: grid; gap: 1rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+.walk__step { padding: 1.15rem 1.25rem 1.25rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.walk__step h3 { margin: 0.4rem 0 0.35rem; }
+.walk__step p { margin-bottom: 0.6rem; }
+.walk__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.75rem; margin: 0 0 0.25rem; color: var(--muted); font-size: 0.85rem; }
+.walk__num { color: var(--accent); font: 700 0.8rem/1 var(--mono); letter-spacing: 0.05em; }
+.walk__owner { padding: 0.1rem 0.55rem; border-radius: 999px; background: var(--chip-bg); color: var(--chip-fg); font-weight: 650; }
+.walk__badge { padding: 0.1rem 0.55rem; border: 1px solid var(--border-strong); border-radius: 999px; font-weight: 650; }
+.walk__badge--hypothetical { border-style: dashed; background: var(--open-bg); color: var(--open-fg); border-color: var(--open-fg); }
+.walk__records { margin: 0 0 0.75rem; }
+.walk__records code { margin-right: 0.25rem; }
+.walk__ledger { display: grid; gap: 0.5rem; margin: 0.75rem 0 0; }
+.walk__row { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; padding: 0.5rem 0.8rem; border: 1px solid var(--border); border-left-width: 4px; border-radius: var(--radius-sm); background: var(--bg); }
+.walk__row dt { display: grid; margin: 0; font-weight: 600; font-size: 0.95rem; line-height: 1.3; }
+.walk__row dt small { color: var(--muted); font-size: 0.78rem; font-weight: 400; }
+.walk__row dd { display: flex; align-items: baseline; gap: 0.5rem; margin: 0; white-space: nowrap; }
+.walk__row dd b { font: 700 1.5rem/1 var(--serif); font-variant-numeric: tabular-nums; }
+.walk__row dd small { color: var(--muted); font-size: 0.78rem; }
+.walk__row.is-changed { border-left-color: var(--accent); background: var(--chip-bg); }
+.walk__row.is-changed dt small, .walk__row.is-changed dd small { color: var(--chip-fg); }
+.walk__row--key { border-color: var(--ok-fg); border-left-color: var(--ok-fg); background: var(--ok-bg); }
+.walk__row--key dt small { color: var(--ok-fg); }
+.walk__row--mistake { border-style: dashed; border-left-color: var(--open-fg); background: transparent; }
+.walk__row--mistake dd b { color: var(--open-fg); text-decoration: line-through; text-decoration-thickness: 2px; }
+.walk__takeaway { margin: 1.25rem 0 0.5rem; padding: 0.85rem 1.1rem; border-left: 4px solid var(--ok-fg); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; background: var(--ok-bg); color: var(--ok-fg); font-weight: 650; }
+.walk__controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; margin-top: 1rem; }
+.walk__btn { min-height: 2.5rem; padding: 0.35rem 1rem; cursor: pointer; }
+.walk__btn:disabled { border-color: var(--border-strong); color: var(--muted); cursor: default; opacity: 0.6; }
+.walk__dots { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0; padding: 0; list-style: none; }
+.walk__dot { width: 2.4rem; height: 2.4rem; border: 1.5px solid var(--border-strong); border-radius: 50%; background: var(--surface); color: var(--text); font: 650 0.9rem/1 var(--sans); cursor: pointer; }
+.walk__dot:hover { border-color: var(--accent); }
+.walk__dot[aria-current="step"] { border-color: var(--accent); background: var(--accent); color: var(--on-accent); }
+.walk.is-stepper .walk__step { display: none; }
+.walk.is-stepper .walk__step.is-current { display: block; }
+.walk.is-stepper .walk__steps { margin-top: 0.75rem; }
+@media (min-width: 40rem) {
+  .walk__ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 29.99rem) {
+  .walk__step { padding: 1rem; }
+  .walk__controls { justify-content: center; }
+  .walk__dots { order: -1; width: 100%; justify-content: center; }
+}
+@media (forced-colors: active) {
+  .walk__row.is-changed, .walk__row--key { border-color: Highlight; }
+  .walk__dot[aria-current="step"] { border-color: Highlight; forced-color-adjust: none; background: Highlight; color: HighlightText; }
+}
+
+/* ---------- How I Think: where each principle shows up ---------- */
+.matrix-block { margin: 1.5rem 0 2rem; }
+.matrix-block h3 { margin-bottom: 0.4rem; }
+.matrix-block > p { max-width: 47rem; color: var(--muted); font-size: 0.98rem; }
+.matrix-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.matrix { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.matrix th, .matrix td { padding: 0.65rem 0.8rem; border-bottom: 1px solid var(--border); text-align: left; vertical-align: middle; }
+.matrix tbody tr:last-child th, .matrix tbody tr:last-child td { border-bottom: 0; }
+.matrix thead th { background: var(--surface-sunk); font-size: 0.8rem; font-weight: 750; letter-spacing: 0.05em; text-transform: uppercase; }
+.matrix thead th:not(:first-child), .matrix td { text-align: center; }
+.matrix tbody th { font-weight: 600; }
+.matrix tbody th small { display: block; margin-top: 0.1rem; color: var(--muted); font-size: 0.78rem; font-weight: 400; }
+.matrix__code { color: var(--accent); font: 700 0.85rem/1 var(--mono); margin-right: 0.25rem; }
+.matrix tbody tr:hover > * { background: var(--surface-sunk); }
+.matrix__mark { font-size: 1.15rem; line-height: 1; color: var(--accent); }
+.matrix__cell--connects .matrix__mark { color: var(--muted); }
+.matrix__text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.matrix-key { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; margin: 0.6rem 0 0; padding: 0; color: var(--muted); font-size: 0.88rem; list-style: none; }
+.matrix-key span { color: var(--accent); font-size: 1.05rem; }
+@media (max-width: 43.99rem) {
+  .matrix-wrap { overflow: visible; border: 0; background: none; }
+  .matrix, .matrix tbody, .matrix tr, .matrix th, .matrix td { display: block; }
+  .matrix thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .matrix tr { margin-bottom: 0.75rem; padding: 0.8rem 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+  .matrix th, .matrix td { padding: 0; border: 0; text-align: left; }
+  .matrix tbody tr:hover > * { background: none; }
+  .matrix tbody th { margin-bottom: 0.4rem; }
+  .matrix td.matrix__cell--none { display: none; }
+  .matrix td { display: flex; align-items: baseline; gap: 0.5rem; padding-block: 0.15rem; }
+  .matrix td::after { content: attr(data-project); order: 1; font-weight: 650; white-space: nowrap; }
+  .matrix__text { position: static; order: 2; width: auto; height: auto; overflow: visible; clip: auto; color: var(--muted); font-size: 0.85rem; white-space: normal; }
+  .matrix__mark { order: 0; }
+}
