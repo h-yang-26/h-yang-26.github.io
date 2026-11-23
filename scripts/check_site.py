@@ -131,6 +131,39 @@ def content_urls(content):
         yield f"owner.otherLinks[{i}].url", link.get("url", "")
 
 
+# Published totals from the inventory lab's results/example_results.json: tight_capacity
+# (original shortage cost, Plan A) and high_shortage_penalty (4x, Plan B). The decision
+# sheet must reproduce them; scripts/verify_decision_lab.py re-solves the model for the rest.
+PUBLISHED_TOTALS = ((1, "A", 2976), (4, "B", 8660))
+
+
+def decision_lab_problems(content):
+    """The homepage decision sheet's numbers must be self-consistent and match the lab's published totals."""
+    hero = content["site"].get("hero") or {}
+    lab = hero.get("decisionLab")
+    if not lab:
+        return []
+    out = []
+    plans = {p.get("id"): p for p in lab.get("plans", [])}
+    if set(plans) != {"A", "B"}:
+        return ["site.hero.decisionLab: needs exactly Plan A and Plan B"]
+    a, b = plans["A"], plans["B"]
+    for plan in (a, b):
+        if plan["shipped"] + plan["short"] != lab["totalUnits"]:
+            out.append(f"decisionLab Plan {plan['id']}: shipped + short is not {lab['totalUnits']}")
+    if not (b["fixed"] > a["fixed"] and a["shortage"] > b["shortage"]):
+        out.append("decisionLab: Plan B must cost more to set up and less in shortages than Plan A")
+    if [m.get("value") for m in lab.get("marks", [])] != [lab["min"], lab["max"]]:
+        out.append("decisionLab: the two slider marks must sit at the slider's minimum and maximum")
+    if not lab["min"] <= lab.get("start", lab["min"]) <= lab["max"] or lab["step"] <= 0:
+        out.append("decisionLab: slider start or step is out of range")
+    for mult, plan, total in PUBLISHED_TOTALS:
+        got = plans[plan]["fixed"] + plans[plan]["shortage"] * mult
+        if abs(got - total) > 1e-6:
+            out.append(f"decisionLab: Plan {plan} at {mult}x is {got}, the lab publishes {total}")
+    return out
+
+
 def main():
     release = "--release" in sys.argv[1:]
     problems = []
@@ -303,6 +336,14 @@ def main():
             problems.append(f"How I work tile {tile.get('src')}: principle {principle} is not approved for {project}")
     if content["site"].get("hero") and not content["site"].get("disclosure"):
         problems.append("site.disclosure is required once the new hero is used")
+    problems += decision_lab_problems(content)
+    # "On this page" row: every entry must point at a section the case-study pages render.
+    nav_ids = [item["id"] for item in (content["site"].get("storyNav") or {}).get("items", [])]
+    for page, parser in parsed.items():
+        if parser.body.get("data-page") == "project" and nav_ids:
+            missing = [i for i in nav_ids if i not in parser.ids and i != "academic-connections"]
+            if missing:
+                problems.append(f"{page.relative_to(ROOT).as_posix()}: story navigation points at missing sections {missing}")
     for project in content["projects"]:
         story = project.get("story")
         if not story:

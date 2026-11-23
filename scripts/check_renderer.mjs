@@ -108,4 +108,70 @@ assert.ok(!result.includes('<script>') && !result.includes('src="javascript:') &
 assert.ok(!(await render("project", hostile)).main.innerHTML.includes('javascript:'));
 assert.ok(!(await render("home", hostile)).main.innerHTML.includes('href="javascript:'));
 assert.equal((await render("applied-thinking", content, true)).main.innerHTML, "STATIC FALLBACK");
-console.log("PASS: four routes, Applied Thinking tile cards, process page, homepage order, hero and story templates, escaped copy, rejected active URL schemes and offline fallback.");
+// Case-study navigation: plain anchors in the static page, one per section that exists.
+for (const p of content.projects) {
+  const html = (await render("project", content, false, p.slug)).main.innerHTML;
+  const nav = html.match(/<nav class="story-nav"[^>]*>[\s\S]*?<\/nav>/);
+  assert.ok(nav, `${p.slug}: story navigation`);
+  const targets = [...nav[0].matchAll(/href="#([^"]+)"/g)].map(m => m[1]);
+  assert.equal(targets.length, content.site.storyNav.items.length, `${p.slug}: every entry listed (all studies have Academic connections)`);
+  for (const id of targets) assert.match(html, new RegExp(`<section id="${id}"`), `${p.slug}: #${id} exists`);
+}
+// Homepage decision sheet: the static page keeps the figure; the browser swaps in the interactive sheet.
+assert.match(home, /<figure class="showcase" data-decision-lab>/);
+assert.match(home, /<figure class="showcase" data-decision-lab>[\s\S]*?<picture>/, "static figure stays as the no-script fallback");
+assert.ok(!home.includes('class="dlab"'), "the interactive sheet is not part of the static snapshot");
+async function enhanceHome(input = content) {
+  const handlers = {};
+  const view = {innerHTML: ""}, out = {textContent: ""};
+  const range = {value: "", attrs: {}, setAttribute(k, v) { this.attrs[k] = v; }, addEventListener(type, fn) { handlers[type] = fn; }};
+  const presets = [0, 1, 2].map(() => ({dataset: {}, addEventListener(type, fn) { this.click = fn; }}));
+  const holder = {className: "", html: "", set innerHTML(v) { this.html = v; presets.forEach((b, i) => { const m = v.match(new RegExp(`data-dlab-preset="${i}" data-value="([^"]*)"`)); b.dataset.value = m && m[1]; }); },
+    querySelector: sel => ({"[data-dlab-range]": range, "[data-dlab-out]": out, "[data-dlab-view]": view})[sel], querySelectorAll: () => presets};
+  const picture = {replaced: null, replaceWith(el) { this.replaced = el; }};
+  const figure = {querySelector: sel => (sel === "picture" ? picture : null)};
+  const nodes = Object.fromEntries(["main", "site-header", "draft-banner", "site-footer"].map(id => [id, {innerHTML: "", dataset: {prerendered: "true"}}]));
+  const document = {body: {dataset: {page: "home", root: ".", project: ""}}, getElementById: id => nodes[id], createElement: () => holder,
+    querySelector: sel => (sel === "[data-decision-lab]" ? figure : null)};
+  const context = vm.createContext({document, location: {protocol: "https:", hash: ""}, fetch: async () => ({ok: true, json: async () => input})});
+  vm.runInContext(source, context, {timeout: 5000});
+  await new Promise(resolve => setImmediate(resolve));
+  return {picture, holder, range, out, view, presets, handlers};
+}
+{
+  const lab = await enhanceHome();
+  assert.equal(lab.picture.replaced, lab.holder, "the interactive sheet replaces the static picture");
+  assert.match(lab.holder.html, /min="1" max="4" step="0.05" value="1"/);
+  // Start: the lab's original scenario. Plan A (2,976) beats Plan B (3,140) by 164.
+  assert.match(lab.view.innerHTML, /<b>2,976<\/b>/); assert.match(lab.view.innerHTML, /<b>3,140<\/b>/);
+  assert.match(lab.view.innerHTML, /dlab__plan is-best">\s*<p class="dlab__tag">Plan A/);
+  assert.match(lab.view.innerHTML, /Plan A is cheaper by 164\. The better plan changes at about 1\.7×\./);
+  assert.match(lab.view.innerHTML, /164 more than Plan A/);
+  // 4×: the lab's high-shortage scenario. Plan B (8,660) beats Plan A (9,204) by 544.
+  lab.range.value = "4"; lab.handlers.input();
+  assert.match(lab.view.innerHTML, /<b>8,660<\/b>/); assert.match(lab.view.innerHTML, /<b>9,204<\/b>/);
+  assert.match(lab.view.innerHTML, /dlab__plan is-best">\s*<p class="dlab__tag">Plan B/);
+  assert.match(lab.view.innerHTML, /544 more than Plan B/);
+  assert.equal(lab.out.textContent, "4× the original");
+  assert.match(lab.range.attrs["aria-valuetext"], /^4× the original\. At 4× /);
+  // Presets: the tipping point sits on the slider and flips the decision to Plan B.
+  assert.deepEqual(lab.presets.map(b => b.dataset.value), ["1", "1.7", "4"]);
+  lab.presets[1].dataset.value = "1.7"; lab.presets[1].click();
+  assert.equal(lab.range.value, "1.7");
+  assert.match(lab.view.innerHTML, /Plan B is cheaper by 1\./);
+  lab.range.value = "1.65"; lab.handlers.input();
+  assert.match(lab.view.innerHTML, /Plan A is cheaper by/);
+  // Content is escaped, and a lab that is not two plans leaves the static figure alone.
+  const bad = structuredClone(content);
+  bad.site.hero.decisionLab.plans[0].name = '<img src=x onerror="alert(1)">';
+  bad.site.hero.decisionLab.source = "<script>alert(1)</script>";
+  const hostileLab = await enhanceHome(bad);
+  assert.ok(!hostileLab.view.innerHTML.includes("<img") && !hostileLab.holder.html.includes("<script>"));
+  const single = structuredClone(content);
+  single.site.hero.decisionLab.plans.pop();
+  assert.equal((await enhanceHome(single)).picture.replaced, null);
+  const none = structuredClone(content);
+  delete none.site.hero.decisionLab;
+  assert.equal((await enhanceHome(none)).picture.replaced, null);
+}
+console.log("PASS: four routes, Applied Thinking tile cards, process page, homepage order, hero and story templates, case-study navigation, interactive decision sheet, escaped copy, rejected active URL schemes and offline fallback.");
