@@ -45,6 +45,8 @@ After editing, run `node scripts/render_static.mjs` and the checks below.
 ## Content model
 
 - `site.hero`: the homepage hero (eyebrow, title, lede, primary button and the decision-sheet figure). Résumé, email, LinkedIn and GitHub buttons come from the `owner` fields.
+- `site.hero.decisionLab`: the interactive version of the hero figure. The browser swaps it in for the static figure (which stays as the no-script fallback). Each of the two plans has four numbers (container charge, shortage cost at 1×, units shipped, units short) and its cost at any setting is `fixed + shortage × multiplier`. Slider range, labels, lenses and the source note live here too. `check_site.py` checks the numbers against the lab's published totals; `scripts/verify_decision_lab.py` re-solves the model at every slider position (see Checks).
+- `site.storyNav`: the "On this page" row at the top of each case study. Each entry's `id` must be a section the case-study page renders; the Academic connections entry is dropped on a page that has no such section.
 - `site.howIWork`: the homepage tiles, each naming the project it links to and the principle it illustrates.
 - `site.work`, `site.experience`, `site.about`: homepage sections. Experience reuses `owner.professionalExperience` verbatim; `site.about.aiTools` lists the AI tools used.
 - `site.process`: the "How these were built" page, linked from the footer and from each case study's "My role" section.
@@ -65,6 +67,13 @@ node scripts/check_renderer.mjs           # rendering, escaping and page structu
 python scripts/check_site.py              # links, content rules and voice check
 python scripts/check_site.py --release    # also checks publication approvals and search settings
 ```
+
+```bash
+pip install pulp==3.3.2   # optional: only for the decision sheet's numbers
+python scripts/verify_decision_lab.py --lab ../inventory-shipping-optimization-lab
+```
+
+The last one is not part of the release checks because it needs PuLP and a checkout of the inventory lab. Run it whenever `site.hero.decisionLab` changes or the lab's scenarios change.
 
 `check_site.py` checks local links and fragments, required case-study fields, that each tile's principle is approved for its project, and that retired labels such as "agent-run" or "unverified" don't return.
 

@@ -125,6 +125,115 @@
             1334
           ]
         }
+      },
+      "decisionLab": {
+        "kicker": "Try it",
+        "question": "What should ship now?",
+        "lede": "Same tight containers and stock. Change only what each unshipped unit costs.",
+        "sliderLabel": "Cost of each unshipped unit",
+        "valueText": "{x}× the original",
+        "min": 1,
+        "max": 4,
+        "step": 0.05,
+        "start": 1,
+        "unit": "toy cost units",
+        "totalUnits": 309,
+        "marks": [
+          {
+            "value": 1,
+            "label": "1× original scenario"
+          },
+          {
+            "value": 4,
+            "label": "4× high-shortage scenario"
+          }
+        ],
+        "presets": [
+          {
+            "label": "Original (1×)",
+            "value": 1
+          },
+          {
+            "label": "Tipping point (about {t}×)",
+            "value": "tipping"
+          },
+          {
+            "label": "High shortage cost (4×)",
+            "value": 4
+          }
+        ],
+        "plans": [
+          {
+            "id": "A",
+            "name": "Plan A",
+            "title": "Open one container",
+            "trait": "Lower container cost",
+            "fixed": 900,
+            "shortage": 2076,
+            "shipped": 112,
+            "short": 197,
+            "opened": [
+              "large"
+            ]
+          },
+          {
+            "id": "B",
+            "name": "Plan B",
+            "title": "Open both containers",
+            "trait": "Less unmet demand",
+            "fixed": 1300,
+            "shortage": 1840,
+            "shipped": 130,
+            "short": 179,
+            "opened": [
+              "large",
+              "small"
+            ]
+          }
+        ],
+        "containers": [
+          {
+            "id": "large",
+            "label": "Large container"
+          },
+          {
+            "id": "small",
+            "label": "Small container"
+          }
+        ],
+        "labels": {
+          "total": "Total cost",
+          "breakdown": "{fixed} for containers + {shortage} for shortages",
+          "opened": "opened",
+          "notOpened": "not opened",
+          "shipped": "{n} shipped",
+          "short": "{n} short",
+          "ofTotal": "of {n} units",
+          "best": "Cheaper at this cost",
+          "worse": "{n} more than {plan}",
+          "resultBest": "At {x}× the original shortage cost, {plan} is cheaper by {n}.",
+          "resultTie": "At {x}× the original shortage cost, the two plans cost about the same.",
+          "tipping": "The better plan changes at about {t}×.",
+          "lensesTitle": "Three lenses on the same decision"
+        },
+        "lenses": [
+          {
+            "label": "Business context",
+            "tone": "accent",
+            "text": "What is a unit of unmet demand worth?"
+          },
+          {
+            "label": "Model",
+            "tone": "ok",
+            "text": "Capacity is a hard limit in both plans."
+          },
+          {
+            "label": "Assumption",
+            "tone": "warn",
+            "text": "The shortage cost is a judgment, not a fact."
+          }
+        ],
+        "source": "Fictional scenario from the shipping case study, in the lab’s toy cost units. The 1× and 4× settings are the lab’s published scenarios; Plan B at 1× and Plan A at 4× come from re-solving the lab’s model with that container choice fixed, at every step of this slider. An allocation is not a loading plan."
       }
     },
     "howIWork": {
@@ -301,7 +410,40 @@
       "linkLabel": "How these were built"
     },
     "searchIndexing": false,
-    "_searchIndexingHelp": "false adds a robots noindex tag to every page, so search engines are asked not to list the site; set to true to be findable by search. Regenerate snapshots after changing it."
+    "_searchIndexingHelp": "false adds a robots noindex tag to every page, so search engines are asked not to list the site; set to true to be findable by search. Regenerate snapshots after changing it.",
+    "storyNav": {
+      "label": "On this page",
+      "items": [
+        {
+          "id": "situation",
+          "label": "Situation"
+        },
+        {
+          "id": "decisions",
+          "label": "Decisions"
+        },
+        {
+          "id": "result",
+          "label": "Result"
+        },
+        {
+          "id": "next",
+          "label": "What’s next"
+        },
+        {
+          "id": "technical",
+          "label": "Technical notes"
+        },
+        {
+          "id": "role",
+          "label": "My role"
+        },
+        {
+          "id": "academic-connections",
+          "label": "Academic connections"
+        }
+      ]
+    }
   },
   "projects": [
     {

@@ -104,13 +104,13 @@
   }
 
   // A headline figure: optional HTML title, the picture, a caption and an optional link.
-  function showcase(entry) {
+  function showcase(entry, attrs) {
     if (!entry) return "";
     const image = picture(entry, entry.alt, "figure");
     if (!image) return "";
     const href = entry.link ? url(entry.link.href) : null;
     const link = href ? ` <a href="${href}">${esc(entry.link.label)}</a>` : "";
-    return `<figure class="showcase">
+    return `<figure class="showcase"${attrs || ""}>
       ${entry.title ? `<p class="showcase__title">${inline(entry.title)}</p>` : ""}
       ${image}
       ${entry.caption || link ? `<figcaption>${inline(entry.caption || "")}${link}</figcaption>` : ""}
@@ -368,7 +368,7 @@
       <h1 id="intro-title">${inline(h.title)}</h1>
       <p class="hero__lede">${inline(h.lede)}</p>
       <div class="actions hero__actions">${buttons.join("")}</div>
-      ${showcase(h.visual)}
+      ${showcase(h.visual, h.decisionLab ? " data-decision-lab" : "")}
     </section>`;
   }
 
@@ -541,6 +541,15 @@
     </nav>`;
   }
 
+  // "On this page" row for the long case-study pages: plain anchors, so it works
+  // without JavaScript; enhanceStoryNav() adds the current-section marker.
+  function renderStoryNav(content, hasBacklinks) {
+    const n = content.site.storyNav;
+    if (!n || !Array.isArray(n.items)) return "";
+    const items = n.items.filter((item) => item.id !== "academic-connections" || hasBacklinks);
+    return `<nav class="story-nav" aria-label="${esc(n.label)}"><ul>${items.map((item) => `<li><a href="#${esc(item.id)}">${esc(item.label)}</a></li>`).join("")}</ul></nav>`;
+  }
+
   // Decision-led case study: situation, a few decisions with their trade-offs,
   // the result, what comes next, then technical notes and the owner's own words.
   function renderStory(content, index) {
@@ -584,6 +593,7 @@
         <dl class="story-facts">${st.facts.map(f => `<div><dt>${esc(f.label)}</dt><dd>${inline(f.value)}</dd></div>`).join("")}</dl>
         <div class="actions">${repoLinks(p, false)}</div>
       </header>
+      ${renderStoryNav(content, !!backlinks)}
       ${showcase(st.banner)}
       <article class="story-body">
         <section id="situation" aria-labelledby="situation-title">
@@ -635,6 +645,137 @@
     return renderStory(content, index);
   }
 
+  /* ---------- enhancements (browser only; the static pages read fine without them) ---------- */
+
+  // Decision sheet: the visitor moves the shortage cost and sees which plan is
+  // cheaper. Each plan's cost is a straight line, container charge + shortage
+  // cost x multiplier, so four numbers per plan in content/site.json are
+  // enough; scripts/verify_decision_lab.py re-solves the model to confirm them.
+  const num = (v) => (Number.isFinite(Number(v)) ? Number(v) : 0);
+  const fmt = (n) => Math.round(n).toLocaleString("en-US");
+  const times = (x) => String(Number(x.toFixed(2)));
+  const oneDecimal = (x) => String(Number(x.toFixed(1)));
+  const fill = (text, vars) => String(text).replace(/\{(\w+)\}/g, (all, key) => (key in vars ? vars[key] : all));
+
+  function tippingPoint(lab) {
+    const [a, b] = lab.plans;
+    return (num(b.fixed) - num(a.fixed)) / (num(a.shortage) - num(b.shortage));
+  }
+
+  // Usable only with two plans where the second costs more to set up and saves on shortages.
+  function decisionLabValid(lab) {
+    if (!lab || !Array.isArray(lab.plans) || lab.plans.length !== 2 || !lab.labels) return false;
+    const [a, b] = lab.plans;
+    return num(b.fixed) > num(a.fixed) && num(a.shortage) > num(b.shortage) && num(lab.max) > num(lab.min) && num(lab.step) > 0;
+  }
+
+  function decisionView(lab, m) {
+    const L = lab.labels;
+    const costs = lab.plans.map((p) => ({ plan: p, shortage: num(p.shortage) * m, total: num(p.fixed) + num(p.shortage) * m }));
+    const gap = Math.abs(costs[0].total - costs[1].total);
+    const tie = Math.round(gap) === 0;
+    const best = tie ? -1 : costs[0].total < costs[1].total ? 0 : 1;
+    const total = num(lab.totalUnits);
+    const cards = costs.map((c, i) => {
+      const p = c.plan, other = lab.plans[1 - i];
+      const status = best === i ? L.best : tie ? "" : fill(L.worse, { n: fmt(gap), plan: other.name });
+      const boxes = lab.containers.map((k) => {
+        const open = p.opened.includes(k.id);
+        return `<li class="dlab__box dlab__box--${esc(k.id)}${open ? " is-open" : ""}"><span>${esc(k.label)}</span><small>${esc(open ? L.opened : L.notOpened)}</small></li>`;
+      }).join("");
+      return `<div class="dlab__plan${best === i ? " is-best" : ""}">
+        <p class="dlab__tag">${esc(p.name)}</p>
+        <p class="dlab__title">${esc(p.title)}</p>
+        <p class="dlab__trait">${esc(p.trait)}</p>
+        <ul class="dlab__boxes">${boxes}</ul>
+        <p class="dlab__total"><span>${esc(L.total)}</span><b>${fmt(c.total)}</b></p>
+        <p class="dlab__break">${esc(fill(L.breakdown, { fixed: fmt(num(p.fixed)), shortage: fmt(c.shortage) }))}</p>
+        <div class="dlab__bar" role="img" aria-label="${esc(fill(L.shipped, { n: num(p.shipped) }) + ", " + fill(L.short, { n: num(p.short) }) + " " + fill(L.ofTotal, { n: total }))}"><span class="dlab__shipped" style="flex-grow:${num(p.shipped)}"></span><span class="dlab__short" style="flex-grow:${num(p.short)}"></span></div>
+        <p class="dlab__units"><span>${esc(fill(L.shipped, { n: num(p.shipped) }))}</span><span>${esc(fill(L.short, { n: num(p.short) }))} ${esc(fill(L.ofTotal, { n: total }))}</span></p>
+        <p class="dlab__status">${status ? esc(status) : "&nbsp;"}</p>
+      </div>`;
+    }).join("");
+    const x = times(m);
+    const verdict = tie ? fill(L.resultTie, { x }) : fill(L.resultBest, { x, plan: lab.plans[best].name, n: fmt(gap) });
+    const text = `${verdict} ${fill(L.tipping, { t: oneDecimal(tippingPoint(lab)) })}`;
+    return { html: `<div class="dlab__plans">${cards}</div><p class="dlab__result">${esc(text)}</p>`, text };
+  }
+
+  function enhanceDecisionLab(content) {
+    const lab = content.site && content.site.hero && content.site.hero.decisionLab;
+    if (!decisionLabValid(lab) || typeof document.querySelector !== "function" || typeof document.createElement !== "function") return;
+    const figure = document.querySelector("[data-decision-lab]");
+    const picture = figure && figure.querySelector("picture");
+    if (!picture) return;
+    const min = num(lab.min), max = num(lab.max), step = num(lab.step);
+    const tip = Number(Math.min(max, Math.max(min, Math.round(tippingPoint(lab) / step) * step)).toFixed(4));
+    const tipText = oneDecimal(tippingPoint(lab));
+    const presets = lab.presets.map((p, i) => {
+      const value = p.value === "tipping" ? tip : num(p.value);
+      return `<button type="button" class="btn dlab__preset" data-dlab-preset="${i}" data-value="${esc(value)}">${esc(fill(p.label, { t: tipText }))}</button>`;
+    }).join("");
+    const lenses = lab.lenses.map((l) => `<li class="dlab__lens dlab__lens--${esc(l.tone)}"><b>${esc(l.label)}</b><span>${esc(l.text)}</span></li>`).join("");
+    const holder = document.createElement("div");
+    holder.className = "dlab";
+    holder.innerHTML = `<div class="dlab__head"><p class="dlab__kicker">${esc(lab.kicker)}</p><p class="dlab__q">${esc(lab.question)}</p><p class="dlab__lede">${esc(lab.lede)}</p></div>
+      <div class="dlab__control">
+        <div class="dlab__label"><label for="dlab-range">${esc(lab.sliderLabel)}</label><output class="dlab__value" for="dlab-range" data-dlab-out></output></div>
+        <input id="dlab-range" type="range" min="${min}" max="${max}" step="${step}" value="${num(lab.start)}" data-dlab-range>
+        <div class="dlab__marks">${lab.marks.map((k) => `<span>${esc(k.label)}</span>`).join("")}</div>
+        <div class="dlab__presets">${presets}</div>
+      </div>
+      <div class="dlab__view" data-dlab-view></div>
+      <div class="dlab__lenses"><p class="dlab__lenses-title">${esc(lab.labels.lensesTitle)}</p><ul>${lenses}</ul></div>
+      <p class="dlab__source">${esc(lab.source)}</p>`;
+    const range = holder.querySelector("[data-dlab-range]");
+    const out = holder.querySelector("[data-dlab-out]");
+    const view = holder.querySelector("[data-dlab-view]");
+    function update(m) {
+      const result = decisionView(lab, m);
+      const label = fill(lab.valueText, { x: times(m) });
+      out.textContent = label;
+      view.innerHTML = result.html;
+      range.setAttribute("aria-valuetext", `${label}. ${result.text}`);
+    }
+    range.addEventListener("input", () => update(Math.min(max, Math.max(min, num(range.value)))));
+    holder.querySelectorAll("[data-dlab-preset]").forEach((button) => button.addEventListener("click", () => {
+      range.value = button.dataset.value;
+      update(num(button.dataset.value));
+    }));
+    update(num(lab.start));
+    if (picture.replaceWith) picture.replaceWith(holder);
+    else picture.parentNode.replaceChild(holder, picture);
+  }
+
+  // Case studies: mark the section being read in the "On this page" row.
+  function enhanceStoryNav() {
+    if (typeof document.querySelector !== "function") return;
+    const nav = document.querySelector(".story-nav");
+    if (!nav || typeof window === "undefined" || typeof window.addEventListener !== "function") return;
+    const list = nav.querySelector("ul");
+    const links = Array.from(nav.querySelectorAll("a"));
+    const entries = links.map((link) => ({ link, section: document.getElementById(decodeURIComponent(link.getAttribute("href").slice(1))) })).filter((e) => e.section);
+    if (!entries.length) return;
+    let current = null, queued = false;
+    function mark() {
+      queued = false;
+      const probe = nav.getBoundingClientRect().bottom + 48;
+      let active = null;
+      for (const e of entries) if (e.section.getBoundingClientRect().top <= probe) active = e;
+      const root = document.documentElement;
+      if (root && window.innerHeight + window.scrollY >= root.scrollHeight - 2) active = entries[entries.length - 1];
+      if (active === current) return;
+      if (current) current.link.removeAttribute("aria-current");
+      current = active;
+      if (!current) return;
+      current.link.setAttribute("aria-current", "true");
+      if (list && list.scrollTo && list.scrollWidth > list.clientWidth) list.scrollTo({ left: current.link.offsetLeft - (list.clientWidth - current.link.offsetWidth) / 2 });
+    }
+    window.addEventListener("scroll", () => { if (!queued) { queued = true; window.requestAnimationFrame(mark); } }, { passive: true });
+    window.addEventListener("resize", mark);
+    mark();
+  }
+
   /* ---------- boot ---------- */
 
   function renderError(error) {
@@ -671,6 +812,8 @@
       : page === "applied-thinking" ? renderAppliedThinking(content)
       : page === "process" ? renderProcess(content) : renderHome(content);
     document.getElementById("site-footer").innerHTML = renderFooter(content);
+    enhanceDecisionLab(content);
+    enhanceStoryNav();
 
     // Content arrives after load, so jump to a #fragment once it exists.
     if (location.hash) {
