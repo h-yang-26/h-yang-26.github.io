@@ -55,6 +55,11 @@
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
   }
 
+  // Content numbers are used as numbers only when they are finite.
+  const num = (v) => (Number.isFinite(Number(v)) ? Number(v) : 0);
+  // Replaces {name} placeholders in content strings.
+  const fill = (text, vars) => String(text).replace(/\{(\w+)\}/g, (all, key) => (key in vars ? vars[key] : all));
+
   function paras(value) {
     const list = Array.isArray(value) ? value : [value];
     return list.map((p) => `<p>${inline(p)}</p>`).join("");
@@ -459,6 +464,29 @@
     return inline(row.translation).replace("{principle}", link);
   }
 
+  // Project x principle overview, built only from mappings the page already states:
+  // a principle's projectSlugs (its example comes from that project) and each
+  // case study's bridge (a conceptual connection).
+  function renderPrincipleMatrix(content) {
+    const a = content.appliedThinking, l = a.labels;
+    if (!l.matrixTitle) return "";
+    const projects = content.projects;
+    const bridged = (slug, id) => (a.caseStudyBridges.find((b) => b.slug === slug) || { principleIds: [] }).principleIds.includes(id);
+    const head = projects.map((p) => `<th scope="col"><a href="${home}projects/${esc(p.slug)}/">${esc((p.card && p.card.kicker) || p.title)}</a></th>`).join("");
+    const rows = a.principles.map((pr) => {
+      const cells = projects.map((p) => {
+        const kind = pr.projectSlugs.includes(p.slug) ? "example" : bridged(p.slug, pr.id) ? "connects" : "none";
+        const text = kind === "example" ? l.matrixExample : kind === "connects" ? l.matrixConnects : l.matrixNone;
+        const mark = kind === "example" ? "●" : kind === "connects" ? "○" : "";
+        return `<td class="matrix__cell matrix__cell--${kind}" data-project="${esc((p.card && p.card.kicker) || p.title)}"><span class="matrix__mark" aria-hidden="true">${mark}</span><span class="matrix__text">${esc(text)}</span></td>`;
+      }).join("");
+      return `<tr><th scope="row"><a href="#${esc(pr.id)}"><span class="matrix__code">${esc(pr.code)}</span> ${esc(pr.title)}</a>${pr.projectSlugs.length ? "" : `<small>${esc(l.conceptual)}</small>`}</th>${cells}</tr>`;
+    }).join("");
+    return `<div class="matrix-block"><h3>${esc(l.matrixTitle)}</h3><p>${inline(l.matrixIntro)}</p>
+      <div class="matrix-wrap"><table class="matrix"><thead><tr><th scope="col">${esc(l.matrixPrinciple)}</th>${head}</tr></thead><tbody>${rows}</tbody></table></div>
+      <ul class="matrix-key"><li><span aria-hidden="true">●</span> ${esc(l.matrixExample)}</li><li><span aria-hidden="true">○</span> ${esc(l.matrixConnects)}</li></ul></div>`;
+  }
+
   // Applied Thinking: the eight principles lead as tile cards, grouped by
   // discipline; the longer explanation, method and coursework sit in <details>.
   function renderAppliedThinking(content) {
@@ -489,7 +517,7 @@
       </div>`).join("");
     const sections = {
       principles: `${l.principlesIntro ? `<p class="section__lede">${inline(l.principlesIntro)}</p>` : ""}${groups}<p class="thinking-shared">${inline(a.sharedConcern)}</p>`,
-      "in-practice": `<p class="thinking-boundary">${inline(a.disclosure)}</p><ul class="thinking-cards">${a.caseStudyBridges.map(b => `<li><article><p class="eyebrow">${esc(l.relatedProject)}</p><h3><a href="${home}projects/${esc(b.slug)}/">${esc(b.label)}</a></h3><p>${inline(b.body)}</p>${principleLinks(a, b.principleIds, false)}</article></li>`).join("")}</ul>`,
+      "in-practice": `<p class="thinking-boundary">${inline(a.disclosure)}</p>${renderPrincipleMatrix(content)}<ul class="thinking-cards">${a.caseStudyBridges.map(b => `<li><article><p class="eyebrow">${esc(l.relatedProject)}</p><h3><a href="${home}projects/${esc(b.slug)}/">${esc(b.label)}</a></h3><p>${inline(b.body)}</p>${principleLinks(a, b.principleIds, false)}</article></li>`).join("")}</ul>`,
       workflow: `<p>${inline(a.workflow.intro)}</p>${renderThinkingFigure(a, "thinking-cycle")}<ol class="thinking-workflow">${a.workflow.steps.map(s => `<li id="step-${esc(s.id)}"><h3>${esc(s.title)}</h3><p>${inline(s.body)}</p></li>`).join("")}</ol><p>${inline(a.workflow.closing)}</p>`,
       connections: `<p>${inline(l.connectionsIntro)}</p><ul class="thinking-cards">${a.connections.map(c => `<li><article id="${esc(c.id)}"><h3>${esc(c.title)}</h3><p>${inline(c.body)}</p>${principleLinks(a, c.principleIds, false)}</article></li>`).join("")}</ul>`,
       academic: `<p>${inline(l.academicIntro)}</p><table class="thinking-table"><thead><tr><th scope="col">${esc(l.academicArea)}</th><th scope="col">${esc(l.academicUse)}</th></tr></thead><tbody>${a.academicFoundations.rows.map(r => `<tr><th scope="row">${esc(r.title)}</th><td>${courseText(a, r)}</td></tr>`).join("")}</tbody></table><p class="note">${inline(l.academicDeferred)}</p>`,
@@ -541,12 +569,42 @@
     </nav>`;
   }
 
+  // "Follow one order": every step is a card with the full ledger, so the page reads
+  // without JavaScript; enhanceWalkthrough() turns it into a one-step-at-a-time stepper.
+  const count = (v) => String(num(v));
+  function renderWalkthrough(w) {
+    const L = w.labels, total = w.steps.length;
+    const steps = w.steps.map((step, i) => {
+      const rows = w.rows.map((r) => {
+        const now = num(step.values[r.id]);
+        const was = i === 0 ? num(w.start[r.id]) : num(w.steps[i - 1].values[r.id]);
+        const kind = r.kind === "key" || r.kind === "mistake" ? ` walk__row--${r.kind}` : "";
+        return `<div class="walk__row${kind}${now !== was ? " is-changed" : ""}"><dt>${esc(r.label)}<small>${esc(r.owner)}</small></dt><dd><b>${count(now)}</b>${now !== was ? `<small>${esc(fill(L.was, { n: count(was) }))}</small>` : ""}</dd></div>`;
+      }).join("");
+      const records = (step.records || []).map((id) => `<code>${esc(id)}</code>`).join(" ");
+      return `<li class="walk__step" id="walk-step-${i + 1}">
+        <p class="walk__meta"><span class="walk__num">${esc(fill(L.step, { n: i + 1, total }))}</span><time datetime="${esc(step.date)}">${esc(step.dateLabel)}</time><span class="walk__owner">${esc(step.owner)}</span>${step.hypothetical ? `<span class="walk__badge walk__badge--hypothetical">${esc(L.hypothetical)}</span>` : ""}${step.badge ? `<span class="walk__badge">${esc(step.badge)}</span>` : ""}</p>
+        <h3>${esc(step.title)}</h3>
+        <p>${inline(step.body)}</p>
+        ${records ? `<p class="walk__records">${records}</p>` : ""}
+        <dl class="walk__ledger">${rows}</dl>
+      </li>`;
+    }).join("");
+    return `<section id="walkthrough" class="walk" data-walkthrough aria-labelledby="walkthrough-title">
+          <h2 id="walkthrough-title">${esc(w.title)}</h2>
+          <p>${inline(w.lede)}</p>
+          <ol class="walk__steps">${steps}</ol>
+          <p class="walk__takeaway">${inline(w.takeaway)}</p>
+          <p class="note">${inline(w.source)}</p>
+        </section>`;
+  }
+
   // "On this page" row for the long case-study pages: plain anchors, so it works
   // without JavaScript; enhanceStoryNav() adds the current-section marker.
-  function renderStoryNav(content, hasBacklinks) {
+  function renderStoryNav(content, present) {
     const n = content.site.storyNav;
     if (!n || !Array.isArray(n.items)) return "";
-    const items = n.items.filter((item) => item.id !== "academic-connections" || hasBacklinks);
+    const items = n.items.filter((item) => present.has(item.id));
     return `<nav class="story-nav" aria-label="${esc(n.label)}"><ul>${items.map((item) => `<li><a href="#${esc(item.id)}">${esc(item.label)}</a></li>`).join("")}</ul></nav>`;
   }
 
@@ -593,7 +651,7 @@
         <dl class="story-facts">${st.facts.map(f => `<div><dt>${esc(f.label)}</dt><dd>${inline(f.value)}</dd></div>`).join("")}</dl>
         <div class="actions">${repoLinks(p, false)}</div>
       </header>
-      ${renderStoryNav(content, !!backlinks)}
+      ${renderStoryNav(content, new Set(["situation", "decisions", "result", "next", "technical", "role", ...(st.walkthrough ? ["walkthrough"] : []), ...(backlinks ? ["academic-connections"] : [])]))}
       ${showcase(st.banner)}
       <article class="story-body">
         <section id="situation" aria-labelledby="situation-title">
@@ -605,6 +663,7 @@
           <h2 id="decisions-title">${esc(st.decisionsTitle)}</h2>
           <ol class="decisions">${decisions}</ol>
         </section>
+        ${st.walkthrough ? renderWalkthrough(st.walkthrough) : ""}
         <section id="result" aria-labelledby="result-title">
           <h2 id="result-title">The result</h2>
           ${paras(st.result.text)}
@@ -651,11 +710,9 @@
   // cheaper. Each plan's cost is a straight line, container charge + shortage
   // cost x multiplier, so four numbers per plan in content/site.json are
   // enough; scripts/verify_decision_lab.py re-solves the model to confirm them.
-  const num = (v) => (Number.isFinite(Number(v)) ? Number(v) : 0);
   const fmt = (n) => Math.round(n).toLocaleString("en-US");
   const times = (x) => String(Number(x.toFixed(2)));
   const oneDecimal = (x) => String(Number(x.toFixed(1)));
-  const fill = (text, vars) => String(text).replace(/\{(\w+)\}/g, (all, key) => (key in vars ? vars[key] : all));
 
   function tippingPoint(lab) {
     const [a, b] = lab.plans;
@@ -747,6 +804,41 @@
     else picture.parentNode.replaceChild(holder, picture);
   }
 
+  // Case studies: show the order walk-through one step at a time.
+  function enhanceWalkthrough(content) {
+    if (typeof document.querySelector !== "function" || typeof document.createElement !== "function") return;
+    const root = document.querySelector("[data-walkthrough]");
+    const project = (content.projects || []).find((p) => p.slug === body.dataset.project);
+    const w = project && project.story && project.story.walkthrough;
+    if (!root || !w) return;
+    const steps = Array.from(root.querySelectorAll(".walk__step"));
+    if (steps.length < 2) return;
+    const L = w.labels;
+    const bar = document.createElement("div");
+    bar.className = "walk__controls";
+    bar.innerHTML = `<button type="button" class="btn walk__btn" data-walk="-1">${esc(L.prev)}</button>
+      <ol class="walk__dots" aria-label="${esc(L.stepsLabel)}">${steps.map((_, i) => `<li><button type="button" class="walk__dot" data-walk-to="${i}" aria-label="${esc(fill(L.step, { n: i + 1, total: steps.length }))}">${i + 1}</button></li>`).join("")}</ol>
+      <button type="button" class="btn walk__btn" data-walk="1">${esc(L.next)}</button>`;
+    const list = root.querySelector(".walk__steps");
+    root.insertBefore(bar, list);
+    root.classList.add("is-stepper");
+    const dots = Array.from(bar.querySelectorAll("[data-walk-to]"));
+    const prev = bar.querySelector('[data-walk="-1"]');
+    const next = bar.querySelector('[data-walk="1"]');
+    let at = 0;
+    function show(i) {
+      at = Math.min(steps.length - 1, Math.max(0, i));
+      steps.forEach((step, k) => step.classList.toggle("is-current", k === at));
+      dots.forEach((dot, k) => { if (k === at) dot.setAttribute("aria-current", "step"); else dot.removeAttribute("aria-current"); });
+      prev.disabled = at === 0;
+      next.disabled = at === steps.length - 1;
+    }
+    prev.addEventListener("click", () => show(at - 1));
+    next.addEventListener("click", () => show(at + 1));
+    dots.forEach((dot) => dot.addEventListener("click", () => show(num(dot.dataset.walkTo))));
+    show(0);
+  }
+
   // Case studies: mark the section being read in the "On this page" row.
   function enhanceStoryNav() {
     if (typeof document.querySelector !== "function") return;
@@ -813,6 +905,7 @@
       : page === "process" ? renderProcess(content) : renderHome(content);
     document.getElementById("site-footer").innerHTML = renderFooter(content);
     enhanceDecisionLab(content);
+    enhanceWalkthrough(content);
     enhanceStoryNav();
 
     // Content arrives after load, so jump to a #fragment once it exists.

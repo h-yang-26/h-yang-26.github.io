@@ -46,6 +46,8 @@ After editing, run `node scripts/render_static.mjs` and the checks below.
 
 - `site.hero`: the homepage hero (eyebrow, title, lede, primary button and the decision-sheet figure). Résumé, email, LinkedIn and GitHub buttons come from the `owner` fields.
 - `site.hero.decisionLab`: the interactive version of the hero figure. The browser swaps it in for the static figure (which stays as the no-script fallback). Each of the two plans has four numbers (container charge, shortage cost at 1×, units shipped, units short) and its cost at any setting is `fixed + shortage × multiplier`. Slider range, labels, lenses and the source note live here too. `check_site.py` checks the numbers against the lab's published totals; `scripts/verify_decision_lab.py` re-solves the model at every slider position (see Checks).
+- `projects[].story.walkthrough` (optional): the "Follow one order" section, rendered between Decisions and Result. `rows` are the ledger quantities, `start` is the state before step 1, and each step carries its date, owning module, text, record ids and the value of every row; "was N" and the highlight on changed rows are worked out from the previous step. All steps are in the static page; the browser shows one at a time. Steps flagged `hypothetical` get a badge. `check_site.py` checks each step's arithmetic and that committed demand never changes after the order is accepted; `scripts/verify_walkthrough.py` compares the steps with the case study's own scenario file (see Checks).
+- `appliedThinking.labels.matrix*`: the "Where each principle shows up" table at the top of the In practice section of How I Think. It adds no claims of its own: a filled mark is a principle's `projectSlugs` entry, an outlined mark is a principle in that project's entry in `caseStudyBridges`. Remove `matrixTitle` to hide it.
 - `site.storyNav`: the "On this page" row at the top of each case study. Each entry's `id` must be a section the case-study page renders; the Academic connections entry is dropped on a page that has no such section.
 - `site.howIWork`: the homepage tiles, each naming the project it links to and the principle it illustrates.
 - `site.work`, `site.experience`, `site.about`: homepage sections. Experience reuses `owner.professionalExperience` verbatim; `site.about.aiTools` lists the AI tools used.
@@ -74,6 +76,12 @@ python scripts/verify_decision_lab.py --lab ../inventory-shipping-optimization-l
 ```
 
 The last one is not part of the release checks because it needs PuLP and a checkout of the inventory lab. Run it whenever `site.hero.decisionLab` changes or the lab's scenarios change.
+
+```bash
+python scripts/verify_walkthrough.py --repo ../b2b-sales-systems-case-study   # standard library only
+```
+
+Likewise optional: it needs a checkout of the B2B case study. Run it whenever the walk-through's numbers or the case study's scenario file change.
 
 `check_site.py` checks local links and fragments, required case-study fields, that each tile's principle is approved for its project, and that retired labels such as "agent-run" or "unverified" don't return.
 
