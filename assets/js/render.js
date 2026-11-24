@@ -253,14 +253,21 @@
     return `<div class="visual-gallery">${list.map(technicalFigure).join("")}</div>`;
   }
 
-  function renderCard(project) {
+  // A card is one stage of the planning pipeline: its number comes from the
+  // project order; "system" and "person" say who does what at that stage.
+  function renderCard(project, index, work) {
     const c = project.card;
+    const stage = work && work.stageLabel ? `<span class="card__stage">${esc(fill(work.stageLabel, { n: index + 1 }))}</span> ` : "";
+    const split = c.system && c.person && work && work.systemLabel
+      ? `<dl class="card__split"><div><dt>${esc(work.systemLabel)}</dt><dd>${inline(c.system)}</dd></div><div class="card__split-person"><dt>${esc(work.personLabel)}</dt><dd>${inline(c.person)}</dd></div></dl>`
+      : "";
     return `<li>
       <article class="card card--work" aria-labelledby="card-${esc(project.slug)}">
         <div class="card__visual">${picture((project.visuals || []).find(v => v.src === project.thumbnail) || {src: project.thumbnail}, "", "card")}</div>
-        <p class="card__kicker">${esc(c.kicker)}</p>
+        <p class="card__kicker">${stage}${esc(c.kicker)}</p>
         <h3 id="card-${esc(project.slug)}">${esc(c.title || project.title)}</h3>
         <p class="card__outcome">${inline(c.outcome)}</p>
+        ${split}
         <div class="actions">
           <a class="btn btn--primary" href="${home}projects/${esc(project.slug)}/">Read the case study<span class="visually-hidden">: ${esc(project.title)}</span></a>
           ${repoLinks(project, false)}
@@ -330,6 +337,18 @@
     return `<dl class="contact">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
   }
 
+  // The owner's workstreams, in their words; each names the case study that is a
+  // simplified, public version of a related problem.
+  function renderWorkstreams(content, ex, e) {
+    if (!Array.isArray(ex.workstreams) || !ex.workstreams.length || !e.workstreamsTitle) return "";
+    const items = ex.workstreams.map((ws) => {
+      const project = ws.project && content.projects.find((p) => p.slug === ws.project);
+      const link = project ? `<a class="workstream__link" href="${home}projects/${esc(project.slug)}/">${esc(e.relatedLabel)}: ${esc(project.card.title || project.title)}<span aria-hidden="true">&nbsp;→</span></a>` : "";
+      return `<li class="workstream"><h4>${esc(ws.title)}</h4><p>${inline(ws.detail)}</p>${link}</li>`;
+    }).join("");
+    return `<h3 class="workstreams__title">${esc(e.workstreamsTitle)}</h3><ul class="workstreams">${items}</ul>`;
+  }
+
   function renderExperience(content) {
     const ex = content.owner.professionalExperience;
     if (!ex || ex === false) return "";
@@ -340,10 +359,21 @@
         <h2 id="experience-title">${esc(e.title || "Experience")}</h2>
         <p class="experience-role"><strong>${esc(ex.role)}</strong> · ${esc(ex.organization)} · ${esc(ex.period)}</p>
         <p class="section__lede">${inline(ex.summary)}</p>
+        ${renderWorkstreams(content, ex, e)}
         <div class="actions">${resumeButton(content, e.resumeLabel || "Full résumé")}</div>
       </div>
     </section>`;
   }
+  // Three numbered first steps for a reader arriving from the résumé.
+  function renderStartHere(sh) {
+    if (!sh || !Array.isArray(sh.steps) || !sh.steps.length) return "";
+    const steps = sh.steps.map((st) => {
+      const href = st.href && (st.href.startsWith("#") ? esc(st.href) : url(st.href));
+      return `<li>${href ? `<a href="${href}">` : ""}<b>${esc(st.title)}</b><span>${inline(st.text)}</span>${href ? "</a>" : ""}</li>`;
+    }).join("");
+    return `<nav class="start-here" aria-label="${esc(sh.label)}"><p class="start-here__label">${esc(sh.label)}</p><ol>${steps}</ol></nav>`;
+  }
+
   // Positioning hero. Contact buttons come from the owner fields: a set field
   // links, a pending (null) field shows a marked placeholder in its final
   // position, and an omitted (false) field adds nothing.
@@ -373,7 +403,8 @@
       <h1 id="intro-title">${inline(h.title)}</h1>
       <p class="hero__lede">${inline(h.lede)}</p>
       <div class="actions hero__actions">${buttons.join("")}</div>
-      ${showcase(h.visual, h.decisionLab ? " data-decision-lab" : "")}
+      ${renderStartHere(h.startHere)}
+      ${showcase(h.visual, ' id="decision"' + (h.decisionLab ? " data-decision-lab" : ""))}
     </section>`;
   }
 
@@ -410,7 +441,7 @@
         <p class="eyebrow">${esc(w.eyebrow)}</p>
         <h2 id="projects-title">${esc(w.title)}</h2>
         <p class="section__lede">${inline(w.lede)}</p>
-        <ul class="cards">${content.projects.map(renderCard).join("")}</ul>
+        <ul class="cards">${content.projects.map((p, i) => renderCard(p, i, w)).join("")}</ul>
       </div>
     </section>
 
@@ -648,7 +679,7 @@
         <p class="eyebrow">${esc(p.title)}</p>
         <h1>${inline(st.headline)}</h1>
         <p class="story-head__lede">${inline(st.lede)}</p>
-        <dl class="story-facts">${st.facts.map(f => `<div><dt>${esc(f.label)}</dt><dd>${inline(f.value)}</dd></div>`).join("")}</dl>
+        <dl class="story-facts">${st.facts.map(f => `<div><dt>${esc(f.label)}</dt><dd>${inline(f.value)}</dd></div>`).join("")}${p.card.person && content.site.work.decidesLabel ? `<div class="story-facts__decides"><dt>${esc(content.site.work.decidesLabel)}</dt><dd>${inline(p.card.person)}</dd></div>` : ""}</dl>
         <div class="actions">${repoLinks(p, false)}</div>
       </header>
       ${renderStoryNav(content, new Set(["situation", "decisions", "result", "next", "technical", "role", ...(st.walkthrough ? ["walkthrough"] : []), ...(backlinks ? ["academic-connections"] : [])]))}

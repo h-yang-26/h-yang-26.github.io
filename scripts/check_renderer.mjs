@@ -119,8 +119,8 @@ for (const p of content.projects) {
   for (const id of targets) assert.match(html, new RegExp(`<section id="${id}"`), `${p.slug}: #${id} exists`);
 }
 // Homepage decision sheet: the static page keeps the figure; the browser swaps in the interactive sheet.
-assert.match(home, /<figure class="showcase" data-decision-lab>/);
-assert.match(home, /<figure class="showcase" data-decision-lab>[\s\S]*?<picture>/, "static figure stays as the no-script fallback");
+assert.match(home, /<figure class="showcase" id="decision" data-decision-lab>/);
+assert.match(home, /<figure class="showcase" id="decision" data-decision-lab>[\s\S]*?<picture>/, "static figure stays as the no-script fallback");
 assert.ok(!home.includes('class="dlab"'), "the interactive sheet is not part of the static snapshot");
 async function enhanceHome(input = content) {
   const handlers = {};
@@ -253,4 +253,32 @@ async function enhanceHome(input = content) {
   delete noLabels.appliedThinking.labels.matrixTitle;
   assert.doesNotMatch((await render("applied-thinking", noLabels)).main.innerHTML, /matrix/);
 }
-console.log("PASS: four routes, Applied Thinking tile cards, process page, homepage order, hero and story templates, case-study navigation, interactive decision sheet, order walk-through, principle matrix, escaped copy, rejected active URL schemes and offline fallback.");
+// Résumé reader's path: Start here strip, workstreams linked to case studies, pipeline cards.
+{
+  const h = content.site.hero, ex = content.owner.professionalExperience;
+  const strip = home.match(/<nav class="start-here"[\s\S]*?<\/nav>/);
+  assert.ok(strip && home.indexOf("start-here") < home.indexOf('id="decision"'), "Start here sits between the hero buttons and the figure");
+  assert.equal((strip[0].match(/<li>/g) || []).length, h.startHere.steps.length);
+  assert.match(strip[0], /href="#decision"/); assert.match(strip[0], /href="#experience"/); assert.match(strip[0], /href="\.\/how-these-were-built\/"/);
+  const exp = home.slice(home.indexOf('id="experience"'), home.indexOf('id="projects"'));
+  assert.equal((exp.match(/<li class="workstream">/g) || []).length, ex.workstreams.length);
+  for (const ws of ex.workstreams) {
+    assert.ok(exp.includes(ws.detail.slice(0, 60)), `${ws.title}: owner wording verbatim`);
+    if (ws.project) assert.ok(exp.includes(`href="./projects/${ws.project}/">`), `${ws.title}: links to ${ws.project}`);
+  }
+  assert.ok(exp.indexOf("Supply planning") < exp.indexOf("Inventory decision support"), "supply planning leads");
+  content.projects.forEach((p, i) => {
+    const card = home.match(new RegExp(`<article class="card card--work" aria-labelledby="card-${p.slug}">[\\s\\S]*?</article>`))[0];
+    assert.match(card, new RegExp(`<span class="card__stage">Stage ${i + 1}</span> ${p.card.kicker}`), `${p.slug}: stage ${i + 1}`);
+    assert.match(card, /<dl class="card__split">[\s\S]*The system[\s\S]*A person/, `${p.slug}: says who does what`);
+  });
+  for (const p of content.projects) {
+    const html = (await render("project", content, false, p.slug)).main.innerHTML;
+    assert.match(html, new RegExp(`<div class="story-facts__decides"><dt>Who decides</dt><dd>${p.card.person.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}</dd>`), `${p.slug}: who decides`);
+  }
+  const bare = structuredClone(content);
+  delete bare.site.hero.startHere; delete bare.site.experience.workstreamsTitle; delete bare.site.work.stageLabel;
+  const bareHome = (await render("home", bare)).main.innerHTML;
+  assert.ok(!/start-here|class="workstream"|card__stage/.test(bareHome), "each addition can be switched off from the content file");
+}
+console.log("PASS: four routes, Applied Thinking tile cards, process page, homepage order, hero and story templates, résumé path (start here, linked workstreams, pipeline stages, who decides), case-study navigation, interactive decision sheet, order walk-through, principle matrix, escaped copy, rejected active URL schemes and offline fallback.");
